@@ -1,0 +1,38 @@
+﻿
+<div class="panel panel-primary" >
+    <div class="panel-heading">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeWindow()">&times;</button>
+        <h3 class="panel-title">Создание новой квартиры</h3>
+        
+    </div>
+    <div class="panel-body">
+
+        <form (ngSubmit)="saveFlat(); ngNewFlatForm.reset()" #ngNewFlatForm="ngForm">
+
+            <div class="form-group">
+                <label class="control-label" for="newFlatName">Укажите название квартиры</label>
+                <input class="form-control" name="newFlatName" type="text" [(ngModel)]="flat.Name" required>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="newFlatAddress">Укажите адрес квартиры</label>
+                <input class="form-control" name="newFlatAddress" type="text" [(ngModel)]="flat.Address" required>
+            </div>
+
+            <!--<a class="btn btn-primary pull-right"
+           (click)="createNewFlat()">Добавить квартиру</a>-->
+
+            <button type="submit" class="btn btn-primary pull-right" *ngIf="!flat.Id"
+                    [disabled]="ngNewFlatForm.form.invalid">
+                Добавить квартиру
+            </button>
+            <button type="submit" class="btn btn-primary pull-right" *ngIf="flat.Id"
+                    [disabled]="ngNewFlatForm.form.invalid">
+                Сохранить квартиру
+            </button>
+        </form>
+
+    </div>
+</div>
+
+
