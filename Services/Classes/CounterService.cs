@@ -63,6 +63,11 @@ namespace Services.Classes
         /// <param name="counter">counter</param>
         public Counter AddCounter(Counter counter)
         {
+            //TODO: when will be current session with current chosen FLAT
+            if(counter.FlatId == 0)
+            {
+                counter.FlatId = this.context.Flats.FirstOrDefault().Id;
+            }
             this.context.Counters.Add(counter);
             this.context.Commit();
 

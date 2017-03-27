@@ -14,6 +14,7 @@ import { AboutComponent } from './components/about/about.component';
 import { FlatComponent } from './components/flat/flat.component';
 import { NewFlatComponent } from './components/flat/new-flat.component/new-flat.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { NewCounterComponent } from './components/counter/new-counter/new-counter.component';
 
 // =============== Helo Components ==========================
 import { ConfirmComponent } from './modals/confirm/confirm.component';
@@ -35,12 +36,10 @@ import { CounterService } from './services/counter.service';
         AppComponent,
         NavbarComponent,
         AboutComponent,
-
         FlatComponent,
         NewFlatComponent, 
-
-        CounterComponent, 
-
+        CounterComponent,
+        NewCounterComponent,
         ConfirmComponent
     ],
     entryComponents: [

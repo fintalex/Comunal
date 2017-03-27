@@ -213,6 +213,7 @@
     <Content Include="app\app.component.html" />
     <Content Include="app\components\counter\counter.component.html" />
     <Content Include="app\components\about\about.component.html" />
+    <Content Include="app\components\counter\new-counter\new-counter.component.html" />
     <Content Include="app\components\flat\flat.component.html" />
     <Content Include="app\components\flat\new-flat.component\new-flat.component.html" />
     <Content Include="app\components\navbar\navbar.component.html" />
@@ -275,6 +276,7 @@
     <TypeScriptCompile Include="app\app.routing.ts" />
     <TypeScriptCompile Include="app\components\counter\counter.component.ts" />
     <TypeScriptCompile Include="app\components\about\about.component.ts" />
+    <TypeScriptCompile Include="app\components\counter\new-counter\new-counter.component.ts" />
     <TypeScriptCompile Include="app\components\flat\flat.component.ts" />
     <TypeScriptCompile Include="app\components\flat\new-flat.component\new-flat.component.ts" />
     <TypeScriptCompile Include="app\components\navbar\navbar.component.ts" />

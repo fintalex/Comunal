@@ -17,8 +17,8 @@ export class NewFlatComponent implements OnInit  {
 
     //currentFlat: Flat;
 
-    name: string;
-    address: string;
+    //name: string;
+    //address: string;
 
     constructor(private flatService: FlatService) { }
 

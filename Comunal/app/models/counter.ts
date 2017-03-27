@@ -3,8 +3,8 @@
 
     constructor(
         public Name: string = null,
-        public FlatId: number,
-        public CounterTypeId: number,
+        public FlatId: number = 0,
+        public CounterTypeId: number = 0,
         public Address: string = null,
         public EnableODN: number = 1,
         public SortOrder: boolean = true,

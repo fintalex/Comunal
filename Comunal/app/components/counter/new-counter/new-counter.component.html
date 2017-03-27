@@ -1,0 +1,44 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeWindow()">&times;</button>
+        <h3 class="panel-title">Создание нового счетчика</h3>
+
+    </div>
+    <div class="panel-body">
+
+        <form (ngSubmit)="saveCounter(); ngNewCounterForm.reset()" #ngNewCounterForm="ngForm">
+
+            <div class="form-group">
+                <label class="control-label" for="newCounterName">Укажите название счетчика</label>
+                <input class="form-control" name="newCounterName" type="text" [(ngModel)]="counter.Name" required>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="counterTypeId">Укажите тип счетчика</label>
+                <select class="form-control" name="counterTypeId" type="text" placeholder="Укажите тип счетчика"
+                        [(ngModel)]="counter.CounterTypeId"  required>
+                    <option value="1">Холодная вода</option>
+                    <option value="2">Горячая вода</option>
+                    <option value="3">Электричество</option>
+                    <option value="4">Газ</option>
+                    <option value="5">Отопление</option>
+                    <option value="6">Моторесурс</option>
+                </select>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary pull-right" *ngIf="!counter.Id"
+                    [disabled]="ngNewCounterForm.form.invalid">
+                Добавить счетчик
+            </button>
+            <button type="submit" class="btn btn-primary pull-right" *ngIf="counter.Id"
+                    [disabled]="ngNewCounterForm.form.invalid">
+                Сохранить счетчик
+            </button>
+        </form>
+
+    </div>
+</div>
+
+
