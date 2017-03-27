@@ -27,6 +27,16 @@ namespace Domain.Migrations
             {
                 SeedCounterTypes(context);
             }
+
+            if (!context.Flats.Any())
+            {
+                SeedFlats(context);
+            }
+
+            if (!context.Counters.Any())
+            {
+                SeedCounters(context);
+            }
         }
 
         private static void SeedUnits(DataContext context)
@@ -39,12 +49,29 @@ namespace Domain.Migrations
 
         private static void SeedCounterTypes(DataContext context)
         {
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = 1, Name = "Холодная вода", UnitId = (int)UnitTypes.MetersCubic });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = 2, Name = "Горячая вода", UnitId = (int)UnitTypes.MetersCubic });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = 3, Name = "Электричество", UnitId = (int)UnitTypes.KilowattPerHour });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = 4, Name = "Газ", UnitId = (int)UnitTypes.MetersCubic });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = 5, Name = "Отопление", UnitId = (int)UnitTypes.MetersCubic });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = 6, Name = "Моторесурс", UnitId = (int)UnitTypes.MotorHour });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.ColdWater, Name = "Холодная вода", UnitId = (int)UnitTypes.MetersCubic });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.HotWater, Name = "Горячая вода",  UnitId = (int)UnitTypes.MetersCubic });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Electricity, Name = "Электричество", UnitId = (int)UnitTypes.KilowattPerHour });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Gas, Name = "Газ", UnitId = (int)UnitTypes.MetersCubic });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Heating, Name = "Отопление", UnitId = (int)UnitTypes.MetersCubic });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.MotorResource, Name = "Моторесурс", UnitId = (int)UnitTypes.MotorHour });
+            context.SaveChanges();
+        }
+
+        private static void SeedFlats(DataContext context)
+        {
+            context.Flats.AddOrUpdate(new Flat { Id = 1, Name = "Первая квартира", Address = "Стачки 23" });
+            context.Flats.AddOrUpdate(new Flat { Id = 2, Name = "Вторая квартира", Address = "Мадояна 68" });
+            context.Flats.AddOrUpdate(new Flat { Id = 3, Name = "Третья квартира", Address = "Ленина 51" });
+            context.SaveChanges();
+        }
+
+        private static void SeedCounters(DataContext context)
+        {
+            context.Counters.AddOrUpdate(new Counter { Id = 1, Name = "Холодная вода в туалете", CounterTypeId = (int)CounterTypes.ColdWater, FlatId = 1, SortOrder = 1, UnitConvertCoefficient = 1 });
+            context.Counters.AddOrUpdate(new Counter { Id = 2, Name = "Горячая вода в туалете", CounterTypeId = (int)CounterTypes.HotWater, FlatId = 1, SortOrder = 1, UnitConvertCoefficient = 1 });
+            context.Counters.AddOrUpdate(new Counter { Id = 3, Name = "Электросчетчик в подъезде", CounterTypeId = (int)CounterTypes.Electricity, FlatId = 1, SortOrder = 1, UnitConvertCoefficient = 1 });
+            context.Counters.AddOrUpdate(new Counter { Id = 4, Name = "Электросчетчик в гараже", CounterTypeId = (int)CounterTypes.Electricity, FlatId = 1, SortOrder = 1, UnitConvertCoefficient = 1 });
             context.SaveChanges();
         }
     }

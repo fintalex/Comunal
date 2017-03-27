@@ -197,5 +197,5 @@ jspm_packages
 .vscode
 
 # JavaScript files
-app/*.js
+*/app/**/*.js
 *.js.map

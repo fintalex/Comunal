@@ -31,7 +31,7 @@ namespace Data
         /// <summary>
         /// Отопление
         /// </summary>
-        NonRegistered = 5,
+        Heating = 5,
 
         /// <summary>
         /// Моторесурс
