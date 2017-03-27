@@ -33,10 +33,10 @@ namespace Domain.Migrations
                 SeedFlats(context);
             }
 
-            if (!context.Counters.Any())
-            {
-                SeedCounters(context);
-            }
+            //if (!context.Counters.Any())
+            //{
+            //    SeedCounters(context);
+            //}
         }
 
         private static void SeedUnits(DataContext context)
