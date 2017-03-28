@@ -199,3 +199,6 @@ jspm_packages
 # JavaScript files
 */app/**/*.js
 *.js.map
+
+#We don't need to track dbConnection.config file, as it will be own for each programmers
+dbConnection.config
