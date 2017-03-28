@@ -6,9 +6,9 @@ namespace Data
     {
         public int Id { get; set; }
 
-        public double Data { get; set; }
+        public double Reading { get; set; }
 
-        public double? DataODN { get; set; }
+        public double? ReadingODN { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

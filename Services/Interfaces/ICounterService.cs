@@ -1,8 +1,8 @@
-﻿namespace Services.Interfaces
-{
-    using Data;
-    using System.Linq;
+﻿using Data;
+using System.Linq;
 
+namespace Services.Interfaces
+{
     public interface ICounterService
     {
         /// <summary>
