@@ -16,6 +16,8 @@ namespace Domain
 
         IDbSet<Unit> Units { get; set; }
 
+        IDbSet<CounterData> CounterDatas { get; set; }
+
         /// <summary>
         /// Commit changes to database
         /// </summary>

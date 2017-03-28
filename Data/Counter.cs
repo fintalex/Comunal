@@ -1,4 +1,6 @@
-﻿namespace Data
+﻿using System.Collections.Generic;
+
+namespace Data
 {
     public class Counter
     {
@@ -26,5 +28,8 @@
         public int? CounterTarifId { get; set; }
 
         public virtual CounterTarif CounterTarif { get; set; }
+
+
+        public virtual ICollection<CounterData> CounterDatas { get; set; }
     }
 }

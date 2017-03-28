@@ -23,6 +23,8 @@ namespace Domain
             this.CounterTarifs = this.Set<CounterTarif>();
 
             this.Units = this.Set<Unit>();
+
+            this.CounterDatas = this.Set<CounterData>();
         }
 
         public IDbSet<Flat> Flats { get; set; }
@@ -34,6 +36,8 @@ namespace Domain
         public IDbSet<CounterTarif> CounterTarifs { get; set; }
 
         public IDbSet<Unit> Units { get; set; }
+
+        public IDbSet<CounterData> CounterDatas { get; set; }
 
         /// <summary>
         /// Commit changes
