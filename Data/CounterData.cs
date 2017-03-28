@@ -15,7 +15,13 @@ namespace Data
         public bool IsFirst { get; set; }
 
 
+        public int CounterId { get; set; }
+
         public virtual Counter Counter { get; set; }
+
+
+        public int CounterTarifId { get; set; }
+
         public virtual CounterTarif CounterTarif { get; set; }
     }
 }
