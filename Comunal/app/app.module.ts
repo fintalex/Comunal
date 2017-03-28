@@ -9,6 +9,8 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 // =============== App Component ====================
 import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutComponent } from './components/about/about.component';
 import { FlatComponent } from './components/flat/flat.component';
@@ -16,12 +18,14 @@ import { NewFlatComponent } from './components/flat/new-flat.component/new-flat.
 import { CounterComponent } from './components/counter/counter.component';
 import { NewCounterComponent } from './components/counter/new-counter/new-counter.component';
 
-// =============== Helo Components ==========================
+// =============== Help Components ==========================
 import { ConfirmComponent } from './modals/confirm/confirm.component';
 
 // =============== Services ==========================
 import { FlatService } from './services/flat.service';
 import { CounterService } from './services/counter.service';
+import { AuthGuard } from './services/auth.guard';
+import { UserService } from './services/user.service';
 
 @NgModule({
     imports: [
@@ -34,6 +38,8 @@ import { CounterService } from './services/counter.service';
     ],
     declarations: [
         AppComponent,
+        LoginComponent,
+        RegisterComponent,
         NavbarComponent,
         AboutComponent,
         FlatComponent,
@@ -46,6 +52,8 @@ import { CounterService } from './services/counter.service';
         ConfirmComponent
     ],
     providers: [
+        AuthGuard,
+        UserService,
         FlatService,
         CounterService
     ],

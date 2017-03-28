@@ -216,6 +216,8 @@
     <Content Include="app\components\counter\new-counter\new-counter.component.html" />
     <Content Include="app\components\flat\flat.component.html" />
     <Content Include="app\components\flat\new-flat.component\new-flat.component.html" />
+    <Content Include="app\components\register\register.component.html" />
+    <Content Include="app\components\login\login.component.html" />
     <Content Include="app\components\navbar\navbar.component.html" />
     <Content Include="app\modals\confirm\confirm.component.html" />
     <Content Include="Content\bootstrap.css" />
@@ -280,13 +282,18 @@
     <TypeScriptCompile Include="app\components\counter\new-counter\new-counter.component.ts" />
     <TypeScriptCompile Include="app\components\flat\flat.component.ts" />
     <TypeScriptCompile Include="app\components\flat\new-flat.component\new-flat.component.ts" />
+    <TypeScriptCompile Include="app\components\register\register.component.ts" />
+    <TypeScriptCompile Include="app\components\login\login.component.ts" />
     <TypeScriptCompile Include="app\components\navbar\navbar.component.ts" />
     <TypeScriptCompile Include="app\config.ts" />
     <TypeScriptCompile Include="app\modals\confirm\confirm.component.ts" />
     <TypeScriptCompile Include="app\models\counter.ts" />
+    <TypeScriptCompile Include="app\models\user.ts" />
     <TypeScriptCompile Include="app\models\flats.ts" />
     <TypeScriptCompile Include="app\services\counter.service.ts" />
+    <TypeScriptCompile Include="app\services\auth.guard.ts" />
     <TypeScriptCompile Include="app\services\flat.service.ts" />
+    <TypeScriptCompile Include="app\services\user.service.ts" />
     <TypeScriptCompile Include="main.ts" />
   </ItemGroup>
   <ItemGroup>

@@ -4,11 +4,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { FlatComponent } from './components/flat/flat.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-    { path: 'about', component: AboutComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent},
+    { path: 'about', component: AboutComponent, canActivate: [AuthGuard]},
     { path: 'myflats', component: FlatComponent },
-    { path: 'counters', component: CounterComponent }
+    { path: 'counters', component: CounterComponent },
+
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
