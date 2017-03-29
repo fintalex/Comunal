@@ -12,31 +12,31 @@ import { Counter } from '../models/counter';
 @Injectable()
 export class CounterService {
     counters: Counter[];
-    private apiUrl = 'api/Counter/'
+    private apiUrl = 'api/Counters'
 
     constructor(private http: Http) {
 
     }
     
     getCounters(): Observable<Counter[]> {
-        return this.http.get(this.apiUrl + 'GetCounters')
+        return this.http.get(this.apiUrl)
             .map(response => response.json())
             .catch(this.handleError);
     }
 
     createCounter(newCounter: Counter): Observable<Counter>  {
-        return this.http.post(this.apiUrl + 'AddCounter/', newCounter)
+        return this.http.post(this.apiUrl, newCounter)
             .map(res => res.json())
             .catch(this.handleError);
     }
 
     deleteCounter(counterId: number) {
-        return this.http.delete(`${this.apiUrl}DeleteCounter/${counterId}`)
+        return this.http.delete(`${this.apiUrl}/${counterId}`)
             .catch(this.handleError);
     }
 
     updateCounter(counter: Counter) {
-        return this.http.post(`${this.apiUrl}UpdateCounter`, counter)
+        return this.http.put(`${this.apiUrl}`, counter)
             .catch(this.handleError);
     }
 

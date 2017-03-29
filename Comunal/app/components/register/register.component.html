@@ -3,22 +3,22 @@
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
             <label for="firstName">Имя пользователя</label>
-            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.FirstName" #firstName="ngModel" required />
             <div *ngIf="f.submitted && !firstName.valid" class="help-block">Укажите имя</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
             <label for="lastName">Фамилия пользователя</label>
-            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.LastName" #lastName="ngModel" required />
             <div *ngIf="f.submitted && !lastName.valid" class="help-block">Укажите фамилию</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+            <input type="text" class="form-control" name="email" [(ngModel)]="model.Email" #email="ngModel" required />
             <div *ngIf="f.submitted && !email.valid" class="help-block">Укажите Email</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Пароль</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.Password" #password="ngModel" required />
             <div *ngIf="f.submitted && !password.valid" class="help-block">Укажите пароль</div>
         </div>
         <div class="form-group">

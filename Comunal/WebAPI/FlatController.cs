@@ -5,11 +5,12 @@ using System.Web.Http;
 
 namespace Comunal.WebAPI
 {
-    public class FlatController : ApiController
+    [RoutePrefix("api/flats")]
+    public class FlatsController : ApiController
     {
         private readonly IFlatService flatService;
         
-        public FlatController(IFlatService flatService)
+        public FlatsController(IFlatService flatService)
         {
             this.flatService = flatService;
         }
@@ -17,7 +18,6 @@ namespace Comunal.WebAPI
         [HttpGet]
         public IQueryable<Flat> GetFlats()
         {
-            //return new string[] { "value1", "value2" };
             return this.flatService.GetFlats();
         }
 
@@ -33,7 +33,7 @@ namespace Comunal.WebAPI
             return this.flatService.AddFlat(newFlat);
         }
 
-        [HttpPost]
+        [HttpPut]
         public void UpdateFlat(Flat flat)
         {
             this.flatService.UpdateFlat(flat);

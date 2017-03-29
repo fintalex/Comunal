@@ -12,32 +12,31 @@ import { Flat } from '../models/flats';
 @Injectable()
 export class FlatService {
     flats: Flat[];
-    private apiUrl = 'api/Flat/'
+    private apiUrl = 'api/flats'
 
     constructor(private http: Http) {
 
     }
     
     getFlats(): Observable<Flat[]> {
-        return this.http.get(this.apiUrl + 'GetFlats')
+        return this.http.get(this.apiUrl)
             .map(response => response.json())
             .catch(this.handleError);
     }
 
     createFlat(newFlat: Flat): Observable<Flat>  {
-        console.log("Creating new flat");
-        return this.http.post(this.apiUrl + 'AddFlat/', newFlat)
+        return this.http.post(this.apiUrl, newFlat)
             .map(res => res.json())
             .catch(this.handleError);
     }
 
     deleteFlat(flatId: number) {
-        return this.http.delete(`${this.apiUrl}DeleteFlat/${flatId}`)
+        return this.http.delete(`${this.apiUrl}/${flatId}`)
             .catch(this.handleError);
     }
 
     updateFlat(flat: Flat) {
-        return this.http.post(`${this.apiUrl}UpdateFlat`, flat)
+        return this.http.put(`${this.apiUrl}`, flat)
             .catch(this.handleError);
     }
 

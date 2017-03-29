@@ -8,11 +8,12 @@ using System.Web.Http;
 
 namespace Comunal.WebAPI
 {
-    public class CounterController : ApiController
+    [RoutePrefix("api/counters")]
+    public class CountersController : ApiController
     {
         private readonly ICounterService counterService;
 
-        public CounterController(ICounterService counterService)
+        public CountersController(ICounterService counterService)
         {
             this.counterService = counterService;
         }
@@ -36,7 +37,7 @@ namespace Comunal.WebAPI
             return this.counterService.AddCounter(newCounter);
         }
 
-        [HttpPost]
+        [HttpPut]
         public void UpdateCounter(Counter counter)
         {
             this.counterService.UpdateCounter(counter);

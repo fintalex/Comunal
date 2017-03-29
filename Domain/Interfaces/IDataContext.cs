@@ -6,17 +6,19 @@ namespace Domain
 {
     public interface IDataContext : IDisposable
     {
-        IDbSet<Flat> Flats { get; set; }
+        DbSet<Flat> Flats { get; set; }
 
-        IDbSet<Counter> Counters { get; set; }
+        DbSet<Counter> Counters { get; set; }
 
-        IDbSet<CounterType> CounterTypes { get; set; }
+        DbSet<CounterType> CounterTypes { get; set; }
 
-        IDbSet<CounterTarif> CounterTarifs { get; set; }
+        DbSet<CounterTarif> CounterTarifs { get; set; }
 
-        IDbSet<Unit> Units { get; set; }
+        DbSet<Unit> Units { get; set; }
 
-        IDbSet<CounterData> CounterDatas { get; set; }
+        DbSet<CounterData> CounterDatas { get; set; }
+
+        DbSet<User> Users { get; set; }
 
         /// <summary>
         /// Commit changes to database

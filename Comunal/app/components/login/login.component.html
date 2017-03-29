@@ -2,14 +2,14 @@
     <h2>Логин</h2>
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <label for="username">Email</label>
-            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" [(ngModel)]="model.Email" #username="ngModel" required />
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Укажите email</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Пароль</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.Password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Введите пароль</div>
         </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Войти</button>

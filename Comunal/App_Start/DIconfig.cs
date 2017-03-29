@@ -29,6 +29,8 @@ namespace Comunal
             container.RegisterType<IDataContext, DataContext>();
             container.RegisterType<IFlatService, FlatService>();
             container.RegisterType<ICounterService, CounterService>();
+            container.RegisterType<IUserService, UserService>();
+            container.RegisterType<ICounterDataService, CounterDataService>();
         }
     }
 }

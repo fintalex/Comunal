@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { ConfirmComponent } from '../../modals/confirm/confirm.component';
+import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
 import { FlatService } from '../../services/flat.service';
 import { DialogService } from 'ng2-bootstrap-modal';

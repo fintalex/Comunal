@@ -25,19 +25,23 @@ namespace Domain
             this.Units = this.Set<Unit>();
 
             this.CounterDatas = this.Set<CounterData>();
+
+            this.Users = this.Set<User>();
         }
 
-        public IDbSet<Flat> Flats { get; set; }
+        public DbSet<Flat> Flats { get; set; }
 
-        public IDbSet<Counter> Counters { get; set; }
+        public DbSet<Counter> Counters { get; set; }
 
-        public IDbSet<CounterType> CounterTypes { get; set; }
+        public DbSet<CounterType> CounterTypes { get; set; }
 
-        public IDbSet<CounterTarif> CounterTarifs { get; set; }
+        public DbSet<CounterTarif> CounterTarifs { get; set; }
 
-        public IDbSet<Unit> Units { get; set; }
+        public DbSet<Unit> Units { get; set; }
 
-        public IDbSet<CounterData> CounterDatas { get; set; }
+        public DbSet<CounterData> CounterDatas { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         /// <summary>
         /// Commit changes

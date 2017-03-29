@@ -19,7 +19,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { NewCounterComponent } from './components/counter/new-counter/new-counter.component';
 
 // =============== Help Components ==========================
-import { ConfirmComponent } from './modals/confirm/confirm.component';
+import { ConfirmComponent } from './helpers/confirm/confirm.component';
 
 // =============== Services ==========================
 import { FlatService } from './services/flat.service';

@@ -8,11 +8,12 @@ using System.Web.Http;
 
 namespace Comunal.WebAPI
 {
-    public class CounterDataController : ApiController
+    [RoutePrefix("api/CounterDatas")]
+    public class CounterDatasController : ApiController
     {
         private readonly ICounterDataService counterDataService;
 
-        public CounterDataController(ICounterDataService counterDataService)
+        public CounterDatasController(ICounterDataService counterDataService)
         {
             this.counterDataService = counterDataService;
         }
@@ -24,6 +25,7 @@ namespace Comunal.WebAPI
         }
 
         [HttpGet]
+        [Route("byCounerId/{counterId:int}")]
         public IQueryable<CounterData> GetCounterDatas(int counterId)
         {
             return this.counterDataService.GetCounterDatas(counterId);
@@ -35,19 +37,21 @@ namespace Comunal.WebAPI
             return this.counterDataService.AddCounterData(newCounterData);
         }
 
-        [HttpPost]
+        [HttpPut]
         public void UpdateCounterData(CounterData counterData)
         {
             this.counterDataService.UpdateCounterData(counterData);
         }
 
         [HttpDelete]
+        [Route("")]
         public void DeleteCounterData(int id)
         {
             this.counterDataService.DeleteCounterData(id);
         }
 
         [HttpDelete]
+        [Route("byCounerId/{counterId:int}")]
         public void DeleteAllCounterDatas(int counterId)
         {
             this.counterDataService.DeleteAllCounterDatas(counterId);
