@@ -3,6 +3,7 @@ import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
 import { FlatService } from '../../services/flat.service';
 import { DialogService } from 'ng2-bootstrap-modal';
+import { AuthService } from '../../services/auth.service';
 
 import { Flat } from '../../models/flats';
 
@@ -20,11 +21,13 @@ export class FlatComponent implements OnInit  {
 
     constructor(
         private flatService: FlatService,
-        private dialogService: DialogService
+        private dialogService: DialogService,
+        private authService: AuthService
     ) {}
 
     ngOnInit() {
         this.initFlatList();
+        console.log(this.authService.CurrentUser)
     }
 
     initFlatList() {

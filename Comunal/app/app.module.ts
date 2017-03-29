@@ -26,6 +26,7 @@ import { FlatService } from './services/flat.service';
 import { CounterService } from './services/counter.service';
 import { AuthGuard } from './services/auth.guard';
 import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
     imports: [
@@ -54,6 +55,7 @@ import { UserService } from './services/user.service';
     providers: [
         AuthGuard,
         UserService,
+        AuthService,
         FlatService,
         CounterService
     ],
