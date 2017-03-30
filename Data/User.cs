@@ -1,4 +1,6 @@
-﻿namespace Data
+﻿using System.Collections.Generic;
+
+namespace Data
 {
     public class User
     {
@@ -11,5 +13,7 @@
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public virtual ICollection<Flat> Flats { get; set; }
     }
 }

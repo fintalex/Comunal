@@ -3,6 +3,7 @@ import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
 import { CounterService } from '../../services/counter.service';
 import { DialogService } from 'ng2-bootstrap-modal';
+import { AuthService } from '../../services/auth.service';
 
 import { Counter } from '../../models/counter';
 
@@ -18,7 +19,8 @@ export class CounterComponent implements OnInit  {
 
     constructor(
         private counterService: CounterService,
-        private dialogService: DialogService
+        private dialogService: DialogService,
+        private authService: AuthService
     ) { }
 
     ngOnInit() {

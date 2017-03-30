@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserDTO.cs" />
+    <Compile Include="FlatDTO.cs" />
+    <Compile Include="LoginDTO.cs" />
+    <Compile Include="CurrentUserDTO.cs" />
     <Compile Include="CounterDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

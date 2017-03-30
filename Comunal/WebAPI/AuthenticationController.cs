@@ -19,7 +19,7 @@ namespace Comunal.WebAPI
         }
 
         [HttpPost]
-        public UserDTO Login([FromBody]UserDTO user)
+        public CurrentUserDTO Login([FromBody]LoginDTO user)
         {
             var logingUser = this.userService.GetUserByLogin(user.Email, user.Password);
 
@@ -30,7 +30,9 @@ namespace Comunal.WebAPI
 
             // here we must create COOKIE
 
-            return Mapper.Map<UserDTO>(logingUser);
+            var curUserDTO = Mapper.Map<CurrentUserDTO>(logingUser);
+
+            return curUserDTO;
         }
     }
 }

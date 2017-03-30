@@ -31,7 +31,7 @@ export class FlatComponent implements OnInit  {
     }
 
     initFlatList() {
-        this.flatService.getFlats()
+        this.flatService.getFlats(this.authService.CurrentUser.Id)
             .subscribe(flats => {
                 this.myFlats = flats;
             });
@@ -43,6 +43,7 @@ export class FlatComponent implements OnInit  {
     }
 
     createNewFlat(newFlat: Flat) {
+        newFlat.UserId = this.authService.CurrentUser.Id;
         this.flatService.createFlat(newFlat)
             .subscribe(flat => {
                 console.log(flat);

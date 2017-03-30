@@ -18,8 +18,8 @@ export class FlatService {
 
     }
     
-    getFlats(): Observable<Flat[]> {
-        return this.http.get(this.apiUrl)
+    getFlats(userId: number): Observable<Flat[]> {
+        return this.http.get(`${this.apiUrl}/byuser/${userId}`)
             .map(response => response.json())
             .catch(this.handleError);
     }

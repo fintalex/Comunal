@@ -12,8 +12,21 @@ namespace Comunal
     {
         public static void Initialize()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Counter, CounterDTO>());
-            Mapper.Initialize(cfg => cfg.CreateMap<User, UserDTO>());
+            Mapper.Initialize(cfg => {
+
+                cfg.CreateMap<Counter, CounterDTO>();
+
+                cfg.CreateMap<User, CurrentUserDTO>()
+                    .ForMember(x => x.Flat, c => c.MapFrom(o => o.Flats.FirstOrDefault()));
+
+                cfg.CreateMap<Flat, FlatDTO>();
+
+            });
+
+            //Mapper.Initialize(cfg => cfg.CreateMap<User, CurrentUserDTO>());
+            ////.ForMember(x=>x.FirstName, c=>c.MapFrom(o=>o.Flats.FirstOrDefault())));
+
+            //Mapper.Initialize(cfg => cfg.CreateMap<Flat, FlatDTO>());
         }
     }
 }

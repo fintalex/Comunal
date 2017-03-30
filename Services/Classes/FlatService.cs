@@ -48,6 +48,15 @@ namespace Services.Classes
         }
 
         /// <summary>
+        /// Get All Flats by user (then it will be by UserId)
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<Flat> GetUserFlats(int userId)
+        {
+            return this.context.Flats.Where(f=>f.UserId == userId);
+        }
+
+        /// <summary>
         /// Delete Flat by id
         /// </summary>
         /// <param name="id">Flat id</param>

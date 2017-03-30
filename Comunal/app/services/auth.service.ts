@@ -7,7 +7,7 @@ import { User } from '../models/user';
 @Injectable()
 export class AuthService{
 
-    CurrentUser: any;
+    CurrentUser: User;
     
     constructor(private http: Http) {
         var userInStorage = localStorage.getItem('currentUser');

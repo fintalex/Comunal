@@ -1,7 +1,10 @@
 ﻿using Data;
+using DTO;
 using Services.Interfaces;
 using System.Linq;
 using System.Web.Http;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace Comunal.WebAPI
 {
@@ -16,9 +19,10 @@ namespace Comunal.WebAPI
         }
 
         [HttpGet]
-        public IQueryable<Flat> GetFlats()
+        [Route("byuser/{userId:int}")]
+        public IQueryable<FlatDTO> GetFlats(int userId)
         {
-            return this.flatService.GetFlats();
+            return this.flatService.GetUserFlats(userId).ProjectTo<FlatDTO>();
         }
 
         [HttpGet]
