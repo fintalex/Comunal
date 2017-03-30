@@ -12,12 +12,12 @@ import { GuardService } from './services/guard.service';
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'about', component: AboutComponent, canActivate: [GuardService] },
-    { path: 'myflats', component: FlatComponent },
-    { path: 'counters', component: CounterComponent },
+    { path: 'about', component: AboutComponent},
+    { path: 'myflats', component: FlatComponent, canActivate: [GuardService]  },
+    { path: 'counters', component: CounterComponent, canActivate: [GuardService]  },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'myflats' }
 ];
 
 @NgModule({
