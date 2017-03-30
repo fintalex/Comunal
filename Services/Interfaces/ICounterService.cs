@@ -6,12 +6,6 @@ namespace Services.Interfaces
     public interface ICounterService
     {
         /// <summary>
-        /// Create a new Counter
-        /// </summary>
-        /// <param name="counter">Counter for creating</param>
-        void CreateCounter(Counter counter);
-
-        /// <summary>
         /// Get Counter by id
         /// </summary>
         /// <param name="id">Id of counter</param>

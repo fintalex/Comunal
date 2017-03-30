@@ -4,30 +4,39 @@ using System.Data.Entity;
 
 namespace Domain
 {
-    public interface IDataContext : IDisposable
-    {
-        DbSet<Flat> Flats { get; set; }
+	public interface IDataContext : IDisposable
+	{
+		DbSet<Flat> Flats { get; set; }
 
-        DbSet<Counter> Counters { get; set; }
 
-        DbSet<CounterType> CounterTypes { get; set; }
+		DbSet<Counter> Counters { get; set; }
 
-        DbSet<CounterTarif> CounterTarifs { get; set; }
+		DbSet<CounterType> CounterTypes { get; set; }
 
-        DbSet<Unit> Units { get; set; }
+		DbSet<CounterTarif> CounterTarifs { get; set; }
 
-        DbSet<CounterData> CounterDatas { get; set; }
+		DbSet<Unit> Units { get; set; }
 
-        DbSet<User> Users { get; set; }
+		DbSet<CounterData> CounterDatas { get; set; }
 
-        /// <summary>
-        /// Commit changes to database
-        /// </summary>
-        void Commit();
 
-        /// <summary>
-        /// Revert database changes
-        /// </summary>
-        void Rollback();
-    }
+		DbSet<Maintenance> Maintenances { get; set; }
+
+		DbSet<MaintenanceType> MaintenanceTypes { get; set; }
+
+		DbSet<MaintenanceTarif> MaintenanceTarifs { get; set; }
+
+
+		DbSet<User> Users { get; set; }
+
+		/// <summary>
+		/// Commit changes to database
+		/// </summary>
+		void Commit();
+
+		/// <summary>
+		/// Revert database changes
+		/// </summary>
+		void Rollback();
+	}
 }

@@ -208,6 +208,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebAPI\CounterController.cs" />
     <Compile Include="WebAPI\CounterDataController.cs" />
+    <Compile Include="WebAPI\MaintenanceController.cs" />
     <Compile Include="WebAPI\UserController.cs" />
     <Compile Include="WebAPI\FlatController.cs" />
   </ItemGroup>

@@ -51,10 +51,12 @@
   <ItemGroup>
     <Compile Include="Classes\CounterDataService.cs" />
     <Compile Include="Classes\CounterService.cs" />
+    <Compile Include="Classes\MaintenanceService.cs" />
     <Compile Include="Classes\UserService.cs" />
     <Compile Include="Classes\FlatService.cs" />
     <Compile Include="Interfaces\ICounterDataService.cs" />
     <Compile Include="Interfaces\ICounterService.cs" />
+    <Compile Include="Interfaces\IMaintenanceService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IFlatService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

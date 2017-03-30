@@ -4,80 +4,98 @@ using System.Data.Entity.Validation;
 
 namespace Domain
 {
-    public class DataContext : DbContext, IDataContext
-    {
-        static DataContext()
-        {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<DataContext>());
-        }
+	public class DataContext : DbContext, IDataContext
+	{
+		static DataContext()
+		{
+			Database.SetInitializer(new CreateDatabaseIfNotExists<DataContext>());
+		}
 
-        public DataContext()
-            : base("DefaultConnection")
-        {
-            this.Flats = this.Set<Flat>();
+		public DataContext()
+			: base("DefaultConnection")
+		{
+			this.Flats = this.Set<Flat>();
 
-            this.Counters = this.Set<Counter>();
 
-            this.CounterTypes = this.Set<CounterType>();
+			this.Counters = this.Set<Counter>();
 
-            this.CounterTarifs = this.Set<CounterTarif>();
+			this.CounterTypes = this.Set<CounterType>();
 
-            this.Units = this.Set<Unit>();
+			this.CounterTarifs = this.Set<CounterTarif>();
 
-            this.CounterDatas = this.Set<CounterData>();
+			this.Units = this.Set<Unit>();
 
-            this.Users = this.Set<User>();
-        }
+			this.CounterDatas = this.Set<CounterData>();
 
-        public DbSet<Flat> Flats { get; set; }
 
-        public DbSet<Counter> Counters { get; set; }
+			this.Maintenances = this.Set<Maintenance>();
 
-        public DbSet<CounterType> CounterTypes { get; set; }
+			this.MaintenanceTypes = this.Set<MaintenanceType>();
 
-        public DbSet<CounterTarif> CounterTarifs { get; set; }
+			this.MaintenanceTarifs = this.Set<MaintenanceTarif>();
 
-        public DbSet<Unit> Units { get; set; }
 
-        public DbSet<CounterData> CounterDatas { get; set; }
+			this.Users = this.Set<User>();
+		}
 
-        public DbSet<User> Users { get; set; }
+		public DbSet<Flat> Flats { get; set; }
 
-        /// <summary>
-        /// Commit changes
-        /// </summary>
-        public void Commit()
-        {
-            ////// Delete orphan permission records
-            ////this.AssignedPermissions.Local.Where(it => it.LinkedPermission == null).ToList()
-            ////    .ForEach(it => this.AssignedPermissions.Remove(it));
 
-            try
-            {
-                this.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                //var logger = LogManager.GetCurrentClassLogger();
-                //foreach (var eve in ex.EntityValidationErrors)
-                //{
-                //    logger.Error(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State));
-                //    foreach (var ve in eve.ValidationErrors)
-                //    {
-                //        logger.Error(string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage));
-                //    }
-                //}
+		public DbSet<Counter> Counters { get; set; }
 
-                //throw ex;
-            }
-            ////catch (Exception ex)
-            ////{
-            ////    var logger = LogManager.GetCurrentClassLogger();
-            ////    logger.Error(ex.Message);
-            ////    throw ex;
-            ////}
+		public DbSet<CounterType> CounterTypes { get; set; }
 
-            /*      catch (System.Data.Entity.Validation.DbEntityValidationException exception)
+		public DbSet<CounterTarif> CounterTarifs { get; set; }
+
+		public DbSet<Unit> Units { get; set; }
+
+		public DbSet<CounterData> CounterDatas { get; set; }
+
+
+		public DbSet<Maintenance> Maintenances { get; set; }
+
+		public DbSet<MaintenanceType> MaintenanceTypes { get; set; }
+
+		public DbSet<MaintenanceTarif> MaintenanceTarifs { get; set; }
+
+
+		public DbSet<User> Users { get; set; }
+
+		/// <summary>
+		/// Commit changes
+		/// </summary>
+		public void Commit()
+		{
+			////// Delete orphan permission records
+			////this.AssignedPermissions.Local.Where(it => it.LinkedPermission == null).ToList()
+			////    .ForEach(it => this.AssignedPermissions.Remove(it));
+
+			try
+			{
+				this.SaveChanges();
+			}
+			catch (DbEntityValidationException ex)
+			{
+				//var logger = LogManager.GetCurrentClassLogger();
+				//foreach (var eve in ex.EntityValidationErrors)
+				//{
+				//    logger.Error(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State));
+				//    foreach (var ve in eve.ValidationErrors)
+				//    {
+				//        logger.Error(string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage));
+				//    }
+				//}
+
+				//throw ex;
+			}
+			////catch (Exception ex)
+			////{
+			////    var logger = LogManager.GetCurrentClassLogger();
+			////    logger.Error(ex.Message);
+			////    throw ex;
+			////}
+
+			/*      catch (System.Data.Entity.Validation.DbEntityValidationException exception)
                   {
                       Exception raise = exception;
                       foreach (var validationErrors in exception.EntityValidationErrors)
@@ -92,30 +110,30 @@ namespace Domain
 
                       throw raise;
                   }     */
-        }
+		}
 
-        /// <summary>
-        /// Revert changes
-        /// </summary>
-        public void Rollback()
-        {
-            //var changedEntries = this.ChangeTracker.Entries().Where(x => x.State != EntityState.Unchanged).ToList();
+		/// <summary>
+		/// Revert changes
+		/// </summary>
+		public void Rollback()
+		{
+			//var changedEntries = this.ChangeTracker.Entries().Where(x => x.State != EntityState.Unchanged).ToList();
 
-            //foreach (var entry in changedEntries.Where(x => x.State == EntityState.Modified))
-            //{
-            //    entry.CurrentValues.SetValues(entry.OriginalValues);
-            //    entry.State = EntityState.Unchanged;
-            //}
+			//foreach (var entry in changedEntries.Where(x => x.State == EntityState.Modified))
+			//{
+			//    entry.CurrentValues.SetValues(entry.OriginalValues);
+			//    entry.State = EntityState.Unchanged;
+			//}
 
-            //foreach (var entry in changedEntries.Where(x => x.State == EntityState.Added))
-            //{
-            //    entry.State = EntityState.Detached;
-            //}
+			//foreach (var entry in changedEntries.Where(x => x.State == EntityState.Added))
+			//{
+			//    entry.State = EntityState.Detached;
+			//}
 
-            //foreach (var entry in changedEntries.Where(x => x.State == EntityState.Deleted))
-            //{
-            //    entry.State = EntityState.Unchanged;
-            //}
-        }
-    }
+			//foreach (var entry in changedEntries.Where(x => x.State == EntityState.Deleted))
+			//{
+			//    entry.State = EntityState.Unchanged;
+			//}
+		}
+	}
 }

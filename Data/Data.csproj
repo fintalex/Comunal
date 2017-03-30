@@ -44,6 +44,10 @@
     <Compile Include="CounterTarif.cs" />
     <Compile Include="Enums\UnitTypes.cs" />
     <Compile Include="Enums\CounterTypes.cs" />
+    <Compile Include="Enums\MaintenanceTypes.cs" />
+    <Compile Include="Maintenance.cs" />
+    <Compile Include="MaintenanceTarif.cs" />
+    <Compile Include="MaintenanceType.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="CounterType.cs" />
