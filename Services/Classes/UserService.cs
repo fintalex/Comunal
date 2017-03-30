@@ -83,5 +83,16 @@ namespace Services.Classes
 
             this.context.Commit();
         }
+
+        /// <summary>
+        /// Get user during login
+        /// </summary>
+        /// <param name="email">email of loging user</param>
+        /// <param name="password">password of loging user</param>
+        /// <returns>Loging user</returns>
+        public User GetUserByLogin(string email, string password)
+        {
+            return this.context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+        }
     }
 }

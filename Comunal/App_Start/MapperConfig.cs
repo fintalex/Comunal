@@ -13,6 +13,7 @@ namespace Comunal
         public static void Initialize()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Counter, CounterDTO>());
+            Mapper.Initialize(cfg => cfg.CreateMap<User, UserDTO>());
         }
     }
 }

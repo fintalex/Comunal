@@ -22,12 +22,15 @@ export class LoginComponent implements OnInit  {
 
     ngOnInit() {
         this.model = new User();
+
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     login() {
         this.loading = true;
-
-        this.authService.CurrentUser = this.model;
-        // authenticate via autentication service
+        this.authService.login(this.model.Email, this.model.Password)
+            .subscribe(
+                data => { this.router.navigate([this.returnUrl]); },
+                error => { console.log("FAILED"); });
     }
 }

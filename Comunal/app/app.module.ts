@@ -24,7 +24,7 @@ import { ConfirmComponent } from './helpers/confirm/confirm.component';
 // =============== Services ==========================
 import { FlatService } from './services/flat.service';
 import { CounterService } from './services/counter.service';
-import { AuthGuard } from './services/auth.guard';
+import { GuardService } from './services/guard.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 
@@ -53,7 +53,7 @@ import { AuthService } from './services/auth.service';
         ConfirmComponent
     ],
     providers: [
-        AuthGuard,
+        GuardService,
         UserService,
         AuthService,
         FlatService,

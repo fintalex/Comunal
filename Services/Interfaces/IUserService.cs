@@ -41,5 +41,13 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="user">User</param>
         void UpdateUser(User user);
+
+        /// <summary>
+        /// Get user during login
+        /// </summary>
+        /// <param name="email">email of loging user</param>
+        /// <param name="password">password of loging user</param>
+        /// <returns>Loging user</returns>
+        User GetUserByLogin(string email, string password);
     }
 }

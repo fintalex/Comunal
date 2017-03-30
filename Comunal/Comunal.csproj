@@ -209,6 +209,7 @@
     <Compile Include="WebAPI\CounterController.cs" />
     <Compile Include="WebAPI\CounterDataController.cs" />
     <Compile Include="WebAPI\MaintenanceController.cs" />
+    <Compile Include="WebAPI\AuthenticationController.cs" />
     <Compile Include="WebAPI\UserController.cs" />
     <Compile Include="WebAPI\FlatController.cs" />
   </ItemGroup>
@@ -295,7 +296,7 @@
     <TypeScriptCompile Include="app\models\flats.ts" />
     <TypeScriptCompile Include="app\services\auth.service.ts" />
     <TypeScriptCompile Include="app\services\counter.service.ts" />
-    <TypeScriptCompile Include="app\services\auth.guard.ts" />
+    <TypeScriptCompile Include="app\services\guard.service.ts" />
     <TypeScriptCompile Include="app\services\flat.service.ts" />
     <TypeScriptCompile Include="app\services\user.service.ts" />
     <TypeScriptCompile Include="main.ts" />
