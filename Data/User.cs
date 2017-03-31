@@ -2,18 +2,40 @@
 
 namespace Data
 {
-    public class User
-    {
-        public int Id { get; set; }
+	/// <summary>
+	/// Пользователь
+	/// </summary>
+	public class User
+	{
+		/// <summary>
+		/// Id пользователя
+		/// </summary>
+		public int Id { get; set; }
 
-        public string Email { get; set; }
+		/// <summary>
+		/// Адрес электронной почты
+		/// </summary>
+		public string Email { get; set; }
 
-        public string Password { get; set; }
-        
-        public string FirstName { get; set; }
+		/// <summary>
+		/// Пароль???
+		/// </summary>
+		public string Password { get; set; }
 
-        public string LastName { get; set; }
+		/// <summary>
+		/// Имя
+		/// </summary>
+		public string FirstName { get; set; }
 
-        public virtual ICollection<Flat> Flats { get; set; }
-    }
+		/// <summary>
+		/// Фамилия
+		/// </summary>
+		public string LastName { get; set; }
+
+		#region Navigation properties
+
+		public virtual ICollection<Flat> Flats { get; set; }
+
+		#endregion Navigation properties
+	}
 }

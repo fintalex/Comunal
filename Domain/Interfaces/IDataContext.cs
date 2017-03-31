@@ -6,7 +6,11 @@ namespace Domain
 {
 	public interface IDataContext : IDisposable
 	{
+		DbSet<User> Users { get; set; }
+
 		DbSet<Flat> Flats { get; set; }
+
+		DbSet<Bill> Bills { get; set; }
 
 
 		DbSet<Counter> Counters { get; set; }
@@ -26,8 +30,9 @@ namespace Domain
 
 		DbSet<MaintenanceTarif> MaintenanceTarifs { get; set; }
 
+		DbSet<MaintenanceData> MaintenanceDatas { get; set; }
 
-		DbSet<User> Users { get; set; }
+		DbSet<MaintenanceDataSource> MaintenanceDataSources { get; set; }
 
 		/// <summary>
 		/// Commit changes to database

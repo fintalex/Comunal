@@ -14,7 +14,11 @@ namespace Domain
 		public DataContext()
 			: base("DefaultConnection")
 		{
+			this.Users = this.Set<User>();
+
 			this.Flats = this.Set<Flat>();
+
+			this.Bills = this.Set<Bill>();
 
 
 			this.Counters = this.Set<Counter>();
@@ -34,11 +38,16 @@ namespace Domain
 
 			this.MaintenanceTarifs = this.Set<MaintenanceTarif>();
 
+			this.MaintenanceDatas = this.Set<MaintenanceData>();
 
-			this.Users = this.Set<User>();
+			this.MaintenanceDataSources = this.Set<MaintenanceDataSource>();
 		}
 
+		public DbSet<User> Users { get; set; }
+
 		public DbSet<Flat> Flats { get; set; }
+
+		public DbSet<Bill> Bills { get; set; }
 
 
 		public DbSet<Counter> Counters { get; set; }
@@ -58,8 +67,9 @@ namespace Domain
 
 		public DbSet<MaintenanceTarif> MaintenanceTarifs { get; set; }
 
+		public DbSet<MaintenanceData> MaintenanceDatas { get; set; }
 
-		public DbSet<User> Users { get; set; }
+		public DbSet<MaintenanceDataSource> MaintenanceDataSources { get; set; }
 
 		/// <summary>
 		/// Commit changes

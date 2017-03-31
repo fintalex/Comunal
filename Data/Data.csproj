@@ -40,18 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CounterData.cs" />
-    <Compile Include="CounterTarif.cs" />
+    <Compile Include="Bill.cs" />
+    <Compile Include="Counters\CounterData.cs" />
+    <Compile Include="Counters\CounterTarif.cs" />
     <Compile Include="Enums\UnitTypes.cs" />
     <Compile Include="Enums\CounterTypes.cs" />
     <Compile Include="Enums\MaintenanceTypes.cs" />
-    <Compile Include="Maintenance.cs" />
-    <Compile Include="MaintenanceTarif.cs" />
-    <Compile Include="MaintenanceType.cs" />
+    <Compile Include="Maintenance\MaintenanceDataSource.cs" />
+    <Compile Include="Maintenance\Maintenance.cs" />
+    <Compile Include="Maintenance\MaintenanceData.cs" />
+    <Compile Include="Maintenance\MaintenanceTarif.cs" />
+    <Compile Include="Maintenance\MaintenanceType.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="Unit.cs" />
-    <Compile Include="CounterType.cs" />
-    <Compile Include="Counter.cs" />
+    <Compile Include="Counters\Unit.cs" />
+    <Compile Include="Counters\CounterType.cs" />
+    <Compile Include="Counters\Counter.cs" />
     <Compile Include="Flat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

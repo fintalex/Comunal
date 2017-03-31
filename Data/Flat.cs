@@ -1,15 +1,40 @@
-﻿namespace Data
+﻿using System.Collections.Generic;
+
+namespace Data
 {
-    public class Flat
-    {
-        public int Id { get; set; }
+	/// <summary>
+	/// Квартира
+	/// </summary>
+	public class Flat
+	{
+		/// <summary>
+		/// Id квартиры
+		/// </summary>
+		public int Id { get; set; }
 
-        public string Name { get; set; }
+		/// <summary>
+		/// Название
+		/// </summary>
+		public string Name { get; set; }
 
-        public string Address { get; set; }
+		/// <summary>
+		/// Адрес
+		/// </summary>
+		public string Address { get; set; }
 
-        public int? UserId { get; set; }
+		#region Navigation properties
 
-        public virtual User User { get; set; }
-    }
+		public int? UserId { get; set; }
+
+		public virtual User User { get; set; }
+
+
+		public virtual ICollection<Bill> Bills { get; set; }
+
+		public virtual ICollection<Counter> Counters { get; set; }
+
+		public virtual ICollection<Maintenance> Maintenances { get; set; }
+
+		#endregion Navigation properties
+	}
 }

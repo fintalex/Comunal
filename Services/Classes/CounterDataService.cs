@@ -79,7 +79,7 @@ namespace Services.Classes
 			var currentCounterData = this.context.CounterDatas.FirstOrDefault(cd => cd.Id == counterData.Id);
 			currentCounterData.Reading = counterData.Reading;
 			currentCounterData.ReadingODN = counterData.ReadingODN;
-			currentCounterData.CreatedDate = counterData.CreatedDate;
+			currentCounterData.ReadingDate = counterData.ReadingDate;
 			currentCounterData.IsFirst = counterData.IsFirst;
 			currentCounterData.CounterId = counterData.CounterId;
 			currentCounterData.CounterTarifId = counterData.CounterTarifId;
