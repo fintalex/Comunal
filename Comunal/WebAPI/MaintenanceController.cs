@@ -17,13 +17,6 @@ namespace Comunal.WebAPI
 		}
 
 		[HttpGet]
-		[Route("~api/flats/{flatId}/maintenances")]
-		public IQueryable<Maintenance> GetMaintenances(int flatId)
-		{
-			return this.maintenanceService.GetMaintenances(flatId);
-		}
-
-		[HttpGet]
 		public Maintenance Get(int id)
 		{
 			return this.maintenanceService.GetById(id);

@@ -13,10 +13,10 @@ namespace Services.Interfaces
         Counter GetById(int id);
 
         /// <summary>
-        /// Get All Counters (then it will be by UserId)
+        /// Get All Counters
         /// </summary>
         /// <returns></returns>
-        IQueryable<Counter> GetCounters();
+        IQueryable<Counter> GetCounters(int flatId);
 
         /// <summary>
         /// Delete Counter by id

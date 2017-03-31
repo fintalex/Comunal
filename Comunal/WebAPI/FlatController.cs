@@ -12,7 +12,7 @@ namespace Comunal.WebAPI
     public class FlatsController : ApiController
     {
         private readonly IFlatService flatService;
-        
+
         public FlatsController(IFlatService flatService)
         {
             this.flatService = flatService;
@@ -29,6 +29,20 @@ namespace Comunal.WebAPI
         public Flat Get(int id)
         {
             return this.flatService.GetById(id);
+        }
+
+        [HttpGet]
+        [Route("{flatId}/counters")]
+        public IQueryable<CounterDTO> GetCounters(int flatId)
+        {
+            return this.flatService.GetById(flatId).Counters.AsQueryable().ProjectTo<CounterDTO>();
+        }
+
+        [HttpGet]
+        [Route("{flatId}/maintenances")]
+        public IQueryable<Maintenance> GetMaintenances(int flatId)
+        {
+            return this.flatService.GetById(flatId).Maintenances.AsQueryable();
         }
 
         [HttpPost]

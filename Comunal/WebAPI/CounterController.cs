@@ -19,13 +19,6 @@ namespace Comunal.WebAPI
         }
 
         [HttpGet]
-        public IQueryable<CounterDTO> GetCounters()
-        {
-            var countersList = this.counterService.GetCounters().ProjectTo<CounterDTO>();
-            return countersList;
-        }
-
-        [HttpGet]
         public Counter Get(int id)
         {
             return this.counterService.GetById(id);

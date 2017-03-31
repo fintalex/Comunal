@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<connectionStrings>
-    <add name="DefaultConnection" connectionString="Data Source=(local);Initial Catalog=COMUNAL;Integrated Security=true;" providerName="System.Data.SqlClient" />
-</connectionStrings>
