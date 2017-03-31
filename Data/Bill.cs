@@ -32,7 +32,7 @@ namespace Data
 
 		#region Navigation properties
 
-		public int FlatId { get; set; }
+		public int? FlatId { get; set; }
 
 		public virtual Flat Flat { get; set; }
 

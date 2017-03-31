@@ -82,7 +82,7 @@ namespace Services.Classes
 			currentCounterData.ReadingDate = counterData.ReadingDate;
 			currentCounterData.IsFirst = counterData.IsFirst;
 			currentCounterData.CounterId = counterData.CounterId;
-			currentCounterData.CounterTarifId = counterData.CounterTarifId;
+			//currentCounterData.CounterTarifId = counterData.CounterTarifId;
 
 			this.context.Commit();
 		}

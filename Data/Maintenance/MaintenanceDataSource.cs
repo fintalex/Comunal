@@ -9,12 +9,12 @@
 
 		#region Navigation properties
 
-		public int CounterId { get; set; }
+		public int? CounterId { get; set; }
 
 		public virtual Counter Counter { get; set; }
 
 
-		public int MaintenanceId { get; set; }
+		public int? MaintenanceId { get; set; }
 
 		public virtual Maintenance Maintenance { get; set; }
 
