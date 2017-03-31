@@ -3,6 +3,8 @@ using Domain;
 using System.Linq;
 using Services.Interfaces;
 using System.Data.Entity;
+using System.Text;
+using System;
 
 namespace Services.Classes
 {
@@ -64,6 +66,7 @@ namespace Services.Classes
         /// <param name="user">user</param>
         public User AddUser(User user)
         {
+            user.Password = this.Hash(user.Password);
             this.context.Users.Add(user);
             this.context.Commit();
 
@@ -92,7 +95,15 @@ namespace Services.Classes
         /// <returns>Loging user</returns>
         public User GetUserByLogin(string email, string password)
         {
-            return this.context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            var hashedPassword = this.Hash(password);
+            return this.context.Users.FirstOrDefault(u => u.Email == email && u.Password == hashedPassword);
+        }
+
+        private string Hash(string password)
+        {
+            var bytes = new UTF8Encoding().GetBytes(password);
+            var hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(bytes);
+            return Convert.ToBase64String(hashBytes);
         }
     }
 }
