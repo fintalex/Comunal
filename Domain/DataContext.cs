@@ -1,6 +1,11 @@
 ﻿using Data;
+using System;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
+using System.Reflection;
+using System.Linq;
+using System.Data.Entity.ModelConfiguration;
 
 namespace Domain
 {
@@ -145,5 +150,38 @@ namespace Domain
 			//    entry.State = EntityState.Unchanged;
 			//}
 		}
-	}
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            this.RegisterConfigurations(modelBuilder);
+        }
+
+        /// <summary>Maps registration</summary>
+        /// <param name="modelBuilder">Default model builder</param>
+        private void RegisterConfigurations(DbModelBuilder modelBuilder)
+        {
+            if (modelBuilder == null)
+            {
+                throw new ArgumentNullException("modelBuilder");
+            }
+
+            Assembly.GetExecutingAssembly()
+                    .GetTypes()
+                    .Where(
+                        type =>
+                        type.BaseType != null && type.BaseType.IsGenericType
+                        && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>))
+                    .ToList()
+                    .ForEach(
+                        type =>
+                        {
+                            dynamic instance = Activator.CreateInstance(type);
+                            modelBuilder.Configurations.Add(instance);
+                        });
+        }
+    }
 }

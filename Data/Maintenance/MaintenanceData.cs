@@ -19,7 +19,7 @@
         public virtual MaintenanceTarif MaintenanceTarif { get; set; }
 
 
-        public int? BillId { get; set; }
+        public int BillId { get; set; }
 
 		public virtual Bill Bill { get; set; }
 
