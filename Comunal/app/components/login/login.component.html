@@ -10,10 +10,10 @@
 
             <div *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
                 <div [hidden]="!email.errors.required">
-                    Укажите email
+                    Укажите Email
                 </div>
                 <div [hidden]="!email.errors.pattern">
-                    Пароль не валидный
+                    Email не валидный
                 </div>
             </div>
         </div>
