@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { MaterialModule } from '@angular/material';
 
 // =============== App Component ====================
 import { AppComponent } from './app.component';
@@ -35,7 +36,8 @@ import { AuthService } from './services/auth.service';
         AppRoutingModule,
         FormsModule,
         HttpModule,
-        BootstrapModalModule.forRoot({ container: document.body })
+        BootstrapModalModule.forRoot({ container: document.body }),
+        MaterialModule
     ],
     declarations: [
         AppComponent,
