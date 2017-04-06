@@ -22,6 +22,11 @@ namespace Data
 		/// </summary>
 		public string Address { get; set; }
 
+        /// <summary>
+        /// Is flat selected
+        /// </summary>
+        public bool Selected { get; set; }
+
 		#region Navigation properties
 
 		public int? UserId { get; set; }

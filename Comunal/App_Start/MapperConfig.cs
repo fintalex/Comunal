@@ -17,16 +17,11 @@ namespace Comunal
                 cfg.CreateMap<Counter, CounterDTO>();
 
                 cfg.CreateMap<User, CurrentUserDTO>()
-                    .ForMember(x => x.Flat, c => c.MapFrom(o => o.Flats.FirstOrDefault()));
+                    .ForMember(x => x.Flat, c => c.MapFrom(o => o.Flats.FirstOrDefault(f => f.Selected)));
 
                 cfg.CreateMap<Flat, FlatDTO>();
 
             });
-
-            //Mapper.Initialize(cfg => cfg.CreateMap<User, CurrentUserDTO>());
-            ////.ForMember(x=>x.FirstName, c=>c.MapFrom(o=>o.Flats.FirstOrDefault())));
-
-            //Mapper.Initialize(cfg => cfg.CreateMap<Flat, FlatDTO>());
         }
     }
 }

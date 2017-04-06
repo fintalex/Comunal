@@ -91,5 +91,20 @@ namespace Services.Classes
 
             this.context.Commit();
         }
+
+        /// <summary>
+        /// Select flat
+        /// </summary>
+        /// <param name="flat">Selected Flat</param>
+        public void SelectFlat(Flat flat)
+        {
+            var allUserFlats = this.context.Flats.Where(f => f.UserId == flat.UserId);
+            foreach (var currentFlat in allUserFlats)
+            {
+                currentFlat.Selected = (currentFlat.Id == flat.Id) ? true : false;
+            }
+
+            this.context.Commit();
+        }
     }
 }

@@ -15,6 +15,9 @@ export class NewCounterComponent implements OnInit  {
     @Output() close: EventEmitter<any> = new EventEmitter();
     @Input() counter: Counter;
 
+    counterType: any;
+    userName: any;
+
     constructor(
         private counterService: CounterService
     ) { }

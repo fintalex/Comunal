@@ -1,10 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
-//import 'rxjs/Rx';
-//import 'rxjs/add/operator/map';
-//import 'rxjs/add/operator/catch';
-//import 'rxjs/add/observable/throw';
+import { AuthService } from '../services/auth.service';
+
 import { Observable } from 'rxjs/Observable';
 
 import { Flat } from '../models/flats';
@@ -14,7 +12,9 @@ export class FlatService {
     flats: Flat[];
     private apiUrl = 'api/flats'
 
-    constructor(private http: Http) {
+    constructor(
+        private http: Http,
+        private authService: AuthService) {
 
     }
     
@@ -37,6 +37,15 @@ export class FlatService {
 
     updateFlat(flat: Flat) {
         return this.http.put(`${this.apiUrl}`, flat)
+            .catch(this.handleError);
+    }
+
+    selectFlat(flat: Flat) {
+        return this.http.put(`${this.apiUrl}/select`, flat)
+            .map(() => {
+                flat.Selected = true;
+                this.authService.changeFlat(flat);
+            })
             .catch(this.handleError);
     }
 

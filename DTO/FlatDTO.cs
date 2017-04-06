@@ -13,5 +13,9 @@ namespace DTO
         public string Name { get; set; }
 
         public string Address { get; set; }
+
+        public bool Selected { get; set; }
+
+        public int? UserId { get; set; }
     }
 }

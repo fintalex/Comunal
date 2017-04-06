@@ -3,6 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../models/user';
+import { Flat } from '../models/flats';
 
 @Injectable()
 export class AuthService{
@@ -12,7 +13,16 @@ export class AuthService{
     constructor(private http: Http) {
         var userInStorage = localStorage.getItem('currentUser');
         if (userInStorage) {
-            this.CurrentUser = JSON.parse(localStorage.getItem('currentUser'));;
+            this.CurrentUser = JSON.parse(localStorage.getItem('currentUser'));
+        }
+    }
+
+    changeFlat(selectedFlat: Flat) {
+        var userInStorage = localStorage.getItem('currentUser');
+        if (userInStorage) {
+            this.CurrentUser = JSON.parse(localStorage.getItem('currentUser'));
+            this.CurrentUser.Flat = selectedFlat;
+            localStorage.setItem('currentUser', JSON.stringify(this.CurrentUser));
         }
     }
 

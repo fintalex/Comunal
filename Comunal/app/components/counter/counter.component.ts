@@ -40,6 +40,7 @@ export class CounterComponent implements OnInit  {
     }
 
     createNewCounter(newCounter: Counter) {
+        newCounter.FlatId = this.authService.CurrentUser.Flat.Id;
         this.counterService.createCounter(newCounter)
             .subscribe(flat => {
                 console.log(flat);

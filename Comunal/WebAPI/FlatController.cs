@@ -57,6 +57,13 @@ namespace Comunal.WebAPI
             this.flatService.UpdateFlat(flat);
         }
 
+        [HttpPut]
+        [Route("select")]
+        public void SelectFlat(Flat flat)
+        {
+            this.flatService.SelectFlat(flat);
+        }
+
         [HttpDelete]
         public void DeleteFlat(int id)
         {

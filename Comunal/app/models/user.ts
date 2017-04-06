@@ -4,4 +4,5 @@
     Password: string;
     FirstName: string;
     LastName: string;
+    Flat: any;
 }

@@ -47,5 +47,11 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="flat">Flat</param>
         void UpdateFlat(Flat flat);
+
+        /// <summary>
+        /// Select flat
+        /// </summary>
+        /// <param name="flat">Selected Flat</param>
+        void SelectFlat(Flat flat);
     }
 }

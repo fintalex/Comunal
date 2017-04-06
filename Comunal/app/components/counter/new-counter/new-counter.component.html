@@ -34,7 +34,7 @@
                     {{ food.viewValue }}
                 </md-option>
             </md-select>-->
-            <md-select placeholder="Тип счетчика" required>
+            <md-select placeholder="Тип счетчика" [(ngModel)]="counterType" required>
                 <md-option [value]="1">Холодная вода</md-option>
                 <md-option [value]="2">Горячая вода</md-option>
                 <md-option [value]="3">Электричество</md-option>
@@ -42,7 +42,6 @@
                 <md-option [value]="5">Отопление</md-option>
                 <md-option [value]="6">Моторесурс</md-option>
             </md-select>
-
 
             <button type="submit" class="btn btn-primary pull-right" *ngIf="!counter.Id"
                     [disabled]="ngNewCounterForm.form.invalid">

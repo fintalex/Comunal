@@ -68,8 +68,6 @@ export class FlatComponent implements OnInit  {
     }
 
     deleteFlat(currentFlat: Flat) {
-        console.log(currentFlat);
-
         this.dialogService.addDialog(ConfirmComponent, { title: "Подтвердите удаление квартиры", message: "Вы точно хотите удалить квартиру?" })
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
@@ -85,6 +83,14 @@ export class FlatComponent implements OnInit  {
                             }
                         });
                 }
+            });
+    }
+
+    selectFlat(selectedFlat: Flat) {
+        
+        this.flatService.selectFlat(selectedFlat)
+            .subscribe(() => {
+                console.log();
             });
     }
     
