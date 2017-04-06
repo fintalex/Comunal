@@ -12,8 +12,13 @@
             <div class="form-group">
                 <!--<label class="control-label" for="newCounterName">Укажите название счетчика</label>-->
                 <!--<input class="form-control" name="newCounterName" type="text" [(ngModel)]="counter.Name" required>-->
-                <md-input-container>
-                    <input mdInput placeholder="Название счетчика"  [value]="counter.Name" required>
+                <!--<md-input-container>
+                    <input mdInput placeholder="Название счетчика" [(ngModel)]="counter.Name" name="counterName"  [value]="counter.Name" required>
+                </md-input-container>-->
+
+                <md-input-container class="example-full-width">
+                    <input mdInput #postalCode maxlength="20" placeholder="Название счетчика" [(ngModel)]="counter.Name" name="counterName" required>
+                    <md-hint align="end">{{postalCode.value.length}} / 20</md-hint>
                 </md-input-container>
             </div>
 
@@ -34,7 +39,7 @@
                     {{ food.viewValue }}
                 </md-option>
             </md-select>-->
-            <md-select placeholder="Тип счетчика" [(ngModel)]="counterType" required>
+            <md-select placeholder="Тип счетчика" [(ngModel)]="counter.CounterTypeId" name="countertype" required>
                 <md-option [value]="1">Холодная вода</md-option>
                 <md-option [value]="2">Горячая вода</md-option>
                 <md-option [value]="3">Электричество</md-option>

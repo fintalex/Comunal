@@ -24,6 +24,12 @@ export class CounterService {
             .catch(this.handleError);
     }
 
+    getFlatCountersByUserId(flatId: number): Observable<Counter[]> {
+        return this.http.get(`${this.apiUrl}/${flatId}`)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
     createCounter(newCounter: Counter): Observable<Counter>  {
         return this.http.post(this.apiUrl, newCounter)
             .map(res => res.json())

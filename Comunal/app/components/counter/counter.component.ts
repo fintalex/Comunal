@@ -24,11 +24,11 @@ export class CounterComponent implements OnInit  {
     ) { }
 
     ngOnInit() {
-        //this.initCounterList();
+        this.initCounterList();
     }
 
     initCounterList() {
-        this.counterService.getCounters()
+        this.counterService.getFlatCountersByUserId(this.authService.CurrentUser.Flat.Id)
             .subscribe(counters => {
                 this.myCounters = counters;
             });

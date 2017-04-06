@@ -35,6 +35,8 @@ namespace Comunal.WebAPI
         [Route("{flatId}/counters")]
         public IQueryable<CounterDTO> GetCounters(int flatId)
         {
+            // хм, а может все таки этот метод в CounterController? 
+            // ведь мы получаем сущность Counter
             return this.flatService.GetById(flatId).Counters.AsQueryable().ProjectTo<CounterDTO>();
         }
 

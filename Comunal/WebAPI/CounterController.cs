@@ -5,6 +5,7 @@ using DTO;
 using Services.Interfaces;
 using System.Linq;
 using System.Web.Http;
+using AutoMapper.QueryableExtensions;
 
 namespace Comunal.WebAPI
 {
@@ -22,6 +23,14 @@ namespace Comunal.WebAPI
         public Counter Get(int id)
         {
             return this.counterService.GetById(id);
+        }
+
+        [HttpGet]
+        [Route("{flatId}")]
+        public IQueryable<CounterDTO> GetCountersByFlatId(int flatId)
+        {
+            // а здесь надо бы проверку делать, имеет ли доступ Текущий авторизованный пользователь к данной квартире
+            return this.counterService.GetCounters(flatId).ProjectTo<CounterDTO>();
         }
 
         [HttpPost]
