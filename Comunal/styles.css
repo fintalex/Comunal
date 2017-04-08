@@ -11,6 +11,10 @@ a:hover {
   cursor:pointer;
 }
 
+.clickable-row {
+    cursor: pointer;
+}
+
 /*====================classes form validation=========================*/
 .ng-valid[required], .ng-valid.required {
     border-left: 5px solid #42A948; /*green*/
@@ -20,3 +24,5 @@ a:hover {
 }
 
 /*====================================================================*/
+
+

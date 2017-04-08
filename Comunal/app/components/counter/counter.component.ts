@@ -42,14 +42,15 @@ export class CounterComponent implements OnInit  {
     createNewCounter(newCounter: Counter) {
         newCounter.FlatId = this.authService.CurrentUser.Flat.Id;
         this.counterService.createCounter(newCounter)
-            .subscribe(flat => {
-                console.log(flat);
-                this.myCounters.push(flat);
+            .subscribe(counter => {
+                console.log(counter);
+                this.myCounters.push(counter);
                 this.showCounterPanel = false;
             });
     }
 
-    editCounter(currentCounter: Counter) {
+    editCounter(currentCounter: Counter, event: any) {
+        event.stopPropagation();
         console.log(currentCounter);
         this.currentCounter = Object.assign({}, currentCounter);
         this.showCounterPanel = true;
@@ -64,8 +65,8 @@ export class CounterComponent implements OnInit  {
             });
     }
 
-    deleteCounter(currentCounter: Counter) {
-        console.log(currentCounter);
+    deleteCounter(currentCounter: Counter, event: any) {
+        event.stopPropagation();
 
         this.dialogService.addDialog(ConfirmComponent, { title: "Подтвердите удаление счетчика", message: "Вы точно хотите удалить счетчик?" })
             .subscribe((isConfirmed) => {
@@ -83,5 +84,10 @@ export class CounterComponent implements OnInit  {
                         });
                 }
             });
+    }
+
+    selectCounter(selectedCounter: Counter) {
+        this.myCounters.forEach(couner => couner.Selected = false);
+        selectedCounter.Selected = true;
     }
 }

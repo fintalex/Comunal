@@ -52,7 +52,8 @@ export class FlatComponent implements OnInit  {
             });
     }
 
-    editFlat(currentFlat: Flat) {
+    editFlat(currentFlat: Flat, event: any) {
+        event.stopPropagation();
         console.log(currentFlat);
         this.currentFlat = Object.assign({}, currentFlat);
         this.showFlatPanel = true;
@@ -67,7 +68,8 @@ export class FlatComponent implements OnInit  {
             });
     }
 
-    deleteFlat(currentFlat: Flat) {
+    deleteFlat(currentFlat: Flat, event: any) {
+        event.stopPropagation();
         this.dialogService.addDialog(ConfirmComponent, { title: "Подтвердите удаление квартиры", message: "Вы точно хотите удалить квартиру?" })
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
@@ -87,7 +89,7 @@ export class FlatComponent implements OnInit  {
     }
 
     selectFlat(selectedFlat: Flat) {
-        
+        this.myFlats.forEach(flat => flat.Selected = false);
         this.flatService.selectFlat(selectedFlat)
             .subscribe(() => {
                 console.log();

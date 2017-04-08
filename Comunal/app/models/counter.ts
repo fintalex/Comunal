@@ -1,5 +1,6 @@
 ﻿export class Counter {
     Id: number;
+    Selected: boolean;
 
     constructor(
         public Name: string = null,
