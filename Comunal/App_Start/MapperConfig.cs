@@ -21,6 +21,8 @@ namespace Comunal
 
                 cfg.CreateMap<Flat, FlatDTO>();
 
+                cfg.CreateMap<Maintenance, MaintenanceDTO>();
+
             });
         }
     }

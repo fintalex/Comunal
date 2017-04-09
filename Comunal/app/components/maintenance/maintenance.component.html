@@ -1,0 +1,50 @@
+﻿
+<div class="col-lg-6 col-lg-offset-3">
+    <h1>Услуги ({{authService.CurrentUser.Flat.Name}})</h1>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Название и адрес</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover ">
+                <tbody>
+                    <tr *ngFor="let maintenance of myMaintenances" class="clickable-row" [ngClass]="{'info': maintenance.Selected}" (click)="selectMaintenance(maintenance)">
+                        <td>
+                            <md-radio-button [checked]="maintenance.Selected" (click)="selectMaintenance(maintenance)"></md-radio-button>
+                        </td>
+                        <td>
+                            <div>
+                                <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 1">brightness_medium</i>
+                                <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 2">whatshot</i>
+                                <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 3">battery_charging_full</i>
+                                <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 4">local_gas_station</i>
+                            </div>
+                        </td>
+                        <td>
+                            {{maintenance.Name}}
+                        </td>
+                        <td>
+                            <a (click)="editMaintenance(maintenance, $event)">Редактировать</a>
+                        </td>
+                        <td>
+                            <a (click)="deleteMaintenance(maintenance, $event)">Удалить</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <a class="btn btn-primary"
+       *ngIf="!showMaintenancePanel"
+       (click)="goToNewMaintenance()">Новый счетчик</a>
+
+    <new-maintenance *ngIf="showMaintenancePanel"
+              (create)="createNewMaintenance($event)"
+              (update)="updateMaintenance($event)"
+              (close)="showMaintenancePanel = false"
+              [maintenance]="currentMaintenance"></new-maintenance>
+
+</div>

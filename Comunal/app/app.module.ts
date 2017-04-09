@@ -17,14 +17,17 @@ import { AboutComponent } from './components/about/about.component';
 import { FlatComponent } from './components/flat/flat.component';
 import { NewFlatComponent } from './components/flat/new-flat.component/new-flat.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { NewCounterComponent } from './components/counter/new-counter/new-counter.component';
-
+import { NewMaintenanceComponent } from './components/maintenance/new-maintenance/new-maintenance.component';
+                                           
 // =============== Help Components ==========================
 import { ConfirmComponent } from './helpers/confirm/confirm.component';
 
 // =============== Services ==========================
 import { FlatService } from './services/flat.service';
 import { CounterService } from './services/counter.service';
+import { MaintenanceService } from './services/maintenance.service';
 import { GuardService } from './services/guard.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
@@ -48,7 +51,9 @@ import { AuthService } from './services/auth.service';
         FlatComponent,
         NewFlatComponent, 
         CounterComponent,
+        MaintenanceComponent,
         NewCounterComponent,
+        NewMaintenanceComponent,
         ConfirmComponent
     ],
     entryComponents: [
@@ -59,7 +64,8 @@ import { AuthService } from './services/auth.service';
         UserService,
         AuthService,
         FlatService,
-        CounterService
+        CounterService,
+        MaintenanceService
     ],
     bootstrap: [AppComponent]
 })

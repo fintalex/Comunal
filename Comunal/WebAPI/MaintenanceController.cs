@@ -1,5 +1,6 @@
 ﻿using AutoMapper.QueryableExtensions;
 using Data;
+using DTO;
 using Services.Interfaces;
 using System.Linq;
 using System.Web.Http;
@@ -22,7 +23,15 @@ namespace Comunal.WebAPI
 			return this.maintenanceService.GetById(id);
 		}
 
-		[HttpPost]
+        [HttpGet]
+        [Route("{flatId}")]
+        public IQueryable<MaintenanceDTO> GetMaintaincesByFlatId(int flatId)
+        {
+            // а здесь надо бы проверку делать, имеет ли доступ Текущий авторизованный пользователь к данной квартире
+            return this.maintenanceService.GetMaintenances(flatId).ProjectTo<MaintenanceDTO>();
+        }
+
+        [HttpPost]
 		public Maintenance AddMaintenance([FromBody]Maintenance newMaintenance)
 		{
 			return this.maintenanceService.AddMaintenance(newMaintenance);

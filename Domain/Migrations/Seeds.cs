@@ -28,6 +28,11 @@ namespace Domain.Migrations
                 SeedCounterTypes(context);
             }
 
+            if (!context.MaintenanceTypes.Any())
+            {
+                SeedMaintenanceTypes(context);
+            }
+
             if (!context.Flats.Any())
             {
                 SeedFlats(context);
@@ -55,6 +60,15 @@ namespace Domain.Migrations
             context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Gas, Name = "Газ", UnitId = (int)UnitTypes.MetersCubic });
             context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Heating, Name = "Отопление", UnitId = (int)UnitTypes.MetersCubic });
             context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.MotorResource, Name = "Моторесурс", UnitId = (int)UnitTypes.MotorHour });
+            context.SaveChanges();
+        }
+
+        private static void SeedMaintenanceTypes(DataContext context)
+        {
+            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Fix, Name = "Фиксированная стоимость" });
+            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Coefficient, Name = "По количеству жильцов/площади" });
+            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Sewerage, Name = "Водоотведение" });
+            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.WaterHeating, Name = "Подогрев воды" });
             context.SaveChanges();
         }
 
