@@ -10,19 +10,19 @@
         <form (ngSubmit)="saveMaintenance(); ngNewMaintenanceForm.reset()" #ngNewMaintenanceForm="ngForm">
 
             <div class="form-group">
-                <!--<label class="control-label" for="newMaintenanceName">Укажите название услуги</label>-->
-                <!--<input class="form-control" name="newMaintenanceName" type="text" [(ngModel)]="maintenance.Name" required>-->
+                <label class="control-label" for="newMaintenanceName">Укажите название услуги</label>
+                <input class="form-control" name="newMaintenanceName" type="text" [(ngModel)]="maintenance.Name" required>
                 <!--<md-input-container>
                     <input mdInput placeholder="Название услуги" [(ngModel)]="maintenance.Name" name="maintenanceName"  [value]="maintenance.Name" required>
                 </md-input-container>-->
 
-                <md-input-container class="example-full-width">
+                <!--<md-input-container class="example-full-width">
                     <input mdInput #postalCode maxlength="20" placeholder="Название услуги" [(ngModel)]="maintenance.Name" name="maintenanceName" required>
                     <md-hint align="end">{{postalCode.value.length}} / 20</md-hint>
-                </md-input-container>
+                </md-input-container>-->
             </div>
 
-            <!--<div class="form-group">
+            <div class="form-group">
                 <label class="control-label" for="maintenanceTypeId">Укажите тип услуги</label>
                 <select class="form-control" name="maintenanceTypeId" type="text" placeholder="Укажите тип услуги"
                         [(ngModel)]="maintenance.MaintenanceTypeId"  required>
@@ -33,18 +33,18 @@
                     <option value="5">Отопление</option>
                     <option value="6">Моторесурс</option>
                 </select>
-            </div>-->
+            </div>
             <!--<md-select placeholder="Favorite food">
                 <md-option *ngFor="let food of foods" [value]="food.value">
                     {{ food.viewValue }}
                 </md-option>
             </md-select>-->
-            <md-select placeholder="Тип услуги" [(ngModel)]="maintenance.MaintenanceTypeId" name="maintenancetype" required>
+            <!--<md-select placeholder="Тип услуги" [(ngModel)]="maintenance.MaintenanceTypeId" name="maintenancetype" required>
                 <md-option [value]="1">Фиксированная стоимость</md-option>
                 <md-option [value]="2">По количеству жильцов/площади</md-option>
                 <md-option [value]="3">Водоотведение</md-option>
                 <md-option [value]="4">Подогрев воды</md-option>
-            </md-select>
+            </md-select>-->
 
             <button type="submit" class="btn btn-primary pull-right" *ngIf="!maintenance.Id"
                     [disabled]="ngNewMaintenanceForm.form.invalid">

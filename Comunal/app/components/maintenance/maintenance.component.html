@@ -15,10 +15,14 @@
                         </td>
                         <td>
                             <div>
-                                <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 1">brightness_medium</i>
+                                <img *ngIf="maintenance.MaintenanceTypeId == 1" width="30" height="30"  src="Content/ServiceTypes/fix.png" />
+                                <img *ngIf="maintenance.MaintenanceTypeId == 2" width="30" height="30"  src="Content/ServiceTypes/multi.png" />
+                                <img *ngIf="maintenance.MaintenanceTypeId == 3" width="30" height="30"  src="Content/ServiceTypes/waters.png" />
+                                <img *ngIf="maintenance.MaintenanceTypeId == 4" width="30" height="30"  src="Content/ServiceTypes/cooler.png" />
+                                <!--<i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 1">brightness_medium</i>
                                 <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 2">whatshot</i>
                                 <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 3">battery_charging_full</i>
-                                <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 4">local_gas_station</i>
+                                <i class="material-icons" *ngIf="maintenance.MaintenanceTypeId == 4">local_gas_station</i>-->
                             </div>
                         </td>
                         <td>

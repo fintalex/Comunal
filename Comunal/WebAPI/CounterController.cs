@@ -46,9 +46,10 @@ namespace Comunal.WebAPI
         }
 
         [HttpDelete]
-        public void DeleteCounter(int id)
+        [Route("{counterId}")]
+        public void DeleteCounter(int counterId)
         {
-            this.counterService.DeleteCounter(id);
+            this.counterService.DeleteCounter(counterId);
         }
     }
 }

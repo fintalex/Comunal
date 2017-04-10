@@ -44,9 +44,10 @@ namespace Comunal.WebAPI
 		}
 
 		[HttpDelete]
-		public void DeleteMaintenance(int id)
+        [Route("{maintenanceId}")]
+        public void DeleteMaintenance(int maintenanceId)
 		{
-			this.maintenanceService.DeleteMaintenance(id);
+			this.maintenanceService.DeleteMaintenance(maintenanceId);
 		}
 	}
 }

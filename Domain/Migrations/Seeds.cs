@@ -54,21 +54,21 @@ namespace Domain.Migrations
 
         private static void SeedCounterTypes(DataContext context)
         {
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.ColdWater, Name = "Холодная вода", UnitId = (int)UnitTypes.MetersCubic });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.HotWater, Name = "Горячая вода",  UnitId = (int)UnitTypes.MetersCubic });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Electricity, Name = "Электричество", UnitId = (int)UnitTypes.KilowattPerHour });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Gas, Name = "Газ", UnitId = (int)UnitTypes.MetersCubic });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Heating, Name = "Отопление", UnitId = (int)UnitTypes.MetersCubic });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.MotorResource, Name = "Моторесурс", UnitId = (int)UnitTypes.MotorHour });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.ColdWater, Name = "Холодная вода", UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/water.png" });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.HotWater, Name = "Горячая вода",  UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/water.png" });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Electricity, Name = "Электричество", UnitId = (int)UnitTypes.KilowattPerHour, IconPath = "Content/CounterTypes/energy.png" });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Gas, Name = "Газ", UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/gas.png" });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Heating, Name = "Отопление", UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/heat.png" });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.MotorResource, Name = "Моторесурс", UnitId = (int)UnitTypes.MotorHour, IconPath = "Content/CounterTypes/moto.png" });
             context.SaveChanges();
         }
 
         private static void SeedMaintenanceTypes(DataContext context)
         {
-            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Fix, Name = "Фиксированная стоимость" });
-            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Coefficient, Name = "По количеству жильцов/площади" });
-            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Sewerage, Name = "Водоотведение" });
-            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.WaterHeating, Name = "Подогрев воды" });
+            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Fix, Name = "Фиксированная стоимость", IconPath = "Content/ServiceTypes/fix.png" });
+            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Coefficient, Name = "По количеству жильцов/площади", IconPath = "Content/ServiceTypes/multi.png" });
+            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.Sewerage, Name = "Водоотведение", IconPath = "Content/ServiceTypes/waters.png" });
+            context.MaintenanceTypes.AddOrUpdate(new MaintenanceType { Id = (int)MaintenanceTypes.WaterHeating, Name = "Подогрев воды", IconPath = "Content/ServiceTypes/cooler.png" });
             context.SaveChanges();
         }
 

@@ -15,12 +15,19 @@
                         </td>
                         <td>
                             <div>
-                                <i class="material-icons" *ngIf="counter.CounterTypeId == 1">brightness_medium</i>
+                                <img *ngIf="counter.CounterTypeId == 1" width="30" height="30" src="Content/CounterTypes/water.png" />
+                                <img *ngIf="counter.CounterTypeId == 2" width="30" height="30" src="Content/CounterTypes/water.png" />
+                                <img *ngIf="counter.CounterTypeId == 3" width="30" height="30" src="Content/CounterTypes/energy.png" />
+                                <img *ngIf="counter.CounterTypeId == 4" width="30" height="30" src="Content/CounterTypes/gas.png" />
+                                <img *ngIf="counter.CounterTypeId == 5" width="30" height="30" src="Content/CounterTypes/heat.png" />
+                                <img *ngIf="counter.CounterTypeId == 6" width="30" height="30" src="Content/CounterTypes/moto.png" />
+
+                                <!--<i class="material-icons" *ngIf="counter.CounterTypeId == 1">brightness_medium</i>
                                 <i class="material-icons" *ngIf="counter.CounterTypeId == 2">whatshot</i>
                                 <i class="material-icons" *ngIf="counter.CounterTypeId == 3">battery_charging_full</i>
                                 <i class="material-icons" *ngIf="counter.CounterTypeId == 4">local_gas_station</i>
                                 <i class="material-icons" *ngIf="counter.CounterTypeId == 5">power</i>
-                                <i class="material-icons" *ngIf="counter.CounterTypeId == 6">drive_eta</i>
+                                <i class="material-icons" *ngIf="counter.CounterTypeId == 6">drive_eta</i>-->
                             </div>
                         </td>
                         <td>
