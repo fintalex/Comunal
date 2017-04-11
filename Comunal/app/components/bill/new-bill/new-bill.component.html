@@ -1,0 +1,27 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeWindow()">&times;</button>
+        <h3 class="panel-title">Создание нового счета</h3>
+
+    </div>
+    <div class="panel-body">
+
+        <form (ngSubmit)="saveBill(); ngNewBillForm.reset()" #ngNewBillForm="ngForm">
+
+            А здесь все по другому
+
+            <button type="submit" class="btn btn-primary pull-right" *ngIf="!bill.Id"
+                    [disabled]="ngNewBillForm.form.invalid">
+                Добавить счетчик
+            </button>
+            <button type="submit" class="btn btn-primary pull-right" *ngIf="bill.Id"
+                    [disabled]="ngNewBillForm.form.invalid">
+                Сохранить счетчик
+            </button>
+        </form>
+
+    </div>
+</div>
+
+

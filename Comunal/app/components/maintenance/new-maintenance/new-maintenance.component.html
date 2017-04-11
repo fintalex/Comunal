@@ -26,12 +26,10 @@
                 <label class="control-label" for="maintenanceTypeId">Укажите тип услуги</label>
                 <select class="form-control" name="maintenanceTypeId" type="text" placeholder="Укажите тип услуги"
                         [(ngModel)]="maintenance.MaintenanceTypeId"  required>
-                    <option value="1">Холодная вода</option>
-                    <option value="2">Горячая вода</option>
-                    <option value="3">Электричество</option>
-                    <option value="4">Газ</option>
-                    <option value="5">Отопление</option>
-                    <option value="6">Моторесурс</option>
+                    <option [value]="1">Фиксированная стоимость</option>
+                    <option [value]="2">По количеству жильцов/площади</option>
+                    <option [value]="3">Водоотведение</option>
+                    <option [value]="4">Подогрев воды</option>
                 </select>
             </div>
             <!--<md-select placeholder="Favorite food">

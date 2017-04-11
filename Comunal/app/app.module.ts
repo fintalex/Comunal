@@ -18,8 +18,10 @@ import { FlatComponent } from './components/flat/flat.component';
 import { NewFlatComponent } from './components/flat/new-flat.component/new-flat.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { BillComponent } from './components/bill/bill.component';
 import { NewCounterComponent } from './components/counter/new-counter/new-counter.component';
 import { NewMaintenanceComponent } from './components/maintenance/new-maintenance/new-maintenance.component';
+import { NewBillComponent } from './components/bill/new-bill/new-bill.component';
                                            
 // =============== Help Components ==========================
 import { ConfirmComponent } from './helpers/confirm/confirm.component';
@@ -28,6 +30,7 @@ import { ConfirmComponent } from './helpers/confirm/confirm.component';
 import { FlatService } from './services/flat.service';
 import { CounterService } from './services/counter.service';
 import { MaintenanceService } from './services/maintenance.service';
+import { BillService } from './services/bill.service';
 import { GuardService } from './services/guard.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
@@ -52,8 +55,10 @@ import { AuthService } from './services/auth.service';
         NewFlatComponent, 
         CounterComponent,
         MaintenanceComponent,
+        BillComponent,
         NewCounterComponent,
         NewMaintenanceComponent,
+        NewBillComponent,
         ConfirmComponent
     ],
     entryComponents: [
@@ -65,7 +70,8 @@ import { AuthService } from './services/auth.service';
         AuthService,
         FlatService,
         CounterService,
-        MaintenanceService
+        MaintenanceService,
+        BillService
     ],
     bootstrap: [AppComponent]
 })

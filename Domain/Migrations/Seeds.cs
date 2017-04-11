@@ -33,10 +33,10 @@ namespace Domain.Migrations
                 SeedMaintenanceTypes(context);
             }
 
-            if (!context.Flats.Any())
-            {
-                SeedFlats(context);
-            }
+            //if (!context.Flats.Any())
+            //{
+            //    SeedFlats(context);
+            //}
 
             //if (!context.Counters.Any())
             //{

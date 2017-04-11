@@ -7,6 +7,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { BillComponent } from './components/bill/bill.component';
 
 import { GuardService } from './services/guard.service';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'myflats', component: FlatComponent, canActivate: [GuardService]  },
     { path: 'counters', component: CounterComponent, canActivate: [GuardService] },
     { path: 'maintenance', component: MaintenanceComponent, canActivate: [GuardService] },
+    { path: 'bills', component: BillComponent, canActivate: [GuardService] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'myflats' }

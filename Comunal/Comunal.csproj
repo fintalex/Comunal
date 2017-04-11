@@ -215,6 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.component.html" />
+    <Content Include="app\components\bill\bill.component.html" />
+    <Content Include="app\components\bill\new-bill\new-bill.component.html" />
     <Content Include="app\components\counter\counter.component.html" />
     <Content Include="app\components\about\about.component.html" />
     <Content Include="app\components\counter\new-counter\new-counter.component.html" />
@@ -292,6 +294,8 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.routing.ts" />
+    <TypeScriptCompile Include="app\components\bill\bill.component.ts" />
+    <TypeScriptCompile Include="app\components\bill\new-bill\new-bill.component.ts" />
     <TypeScriptCompile Include="app\components\counter\counter.component.ts" />
     <TypeScriptCompile Include="app\components\about\about.component.ts" />
     <TypeScriptCompile Include="app\components\counter\new-counter\new-counter.component.ts" />
@@ -304,11 +308,13 @@
     <TypeScriptCompile Include="app\components\navbar\navbar.component.ts" />
     <TypeScriptCompile Include="app\config.ts" />
     <TypeScriptCompile Include="app\helpers\confirm\confirm.component.ts" />
+    <TypeScriptCompile Include="app\models\bill.ts" />
     <TypeScriptCompile Include="app\models\maintenance.ts" />
     <TypeScriptCompile Include="app\models\counter.ts" />
     <TypeScriptCompile Include="app\models\user.ts" />
     <TypeScriptCompile Include="app\models\flats.ts" />
     <TypeScriptCompile Include="app\services\auth.service.ts" />
+    <TypeScriptCompile Include="app\services\bill.service.ts" />
     <TypeScriptCompile Include="app\services\maintenance.service.ts" />
     <TypeScriptCompile Include="app\services\counter.service.ts" />
     <TypeScriptCompile Include="app\services\guard.service.ts" />
