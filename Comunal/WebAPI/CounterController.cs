@@ -5,7 +5,6 @@ using DTO;
 using Services.Interfaces;
 using System.Linq;
 using System.Web.Http;
-using AutoMapper.QueryableExtensions;
 
 namespace Comunal.WebAPI
 {
