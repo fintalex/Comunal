@@ -63,6 +63,12 @@ namespace Services.Classes
         public void DeleteFlat(int id)
         {
             var flat = this.context.Flats.FirstOrDefault(x => x.Id == id);
+
+			// Удаляем данные из связанных таблиц
+			this.context.Bills.RemoveRange(flat.Bills);
+			this.context.Counters.RemoveRange(flat.Counters);
+			this.context.Maintenances.RemoveRange(flat.Maintenances);
+
             this.context.Flats.Remove(flat);
             this.context.Commit();
         }

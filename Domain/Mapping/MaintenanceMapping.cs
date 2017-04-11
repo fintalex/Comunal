@@ -4,17 +4,15 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Domain.Mapping
 {
-	public class BillMapping : EntityTypeConfiguration<Bill>
+	public class MaintenanceMapping : EntityTypeConfiguration<Maintenance>
 	{
-		public BillMapping()
+		public MaintenanceMapping()
 		{
 			this.HasKey(t => t.Id);
 
 			this.Property(t => t.Id)
 				.HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
 				.HasColumnName("Id");
-
-			this.Property(t => t.Comment).IsRequired().HasMaxLength(255);
 		}
 	}
 }

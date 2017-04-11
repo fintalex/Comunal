@@ -51,9 +51,12 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="Interfaces\IDataContext.cs" />
+    <Compile Include="Mapping\CounterMapping.cs" />
+    <Compile Include="Mapping\FlatMapping.cs" />
     <Compile Include="Mapping\MaintenanceDataMapping.cs" />
     <Compile Include="Mapping\CounterDataMapping.cs" />
     <Compile Include="Mapping\BillMapping.cs" />
+    <Compile Include="Mapping\MaintenanceMapping.cs" />
     <Compile Include="Migrations\Seeds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

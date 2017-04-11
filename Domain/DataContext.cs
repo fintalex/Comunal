@@ -155,8 +155,6 @@ namespace Domain
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
             this.RegisterConfigurations(modelBuilder);
         }
 
