@@ -23,6 +23,8 @@ namespace Comunal
 
                 cfg.CreateMap<Maintenance, MaintenanceDTO>();
 
+                cfg.CreateMap<Bill, BillGridDTO>();
+
             });
         }
     }
