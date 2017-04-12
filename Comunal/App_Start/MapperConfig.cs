@@ -24,6 +24,7 @@ namespace Comunal
                 cfg.CreateMap<Maintenance, MaintenanceDTO>()
                     .ForMember(x => x.Tarif, c => c.MapFrom(o => o.MaintenanceTarifId.HasValue ? o.MaintenanceTarif.Tarif : 0));
                 cfg.CreateMap<MaintenanceDTO, Maintenance>()
+                    .ForMember(x => x.Coefficient, c => c.MapFrom(o => o.MaintenanceTypeId == (int)MaintenanceTypes.Fix || o.MaintenanceTypeId == (int)MaintenanceTypes.Sewerage ? 1 : o.Coefficient))
                     .ForMember(x => x.MaintenanceTarif, c => c.MapFrom(o => new MaintenanceTarif() { Tarif = o.Tarif }));
 
                 cfg.CreateMap<Bill, BillGridDTO>();
