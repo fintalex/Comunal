@@ -78,7 +78,12 @@ namespace Services.Classes
             currentMaintenance.Name = maintenance.Name;
             currentMaintenance.Coefficient = maintenance.Coefficient;
             currentMaintenance.SortOrder = maintenance.SortOrder;
-            currentMaintenance.MaintenanceTarifId = maintenance.MaintenanceTarifId;
+
+            // If maintenance don't have a Tarif or We set New  Tarif Value - we should create a new Tarif. And not rewrite
+            if (!currentMaintenance.MaintenanceTarifId.HasValue || currentMaintenance.MaintenanceTarif.Tarif != maintenance.MaintenanceTarif.Tarif)
+            {
+                currentMaintenance.MaintenanceTarif = new MaintenanceTarif() { Tarif = maintenance.MaintenanceTarif.Tarif };
+            }
 
             this.context.Commit();
         }

@@ -1,4 +1,5 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Data;
 using DTO;
 using Services.Interfaces;
@@ -32,15 +33,18 @@ namespace Comunal.WebAPI
         }
 
         [HttpPost]
-		public Maintenance AddMaintenance([FromBody]Maintenance newMaintenance)
+		public MaintenanceDTO AddMaintenance([FromBody]MaintenanceDTO newMaintenance)
 		{
-			return this.maintenanceService.AddMaintenance(newMaintenance);
+            var maintenance = Mapper.Map<Maintenance>(newMaintenance);
+			var addedMaintaince = this.maintenanceService.AddMaintenance(maintenance);
+            return Mapper.Map<MaintenanceDTO>(addedMaintaince);
 		}
 
 		[HttpPut]
-		public void UpdateMaintenance(Maintenance maintenance)
+		public void UpdateMaintenance(MaintenanceDTO maintenanceDTO)
 		{
-			this.maintenanceService.UpdateMaintenance(maintenance);
+            var maintenance = Mapper.Map<Maintenance>(maintenanceDTO);
+            this.maintenanceService.UpdateMaintenance(maintenance);
 		}
 
 		[HttpDelete]

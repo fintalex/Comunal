@@ -8,50 +8,85 @@
     <div class="panel-body">
 
         <form (ngSubmit)="saveMaintenance(); ngNewMaintenanceForm.reset()" #ngNewMaintenanceForm="ngForm">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label" for="newMaintenanceName">Способ расчета</label>
+                    <input class="form-control" name="newMaintenanceName" type="text" [(ngModel)]="maintenance.Name" required>
+                    <!--<md-input-container>
+                        <input mdInput placeholder="Название услуги" [(ngModel)]="maintenance.Name" name="maintenanceName"  [value]="maintenance.Name" required>
+                    </md-input-container>-->
+                                <!--<md-input-container class="example-full-width">
+                        <input mdInput #postalCode maxlength="20" placeholder="Название услуги" [(ngModel)]="maintenance.Name" name="maintenanceName" required>
+                        <md-hint align="end">{{postalCode.value.length}} / 20</md-hint>
+                    </md-input-container>-->
+                </div>
 
-            <div class="form-group">
-                <label class="control-label" for="newMaintenanceName">Укажите название услуги</label>
-                <input class="form-control" name="newMaintenanceName" type="text" [(ngModel)]="maintenance.Name" required>
-                <!--<md-input-container>
-                    <input mdInput placeholder="Название услуги" [(ngModel)]="maintenance.Name" name="maintenanceName"  [value]="maintenance.Name" required>
-                </md-input-container>-->
+                <div class="form-group">
+                    <label class="control-label" for="maintenanceTypeId">Название услуги</label>
+                    <select class="form-control" name="maintenanceTypeId" type="text" placeholder="Укажите тип услуги"
+                            [(ngModel)]="maintenance.MaintenanceTypeId" required>
+                        <option [value]="1">Фиксированная стоимость</option>
+                        <option [value]="2">По количеству жильцов/площади</option>
+                        <option [value]="3">Водоотведение</option>
+                        <option [value]="4">Подогрев воды</option>
+                    </select>
+                </div>
+                <!--<md-select placeholder="Favorite food">
+                    <md-option *ngFor="let food of foods" [value]="food.value">
+                        {{ food.viewValue }}
+                    </md-option>
+                </md-select>-->
+                            <!--<md-select placeholder="Тип услуги" [(ngModel)]="maintenance.MaintenanceTypeId" name="maintenancetype" required>
+                    <md-option [value]="1">Фиксированная стоимость</md-option>
+                    <md-option [value]="2">По количеству жильцов/площади</md-option>
+                    <md-option [value]="3">Водоотведение</md-option>
+                    <md-option [value]="4">Подогрев воды</md-option>
+                </md-select>-->
 
-                <!--<md-input-container class="example-full-width">
-                    <input mdInput #postalCode maxlength="20" placeholder="Название услуги" [(ngModel)]="maintenance.Name" name="maintenanceName" required>
-                    <md-hint align="end">{{postalCode.value.length}} / 20</md-hint>
-                </md-input-container>-->
             </div>
 
-            <div class="form-group">
-                <label class="control-label" for="maintenanceTypeId">Укажите тип услуги</label>
-                <select class="form-control" name="maintenanceTypeId" type="text" placeholder="Укажите тип услуги"
-                        [(ngModel)]="maintenance.MaintenanceTypeId"  required>
-                    <option [value]="1">Фиксированная стоимость</option>
-                    <option [value]="2">По количеству жильцов/площади</option>
-                    <option [value]="3">Водоотведение</option>
-                    <option [value]="4">Подогрев воды</option>
-                </select>
-            </div>
-            <!--<md-select placeholder="Favorite food">
-                <md-option *ngFor="let food of foods" [value]="food.value">
-                    {{ food.viewValue }}
-                </md-option>
-            </md-select>-->
-            <!--<md-select placeholder="Тип услуги" [(ngModel)]="maintenance.MaintenanceTypeId" name="maintenancetype" required>
-                <md-option [value]="1">Фиксированная стоимость</md-option>
-                <md-option [value]="2">По количеству жильцов/площади</md-option>
-                <md-option [value]="3">Водоотведение</md-option>
-                <md-option [value]="4">Подогрев воды</md-option>
-            </md-select>-->
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label" for="tarif">Тариф</label>
+                    <input class="form-control" name="tarif" type="text" 
+                           [(ngModel)]="maintenance.Tarif" #tarif="ngModel" 
+                           required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                    <div *ngIf="tarif.errors && (tarif.dirty || tarif.touched)" class="text-danger">
+                        <div [hidden]="!tarif.errors.required">
+                            Укажите тариф
+                        </div>
+                        <div [hidden]="!tarif.errors.pattern">
+                            Тариф не валидный
+                        </div>
+                    </div>
+                </div>
 
-            <button type="submit" class="btn btn-primary pull-right" *ngIf="!maintenance.Id"
-                    [disabled]="ngNewMaintenanceForm.form.invalid">
-                Добавить услугу
-            </button>
-            <button type="submit" class="btn btn-primary pull-right" *ngIf="maintenance.Id"
-                    [disabled]="ngNewMaintenanceForm.form.invalid">
-                Сохранить услугу
-            </button>
+                <div class="form-group">
+                    <label class="control-label" for="coefficient">Коэффициент</label>
+                    <input class="form-control" name="coefficient" type="text" 
+                           [(ngModel)]="maintenance.Coefficient"   #coefficient="ngModel" 
+                           required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                    <div *ngIf="coefficient.errors && (coefficient.dirty || coefficient.touched)" class="text-danger">
+                        <div [hidden]="!coefficient.errors.required">
+                            Укажите коэффициент
+                        </div>
+                        <div [hidden]="!coefficient.errors.pattern">
+                            Коэффициент не валидный
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary pull-right" *ngIf="!maintenance.Id"
+                            [disabled]="ngNewMaintenanceForm.form.invalid">
+                        Добавить услугу
+                    </button>
+                    <button type="submit" class="btn btn-primary pull-right" *ngIf="maintenance.Id"
+                            [disabled]="ngNewMaintenanceForm.form.invalid">
+                        Сохранить услугу
+                    </button>
+                </div>
+            </div>
         </form>
 
     </div>

@@ -28,5 +28,7 @@ namespace DTO
 
 
         public int? MaintenanceTarifId { get; set; }
+
+        public double Tarif { get; set; }
     }
 }

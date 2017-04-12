@@ -1,6 +1,7 @@
 ﻿export class Maintenance {
     Id: number;
     Selected: boolean;
+    Tarif: number | null = null;
 
     constructor(
         public Name: string = null,
