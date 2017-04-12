@@ -28,7 +28,7 @@ export class CounterComponent implements OnInit  {
     }
 
     initCounterList() {
-        this.counterService.getFlatCountersByUserId(this.authService.CurrentUser.Flat.Id)
+        this.counterService.getFlatCountersByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(counters => {
                 this.myCounters = counters;
             });

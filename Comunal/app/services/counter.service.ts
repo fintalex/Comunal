@@ -24,8 +24,14 @@ export class CounterService {
             .catch(this.handleError);
     }
 
-    getFlatCountersByUserId(flatId: number): Observable<Counter[]> {
+    getFlatCountersByFlatId(flatId: number): Observable<Counter[]> {
         return this.http.get(`${this.apiUrl}/${flatId}`)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
+    getWaterCountersByFlatId(flatId: number): Observable<Counter[]> {
+        return this.http.get(`${this.apiUrl}/waters/${flatId}`)
             .map(response => response.json())
             .catch(this.handleError);
     }

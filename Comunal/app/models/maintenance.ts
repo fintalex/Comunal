@@ -2,6 +2,7 @@
     Id: number;
     Selected: boolean;
     Tarif: number | null = null;
+    Counters: any;
 
     constructor(
         public Name: string = null,

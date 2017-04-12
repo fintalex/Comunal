@@ -51,6 +51,8 @@ namespace Data
 
         public virtual ICollection<CounterData> CounterDatas { get; set; }
 
+        public virtual ICollection<Maintenance> Maintenances { get; set; }
+
         #endregion Navigation properties
     }
 }

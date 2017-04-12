@@ -35,5 +35,11 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="counter">Counter</param>
         void UpdateCounter(Counter counter);
+
+        /// <summary>
+        /// Get All Water Counters by flat
+        /// </summary>
+        /// <returns>Water counters</returns>
+        IQueryable<Counter> GetWaterCounters(int flatId);
     }
 }

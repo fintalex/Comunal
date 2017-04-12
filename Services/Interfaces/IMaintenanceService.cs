@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Data;
+using System.Collections.Generic;
 
 namespace Services.Interfaces
 {
@@ -24,16 +25,19 @@ namespace Services.Interfaces
 		/// <param name="id">Maintenance id</param>
 		void DeleteMaintenance(int id);
 
-		/// <summary>
-		/// Add Maintenance
-		/// </summary>
-		/// <param name="maintenance">Maintenance</param>
-		Maintenance AddMaintenance(Maintenance maintenance);
+        /// <summary>
+        /// Add Maintenance
+        /// </summary>
+        /// <param name="maintenance">Maintenance</param>
+        /// <param name="countersId">Counters Ids</param>
+        Maintenance AddMaintenance(Maintenance maintenance, List<int> countersId);
 
-		/// <summary>
-		/// Update Maintenance
-		/// </summary>
-		/// <param name="maintenance">Maintenance</param>
-		void UpdateMaintenance(Maintenance maintenance);
-	}
+        /// <summary>
+        /// Update Maintenance
+        /// </summary>
+        /// <param name="maintenance">Maintenance</param>
+        /// <param name="countersId">Counters Ids</param>
+        void UpdateMaintenance(Maintenance maintenance, List<int> countersId);
+
+    }
 }

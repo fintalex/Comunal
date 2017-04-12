@@ -30,5 +30,7 @@ namespace DTO
         public int? MaintenanceTarifId { get; set; }
 
         public double Tarif { get; set; }
+
+        public IEnumerable<int> Counters { get; set; }
     }
 }

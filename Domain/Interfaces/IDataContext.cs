@@ -32,7 +32,7 @@ namespace Domain
 
 		DbSet<MaintenanceData> MaintenanceDatas { get; set; }
 
-		DbSet<MaintenanceDataSource> MaintenanceDataSources { get; set; }
+		//DbSet<MaintenanceDataSource> MaintenanceDataSources { get; set; }
 
 		/// <summary>
 		/// Commit changes to database

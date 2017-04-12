@@ -45,7 +45,7 @@ namespace Domain
 
 			this.MaintenanceDatas = this.Set<MaintenanceData>();
 
-			this.MaintenanceDataSources = this.Set<MaintenanceDataSource>();
+			//this.MaintenanceDataSources = this.Set<MaintenanceDataSource>();
 		}
 
 		public DbSet<User> Users { get; set; }
@@ -74,7 +74,7 @@ namespace Domain
 
 		public DbSet<MaintenanceData> MaintenanceDatas { get; set; }
 
-		public DbSet<MaintenanceDataSource> MaintenanceDataSources { get; set; }
+		//public DbSet<MaintenanceDataSource> MaintenanceDataSources { get; set; }
 
 		/// <summary>
 		/// Commit changes

@@ -34,9 +34,9 @@ namespace Comunal.WebAPI
 
         [HttpPost]
 		public MaintenanceDTO AddMaintenance([FromBody]MaintenanceDTO newMaintenance)
-		{
+		{ 
             var maintenance = Mapper.Map<Maintenance>(newMaintenance);
-			var addedMaintaince = this.maintenanceService.AddMaintenance(maintenance);
+			var addedMaintaince = this.maintenanceService.AddMaintenance(maintenance, newMaintenance.Counters.ToList());
             return Mapper.Map<MaintenanceDTO>(addedMaintaince);
 		}
 
@@ -44,7 +44,7 @@ namespace Comunal.WebAPI
 		public void UpdateMaintenance(MaintenanceDTO maintenanceDTO)
 		{
             var maintenance = Mapper.Map<Maintenance>(maintenanceDTO);
-            this.maintenanceService.UpdateMaintenance(maintenance);
+            this.maintenanceService.UpdateMaintenance(maintenance, maintenanceDTO.Counters.ToList());
 		}
 
 		[HttpDelete]

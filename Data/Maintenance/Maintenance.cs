@@ -44,7 +44,9 @@ namespace Data
         public virtual MaintenanceTarif MaintenanceTarif { get; set; }
 
 
-        public virtual ICollection<MaintenanceDataSource> MaintenanceDataSources { get; set; }
+        //public virtual ICollection<MaintenanceDataSource> MaintenanceDataSources { get; set; }
+
+        public virtual ICollection<Counter> Counters { get; set; }
 
         #endregion Navigation properties
     }

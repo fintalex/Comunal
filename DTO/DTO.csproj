@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillGridDTO.cs" />
+    <Compile Include="CounterSmallDTO.cs" />
     <Compile Include="MaintenanceDTO.cs" />
     <Compile Include="FlatDTO.cs" />
     <Compile Include="LoginDTO.cs" />

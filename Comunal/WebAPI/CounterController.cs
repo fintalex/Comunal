@@ -32,6 +32,14 @@ namespace Comunal.WebAPI
             return this.counterService.GetCounters(flatId).ProjectTo<CounterDTO>();
         }
 
+        [HttpGet]
+        [Route("waters/{flatId}")]
+        public IQueryable<CounterDTO> GetWaterCountersByFlatId(int flatId)
+        {
+            // а здесь надо бы проверку делать, имеет ли доступ Текущий авторизованный пользователь к данной квартире
+            return this.counterService.GetWaterCounters(flatId).ProjectTo<CounterDTO>();
+        }
+
         [HttpPost]
         public Counter AddCounter([FromBody]Counter newCounter)
         {

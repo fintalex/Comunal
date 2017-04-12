@@ -31,11 +31,24 @@ namespace Services.Classes
         /// <summary>
         /// Get All Counters
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Counters</returns>
         public IQueryable<Counter> GetCounters(int flatId)
         {
             return this.context.Counters
                 .Where(c => c.FlatId == flatId)
+                .OrderBy(c => c.SortOrder)
+                .ThenBy(c => c.Name);
+        }
+
+        /// <summary>
+        /// Get All Water Counters by flat
+        /// </summary>
+        /// <returns>Water counters</returns>
+        public IQueryable<Counter> GetWaterCounters(int flatId)
+        {
+            return this.context.Counters
+                .Where(c => c.FlatId == flatId
+                    && (c.CounterTypeId == (int)CounterTypes.ColdWater || c.CounterTypeId == (int)CounterTypes.HotWater))
                 .OrderBy(c => c.SortOrder)
                 .ThenBy(c => c.Name);
         }

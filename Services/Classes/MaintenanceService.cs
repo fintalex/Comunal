@@ -2,6 +2,7 @@
 using Domain;
 using System.Linq;
 using Services.Interfaces;
+using System.Collections.Generic;
 
 namespace Services.Classes
 {
@@ -55,13 +56,29 @@ namespace Services.Classes
         /// Add Maintenance
         /// </summary>
         /// <param name="maintenance">Maintenance</param>
-        public Maintenance AddMaintenance(Maintenance maintenance)
+        /// <param name="countersId">Counters Ids</param>
+        public Maintenance AddMaintenance(Maintenance maintenance, List<int> countersId)
         {
             //TODO: when will be current session with current chosen FLAT
             if (maintenance.FlatId == 0)
             {
                 maintenance.FlatId = this.context.Flats.FirstOrDefault().Id;
             }
+
+            maintenance.Counters = null;
+
+            if (countersId.Count() > 0)
+            {
+                var attachedCounters = this.context.Counters.Where(c => countersId.Contains(c.Id));
+
+                maintenance.Counters = new List<Counter>();
+
+                foreach (var counter in attachedCounters)
+                {
+                    maintenance.Counters.Add(counter);
+                }
+            }
+
             this.context.Maintenances.Add(maintenance);
             this.context.Commit();
 
@@ -72,7 +89,8 @@ namespace Services.Classes
         /// Update Maintenance
         /// </summary>
         /// <param name="maintenance">Maintenance</param>
-        public void UpdateMaintenance(Maintenance maintenance)
+        /// <param name="countersId">Counters Ids</param>
+        public void UpdateMaintenance(Maintenance maintenance, List<int> countersId)
         {
             var currentMaintenance = this.context.Maintenances.FirstOrDefault(m => m.Id == maintenance.Id);
             currentMaintenance.Name = maintenance.Name;
@@ -83,6 +101,18 @@ namespace Services.Classes
             if (!currentMaintenance.MaintenanceTarifId.HasValue || currentMaintenance.MaintenanceTarif.Tarif != maintenance.MaintenanceTarif.Tarif)
             {
                 currentMaintenance.MaintenanceTarif = new MaintenanceTarif() { Tarif = maintenance.MaintenanceTarif.Tarif };
+            }
+
+            if (countersId.Count() > 0)
+            {
+                var attachedCounters = this.context.Counters.Where(c => countersId.Contains(c.Id));
+
+                maintenance.Counters = new List<Counter>();
+
+                foreach (var counter in attachedCounters)
+                {
+                    maintenance.Counters.Add(counter);
+                }
             }
 
             this.context.Commit();
