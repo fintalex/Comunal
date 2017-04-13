@@ -36,7 +36,7 @@ namespace Comunal.WebAPI
 		public MaintenanceDTO AddMaintenance([FromBody]MaintenanceDTO newMaintenance)
 		{ 
             var maintenance = Mapper.Map<Maintenance>(newMaintenance);
-			var addedMaintaince = this.maintenanceService.AddMaintenance(maintenance, newMaintenance.Counters.ToList());
+			var addedMaintaince = this.maintenanceService.AddMaintenance(maintenance, newMaintenance.Counters == null ? null : newMaintenance.Counters.ToList());
             return Mapper.Map<MaintenanceDTO>(addedMaintaince);
 		}
 

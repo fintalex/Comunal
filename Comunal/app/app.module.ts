@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { MaterialModule } from '@angular/material';
 
 // =============== App Component ====================
@@ -43,6 +44,7 @@ import { AuthService } from './services/auth.service';
         FormsModule,
         HttpModule,
         BootstrapModalModule.forRoot({ container: document.body }),
+        MultiselectDropdownModule,
         MaterialModule
     ],
     declarations: [

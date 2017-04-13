@@ -42,7 +42,7 @@
 
     <a class="btn btn-primary"
        *ngIf="!showMaintenancePanel"
-       (click)="goToNewMaintenance()">Новый счетчик</a>
+       (click)="goToNewMaintenance()">Новая услуга</a>
 
     <new-maintenance *ngIf="showMaintenancePanel"
               (create)="createNewMaintenance($event)"

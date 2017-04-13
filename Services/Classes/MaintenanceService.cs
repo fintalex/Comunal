@@ -67,7 +67,7 @@ namespace Services.Classes
 
             maintenance.Counters = null;
 
-            if (countersId.Count() > 0)
+            if (countersId != null && countersId.Count() > 0)
             {
                 var attachedCounters = this.context.Counters.Where(c => countersId.Contains(c.Id));
 
