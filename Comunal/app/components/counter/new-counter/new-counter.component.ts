@@ -2,6 +2,8 @@
 
 import { CounterService } from '../../../services/counter.service';
 
+import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
+
 import { Counter } from '../../../models/counter';
 
 @Component({
@@ -17,6 +19,7 @@ export class NewCounterComponent implements OnInit  {
 
     counterType: any;
     userName: any;
+    tarifTypes: IMultiSelectOption[] = [];
 
     constructor(
         private counterService: CounterService
@@ -26,6 +29,12 @@ export class NewCounterComponent implements OnInit  {
         if (!this.counter) {
             this.counter = new Counter();
         }
+
+        this.tarifTypes = [
+            { id: 1, name: 'Простой' },
+            { id: 2, name: 'Двухставочный' },
+            { id: 3, name: 'Трехставочный' },
+        ];
     }
 
     saveCounter() {
@@ -39,5 +48,31 @@ export class NewCounterComponent implements OnInit  {
     closeWindow() {
         this.close.emit();
     }
-    
+
+    onTarifChange() {
+        // display other fields for tarif
+    }
+
+    myTexts: IMultiSelectTexts = {
+        checkAll: 'Выбрать все',
+        uncheckAll: 'Снять все',
+        checked: 'выбран',
+        checkedPlural: 'выбрано',
+        searchPlaceholder: 'Поиск...',
+        defaultTitle: 'Выбрать',
+        allSelected: 'Выбрать все',
+    };
+
+    tariffTypeSetting: IMultiSelectSettings = {
+        pullRight: false,
+        enableSearch: false,
+        checkedStyle: 'glyphicon',
+        buttonClasses: 'form-control',
+        selectionLimit: 1,
+        closeOnSelect: true,
+        autoUnselect: true,
+        fixedTitle: false,
+        dynamicTitleMaxItems: 3,
+        maxHeight: '300px',
+    };
 }

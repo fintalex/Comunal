@@ -65,6 +65,8 @@ export class NewMaintenanceComponent implements OnInit  {
             this.mySettings.autoUnselect = false;
             this.myWaterCounters.length
         }
+
+        
     }
 
     saveMaintenance() {
@@ -83,11 +85,11 @@ export class NewMaintenanceComponent implements OnInit  {
     mySettings: IMultiSelectSettings = {
         pullRight: false,
         enableSearch: false,
-        checkedStyle: 'checkboxes',
-        buttonClasses: 'btn btn-default btn-secondary',
+        checkedStyle: 'glyphicon',
+        buttonClasses: 'form-control',
         selectionLimit: 0,
         closeOnSelect: false,
-        autoUnselect: false,
+        autoUnselect: true,
         showCheckAll: false,
         showUncheckAll: false,
         fixedTitle: false,
@@ -96,13 +98,13 @@ export class NewMaintenanceComponent implements OnInit  {
     };
 
     myTexts: IMultiSelectTexts = {
-        checkAll: 'Check all',
-        uncheckAll: 'Uncheck all',
-        checked: 'checked',
-        checkedPlural: 'checked',
-        searchPlaceholder: 'Search...',
-        defaultTitle: 'Select',
-        allSelected: 'All selected',
+        checkAll: 'Выбрать все',
+        uncheckAll: 'Снять все',
+        checked: 'выбран',
+        checkedPlural: 'выбрано',
+        searchPlaceholder: 'Поиск...',
+        defaultTitle: 'Выбрать',
+        allSelected: 'Выбрать все',
     };
     
 }

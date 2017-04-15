@@ -28,18 +28,27 @@
                             (ngModelChange)="onTypeChange($event)">
                         <option [value]="1">Фиксированная стоимость</option>
                         <option [value]="2">По количеству жильцов/площади</option>
-                        <option [value]="3" *ngIf="myWaterCounters">Водоотведение</option>
-                        <option [value]="4" *ngIf="myWaterCounters">Подогрев воды</option>
+                        <option [value]="3" *ngIf="myWaterCounters.length > 0">Водоотведение</option>
+                        <option [value]="4" *ngIf="myWaterCounters.length > 0">Подогрев воды</option>
                     </select>
                 </div>
 
                 <div class="form-group" *ngIf="maintenance.MaintenanceTypeId && myWaterCounters.length > 0 && (maintenance.MaintenanceTypeId == 3 || maintenance.MaintenanceTypeId == 4)">
-                    <label class="control-label" for="maintenanceDataSource">Список счетчиков</label>
-                    <ss-multiselect-dropdown name="multyTest" required
+                    <label class="control-label" for="multyForType4">Список счетчиков</label>
+                    <ss-multiselect-dropdown name="multyForType4" required *ngIf="maintenance.MaintenanceTypeId == 4"
                                              [options]="myWaterCounters"
                                              [(ngModel)]="maintenance.Counters"
                                              [texts]="myTexts" 
-                                             [settings]="mySettings"
+                                             [settings]="{selectionLimit: 1, 
+                                                          autoUnselect: true,
+                                                          buttonClasses: 'form-control' }"
+                                             (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                    <ss-multiselect-dropdown name="multyForType3" required *ngIf="maintenance.MaintenanceTypeId == 3"
+                                             [options]="myWaterCounters"
+                                             [(ngModel)]="maintenance.Counters"
+                                             [texts]="myTexts"
+                                             [settings]="{selectionLimit: 0,
+                                                          buttonClasses: 'form-control'}"
                                              (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
                     <!--<select multiple  name="maintenanceDataSource" class="form-control" 
                             [(ngModel)]="maintenance.Counters" required>

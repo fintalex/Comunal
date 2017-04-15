@@ -9,53 +9,55 @@
 
         <form (ngSubmit)="saveCounter(); ngNewCounterForm.reset()" #ngNewCounterForm="ngForm">
 
-            <div class="form-group">
-                <label class="control-label" for="newCounterName">Укажите название счетчика</label>
-                <input class="form-control" name="newCounterName" type="text" [(ngModel)]="counter.Name" required>
-                <!--<md-input-container>
-                    <input mdInput placeholder="Название счетчика" [(ngModel)]="counter.Name" name="counterName"  [value]="counter.Name" required>
-                </md-input-container>-->
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label" for="newCounterName">Укажите название счетчика</label>
+                    <input class="form-control" name="newCounterName" type="text" [(ngModel)]="counter.Name" required>
+               </div>
 
-                <!--<md-input-container class="example-full-width">
-                    <input mdInput #postalCode maxlength="20" placeholder="Название счетчика" [(ngModel)]="counter.Name" name="counterName" required>
-                    <md-hint align="end">{{postalCode.value.length}} / 20</md-hint>
-                </md-input-container>-->
+                <div class="form-group">
+                    <label class="control-label" for="counterTypeId">Укажите тип счетчика</label>
+                    <select class="form-control" name="counterTypeId" type="text" placeholder="Укажите тип счетчика"
+                            [(ngModel)]="counter.CounterTypeId" required>
+                        <option value="1">Холодная вода</option>
+                        <option value="2">Горячая вода</option>
+                        <option value="3">Электричество</option>
+                        <option value="4">Газ</option>
+                        <option value="5">Отопление</option>
+                        <option value="6">Моторесурс</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="control-label" for="counterTypeId">Укажите тип счетчика</label>
-                <select class="form-control" name="counterTypeId" type="text" placeholder="Укажите тип счетчика"
-                        [(ngModel)]="counter.CounterTypeId"  required>
-                    <option value="1">Холодная вода</option>
-                    <option value="2">Горячая вода</option>
-                    <option value="3">Электричество</option>
-                    <option value="4">Газ</option>
-                    <option value="5">Отопление</option>
-                    <option value="6">Моторесурс</option>
-                </select>
-            </div>
-            <!--<md-select placeholder="Favorite food">
-                <md-option *ngFor="let food of foods" [value]="food.value">
-                    {{ food.viewValue }}
-                </md-option>
-            </md-select>-->
-            <!--<md-select placeholder="Тип счетчика" [(ngModel)]="counter.CounterTypeId" name="countertype" required>
-                <md-option [value]="1">Холодная вода</md-option>
-                <md-option [value]="2">Горячая вода</md-option>
-                <md-option [value]="3">Электричество</md-option>
-                <md-option [value]="4">Газ</md-option>
-                <md-option [value]="5">Отопление</md-option>
-                <md-option [value]="6">Моторесурс</md-option>
-            </md-select>-->
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label" for="counterTypeId">Тип тарифа</label>
+                    <!--<select class="form-control" name="counterTypeId" type="text" placeholder="Укажите тип счетчика"
+                            [(ngModel)]="counter.CounterTarifTypeId" required>
+                        <option value="1">Простой</option>
+                        <option value="2">Двухставочный</option>
+                        <option value="3">Трехставочный</option>
+                    </select>-->
 
-            <button type="submit" class="btn btn-primary pull-right" *ngIf="!counter.Id"
-                    [disabled]="ngNewCounterForm.form.invalid">
-                Добавить счетчик
-            </button>
-            <button type="submit" class="btn btn-primary pull-right" *ngIf="counter.Id"
-                    [disabled]="ngNewCounterForm.form.invalid">
-                Сохранить счетчик
-            </button>
+                    <ss-multiselect-dropdown name="tyriffType" required 
+                                             [options]="tarifTypes"
+                                             [(ngModel)]="counter.CounterTarifTypeId"
+                                             [texts]="myTexts"
+                                             [settings]="tariffTypeSetting"
+                                             (ngModelChange)="onTarifChange($event)"></ss-multiselect-dropdown>
+                </div>
+                
+
+                <button type="submit" class="btn btn-primary pull-right" *ngIf="!counter.Id"
+                        [disabled]="ngNewCounterForm.form.invalid">
+                    Добавить счетчик
+                </button>
+                <button type="submit" class="btn btn-primary pull-right" *ngIf="counter.Id"
+                        [disabled]="ngNewCounterForm.form.invalid">
+                    Сохранить счетчик
+                </button>
+            </div>
+
         </form>
 
     </div>

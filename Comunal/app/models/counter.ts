@@ -1,6 +1,7 @@
 ﻿export class Counter {
     Id: number;
     Selected: boolean;
+    CounterTarifTypeId: number;
 
     constructor(
         public Name: string = null,

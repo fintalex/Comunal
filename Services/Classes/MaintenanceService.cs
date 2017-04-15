@@ -103,6 +103,16 @@ namespace Services.Classes
                 currentMaintenance.MaintenanceTarif = new MaintenanceTarif() { Tarif = maintenance.MaintenanceTarif.Tarif };
             }
 
+            foreach (var curCounter in currentMaintenance.Counters.ToList())
+            {
+                if (!countersId.Contains(curCounter.Id))
+                {
+                    currentMaintenance.Counters.Remove(curCounter);
+                }
+
+                countersId.Remove(curCounter.Id);
+            }
+
             if (countersId.Count() > 0)
             {
                 var attachedCounters = this.context.Counters.Where(c => countersId.Contains(c.Id));
@@ -111,7 +121,7 @@ namespace Services.Classes
 
                 foreach (var counter in attachedCounters)
                 {
-                    maintenance.Counters.Add(counter);
+                    currentMaintenance.Counters.Add(counter);
                 }
             }
 
