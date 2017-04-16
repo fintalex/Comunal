@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { BillComponent } from './components/bill/bill.component';
+import { BillDetatilComponent } from './components/bill/bill-detail/bill-detail.component';
 
 import { GuardService } from './services/guard.service';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'counters', component: CounterComponent, canActivate: [GuardService] },
     { path: 'maintenance', component: MaintenanceComponent, canActivate: [GuardService] },
     { path: 'bills', component: BillComponent, canActivate: [GuardService] },
+    { path: 'bill/:id', component: BillDetatilComponent, canActivate: [GuardService] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'myflats' }

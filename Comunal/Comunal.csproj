@@ -217,7 +217,7 @@
   <ItemGroup>
     <Content Include="app\app.component.html" />
     <Content Include="app\components\bill\bill.component.html" />
-    <Content Include="app\components\bill\new-bill\new-bill.component.html" />
+    <Content Include="app\components\bill\bill-detail\bill-detail.component.html" />
     <Content Include="app\components\counter\counter.component.html" />
     <Content Include="app\components\about\about.component.html" />
     <Content Include="app\components\counter\new-counter\new-counter.component.html" />
@@ -296,7 +296,7 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.routing.ts" />
     <TypeScriptCompile Include="app\components\bill\bill.component.ts" />
-    <TypeScriptCompile Include="app\components\bill\new-bill\new-bill.component.ts" />
+    <TypeScriptCompile Include="app\components\bill\bill-detail\bill-detail.component.ts" />
     <TypeScriptCompile Include="app\components\counter\counter.component.ts" />
     <TypeScriptCompile Include="app\components\about\about.component.ts" />
     <TypeScriptCompile Include="app\components\counter\new-counter\new-counter.component.ts" />

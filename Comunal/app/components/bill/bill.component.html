@@ -11,9 +11,6 @@
                 <tbody>
                     <tr *ngFor="let bill of myBills" class="clickable-row" [ngClass]="{'info': bill.Selected}" (click)="selectBill(bill)">
                         <td>
-                            <md-radio-button [checked]="bill.Selected" (click)="selectBill(bill)"></md-radio-button>
-                        </td>
-                        <td>
                             {{bill.InvoiceDate | date:"MMMM yyyy" : 'ru'}}
                         </td>
                         <td>
@@ -23,7 +20,7 @@
                             {{bill.Recalculation}}
                         </td>
                         <td>
-                            <a (click)="editBill(bill, $event)">Редактировать</a>
+                            <a href="/bill/{{bill.Id}}" >Редактировать</a>
                         </td>
                     </tr>
                 </tbody>
@@ -32,14 +29,14 @@
     </div>
 
 
-    <a class="btn btn-primary"
+    <!--<a class="btn btn-primary"
        *ngIf="!showBillPanel"
-       (click)="goToNewBill()">Новый счетчик</a>
+       (click)="goToNewBill()">Новый счет</a>
 
     <new-bill *ngIf="showBillPanel"
               (create)="createNewBill($event)"
               (update)="updateBill($event)"
               (close)="showBillPanel = false"
-              [bill]="currentBill"></new-bill>
+              [bill]="currentBill"></new-bill>-->
 
 </div>
