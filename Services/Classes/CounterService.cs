@@ -92,7 +92,17 @@ namespace Services.Classes
             currentCounter.EnableODN = counter.EnableODN;
             currentCounter.SortOrder = counter.SortOrder;
             currentCounter.UnitConvertCoefficient = counter.UnitConvertCoefficient;
-            currentCounter.CounterTarifId = counter.CounterTarifId;
+
+            if (!currentCounter.CounterTarifId.HasValue
+                || currentCounter.CounterTarif.TarifCount != counter.CounterTarif.TarifCount
+                || currentCounter.CounterTarif.Tarif1 != counter.CounterTarif.Tarif1
+                || currentCounter.CounterTarif.Limit1 != counter.CounterTarif.Limit1
+                || currentCounter.CounterTarif.Tarif2 != counter.CounterTarif.Tarif2
+                || currentCounter.CounterTarif.Limit2 != counter.CounterTarif.Limit2
+                || currentCounter.CounterTarif.Tarif3 != counter.CounterTarif.Tarif3)
+            {
+                currentCounter.CounterTarif = counter.CounterTarif;
+            }
 
             this.context.Commit();
         }

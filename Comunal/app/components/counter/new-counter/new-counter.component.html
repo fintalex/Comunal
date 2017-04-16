@@ -15,36 +15,55 @@
                     <input class="form-control" name="newCounterName" type="text" [(ngModel)]="counter.Name" required>
                </div>
 
-                <div class="form-group">
+                <div class="form-group" *ngIf="counterTypes.length > 0">
                     <label class="control-label" for="counterTypeId">Укажите тип счетчика</label>
-                    <select class="form-control" name="counterTypeId" type="text" placeholder="Укажите тип счетчика"
-                            [(ngModel)]="counter.CounterTypeId" required>
-                        <option value="1">Холодная вода</option>
-                        <option value="2">Горячая вода</option>
-                        <option value="3">Электричество</option>
-                        <option value="4">Газ</option>
-                        <option value="5">Отопление</option>
-                        <option value="6">Моторесурс</option>
+                    <select  class="form-control" name="counterTypeId" required [(ngModel)]="counter.CounterTypeId">
+                        <option *ngFor="let counterType of counterTypes" [value]="counterType.Id">{{counterType.Name}}</option>
                     </select>
+                </div>
+
+                <div class="form-group" *ngIf="counter.CounterTypeId == 5">
+                    <label class="control-label" for="coeficient">Коэффициент перевода единицы измерения</label>
+                    <input class="form-control" name="coeficient" type="text" [(ngModel)]="counter.UnitConvertCoefficient" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
+                </div>
+
+                <div class="form-group">
+                    <md-slide-toggle class="example-margin" name="odn"
+                                     [color]="primary"
+                                     [(ngModel)]="counter.EnableODN">
+                        Общедомовые нужды (ОДН)
+                    </md-slide-toggle>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="form-group">
-                    <label class="control-label" for="counterTypeId">Тип тарифа</label>
-                    <!--<select class="form-control" name="counterTypeId" type="text" placeholder="Укажите тип счетчика"
-                            [(ngModel)]="counter.CounterTarifTypeId" required>
-                        <option value="1">Простой</option>
-                        <option value="2">Двухставочный</option>
-                        <option value="3">Трехставочный</option>
-                    </select>-->
+                <div class="form-group" *ngIf="tarifTypes.length > 0">
+                    <label class="control-label" for="tyriffType">Тип тарифа</label>
 
-                    <ss-multiselect-dropdown name="tyriffType" required 
-                                             [options]="tarifTypes"
-                                             [(ngModel)]="counter.CounterTarifTypeId"
-                                             [texts]="myTexts"
-                                             [settings]="tariffTypeSetting"
-                                             (ngModelChange)="onTarifChange($event)"></ss-multiselect-dropdown>
+                    <select  class="form-control" name="tyriffType" required  [(ngModel)]="counter.TarifCount">
+                        <option *ngFor="let tarType of tarifTypes" [value]="tarType.Id">{{tarType.Name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group" *ngIf="counter.TarifCount >= 1">
+                    <label class="control-label" for="tarif1">Тариф</label>
+                    <input class="form-control" name="tarif1" type="text" [(ngModel)]="counter.Tarif1" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
+                </div>
+                <div class="form-group" *ngIf="counter.TarifCount >= 2">
+                    <label class="control-label" for="Limit1">Порог 1</label>
+                    <input class="form-control" name="Limit1" type="text" [(ngModel)]="counter.Limit1" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
+                </div>
+                <div class="form-group" *ngIf="counter.TarifCount >= 2">
+                    <label class="control-label" for="tarif2">Тариф от порога 1 до порога 2</label>
+                    <input class="form-control" name="tarif3" type="text" [(ngModel)]="counter.Tarif2" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
+                </div>
+                <div class="form-group" *ngIf="counter.TarifCount == 3">
+                    <label class="control-label" for="Limit2">Порог 2</label>
+                    <input class="form-control" name="Limit2" type="text" [(ngModel)]="counter.Limit2" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
+                </div>
+                <div class="form-group" *ngIf="counter.TarifCount == 3">
+                    <label class="control-label" for="tarif3">Тариф свыше порога 2</label>
+                    <input class="form-control" name="tarif3" type="text" [(ngModel)]="counter.Tarif3" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
                 </div>
                 
 

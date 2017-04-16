@@ -19,9 +19,9 @@ namespace Comunal.WebAPI
         }
 
         [HttpGet]
-        public Counter Get(int id)
+        public CounterDTO Get(int id)
         {
-            return this.counterService.GetById(id);
+            return Mapper.Map<CounterDTO>(this.counterService.GetById(id));
         }
 
         [HttpGet]
@@ -41,15 +41,17 @@ namespace Comunal.WebAPI
         }
 
         [HttpPost]
-        public Counter AddCounter([FromBody]Counter newCounter)
+        public CounterDTO AddCounter([FromBody]CounterDTO counterDto)
         {
-            return this.counterService.AddCounter(newCounter);
+            var newCounter = Mapper.Map<Counter>(counterDto);
+            return Mapper.Map<CounterDTO>(this.counterService.AddCounter(newCounter));
         }
 
         [HttpPut]
-        public void UpdateCounter(Counter counter)
+        public void UpdateCounter(CounterDTO counterDto)
         {
-            this.counterService.UpdateCounter(counter);
+            var editedCounter = Mapper.Map<Counter>(counterDto);
+            this.counterService.UpdateCounter(editedCounter);
         }
 
         [HttpDelete]

@@ -12,13 +12,6 @@
                 <div class="form-group">
                     <label class="control-label" for="newMaintenanceName">Название услуги</label>
                     <input class="form-control" name="newMaintenanceName" type="text" [(ngModel)]="maintenance.Name" required>
-                    <!--<md-input-container>
-                        <input mdInput placeholder="Название услуги" [(ngModel)]="maintenance.Name" name="maintenanceName"  [value]="maintenance.Name" required>
-                    </md-input-container>-->
-                                <!--<md-input-container class="example-full-width">
-                        <input mdInput #postalCode maxlength="20" placeholder="Название услуги" [(ngModel)]="maintenance.Name" name="maintenanceName" required>
-                        <md-hint align="end">{{postalCode.value.length}} / 20</md-hint>
-                    </md-input-container>-->
                 </div>
 
                 <div class="form-group">
@@ -50,26 +43,7 @@
                                              [settings]="{selectionLimit: 0,
                                                           buttonClasses: 'form-control'}"
                                              (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
-                    <!--<select multiple  name="maintenanceDataSource" class="form-control" 
-                            [(ngModel)]="maintenance.Counters" required>
-                        <option *ngFor="let counter of myWaterCounters" [value]="counter.Id">{{counter.Name}}</option>
-                    </select>-->
                 </div>
-
-                
-
-                <!--<md-select placeholder="Favorite food">
-                    <md-option *ngFor="let food of foods" [value]="food.value">
-                        {{ food.viewValue }}
-                    </md-option>
-                </md-select>-->
-                            <!--<md-select placeholder="Тип услуги" [(ngModel)]="maintenance.MaintenanceTypeId" name="maintenancetype" required>
-                    <md-option [value]="1">Фиксированная стоимость</md-option>
-                    <md-option [value]="2">По количеству жильцов/площади</md-option>
-                    <md-option [value]="3">Водоотведение</md-option>
-                    <md-option [value]="4">Подогрев воды</md-option>
-                </md-select>-->
-
             </div>
 
             <div class="col-lg-6">

@@ -19,7 +19,8 @@ export class NewCounterComponent implements OnInit  {
 
     counterType: any;
     userName: any;
-    tarifTypes: IMultiSelectOption[] = [];
+    tarifTypes: any[] = [];
+    counterTypes: any[] = [];
 
     constructor(
         private counterService: CounterService
@@ -30,14 +31,27 @@ export class NewCounterComponent implements OnInit  {
             this.counter = new Counter();
         }
 
+        this.counter
+
         this.tarifTypes = [
-            { id: 1, name: 'Простой' },
-            { id: 2, name: 'Двухставочный' },
-            { id: 3, name: 'Трехставочный' },
+            { Id: 1, Name: 'Простой' },
+            { Id: 2, Name: 'Двухставочный' },
+            { Id: 3, Name: 'Трехставочный' },
+        ];
+
+        this.counterTypes = [
+            { Id: 1, Name: 'Холодная вода' },
+            { Id: 2, Name: 'Горячая вода' },
+            { Id: 3, Name: 'Электричество' },
+            { Id: 4, Name: 'Газ' },
+            { Id: 5, Name: 'Отопление' },
+            { Id: 6, Name: 'Моторесурс' }
         ];
     }
 
     saveCounter() {
+        //this.counter.TarifCount = this.counter.TarifCount[0];
+        //this.counter.CounterTypeId = this.counter.CounterTypeId[0];
         if (this.counter.Id) {
             this.update.emit(this.counter);
         } else {
@@ -48,12 +62,8 @@ export class NewCounterComponent implements OnInit  {
     closeWindow() {
         this.close.emit();
     }
-
-    onTarifChange() {
-        // display other fields for tarif
-    }
-
-    myTexts: IMultiSelectTexts = {
+    
+    selectTexts: IMultiSelectTexts = {
         checkAll: 'Выбрать все',
         uncheckAll: 'Снять все',
         checked: 'выбран',
@@ -63,7 +73,7 @@ export class NewCounterComponent implements OnInit  {
         allSelected: 'Выбрать все',
     };
 
-    tariffTypeSetting: IMultiSelectSettings = {
+    selectSetting: IMultiSelectSettings = {
         pullRight: false,
         enableSearch: false,
         checkedStyle: 'glyphicon',
@@ -73,6 +83,6 @@ export class NewCounterComponent implements OnInit  {
         autoUnselect: true,
         fixedTitle: false,
         dynamicTitleMaxItems: 3,
-        maxHeight: '300px',
+        maxHeight: '200px',
     };
 }
