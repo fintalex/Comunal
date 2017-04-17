@@ -14,6 +14,9 @@ namespace Comunal
         {
             Mapper.Initialize(cfg => {
 
+                cfg.CreateMap<Bill, BillDetailDTO>();
+                cfg.CreateMap<BillDetailDTO, Bill>();
+
                 cfg.CreateMap<Counter, CounterDTO>()
                     .ForMember(x => x.TarifCount, c => c.MapFrom(o => o.CounterTarif.TarifCount))
                     .ForMember(x => x.Tarif1, c => c.MapFrom(o => o.CounterTarif.Tarif1))

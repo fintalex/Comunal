@@ -7,19 +7,75 @@
     </div>
     <div class="panel-body">
 
-        <form (ngSubmit)="saveBill(); ngNewBillForm.reset()" #ngNewBillForm="ngForm">
+        <div class="col-lg-10  table-bordered">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <ul class="nav nav-pills">
+                        <li><h4 class="control-label" for="month">Дата</h4></li>
+                        <li>
+                            <select class="form-control" name="month">
+                                <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control" name="yearForBill">
+                                <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 table-bordered">
+                    For counters
+                </div>
+                <div class="col-lg-6 table-bordered">
+                    For maintaince
+                </div>
+            </div>
+        </div>
+
+        <!--column for bill datas-->
+        <div class="col-lg-2  table-bordered">
+            <div class="form-group">
+                <label class="control-label" for="commonSum">Начислено</label>
+                <input class="form-control" name="commonSum" type="text" readonly="readonly">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="recalculation">Начислено</label>
+                <input class="form-control" name="recalculation" type="text" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="fine">Пени</label>
+                <input class="form-control" name="fine" type="text" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="forPay">К оплате</label>
+                <input class="form-control" name="forPay" type="text" readonly="readonly">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="comment">Комментарий</label>
+                <input class="form-control" name="comment" type="text" >
+            </div>
+        </div>
+
+        <!--<form (ngSubmit)="saveBill(); ngNewBillForm.reset()" #ngNewBillForm="ngForm">
 
             А здесь все по другому
 
-            <button type="submit" class="btn btn-primary pull-right" *ngIf="!bill.Id"
+            <button type="submit" class="btn btn-primary pull-right"
                     [disabled]="ngNewBillForm.form.invalid">
                 Добавить счетчик
             </button>
-            <button type="submit" class="btn btn-primary pull-right" *ngIf="bill.Id"
+            <button type="submit" class="btn btn-primary pull-right"
                     [disabled]="ngNewBillForm.form.invalid">
                 Сохранить счетчик
             </button>
-        </form>
+        </form>-->
 
     </div>
 </div>

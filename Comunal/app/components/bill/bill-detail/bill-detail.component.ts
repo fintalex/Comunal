@@ -19,10 +19,36 @@ export class BillDetatilComponent implements OnInit  {
     //billType: any;
     //userName: any;
 
+    allMonthes: any[] = [];
+    allYears: any[] = [];
+
     constructor(
         private billService: BillService,
         private route: ActivatedRoute
-    ) { }
+    ) {
+        this.allMonthes = [
+            { Id: 0, Name: 'Январь' },
+            { Id: 1, Name: 'Февраль' },
+            { Id: 2, Name: 'Март' },
+            { Id: 3, Name: 'Апрель' },
+            { Id: 4, Name: 'Май' },
+            { Id: 5, Name: 'Июнь' },
+            { Id: 6, Name: 'Июль' },
+            { Id: 7, Name: 'Август' },
+            { Id: 8, Name: 'Сентябрь' },
+            { Id: 9, Name: 'Октябрь' },
+            { Id: 10, Name: 'Ноябрь' },
+            { Id: 11, Name: 'Декабрь' },
+        ];
+
+        this.allYears = [];
+        var currentDate = new Date();
+        var currentYear = currentDate.getFullYear();
+
+        for (var year = currentYear - 10; year < currentYear; year++) {
+            this.allYears.push(year);
+        }
+    }
 
     ngOnInit() {
         //if (!this.bill) {

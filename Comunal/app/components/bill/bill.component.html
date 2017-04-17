@@ -20,7 +20,7 @@
                             {{bill.Recalculation}}
                         </td>
                         <td>
-                            <a href="/bill/{{bill.Id}}" >Редактировать</a>
+                            <a routerLink="/bill/{{bill.Id}}" >Редактировать</a>
                         </td>
                     </tr>
                 </tbody>
@@ -37,6 +37,6 @@
               (create)="createNewBill($event)"
               (update)="updateBill($event)"
               (close)="showBillPanel = false"
-              [bill]="currentBill"></new-bill>-->
+              [bill]="currentBill"></сnew-bill>-->
 
 </div>

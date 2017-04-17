@@ -19,9 +19,9 @@ namespace Comunal.WebAPI
         }
 
         [HttpGet]
-        public Bill Get(int id)
+        public BillDetailDTO Get(int id)
         {
-            return this.billService.GetById(id);
+            return Mapper.Map<BillDetailDTO>(this.billService.GetById(id));
         }
 
         [HttpGet]
