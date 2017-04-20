@@ -29,11 +29,9 @@
     </div>
 
 
-    <!--<a class="btn btn-primary"
-       *ngIf="!showBillPanel"
-       (click)="goToNewBill()">Новый счет</a>
+    <a class="btn btn-primary" routerLink="/bill/0">Новый счет</a>
 
-    <new-bill *ngIf="showBillPanel"
+    <!--<new-bill *ngIf="showBillPanel"
               (create)="createNewBill($event)"
               (update)="updateBill($event)"
               (close)="showBillPanel = false"

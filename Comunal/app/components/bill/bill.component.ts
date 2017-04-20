@@ -61,27 +61,7 @@ export class BillComponent implements OnInit  {
                 this.initBillList();
             });
     }
-
-    //deleteBill(currentBill: Bill, event: any) {
-    //    event.stopPropagation();
-
-    //    this.dialogService.addDialog(ConfirmComponent, { title: "Подтвердите удаление счетчика", message: "Вы точно хотите удалить счетчик?" })
-    //        .subscribe((isConfirmed) => {
-    //            if (isConfirmed) {
-    //                this.billService.deleteBill(currentBill.Id)
-    //                    .subscribe(res => {
-    //                        let indexBill = this.myBills.indexOf(currentBill);
-    //                        if (indexBill > -1) {
-    //                            this.myBills.splice(indexBill, 1);
-    //                        }
-
-    //                        if (currentBill.Id == this.currentBill.Id) {
-    //                            this.showBillPanel = false;
-    //                        }
-    //                    });
-    //            }
-    //        });
-    //}
+    
 
     selectBill(selectedBill: Bill) {
         this.myBills.forEach(couner => couner.Selected = false);

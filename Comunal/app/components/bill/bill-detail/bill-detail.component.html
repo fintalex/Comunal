@@ -13,12 +13,12 @@
                     <ul class="nav nav-pills">
                         <li><h4 class="control-label" for="month">Дата</h4></li>
                         <li>
-                            <select class="form-control" name="month">
+                            <select class="form-control" name="month" [(ngModel)]="currentBill.InvoiceDateMonth" type="text" required>
                                 <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
                             </select>
                         </li>
                         <li>
-                            <select class="form-control" name="yearForBill">
+                            <select class="form-control" name="yearForBill" [(ngModel)]="currentBill.InvoiceDateYear" type="text" required>
                                 <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
                             </select>
                         </li>
@@ -43,13 +43,13 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="recalculation">Начислено</label>
-                <input class="form-control" name="recalculation" type="text" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                <label class="control-label" for="recalculation">Перерасчет</label>
+                <input class="form-control" name="recalculation" type="text" [(ngModel)]="currentBill.Recalculation" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
             </div>
 
             <div class="form-group">
                 <label class="control-label" for="fine">Пени</label>
-                <input class="form-control" name="fine" type="text" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                <input class="form-control" name="fine" type="text" [(ngModel)]="currentBill.Fine" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
             </div>
 
             <div class="form-group">
@@ -58,8 +58,8 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="comment">Комментарий</label>
-                <input class="form-control" name="comment" type="text" >
+                <label class="control-label" for="comment" >Комментарий</label>
+                <input class="form-control" name="comment" type="text" [(ngModel)]="currentBill.Comment">
             </div>
         </div>
 

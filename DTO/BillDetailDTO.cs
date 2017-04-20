@@ -19,5 +19,9 @@ namespace DTO
         public double Recalculation { get; set; }
 
         public string Comment { get; set; }
+
+        //public List<CounterData> CounterDatas { get; set; }
+
+        //public List<MaintenanceData> MaintenanceDatas { get; set; }
     }
 }
