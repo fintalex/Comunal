@@ -33,6 +33,18 @@ namespace Comunal
                                            Tarif3 = o.Tarif3.HasValue ? o.Tarif3.Value : 0,
                                            TarifCount = o.TarifCount.HasValue ? o.TarifCount.Value : 0 }));
 
+                cfg.CreateMap<CounterData, CounterDataDTO>()
+                    .ForMember(x => x.CounterTarifId, c => c.MapFrom(o => o.CounterTarif.Id))
+                    .ForMember(x => x.TarifCount, c => c.MapFrom(o => o.CounterTarif.TarifCount))
+                    .ForMember(x => x.Tarif1, c => c.MapFrom(o => o.CounterTarif.Tarif1))
+                    .ForMember(x => x.Limit1, c => c.MapFrom(o => o.CounterTarif.Limit1))
+                    .ForMember(x => x.Tarif2, c => c.MapFrom(o => o.CounterTarif.Tarif2))
+                    .ForMember(x => x.Limit2, c => c.MapFrom(o => o.CounterTarif.Limit2))
+                    .ForMember(x => x.Tarif3, c => c.MapFrom(o => o.CounterTarif.Tarif3))
+                    .ForMember(x => x.CounterName, c => c.MapFrom(o => o.Counter.Name))
+                    .ForMember(x => x.CounterId, c => c.MapFrom(o => o.Counter.Id));
+                cfg.CreateMap<CounterDataDTO, CounterData>();
+
                 cfg.CreateMap<User, CurrentUserDTO>()
                     .ForMember(x => x.Flat, c => c.MapFrom(o => o.Flats.FirstOrDefault(f => f.Selected)));
 

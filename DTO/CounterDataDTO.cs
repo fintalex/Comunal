@@ -15,21 +15,33 @@ namespace DTO
         public double? ReadingODN { get; set; }
         
         public DateTime ReadingDate { get; set; }
-        
+
         public bool IsFirst { get; set; }
         
 
         public int CounterId { get; set; }
 
-        public CounterDTO Counter { get; set; }
-
-
-        public int CounterTarifId { get; set; }
+        public string CounterName { get; set; }
 
         //public virtual CounterTarif CounterTarif { get; set; }
 
 
         public int BillId { get; set; }
+        
+
+        public int CounterTarifId { get; set; }
+
+        public int TarifCount { get; set; }
+
+        public double Tarif1 { get; set; }
+
+        public double Limit1 { get; set; }
+
+        public double Tarif2 { get; set; }
+
+        public double Limit2 { get; set; }
+
+        public double Tarif3 { get; set; }
 
     }
 }

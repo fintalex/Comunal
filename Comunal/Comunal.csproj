@@ -310,12 +310,14 @@
     <TypeScriptCompile Include="app\config.ts" />
     <TypeScriptCompile Include="app\helpers\confirm\confirm.component.ts" />
     <TypeScriptCompile Include="app\models\bill.ts" />
+    <TypeScriptCompile Include="app\models\counterData.ts" />
     <TypeScriptCompile Include="app\models\maintenance.ts" />
     <TypeScriptCompile Include="app\models\counter.ts" />
     <TypeScriptCompile Include="app\models\user.ts" />
     <TypeScriptCompile Include="app\models\flats.ts" />
     <TypeScriptCompile Include="app\services\auth.service.ts" />
     <TypeScriptCompile Include="app\services\bill.service.ts" />
+    <TypeScriptCompile Include="app\services\counterData.service.ts" />
     <TypeScriptCompile Include="app\services\maintenance.service.ts" />
     <TypeScriptCompile Include="app\services\counter.service.ts" />
     <TypeScriptCompile Include="app\services\guard.service.ts" />

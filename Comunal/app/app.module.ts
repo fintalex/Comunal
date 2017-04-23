@@ -30,6 +30,7 @@ import { ConfirmComponent } from './helpers/confirm/confirm.component';
 // =============== Services ==========================
 import { FlatService } from './services/flat.service';
 import { CounterService } from './services/counter.service';
+import { CounterDataService } from './services/counterData.service';
 import { MaintenanceService } from './services/maintenance.service';
 import { BillService } from './services/bill.service';
 import { GuardService } from './services/guard.service';
@@ -72,6 +73,7 @@ import { AuthService } from './services/auth.service';
         AuthService,
         FlatService,
         CounterService,
+        CounterDataService,
         MaintenanceService,
         BillService
     ],

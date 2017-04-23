@@ -47,10 +47,10 @@ export class BillComponent implements OnInit  {
     }
 
     editBill(currentBill: Bill, event: any) {
-        event.stopPropagation();
-        console.log(currentBill);
-        this.currentBill = Object.assign({}, currentBill);
-        this.showBillPanel = true;
+        //event.stopPropagation();
+        //console.log(currentBill);
+        //this.currentBill = Object.assign({}, currentBill);
+        //this.showBillPanel = true;
     }
 
     updateBill(currentBill: Bill) {

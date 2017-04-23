@@ -3,6 +3,8 @@ using Domain;
 using System.Linq;
 using System.Data.Entity;
 using Services.Interfaces;
+using System.Collections.Generic;
+using System;
 
 namespace Services.Classes
 {
@@ -10,11 +12,11 @@ namespace Services.Classes
 	{
 		private readonly IDataContext context;
 
-		/// <summary>
-		/// CounterData service constructor
-		/// </summary>
-		/// <param name="context">Data context</param>
-		public CounterDataService(IDataContext context)
+        /// <summary>
+        /// CounterData service constructor
+        /// </summary>
+        /// <param name="context">Data context</param>
+        public CounterDataService(IDataContext context)
 		{
 			this.context = context;
 		}
@@ -39,11 +41,48 @@ namespace Services.Classes
 			return this.context.CounterDatas.Where(cd => cd.CounterId == counterId);
 		}
 
-		/// <summary>
-		/// Delete CounterData by id
+        /// <summary>
+		/// Get CounterDatas by BillId
 		/// </summary>
-		/// <param name="id">CounterData id</param>
-		public void DeleteCounterData(int id)
+		/// <param name="billId">billId</param>
+		/// <returns>Counter Data</returns>
+		public IQueryable<CounterData> GetCounterDatasByBill(int billId)
+        {
+            return this.context.CounterDatas.Where(cd => cd.BillId == billId);
+        }
+
+        /// <summary>
+        /// Get CounterDatas for new Bill
+        /// </summary>
+        /// <param name="flatId">Flat id</param>
+        /// <returns>List of empty counter Data</returns>
+		public IQueryable<CounterData> GetCounterDatasForNewBill(int flatId)
+        {
+            var counterDatas = new List<CounterData>();
+            var counters = this.context.Counters
+                .Where(c => c.FlatId == flatId)
+                .ToList();
+
+            foreach (var curCounter in counters)
+            {
+                var newCounterData = new CounterData() {
+                    Counter = curCounter,
+                    CounterTarif = curCounter.CounterTarif,
+                    Reading = 0,
+                    ReadingDate = DateTime.Now,
+                    BillId = 0
+                };
+                counterDatas.Add(newCounterData);
+            }
+
+            return counterDatas.AsQueryable();
+        }
+
+        /// <summary>
+        /// Delete CounterData by id
+        /// </summary>
+        /// <param name="id">CounterData id</param>
+        public void DeleteCounterData(int id)
 		{
 			var counterData = this.context.CounterDatas.FirstOrDefault(cd => cd.Id == id);
 			this.context.CounterDatas.Remove(counterData);

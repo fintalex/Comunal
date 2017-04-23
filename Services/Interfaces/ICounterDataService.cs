@@ -1,4 +1,5 @@
 ﻿using Data;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Services.Interfaces
@@ -42,5 +43,19 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="counterData">CounterData</param>
         void UpdateCounterData(CounterData counterData);
+
+        /// <summary>
+		/// Get CounterDatas by BillId
+		/// </summary>
+		/// <param name="billId">billId</param>
+		/// <returns>Counter Data</returns>
+		IQueryable<CounterData> GetCounterDatasByBill(int billId);
+
+        /// <summary>
+        /// Get CounterDatas for new Bill
+        /// </summary>
+        /// <param name="flatId">Flat id</param>
+        /// <returns>List of empty counter Data</returns>
+		IQueryable<CounterData> GetCounterDatasForNewBill(int flatId);
     }
 }
