@@ -13,7 +13,7 @@ import { CounterData } from '../../../models/counterData';
     selector: 'bill-detail',
     templateUrl: `bill-detail.component.html`,
 })
-export class BillDetatilComponent implements OnInit  {
+export class BillDetailComponent implements OnInit  {
     //@Output() create: EventEmitter<Bill> = new EventEmitter();
     //@Output() update: EventEmitter<Bill> = new EventEmitter();
     //@Output() close: EventEmitter<any> = new EventEmitter();
@@ -60,9 +60,15 @@ export class BillDetatilComponent implements OnInit  {
         }
     }
 
-    ngOnInit() {        
+    ngOnInit() {
         var billId = this.route.snapshot.params['id'];
+
         if (billId && billId != 0) {
+            this.billService.getBill(billId)
+                .subscribe(curBill => {
+                    this.currentBill = curBill;
+                });
+
             this.counterDataService.getCounterDataForByBillId(billId)
                 .subscribe(newCounterData => {
                     this.counterDatas = newCounterData;
@@ -70,7 +76,6 @@ export class BillDetatilComponent implements OnInit  {
         } else {
             var curDate = new Date();
             this.currentBill = new Bill(curDate, curDate.getMonth(), curDate.getFullYear(), this.authService.CurrentUser.Flat.Id, 0, 0, null);
-
             this.counterDataService.getCounterDataForNewBill(this.authService.CurrentUser.Flat.Id)
                 .subscribe(newCounterData => {
                     this.counterDatas = newCounterData;

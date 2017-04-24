@@ -22,7 +22,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
 import { BillComponent } from './components/bill/bill.component';
 import { NewCounterComponent } from './components/counter/new-counter/new-counter.component';
 import { NewMaintenanceComponent } from './components/maintenance/new-maintenance/new-maintenance.component';
-import { BillDetatilComponent } from './components/bill/bill-detail/bill-detail.component';
+import { BillDetailComponent } from './components/bill/bill-detail/bill-detail.component';
                                            
 // =============== Help Components ==========================
 import { ConfirmComponent } from './helpers/confirm/confirm.component';
@@ -61,7 +61,7 @@ import { AuthService } from './services/auth.service';
         BillComponent,
         NewCounterComponent,
         NewMaintenanceComponent,
-        BillDetatilComponent,
+        BillDetailComponent,
         ConfirmComponent
     ],
     entryComponents: [

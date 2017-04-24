@@ -10,9 +10,9 @@ namespace DTO
     {
         public int Id { get; set; }
 
-        public int MonthNumber { get; set; }
+        public int InvoiceDateMonth { get; set; }
 
-        public int Year { get; set; }
+        public int InvoiceDateYear { get; set; }
 
         public double Fine { get; set; }
 

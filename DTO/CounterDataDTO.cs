@@ -23,6 +23,8 @@ namespace DTO
 
         public string CounterName { get; set; }
 
+		public string IconPath { get; set; }
+
         //public virtual CounterTarif CounterTarif { get; set; }
 
 

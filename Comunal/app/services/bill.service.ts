@@ -17,6 +17,12 @@ export class BillService {
         private authService: AuthService) {
 
     }
+
+    getBill(billId: number): Observable<Bill> {
+        return this.http.get(`${this.apiUrl}/${billId}`)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
     
     getBills(userId: number): Observable<Bill[]> {
         return this.http.get(`${this.apiUrl}/byuser/${userId}`)
@@ -25,7 +31,7 @@ export class BillService {
     }
 
     getFlatBillsByFlatId(flatId: number): Observable<Bill[]> {
-        return this.http.get(`${this.apiUrl}/${flatId}`)
+        return this.http.get(`${this.apiUrl}/byFlat/${flatId}`)
             .map(response => response.json())
             .catch(this.handleError);
     }

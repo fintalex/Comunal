@@ -7,36 +7,65 @@
     </div>
     <div class="panel-body">
 
-        <div class="col-lg-10  table-bordered">
+        <div class="col-lg-9  table-bordered">
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-4">
-                    <ul class="nav nav-pills">
-                        <li><h4 class="control-label" for="month">Дата</h4></li>
-                        <li>
-                            <select class="form-control" name="month" [(ngModel)]="currentBill.InvoiceDateMonth" type="text" required>
-                                <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
-                            </select>
-                        </li>
-                        <li>
-                            <select class="form-control" name="yearForBill" [(ngModel)]="currentBill.InvoiceDateYear" type="text" required>
-                                <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
-                            </select>
-                        </li>
-                    </ul>
+                <!--For counters-->
+                <div class="col-lg-6">
+                    <label class="control-label" for="maintenanceData">Показания по счетчикам</label>
+                    <div class="list-group" >
+                        <template ngFor let-countData [ngForOf]="counterDatas">
+                            <a class="list-group-item">
+                                <img width="30" height="30" [src]="countData.IconPath" />
+                                {{countData.CounterName}}
+                                <h4 class="pull-right">{{countData.Reading}}</h4>
+                            </a>
+                        </template>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 table-bordered">
-                    For counters
-                </div>
-                <div class="col-lg-6 table-bordered">
-                    For maintaince
+                    
+                
+                <!--For maintaince-->
+                <div class="col-lg-6">
+                    <label class="control-label" for="maintenanceData">Показания по услугам</label>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            Maintenance
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Maintenance 2
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Maintenance 3
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Maintenance 4
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Maintenance 5
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!--column for bill datas-->
-        <div class="col-lg-2  table-bordered">
+        <!--column for bill values-->
+        <div class="col-lg-3  table-bordered" *ngIf="currentBill">
+            
+            <div class="form-group">
+                <label class="control-label" for="date">Дата</label>
+                <ul class="nav nav-pills">
+                    <li>
+                        <select class="form-control" name="month" [(ngModel)]="currentBill.InvoiceDateMonth" type="text" required>
+                            <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
+                        </select>
+                    </li>
+                    <li>
+                        <select class="form-control" name="yearForBill" [(ngModel)]="currentBill.InvoiceDateYear" type="text" required>
+                            <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
             <div class="form-group">
                 <label class="control-label" for="commonSum">Начислено</label>
                 <input class="form-control" name="commonSum" type="text" readonly="readonly">
