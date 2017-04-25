@@ -27,9 +27,9 @@ namespace Comunal.WebAPI
 
         [HttpGet]
         [Route("byCounerId/{counterId:int}")]
-        public IQueryable<CounterData> GetCounterDatas(int counterId)
+        public IQueryable<CounterDataDTO> GetCounterDatas(int counterId)
         {
-            return this.counterDataService.GetCounterDatas(counterId);
+            return this.counterDataService.GetCounterDatas(counterId).ProjectTo<CounterDataDTO>(); ;
         }
 
         [HttpGet]
@@ -49,17 +49,17 @@ namespace Comunal.WebAPI
             return counterDatasList;
         }
 
-        [HttpPost]
-        public CounterData AddCounterData([FromBody]CounterData newCounterData)
-        {
-            return this.counterDataService.AddCounterData(newCounterData);
-        }
+        //[HttpPost]
+        //public CounterData AddCounterData([FromBody]CounterData newCounterData)
+        //{
+        //    return this.counterDataService.AddCounterData(newCounterData);
+        //}
 
-        [HttpPut]
-        public void UpdateCounterData(CounterData counterData)
-        {
-            this.counterDataService.UpdateCounterData(counterData);
-        }
+        //[HttpPut]
+        //public void UpdateCounterData(CounterData counterData)
+        //{
+        //    this.counterDataService.UpdateCounterData(counterData);
+        //}
 
         [HttpDelete]
         [Route("")]

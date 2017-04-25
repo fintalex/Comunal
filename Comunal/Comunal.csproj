@@ -209,6 +209,7 @@
     <Compile Include="WebAPI\BillController.cs" />
     <Compile Include="WebAPI\CounterController.cs" />
     <Compile Include="WebAPI\CounterDataController.cs" />
+    <Compile Include="WebAPI\MaintenanceDataController.cs" />
     <Compile Include="WebAPI\MaintenanceController.cs" />
     <Compile Include="WebAPI\AuthenticationController.cs" />
     <Compile Include="WebAPI\UserController.cs" />
@@ -228,6 +229,7 @@
     <Content Include="app\components\register\register.component.html" />
     <Content Include="app\components\login\login.component.html" />
     <Content Include="app\components\navbar\navbar.component.html" />
+    <Content Include="app\helpers\editCounterData\editCounterData.component.html" />
     <Content Include="app\helpers\confirm\confirm.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -308,8 +310,10 @@
     <TypeScriptCompile Include="app\components\login\login.component.ts" />
     <TypeScriptCompile Include="app\components\navbar\navbar.component.ts" />
     <TypeScriptCompile Include="app\config.ts" />
+    <TypeScriptCompile Include="app\helpers\editCounterData\editCounterData.component.ts" />
     <TypeScriptCompile Include="app\helpers\confirm\confirm.component.ts" />
     <TypeScriptCompile Include="app\models\bill.ts" />
+    <TypeScriptCompile Include="app\models\maintenanceData.ts" />
     <TypeScriptCompile Include="app\models\counterData.ts" />
     <TypeScriptCompile Include="app\models\maintenance.ts" />
     <TypeScriptCompile Include="app\models\counter.ts" />
@@ -317,6 +321,7 @@
     <TypeScriptCompile Include="app\models\flats.ts" />
     <TypeScriptCompile Include="app\services\auth.service.ts" />
     <TypeScriptCompile Include="app\services\bill.service.ts" />
+    <TypeScriptCompile Include="app\services\maintenanceData.service.ts" />
     <TypeScriptCompile Include="app\services\counterData.service.ts" />
     <TypeScriptCompile Include="app\services\maintenance.service.ts" />
     <TypeScriptCompile Include="app\services\counter.service.ts" />

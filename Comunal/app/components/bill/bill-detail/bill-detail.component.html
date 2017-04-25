@@ -7,49 +7,44 @@
     </div>
     <div class="panel-body">
 
-        <div class="col-lg-9  table-bordered">
+        <div class="col-lg-9">
             <div class="row">
-                <!--For counters-->
+                <!--For counters Datas-->
                 <div class="col-lg-6">
                     <label class="control-label" for="maintenanceData">Показания по счетчикам</label>
                     <div class="list-group" >
+
                         <template ngFor let-countData [ngForOf]="counterDatas">
-                            <a class="list-group-item">
+                            <a class="list-group-item" (click)="editCounterData(countData)">
                                 <img width="30" height="30" [src]="countData.IconPath" />
                                 {{countData.CounterName}}
                                 <h4 class="pull-right">{{countData.Reading}}</h4>
                             </a>
                         </template>
+
                     </div>
                 </div>
-                    
-                
-                <!--For maintaince-->
+
+                <!--For maintenance Datas-->
                 <div class="col-lg-6">
                     <label class="control-label" for="maintenanceData">Показания по услугам</label>
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                            Maintenance
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Maintenance 2
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Maintenance 3
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Maintenance 4
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Maintenance 5
-                        </a>
+
+                        <template ngFor let-maintData [ngForOf]="maintenanceDatas">
+                            <a class="list-group-item" (click)="editCounterData(maintData)">
+                                <img width="30" height="30" [src]="maintData.IconPath" />
+                                {{maintData.MaintenanceName}}
+                                <h4 class="pull-right">{{maintData.Cost}}</h4>
+                            </a>
+                        </template>
+
                     </div>
                 </div>
             </div>
         </div>
 
         <!--column for bill values-->
-        <div class="col-lg-3  table-bordered" *ngIf="currentBill">
+        <div class="col-lg-3" *ngIf="currentBill">
             
             <div class="form-group">
                 <label class="control-label" for="date">Дата</label>

@@ -26,12 +26,14 @@ import { BillDetailComponent } from './components/bill/bill-detail/bill-detail.c
                                            
 // =============== Help Components ==========================
 import { ConfirmComponent } from './helpers/confirm/confirm.component';
+import { EditCounterDataComponent } from './helpers/editCounterData/editCounterData.component';
 
 // =============== Services ==========================
 import { FlatService } from './services/flat.service';
 import { CounterService } from './services/counter.service';
 import { CounterDataService } from './services/counterData.service';
 import { MaintenanceService } from './services/maintenance.service';
+import { MaintenanceDataService } from './services/maintenanceData.service';
 import { BillService } from './services/bill.service';
 import { GuardService } from './services/guard.service';
 import { UserService } from './services/user.service';
@@ -62,10 +64,12 @@ import { AuthService } from './services/auth.service';
         NewCounterComponent,
         NewMaintenanceComponent,
         BillDetailComponent,
-        ConfirmComponent
+        ConfirmComponent,
+        EditCounterDataComponent
     ],
-    entryComponents: [
-        ConfirmComponent
+    entryComponents: [ // Need to be investigated
+        ConfirmComponent,
+        EditCounterDataComponent
     ],
     providers: [
         GuardService,
@@ -74,6 +78,7 @@ import { AuthService } from './services/auth.service';
         FlatService,
         CounterService,
         CounterDataService,
+        MaintenanceDataService,
         MaintenanceService,
         BillService
     ],

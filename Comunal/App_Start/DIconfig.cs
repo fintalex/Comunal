@@ -37,6 +37,7 @@ namespace Comunal
             container.RegisterType<ICounterDataService, CounterDataService>();
 
             container.RegisterType<IMaintenanceService, MaintenanceService>();
+            container.RegisterType<IMaintenanceDataService, MaintenanceDataService>();
         }
     }
 }

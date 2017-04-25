@@ -5,29 +5,28 @@ import { AuthService } from '../services/auth.service';
 
 import { Observable } from 'rxjs/Observable';
 
-import { CounterData } from '../models/counterData';
+import { MaintenanceData } from '../models/maintenanceData';
 
 @Injectable()
-export class CounterDataService {
-    counterDatas: CounterData[];
-    private apiUrl = 'api/CounterDatas'
+export class MaintenanceDataService {
+    maintenanceDatas: MaintenanceData[];
+    private apiUrl = 'api/MaintenanceDatas'
 
     constructor(private http: Http) {
 
     }
     
-    getCounterDatasForNewBill(flatId: number): Observable<CounterData[]> {
+    getMaintenanceDatasForNewBill(flatId: number): Observable<MaintenanceData[]> {
         return this.http.get(`${this.apiUrl}/forNewBill/${flatId}`)
             .map(response => response.json())
             .catch(this.handleError);
     }
 
-    getCounterDatasByBillId(billId: number): Observable<CounterData[]> {
+    getMaintenanceDatasByBillId(billId: number): Observable<MaintenanceData[]> {
         return this.http.get(`${this.apiUrl}/byBillId/${billId}`)
             .map(response => response.json())
             .catch(this.handleError);
     }
-    
 
     private handleError(error: any) {
         console.error('Произошла ошибка', error);
