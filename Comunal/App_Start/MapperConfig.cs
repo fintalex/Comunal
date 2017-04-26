@@ -15,9 +15,11 @@ namespace Comunal
             Mapper.Initialize(cfg => {
 
                 cfg.CreateMap<Bill, BillDetailDTO>()
-                    .ForMember(x => x.InvoiceDateMonth, c => c.MapFrom(o => o.InvoiceDate.Month))
-                    .ForMember(x => x.InvoiceDateYear, c => c.MapFrom(o => o.InvoiceDate.Year));
-                cfg.CreateMap<BillDetailDTO, Bill>();
+                    .ForMember(x => x.InvoiceDateMonth, c => c.MapFrom(o => o.InvoiceDate.Month - 1 ))
+                    .ForMember(x => x.InvoiceDateYear, c => c.MapFrom(o => o.InvoiceDate.Year))
+                    .ForMember(x => x.InvoiceDateDay, c => c.MapFrom(o => o.InvoiceDate.Day));
+                cfg.CreateMap<BillDetailDTO, Bill>()
+                    .ForMember(x => x.InvoiceDate, c => c.MapFrom(o => new DateTime(o.InvoiceDateYear, o.InvoiceDateMonth + 1, 1)));
 
                 cfg.CreateMap<Counter, CounterDTO>()
                     .ForMember(x => x.TarifCount, c => c.MapFrom(o => o.CounterTarif.TarifCount))

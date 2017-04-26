@@ -31,7 +31,7 @@
                     <div class="list-group">
 
                         <template ngFor let-maintData [ngForOf]="maintenanceDatas">
-                            <a class="list-group-item" (click)="editCounterData(maintData)">
+                            <a class="list-group-item" >
                                 <img width="30" height="30" [src]="maintData.IconPath" />
                                 {{maintData.MaintenanceName}}
                                 <h4 class="pull-right">{{maintData.Cost}}</h4>
@@ -41,6 +41,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
 
         <!--column for bill values-->
@@ -87,19 +88,12 @@
             </div>
         </div>
 
-        <!--<form (ngSubmit)="saveBill(); ngNewBillForm.reset()" #ngNewBillForm="ngForm">
-
-            А здесь все по другому
-
-            <button type="submit" class="btn btn-primary pull-right"
-                    [disabled]="ngNewBillForm.form.invalid">
-                Добавить счетчик
-            </button>
-            <button type="submit" class="btn btn-primary pull-right"
-                    [disabled]="ngNewBillForm.form.invalid">
-                Сохранить счетчик
-            </button>
-        </form>-->
+        <!--Save button-->
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-5">
+                <a class="btn btn-success" (click)="saveBill()" >Сохранить</a>
+            </div>
+        </div>
 
     </div>
 </div>

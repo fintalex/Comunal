@@ -1,6 +1,8 @@
 ﻿export class Bill {
     Id: number;
     Selected: boolean;
+    MaintenanceDatas: any[];
+    CounterDatas: any[];
 
     constructor(
         public InvoiceDate: Date = null,

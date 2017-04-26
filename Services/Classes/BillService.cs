@@ -62,10 +62,22 @@ namespace Services.Classes
             {
                 bill.FlatId = this.context.Flats.FirstOrDefault().Id;
             }
-            this.context.Bills.Add(bill);
+
+            var newBill = new Bill
+            {
+                Comment = string.IsNullOrEmpty(bill.Comment) ? "" : bill.Comment,
+                Fine = bill.Fine,
+                FlatId = bill.FlatId,
+                InvoiceDate = bill.InvoiceDate,
+                Recalculation = bill.Recalculation,
+                CounterDatas = bill.CounterDatas,
+                MaintenanceDatas = bill.MaintenanceDatas
+            };
+
+            this.context.Bills.Add(newBill);
             this.context.Commit();
 
-            return bill;
+            return newBill;
         }
 
         /// <summary>
@@ -75,10 +87,25 @@ namespace Services.Classes
         public void UpdateBill(Bill bill)
         {
             var currentBill = this.context.Bills.FirstOrDefault(b => b.Id == bill.Id);
+
             currentBill.Comment = bill.Comment;
-            currentBill.Recalculation = bill.Recalculation;
             currentBill.Fine = bill.Fine;
+            currentBill.FlatId = bill.FlatId;
             currentBill.InvoiceDate = bill.InvoiceDate;
+            currentBill.Recalculation = bill.Recalculation;
+
+            foreach (var item in bill.CounterDatas)
+            {
+                var countData = currentBill.CounterDatas.FirstOrDefault(cd => cd.Id == item.Id);
+                if (countData != null)
+                {
+                    countData.Reading = item.Reading;
+                    countData.ReadingDate = item.ReadingDate;
+                    countData.ReadingODN = item.ReadingODN;
+                }
+            }
+            //currentBill.CounterDatas = bill.CounterDatas;
+            //currentBill.MaintenanceDatas = bill.MaintenanceDatas;
 
             this.context.Commit();
         }

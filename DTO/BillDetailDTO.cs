@@ -10,9 +10,13 @@ namespace DTO
     {
         public int Id { get; set; }
 
+        public int FlatId { get; set; }
+
         public int InvoiceDateMonth { get; set; }
 
         public int InvoiceDateYear { get; set; }
+
+        public int InvoiceDateDay { get; set; }
 
         public double Fine { get; set; }
 
@@ -20,8 +24,8 @@ namespace DTO
 
         public string Comment { get; set; }
 
-        //public List<CounterData> CounterDatas { get; set; }
+        public List<CounterDataDTO> CounterDatas { get; set; }
 
-        //public List<MaintenanceData> MaintenanceDatas { get; set; }
+        public List<MaintenanceDataDTO> MaintenanceDatas { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EditCounterDataComponent } from '../../../helpers/editCounterData/editCounterData.component';
 
 import { BillService } from '../../../services/bill.service';
@@ -33,6 +33,7 @@ export class BillDetailComponent implements OnInit  {
     constructor(
         private billService: BillService,
         private route: ActivatedRoute,
+        private router: Router,
         private authService: AuthService,
         private counterDataService: CounterDataService,
         private maintenanceDataService: MaintenanceDataService,
@@ -94,11 +95,7 @@ export class BillDetailComponent implements OnInit  {
                 });
         }
     }
-
-    saveBill() {
-        
-    }
-
+    
     editCounterData(counterData: CounterData) {
         
         var dataForModalWindow = { dateDay: 1, dateMonth: counterData.ReadingDateMonth, dateYear: counterData.ReadingDateYear, reading: counterData.Reading };
@@ -106,6 +103,24 @@ export class BillDetailComponent implements OnInit  {
             .subscribe((editedCounterData) => {
                 counterData.Reading = editedCounterData;
             });
+    }
+
+    saveBill() {
+        this.currentBill.CounterDatas = this.counterDatas;
+        this.currentBill.MaintenanceDatas = this.maintenanceDatas;
+
+        if (this.currentBill.Id) {
+            this.billService.updateBill(this.currentBill)
+                .subscribe((result) => {
+                    this.router.navigate(['/bills']);
+                });
+        } else {
+            this.billService.createBill(this.currentBill)
+                .subscribe((result) => {
+                    this.router.navigate(['/bills']);
+                });
+        }
+        
     }
     
 }

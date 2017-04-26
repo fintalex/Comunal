@@ -32,14 +32,16 @@ namespace Comunal.WebAPI
         }
 
         [HttpPost]
-        public Bill AddBill([FromBody]Bill newBill)
+        public void AddBill([FromBody]BillDetailDTO newBillDTO)
         {
-            return this.billService.AddBill(newBill);
+            var newBill = Mapper.Map<Bill>(newBillDTO);
+            this.billService.AddBill(newBill);
         }
 
         [HttpPut]
-        public void UpdateBill(Bill bill)
+        public void UpdateBill(BillDetailDTO billDTO)
         {
+            var bill = Mapper.Map<Bill>(billDTO);
             this.billService.UpdateBill(bill);
         }
 
