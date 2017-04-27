@@ -6,6 +6,7 @@ import { BillService } from '../../../services/bill.service';
 import { CounterDataService } from '../../../services/counterData.service';
 import { MaintenanceDataService } from '../../../services/maintenanceData.service';
 import { AuthService } from '../../../services/auth.service';
+import { DataService } from '../../../services/data.service';
 import { DialogService } from 'ng2-bootstrap-modal';
 
 import { Bill } from '../../../models/bill';
@@ -18,10 +19,6 @@ import { MaintenanceData } from '../../../models/maintenanceData';
     templateUrl: `bill-detail.component.html`,
 })
 export class BillDetailComponent implements OnInit  {
-    //@Output() create: EventEmitter<Bill> = new EventEmitter();
-    //@Output() update: EventEmitter<Bill> = new EventEmitter();
-    //@Output() close: EventEmitter<any> = new EventEmitter();
-    //@Input() bill: Bill;
 
     allMonthes: any[] = [];
     allYears: any[] = [];
@@ -35,35 +32,39 @@ export class BillDetailComponent implements OnInit  {
         private route: ActivatedRoute,
         private router: Router,
         private authService: AuthService,
+        private dataService: DataService,
         private counterDataService: CounterDataService,
         private maintenanceDataService: MaintenanceDataService,
         private dialogService: DialogService,
     ) {
-        this.allMonthes = [
-            { Id: 0, Name: 'Январь' },
-            { Id: 1, Name: 'Февраль' },
-            { Id: 2, Name: 'Март' },
-            { Id: 3, Name: 'Апрель' },
-            { Id: 4, Name: 'Май' },
-            { Id: 5, Name: 'Июнь' },
-            { Id: 6, Name: 'Июль' },
-            { Id: 7, Name: 'Август' },
-            { Id: 8, Name: 'Сентябрь' },
-            { Id: 9, Name: 'Октябрь' },
-            { Id: 10, Name: 'Ноябрь' },
-            { Id: 11, Name: 'Декабрь' },
-        ];
+        //this.allMonthes = [
+        //    { Id: 0, Name: 'Январь' },
+        //    { Id: 1, Name: 'Февраль' },
+        //    { Id: 2, Name: 'Март' },
+        //    { Id: 3, Name: 'Апрель' },
+        //    { Id: 4, Name: 'Май' },
+        //    { Id: 5, Name: 'Июнь' },
+        //    { Id: 6, Name: 'Июль' },
+        //    { Id: 7, Name: 'Август' },
+        //    { Id: 8, Name: 'Сентябрь' },
+        //    { Id: 9, Name: 'Октябрь' },
+        //    { Id: 10, Name: 'Ноябрь' },
+        //    { Id: 11, Name: 'Декабрь' },
+        //];
 
-        this.allYears = [];
-        var currentDate = new Date();
-        var currentYear = currentDate.getFullYear();
+        //this.allYears = [];
+        //var currentDate = new Date();
+        //var currentYear = currentDate.getFullYear();
 
-        for (var year = currentYear - 10; year <= currentYear; year++) {
-            this.allYears.push(year);
-        }
+        //for (var year = currentYear - 10; year <= currentYear; year++) {
+        //    this.allYears.push(year);
+        //}
     }
 
     ngOnInit() {
+        this.allMonthes = this.dataService.getAllMonthes();
+        this.allYears = this.dataService.getAllYears(10);
+
         var billId = this.route.snapshot.params['id'];
 
         if (billId && billId != 0) {
@@ -98,7 +99,12 @@ export class BillDetailComponent implements OnInit  {
     
     editCounterData(counterData: CounterData) {
         
-        var dataForModalWindow = { dateDay: 1, dateMonth: counterData.ReadingDateMonth, dateYear: counterData.ReadingDateYear, reading: counterData.Reading };
+        var dataForModalWindow = {
+            dateDay: counterData.ReadingDateDay,
+            dateMonth: counterData.ReadingDateMonth,
+            dateYear: counterData.ReadingDateYear,
+            reading: counterData.Reading
+        };
         this.dialogService.addDialog(EditCounterDataComponent, dataForModalWindow)
             .subscribe((editedCounterData) => {
                 counterData.Reading = editedCounterData;

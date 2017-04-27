@@ -14,7 +14,11 @@ namespace DTO
         
         public double? ReadingODN { get; set; }
         
-        public DateTime ReadingDate { get; set; }
+        public int ReadingDateDay { get; set; }
+
+        public int ReadingDateMonth { get; set; }
+
+        public int ReadingDateYear { get; set; }
 
         public bool IsFirst { get; set; }
         

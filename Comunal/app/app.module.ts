@@ -38,6 +38,7 @@ import { BillService } from './services/bill.service';
 import { GuardService } from './services/guard.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
     imports: [
@@ -75,6 +76,7 @@ import { AuthService } from './services/auth.service';
         GuardService,
         UserService,
         AuthService,
+        DataService,
         FlatService,
         CounterService,
         CounterDataService,

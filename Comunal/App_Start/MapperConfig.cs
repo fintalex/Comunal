@@ -47,6 +47,9 @@ namespace Comunal
                     .ForMember(x => x.Tarif3, c => c.MapFrom(o => o.CounterTarif.Tarif3))
                     .ForMember(x => x.CounterName, c => c.MapFrom(o => o.Counter.Name))
                     .ForMember(x => x.CounterId, c => c.MapFrom(o => o.Counter.Id))
+                    .ForMember(x => x.ReadingDateDay, c => c.MapFrom(o => o.ReadingDate.Day))
+                    .ForMember(x => x.ReadingDateMonth, c => c.MapFrom(o => o.ReadingDate.Month))
+                    .ForMember(x => x.ReadingDateYear, c => c.MapFrom(o => o.ReadingDate.Year))
                     .ForMember(x => x.IconPath, c => c.MapFrom(o => o.Counter.CounterType.IconPath));
                 cfg.CreateMap<CounterDataDTO, CounterData>();
 

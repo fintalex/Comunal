@@ -12,6 +12,7 @@
     constructor(
         public Reading: number = 0,
         public ReadingODN: number = null,
+        public ReadingDateDay: number = null,
         public ReadingDateYear: number = null,
         public ReadingDateMonth: number = null,
         public IsFirst: boolean = false,
