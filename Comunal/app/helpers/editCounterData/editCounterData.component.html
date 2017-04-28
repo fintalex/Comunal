@@ -10,12 +10,12 @@
             <div class="modal-body">
                 <div class="row">
                     <!--CounterData - Reading-->
-                    <div class="col-lg-3">
+                    <div class="col-lg-5">
                         <div class="form-group">
                             <label class="control-label" for="readingData">Показания</label>
                             <input class="form-control" name="readingData" type="text"
                                    required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$"
-                                   [(ngModel)]="reading" #readingData="ngModel">
+                                   [(ngModel)]="counterData.reading" #readingData="ngModel">
                             <div *ngIf="readingData.errors && (readingData.dirty || readingData.touched)" class="text-danger">
                                 <div [hidden]="!readingData.errors.required">
                                     Введите показания счетчика
@@ -27,24 +27,27 @@
                         </div>
                     </div>
                     <!--CounterData - Invoice Day-->
-                    <div class="col-lg-3">
+                    <div class="col-lg-7">
                         <label class="control-label" for="invoiceDataDay">Дата внесения</label>
-                        <select class="form-control" name="invoiceDataDay" [(ngModel)]="dateDay" type="text" required>
-                            <option *ngFor="let day of allDays" [value]="day">{{day}}</option>
-                        </select>
+                        <ul class="nav nav-pills">
+                            <li>
+                                <select class="form-control" name="invoiceDataDay" [(ngModel)]="counterData.dateDay" type="text" required>
+                                    <option *ngFor="let day of allDays" [value]="day">{{day}}</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select class="form-control" name="invoiceDataMonth" [(ngModel)]="counterData.dateMonth" type="text" required>
+                                    <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select class="form-control" name="invoiceDataYear" [(ngModel)]="counterData.dateYear" type="text" required>
+                                    <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
+                                </select>
+                            </li>
+                        </ul>
                     </div>
-                    <!--CounterData - Invoice Month-->
-                    <div class="col-lg-3">
-                        <select class="form-control" name="invoiceDataMonth" [(ngModel)]="dateMonth" type="text" required>
-                            <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
-                        </select>
-                    </div>
-                    <!--CounterData - Invoice Year-->
-                    <div class="col-lg-3">
-                        <select class="form-control" name="invoiceDataYear" [(ngModel)]="dateYear" type="text" required>
-                            <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
-                        </select>
-                    </div>
+                  
                 </div>
             </div>
             <div class="modal-footer">

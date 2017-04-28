@@ -36,30 +36,7 @@ export class BillDetailComponent implements OnInit  {
         private counterDataService: CounterDataService,
         private maintenanceDataService: MaintenanceDataService,
         private dialogService: DialogService,
-    ) {
-        //this.allMonthes = [
-        //    { Id: 0, Name: 'Январь' },
-        //    { Id: 1, Name: 'Февраль' },
-        //    { Id: 2, Name: 'Март' },
-        //    { Id: 3, Name: 'Апрель' },
-        //    { Id: 4, Name: 'Май' },
-        //    { Id: 5, Name: 'Июнь' },
-        //    { Id: 6, Name: 'Июль' },
-        //    { Id: 7, Name: 'Август' },
-        //    { Id: 8, Name: 'Сентябрь' },
-        //    { Id: 9, Name: 'Октябрь' },
-        //    { Id: 10, Name: 'Ноябрь' },
-        //    { Id: 11, Name: 'Декабрь' },
-        //];
-
-        //this.allYears = [];
-        //var currentDate = new Date();
-        //var currentYear = currentDate.getFullYear();
-
-        //for (var year = currentYear - 10; year <= currentYear; year++) {
-        //    this.allYears.push(year);
-        //}
-    }
+    ) {    }
 
     ngOnInit() {
         this.allMonthes = this.dataService.getAllMonthes();
@@ -100,14 +77,19 @@ export class BillDetailComponent implements OnInit  {
     editCounterData(counterData: CounterData) {
         
         var dataForModalWindow = {
-            dateDay: counterData.ReadingDateDay,
-            dateMonth: counterData.ReadingDateMonth,
-            dateYear: counterData.ReadingDateYear,
-            reading: counterData.Reading
+            counterData: {
+                dateDay: counterData.ReadingDateDay,
+                dateMonth: counterData.ReadingDateMonth,
+                dateYear: counterData.ReadingDateYear,
+                reading: counterData.Reading
+            }
         };
-        this.dialogService.addDialog(EditCounterDataComponent, dataForModalWindow)
+        this.dialogService.addDialog(EditCounterDataComponent,  dataForModalWindow)
             .subscribe((editedCounterData) => {
-                counterData.Reading = editedCounterData;
+                counterData.Reading = editedCounterData.reading;
+                counterData.ReadingDateDay = editedCounterData.dateDay;
+                counterData.ReadingDateMonth = editedCounterData.dateMonth;
+                counterData.ReadingDateYear = editedCounterData.dateYear;
             });
     }
 

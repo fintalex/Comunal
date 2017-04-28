@@ -51,7 +51,8 @@ namespace Comunal
                     .ForMember(x => x.ReadingDateMonth, c => c.MapFrom(o => o.ReadingDate.Month))
                     .ForMember(x => x.ReadingDateYear, c => c.MapFrom(o => o.ReadingDate.Year))
                     .ForMember(x => x.IconPath, c => c.MapFrom(o => o.Counter.CounterType.IconPath));
-                cfg.CreateMap<CounterDataDTO, CounterData>();
+                cfg.CreateMap<CounterDataDTO, CounterData>()
+                    .ForMember(x => x.ReadingDate, c => c.MapFrom(o => new DateTime(o.ReadingDateYear, o.ReadingDateMonth, o.ReadingDateDay)));
 
                 cfg.CreateMap<User, CurrentUserDTO>()
                     .ForMember(x => x.Flat, c => c.MapFrom(o => o.Flats.FirstOrDefault(f => f.Selected)));
