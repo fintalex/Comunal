@@ -81,12 +81,12 @@ export class BillDetailComponent implements OnInit  {
                 dateDay: counterData.ReadingDateDay,
                 dateMonth: counterData.ReadingDateMonth,
                 dateYear: counterData.ReadingDateYear,
-                reading: counterData.Reading
+                reading: counterData.Reading ? counterData.Reading : counterData.LastReading
             }
         };
         this.dialogService.addDialog(EditCounterDataComponent,  dataForModalWindow)
             .subscribe((editedCounterData) => {
-                counterData.Reading = editedCounterData.reading;
+                counterData.Reading = parseFloat(editedCounterData.reading);
                 counterData.ReadingDateDay = editedCounterData.dateDay;
                 counterData.ReadingDateMonth = editedCounterData.dateMonth;
                 counterData.ReadingDateYear = editedCounterData.dateYear;

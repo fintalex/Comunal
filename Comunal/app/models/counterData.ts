@@ -8,6 +8,8 @@
     Limit2: number;
     Tarif3: number;
     IconPath: string;
+    LastReading: number;
+    LastReadingDate: any;
 
     constructor(
         public Reading: number = 0,

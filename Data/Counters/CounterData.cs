@@ -17,20 +17,30 @@ namespace Data
 		/// </summary>
 		public double Reading { get; set; }
 
-		/// <summary>
-		/// Общедомовые показания
+        /// <summary>
+		/// Последние Показания счетчика
 		/// </summary>
-		public double? ReadingODN { get; set; }
+		public double LastReading { get; set; }
+
+        /// <summary>
+        /// Общедомовые показания
+        /// </summary>
+        public double? ReadingODN { get; set; }
 
 		/// <summary>
 		/// Дата снятия показаний
 		/// </summary>
 		public DateTime ReadingDate { get; set; }
 
-		/// <summary>
-		/// Первые показания
+        /// <summary>
+		/// Дата снятия последних показаний
 		/// </summary>
-		public bool IsFirst { get; set; }
+		public DateTime? LastReadingDate { get; set; }
+
+        /// <summary>
+        /// Первые показания
+        /// </summary>
+        public bool IsFirst { get; set; }
 
 		#region Navigation properties
 

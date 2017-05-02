@@ -11,7 +11,9 @@ namespace DTO
 		public int Id { get; set; }
         
         public double Reading { get; set; }
-        
+
+        public double LastReading { get; set; }
+
         public double? ReadingODN { get; set; }
         
         public int ReadingDateDay { get; set; }
@@ -19,6 +21,8 @@ namespace DTO
         public int ReadingDateMonth { get; set; }
 
         public int ReadingDateYear { get; set; }
+
+        public DateTime? LastReadingDate { get; set; }
 
         public bool IsFirst { get; set; }
         

@@ -65,11 +65,16 @@ namespace Services.Classes
 
             foreach (var curCounter in counters)
             {
+                var lastCounterData = curCounter.CounterDatas.OrderByDescending(cd => cd.Id).FirstOrDefault();
+
                 var newCounterData = new CounterData() {
                     Counter = curCounter,
                     CounterTarif = curCounter.CounterTarif,
                     Reading = 0,
                     ReadingDate = DateTime.Now,
+                    LastReading = lastCounterData == null ? 0 : lastCounterData.Reading,
+                    LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
+                    IsFirst = lastCounterData == null ? true : false,
                     BillId = 0
                 };
                 counterDatas.Add(newCounterData);

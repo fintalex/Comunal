@@ -17,7 +17,8 @@
                         <template ngFor let-countData [ngForOf]="counterDatas">
                             <a class="list-group-item" (click)="editCounterData(countData)">
                                 <img width="50" height="50" [src]="countData.IconPath" />
-                                {{countData.CounterName}}
+                                {{countData.CounterName}} <br />
+                                {{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastReading).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - countData.LastReading).toFixed(2) : 0}})
                                 <h4 class="pull-right">{{countData.Reading}}</h4>
                             </a>
                         </template>
