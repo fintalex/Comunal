@@ -110,5 +110,25 @@ export class BillDetailComponent implements OnInit  {
         }
         
     }
+
+    getSumForCounter(countData: CounterData) {
+        var summ = 0;
+        if (!countData.Limit1 || countData.Limit1 == 0 || countData.Reading <= countData.Limit1) {
+            return countData.Reading * countData.Tarif1;
+        }
+
+        if (countData.Reading > countData.Limit1) {
+            summ += countData.Limit1 * countData.Tarif1;
+        }
+
+        if (!countData.Limit2 || countData.Limit2 == 0 || countData.Reading <= countData.Limit2) {
+            summ += (countData.Reading - countData.Limit1) * countData.Tarif2;
+        } else {
+            summ += (countData.Limit2 - countData.Limit1) * countData.Tarif2;
+            summ += (countData.Reading - countData.Limit2) * countData.Tarif3;
+        }
+
+        return summ;
+    }
     
 }

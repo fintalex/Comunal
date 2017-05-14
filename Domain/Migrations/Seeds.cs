@@ -54,8 +54,8 @@ namespace Domain.Migrations
 
         private static void SeedCounterTypes(DataContext context)
         {
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.ColdWater, Name = "Холодная вода", UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/water.png" });
-            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.HotWater, Name = "Горячая вода",  UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/water.png" });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.ColdWater, Name = "Холодная вода", UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/coldwater.png" });
+            context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.HotWater, Name = "Горячая вода",  UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/hotwater.png" });
             context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Electricity, Name = "Электричество", UnitId = (int)UnitTypes.KilowattPerHour, IconPath = "Content/CounterTypes/energy.png" });
             context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Gas, Name = "Газ", UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/gas.png" });
             context.CounterTypes.AddOrUpdate(new CounterType { Id = (int)CounterTypes.Heating, Name = "Отопление", UnitId = (int)UnitTypes.MetersCubic, IconPath = "Content/CounterTypes/heat.png" });

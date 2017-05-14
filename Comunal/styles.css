@@ -25,4 +25,15 @@ a:hover {
 
 /*====================================================================*/
 
+.counter-detail-name{
+    font-weight: bold;
+}
+
+.counter-detail-summ{
+    font-size: 12px;
+}
+
+.bill-detail-box{
+    line-height: 1.2;
+}
 
