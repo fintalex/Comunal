@@ -52,8 +52,12 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
     }
 
     apply() {
-        this.result = this.counterData;
-        this.close();
+        if (this.counterDataBefore > this.counterData) {
+
+        } else {
+            this.result = this.counterData;
+            this.close();
+        }
     }
 }
 

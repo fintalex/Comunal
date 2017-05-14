@@ -70,7 +70,7 @@ namespace Services.Classes
                 var newCounterData = new CounterData() {
                     Counter = curCounter,
                     CounterTarif = curCounter.CounterTarif,
-                    Reading = 0,
+                    Reading = lastCounterData == null ? 0 : lastCounterData.Reading,
                     ReadingDate = DateTime.Now,
                     LastReading = lastCounterData == null ? 0 : lastCounterData.Reading,
                     LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,

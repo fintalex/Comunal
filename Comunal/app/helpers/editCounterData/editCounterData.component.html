@@ -23,6 +23,9 @@
                                 <div [hidden]="!readingData.errors.pattern">
                                     Не верный формат
                                 </div>
+                                <div [hidden]="readingDataBefore <= readingData">
+                                    Показания не могут быть меньше предыдущих
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -52,7 +55,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" (click)="apply()" 
-                        [disabled]="editCounterDataForm.form.invalid">OK</button>
+                        [disabled]="editCounterDataForm.form.invalid || readingDataBefore <= readingData">OK</button>
                 <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
             </div>
         </form>
