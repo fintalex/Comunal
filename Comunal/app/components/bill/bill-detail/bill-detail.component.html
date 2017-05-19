@@ -20,17 +20,19 @@
                                     <div class="col-lg-2">
                                         <img width="50" height="50" [src]="countData.IconPath" />
                                     </div>
-                                    <div class="col-lg-8 bill-detail-box">
+                                    <div class="col-lg-7 bill-detail-box">
                                         <span class="counter-detail-name">{{countData.CounterName}}</span>
                                         <br /> 
                                         <span class="counter-detail-summ">{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastReading).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - countData.LastReading).toFixed(2) : 0}})</span>
                                         <br /> 
-                                        <span class="counter-detail-summ">{{getSumForCounter(countData)}} руб</span>
+                                        <span class="counter-detail-summ">{{getSumForCounter(countData, 1)}} руб</span>
                                     </div>
-                                    <div class="col-lg-2 bill-detail-box">
-                                        <span class="counter-detail-name">ОДН</span>
+                                    <div class="col-lg-3 bill-detail-box" *ngIf="countData.EnableODN">
+                                        <span class="counter-detail-name pull-right">ОДН</span>
                                         <br /> 
-                                        <span class="counter-detail-summ">0 руб</span>
+                                        <span class="counter-detail-summ pull-right">{{countData.ReadingODN}} руб</span>
+                                        <br /> 
+                                        <span class="counter-detail-summ pull-right">{{getSumForCounter(countData, 2)}} руб</span>
                                         <!--<h4 class="pull-right">{{countData.Reading}}</h4>-->
                                     </div>
                                 </div> 
@@ -64,22 +66,28 @@
 
             <div class="form-group">
                 <label class="control-label" for="date">Дата</label>
-                <ul class="nav nav-pills">
+                <ul class="nav nav-pills" *ngIf="allBills || currentBill.Id">
                     <li>
-                        <select class="form-control" name="month" [(ngModel)]="currentBill.InvoiceDateMonth" type="text" required>
-                            <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
+                        <select class="form-control" name="month" 
+                                [(ngModel)]="currentBill.InvoiceDateMonth"
+                                [disabled]="currentBill.Id"
+                                (ngModelChange)="getBillDetails($event)" type="text" required>
+                            <option *ngFor="let month of getExistingMonths()" [value]="month.Id"  >{{month.Name}}</option>
                         </select>
                     </li>
                     <li>
-                        <select class="form-control" name="yearForBill" [(ngModel)]="currentBill.InvoiceDateYear" type="text" required>
+                        <select class="form-control" name="yearForBill" 
+                                [(ngModel)]="currentBill.InvoiceDateYear" 
+                                [disabled]="currentBill.Id"
+                                (ngModelChange)="getBillDetails($event)" type="text" required>
                             <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
                         </select>
                     </li>
                 </ul>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="counterDatas.length > 0 && currentBill">
                 <label class="control-label" for="commonSum">Начислено</label>
-                <input class="form-control" name="commonSum" type="text" readonly="readonly">
+                <input class="form-control" name="commonSum" type="text" [(ngModel)]="currentBill.Summ" readonly="readonly">
             </div>
 
             <div class="form-group">
@@ -94,7 +102,8 @@
 
             <div class="form-group">
                 <label class="control-label" for="forPay">К оплате</label>
-                <input class="form-control" name="forPay" type="text" readonly="readonly">
+                <input class="form-control" name="forPay" type="text" readonly="readonly" 
+                       [value]="getForPayment()" />
             </div>
 
             <div class="form-group">

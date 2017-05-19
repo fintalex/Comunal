@@ -14,6 +14,8 @@ namespace DTO
 
         public double LastReading { get; set; }
 
+        public bool EnableODN { get; set; }
+
         public double? ReadingODN { get; set; }
         
         public int ReadingDateDay { get; set; }

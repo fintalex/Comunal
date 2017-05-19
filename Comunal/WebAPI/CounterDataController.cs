@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Data;
 using DTO;
 using Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -41,11 +42,12 @@ namespace Comunal.WebAPI
             return counterDatasList;
         }
 
-        [HttpGet]
-        [Route("forNewBill/{flatId:int}")]
-        public IQueryable<CounterDataDTO> GetCounterDatasForNewBill(int flatId)
+        [HttpPost]
+        [Route("forNewBill")]
+        public IQueryable<CounterDataDTO> GetCounterDatasForNewBill(BillDetailDTO billDTO)
         {
-            var counterDatasList = this.counterDataService.GetCounterDatasForNewBill(flatId).ProjectTo<CounterDataDTO>();
+            var curDateForBill = new DateTime(billDTO.InvoiceDateYear, billDTO.InvoiceDateMonth + 1, billDTO.InvoiceDateDay);
+            var counterDatasList = this.counterDataService.GetCounterDatasForNewBill(billDTO.FlatId, curDateForBill).ProjectTo<CounterDataDTO>();
             return counterDatasList;
         }
 

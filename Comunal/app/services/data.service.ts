@@ -9,7 +9,10 @@ export class DataService {
 
     }
 
-    getAllMonthes(): any[] {
+    getAllMonthes(bills: any[] = null): any[] {
+        if (bills != null && bills.length > 0) {
+
+        }
         return [
             { Id: 0, Name: 'Январь' },
             { Id: 1, Name: 'Февраль' },
@@ -31,7 +34,7 @@ export class DataService {
         var currentDate = new Date();
         var currentYear = currentDate.getFullYear();
 
-        for (var year = currentYear - yearsCount; year <= currentYear; year++) {
+        for (var year = currentYear - yearsCount; year <= currentYear+1; year++) {
             allYears.push(year);
         }
 

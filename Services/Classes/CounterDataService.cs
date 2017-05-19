@@ -55,17 +55,24 @@ namespace Services.Classes
         /// Get CounterDatas for new Bill
         /// </summary>
         /// <param name="flatId">Flat id</param>
+        /// <param name="dateForBill">Date for bill</param>
         /// <returns>List of empty counter Data</returns>
-		public IQueryable<CounterData> GetCounterDatasForNewBill(int flatId)
+		public IQueryable<CounterData> GetCounterDatasForNewBill(int flatId, DateTime dateForBill)
         {
             var counterDatas = new List<CounterData>();
             var counters = this.context.Counters
                 .Where(c => c.FlatId == flatId)
                 .ToList();
 
+            //var lastBill = this.context.Bills.Where(b => b.InvoiceDate < dateForBill).OrderByDescending(d => d.InvoiceDate).FirstOrDefault();
+
             foreach (var curCounter in counters)
             {
-                var lastCounterData = curCounter.CounterDatas.OrderByDescending(cd => cd.Id).FirstOrDefault();
+                //var lastCounterData = curCounter.CounterDatas.OrderByDescending(cd => cd.Id).FirstOrDefault();
+                var lastCounterData = curCounter.CounterDatas
+                    .Where(b => b.Bill.InvoiceDate < dateForBill)
+                    .OrderByDescending(cd => cd.Bill.InvoiceDate)
+                    .FirstOrDefault();
 
                 var newCounterData = new CounterData() {
                     Counter = curCounter,

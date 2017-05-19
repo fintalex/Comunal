@@ -13,6 +13,8 @@ import { Bill } from '../../../models/bill';
 import { CounterData } from '../../../models/counterData';
 import { MaintenanceData } from '../../../models/maintenanceData';
 
+import * as _ from 'underscore';
+
 @Component({
     moduleId: module.id,
     selector: 'bill-detail',
@@ -22,6 +24,10 @@ export class BillDetailComponent implements OnInit  {
 
     allMonthes: any[] = [];
     allYears: any[] = [];
+
+    allBills: any[];
+
+    billId: number;
 
     currentBill: Bill;
     counterDatas: CounterData[] = [];
@@ -42,30 +48,58 @@ export class BillDetailComponent implements OnInit  {
         this.allMonthes = this.dataService.getAllMonthes();
         this.allYears = this.dataService.getAllYears(10);
 
-        var billId = this.route.snapshot.params['id'];
+        var curDate = new Date();
+        this.currentBill = new Bill(curDate, curDate.getMonth(), curDate.getFullYear(), this.authService.CurrentUser.Flat.Id, 0, 0, null);
+        
 
-        if (billId && billId != 0) {
-            this.billService.getBill(billId)
+        this.billId = this.route.snapshot.params['id'];
+
+        if (!this.billId || this.billId == 0) {
+            this.billService.getFlatBillsByFlatId(this.authService.CurrentUser.Flat.Id)
+                .subscribe(allBills => {
+                    this.allBills = allBills;
+
+                    if (this.allBills && this.allBills.length > 0) {
+                        var nextAvailableDate = new Date(this.allBills[0].InvoiceDate); // first bills is with last InvoiceDate (sorted by descending on the server)
+                        nextAvailableDate.setMonth(nextAvailableDate.getMonth() + 1);
+
+                        this.currentBill = new Bill(nextAvailableDate, nextAvailableDate.getMonth(), nextAvailableDate.getFullYear(), this.authService.CurrentUser.Flat.Id, 0, 0, null);
+                    }
+
+                    this.getBillDetails();
+                });
+        } else {
+            this.getBillDetails();
+        }
+    }
+
+    getBillDetails() {
+        
+
+        if (this.billId && this.billId != 0) {
+            this.billService.getBill(this.billId)
                 .subscribe(curBill => {
                     this.currentBill = curBill;
+                    this.summForBill();
                 });
 
-            this.counterDataService.getCounterDatasByBillId(billId)
+            this.counterDataService.getCounterDatasByBillId(this.billId)
                 .subscribe(counterDatas => {
                     this.counterDatas = counterDatas;
+                    this.summForBill();
                 });
 
-            this.maintenanceDataService.getMaintenanceDatasByBillId(billId)
+            this.maintenanceDataService.getMaintenanceDatasByBillId(this.billId)
                 .subscribe(maintenanceDatas => {
                     this.maintenanceDatas = maintenanceDatas;
                 });
         } else {
-            var curDate = new Date();
-            this.currentBill = new Bill(curDate, curDate.getMonth(), curDate.getFullYear(), this.authService.CurrentUser.Flat.Id, 0, 0, null);
 
-            this.counterDataService.getCounterDatasForNewBill(this.authService.CurrentUser.Flat.Id)
+            // here we will must implement $q.all
+            this.counterDataService.getCounterDatasForNewBill(this.authService.CurrentUser.Flat.Id, this.currentBill.InvoiceDateYear, this.currentBill.InvoiceDateMonth)
                 .subscribe(newCounterDatas => {
                     this.counterDatas = newCounterDatas;
+                    this.summForBill();
                 });
             this.maintenanceDataService.getMaintenanceDatasForNewBill(this.authService.CurrentUser.Flat.Id)
                 .subscribe(newMaintenanceDatas => {
@@ -73,7 +107,21 @@ export class BillDetailComponent implements OnInit  {
                 });
         }
     }
-    
+
+    checkExistMonth(month: number, year: number): boolean {
+        var existMonth = _.some(this.allBills, (bill: Bill) => {
+            var invoiceDate = new Date(bill.InvoiceDate);
+            return invoiceDate.getMonth() == month && invoiceDate.getFullYear() == year;
+        });
+        return !existMonth;
+    }
+
+    getExistingMonths() {
+        return _.filter(this.allMonthes, (month: any) => {
+            return this.checkExistMonth(month.Id, this.currentBill.InvoiceDateYear);
+        });
+    }
+
     editCounterData(counterData: CounterData) {
         
         var dataForModalWindow = {
@@ -81,7 +129,9 @@ export class BillDetailComponent implements OnInit  {
                 dateDay: counterData.ReadingDateDay,
                 dateMonth: counterData.ReadingDateMonth,
                 dateYear: counterData.ReadingDateYear,
-                reading: counterData.Reading ? counterData.Reading : counterData.LastReading
+                reading: counterData.Reading ? counterData.Reading : counterData.LastReading,
+                enableODN: counterData.EnableODN,
+                readingODN: counterData.ReadingODN
             }
         };
         this.dialogService.addDialog(EditCounterDataComponent,  dataForModalWindow)
@@ -90,6 +140,9 @@ export class BillDetailComponent implements OnInit  {
                 counterData.ReadingDateDay = editedCounterData.dateDay;
                 counterData.ReadingDateMonth = editedCounterData.dateMonth;
                 counterData.ReadingDateYear = editedCounterData.dateYear;
+                counterData.ReadingODN = editedCounterData.readingODN;
+
+                this.summForBill();
             });
     }
 
@@ -111,9 +164,9 @@ export class BillDetailComponent implements OnInit  {
         
     }
 
-    getSumForCounter(countData: CounterData) {
+    getSumForCounter(countData: CounterData, readingOrODN: number) {
         var summ = 0;
-        var currentPlusReading = countData.Reading - countData.LastReading;
+        var currentPlusReading = readingOrODN == 1 ? countData.Reading - countData.LastReading : countData.ReadingODN;
 
         if (!countData.Limit1 || countData.Limit1 == 0 || currentPlusReading <= countData.Limit1) {
             return currentPlusReading * countData.Tarif1;
@@ -131,6 +184,18 @@ export class BillDetailComponent implements OnInit  {
         }
 
         return summ;
+    }
+
+    summForBill() {
+        this.currentBill.Summ = 0;
+        _.forEach(this.counterDatas, (countData: any) => {
+            this.currentBill.Summ += this.getSumForCounter(countData, 1);
+            this.currentBill.Summ += this.getSumForCounter(countData, 2);
+        });
+    }
+
+    getForPayment() {
+        return parseFloat(this.currentBill.Summ) + parseFloat(this.currentBill.Recalculation) + parseFloat(this.currentBill.Fine);
     }
     
 }

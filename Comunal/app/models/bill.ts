@@ -3,6 +3,8 @@
     Selected: boolean;
     MaintenanceDatas: any[];
     CounterDatas: any[];
+    ForPayment: number = 0;
+    Summ: number = 0;
 
     constructor(
         public InvoiceDate: Date = null,

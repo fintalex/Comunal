@@ -15,9 +15,15 @@ export class CounterDataService {
     constructor(private http: Http) {
 
     }
-    
-    getCounterDatasForNewBill(flatId: number): Observable<CounterData[]> {
-        return this.http.get(`${this.apiUrl}/forNewBill/${flatId}`)
+
+    getCounterDatasForNewBill(flatId: number, invoiceDateYear: number, invoiceDateMonth: number): Observable<CounterData[]> {
+        var forNewBill = {
+            FlatId: flatId,
+            InvoiceDateYear: invoiceDateYear,
+            InvoiceDateMonth: invoiceDateMonth,
+            InvoiceDateDay: 1
+        }
+        return this.http.post(`${this.apiUrl}/forNewBill`, forNewBill)
             .map(response => response.json())
             .catch(this.handleError);
     }

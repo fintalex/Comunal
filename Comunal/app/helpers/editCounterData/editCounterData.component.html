@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <div class="row">
                     <!--CounterData - Reading-->
-                    <div class="col-lg-5">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label class="control-label" for="readingData">Показания</label>
                             <input class="form-control" name="readingData" type="text"
@@ -25,6 +25,22 @@
                                 </div>
                                 <div [hidden]="readingDataBefore <= readingData">
                                     Показания не могут быть меньше предыдущих
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group" *ngIf="counterData.enableODN">
+                            <label class="control-label" for="readingODN">ОДН</label>
+                            <input class="form-control" name="readingODN" type="text"
+                                   required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$"
+                                   [(ngModel)]="counterData.readingODN" #readingDataODN="ngModel">
+                            <div *ngIf="readingDataODN.errors && (readingDataODN.dirty || readingDataODN.touched)" class="text-danger">
+                                <div [hidden]="!readingDataODN.errors.required">
+                                    Введите ОДН
+                                </div>
+                                <div [hidden]="!readingDataODN.errors.pattern">
+                                    Не верный формат
                                 </div>
                             </div>
                         </div>
@@ -51,6 +67,10 @@
                         </ul>
                     </div>
                   
+                </div>
+
+                <div class="row">
+                    <span>Предыдущие показания</span>
                 </div>
             </div>
             <div class="modal-footer">

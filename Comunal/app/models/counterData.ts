@@ -10,6 +10,7 @@
     IconPath: string;
     LastReading: number;
     LastReadingDate: any;
+    EnableODN: boolean;
 
     constructor(
         public Reading: number = 0,

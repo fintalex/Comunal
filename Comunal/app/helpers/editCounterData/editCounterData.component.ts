@@ -23,6 +23,8 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
         dateMonth: number,
         dateYear: number,
         reading: number,
+        readingODN: number,
+        enableODN: boolean,
     }
 
     counterDataBefore: {};
@@ -42,8 +44,6 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
         this.allMonthes = this.dataService.getAllMonthes();
         this.allYears = this.dataService.getAllYears(10);
         this.allDays = this.dataService.getAllDays(this.counterData.dateMonth, this.counterData.dateYear);
-
-
     }
     
     cancel() {

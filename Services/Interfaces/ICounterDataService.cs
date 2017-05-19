@@ -1,4 +1,5 @@
 ﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -55,7 +56,8 @@ namespace Services.Interfaces
         /// Get CounterDatas for new Bill
         /// </summary>
         /// <param name="flatId">Flat id</param>
+        /// <param name="dateForBill">Date for bill</param>
         /// <returns>List of empty counter Data</returns>
-		IQueryable<CounterData> GetCounterDatasForNewBill(int flatId);
+		IQueryable<CounterData> GetCounterDatasForNewBill(int flatId, DateTime dateForBill);
     }
 }

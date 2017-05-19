@@ -31,6 +31,10 @@ namespace Comunal.WebAPI
             return this.billService.GetBills(flatId).ProjectTo<BillGridDTO>();
         }
 
+        ////[HttpGet]
+        ////[Route("allSmallBills/{flatId}")]
+        ////public IQueryable
+
         [HttpPost]
         public void AddBill([FromBody]BillDetailDTO newBillDTO)
         {

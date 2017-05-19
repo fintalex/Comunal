@@ -18,6 +18,12 @@ export class BillService {
 
     }
 
+    //getAllSmallBills(flatId: number): Observable<any[]> {
+    //    return this.http.get(`${this.apiUrl}/allSmallBills/${flatId}`)
+    //        .map(response => response.json())
+    //        .catch(this.handleError);
+    //}
+
     getBill(billId: number): Observable<Bill> {
         return this.http.get(`${this.apiUrl}/${billId}`)
             .map(response => response.json())
