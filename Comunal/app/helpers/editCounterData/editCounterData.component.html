@@ -15,7 +15,7 @@
                             <label class="control-label" for="readingData">Показания</label>
                             <input class="form-control" name="readingData" type="text"
                                    required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$"
-                                   [(ngModel)]="counterData.reading" #readingData="ngModel">
+                                   [(ngModel)]="counterData.Reading" #readingData="ngModel">
                             <div *ngIf="readingData.errors && (readingData.dirty || readingData.touched)" class="text-danger">
                                 <div [hidden]="!readingData.errors.required">
                                     Введите показания счетчика
@@ -30,11 +30,11 @@
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <div class="form-group" *ngIf="counterData.enableODN">
+                        <div class="form-group" *ngIf="counterData.EnableODN">
                             <label class="control-label" for="readingODN">ОДН</label>
                             <input class="form-control" name="readingODN" type="text"
                                    required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$"
-                                   [(ngModel)]="counterData.readingODN" #readingDataODN="ngModel">
+                                   [(ngModel)]="counterData.ReadingODN" #readingDataODN="ngModel">
                             <div *ngIf="readingDataODN.errors && (readingDataODN.dirty || readingDataODN.touched)" class="text-danger">
                                 <div [hidden]="!readingDataODN.errors.required">
                                     Введите ОДН
@@ -50,32 +50,65 @@
                         <label class="control-label" for="invoiceDataDay">Дата внесения</label>
                         <ul class="nav nav-pills">
                             <li>
-                                <select class="form-control" name="invoiceDataDay" [(ngModel)]="counterData.dateDay" type="text" required>
+                                <select class="form-control" name="invoiceDataDay" [(ngModel)]="counterData.ReadingDateDay" type="text" required>
                                     <option *ngFor="let day of allDays" [value]="day">{{day}}</option>
                                 </select>
                             </li>
                             <li>
-                                <select class="form-control" name="invoiceDataMonth" [(ngModel)]="counterData.dateMonth" type="text" required>
+                                <select class="form-control" name="invoiceDataMonth" [(ngModel)]="counterData.ReadingDateMonth" type="text" required>
                                     <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
                                 </select>
                             </li>
                             <li>
-                                <select class="form-control" name="invoiceDataYear" [(ngModel)]="counterData.dateYear" type="text" required>
+                                <select class="form-control" name="invoiceDataYear" [(ngModel)]="counterData.ReadingDateYear" type="text" required>
                                     <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
                                 </select>
                             </li>
                         </ul>
                     </div>
-                  
+
                 </div>
 
+                <!--Предыдущие показания-->
                 <div class="row">
-                    <span>Предыдущие показания</span>
+                    <div class="col-lg-5 col-lg-offset-3 padding-left-40">
+                        <label class="control-label" for="invoiceDataDay">Предыдущие показания</label>
+                    </div>
                 </div>
+                <!--Дата-->
+                <div class="row">
+                    <div class="col-lg-2 col-lg-offset-3"><span>Дата:</span></div>
+                    <div class="col-lg-3 "><span class="pull-right">{{counterDataBefore.LastReadingDate | date:'d MMM y'}}</span></div>
+                    <div class="col-lg-3"></div>
+                </div>
+
+                <!--Показания-->
+                <div class="row">
+                    <div class="col-lg-2 col-lg-offset-3"><span>Показания:</span></div>
+                    <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.LastReading}}</span></div>
+                    <div class="col-lg-3"></div>
+                </div>
+
+                <!--Тариф-->
+                <div class="row">
+                    <div class="col-lg-2 col-lg-offset-3"><span>Тариф:</span></div>
+                    <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.Tarif1}}{{counterDataBefore.Tarif2 || counterDataBefore.Tarif2 != 0 ? ' / ' + counterDataBefore.Tarif2 : ''}}{{counterDataBefore.Tarif3 || counterDataBefore.Tarif3 != 0 ? ' / ' + counterDataBefore.Tarif3 : ''}} </span></div>
+                    <div class="col-lg-3"></div>
+                </div>
+
+                <!--Сумма-->
+                <div class="row">
+                    <div class="col-lg-2 col-lg-offset-3"><span>Сумма:</span></div>
+                    <div class="col-lg-3"><span class="pull-right">{{counterDataService.getSumForCounter(counterDataBefore, 1)}} руб</span></div>
+                    <div class="col-lg-3"></div>
+                </div>
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="apply()" 
-                        [disabled]="editCounterDataForm.form.invalid || readingDataBefore <= readingData">OK</button>
+                <button type="button" class="btn btn-primary" (click)="apply()"
+                        [disabled]="editCounterDataForm.form.invalid || readingDataBefore <= readingData">
+                    OK
+                </button>
                 <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
             </div>
         </form>

@@ -30,9 +30,7 @@ export class NewCounterComponent implements OnInit  {
         if (!this.counter) {
             this.counter = new Counter();
         }
-
-        this.counter
-
+        
         this.tarifTypes = [
             { Id: 1, Name: 'Простой' },
             { Id: 2, Name: 'Двухставочный' },

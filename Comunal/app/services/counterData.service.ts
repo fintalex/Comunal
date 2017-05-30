@@ -33,10 +33,33 @@ export class CounterDataService {
             .map(response => response.json())
             .catch(this.handleError);
     }
+
+    getSumForCounter(countData: CounterData, readingOrODN: number) {
+        var summ = 0;
+        var currentPlusReading = readingOrODN == 1 ? countData.Reading - countData.LastReading : countData.ReadingODN;
+
+        if (!countData.Limit1 || countData.Limit1 == 0 || currentPlusReading <= countData.Limit1) {
+            return currentPlusReading * countData.Tarif1;
+        }
+
+        if (currentPlusReading > countData.Limit1) {
+            summ += countData.Limit1 * countData.Tarif1;
+        }
+
+        if (!countData.Limit2 || countData.Limit2 == 0 || currentPlusReading <= countData.Limit2) {
+            summ += (currentPlusReading - countData.Limit1) * countData.Tarif2;
+        } else {
+            summ += (countData.Limit2 - countData.Limit1) * countData.Tarif2;
+            summ += (currentPlusReading - countData.Limit2) * countData.Tarif3;
+        }
+
+        return summ;
+    }
     
 
     private handleError(error: any) {
         console.error('Произошла ошибка', error);
         return Observable.throw(error.message || error);
     }
+
 }

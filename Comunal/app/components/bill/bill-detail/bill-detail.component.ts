@@ -125,22 +125,18 @@ export class BillDetailComponent implements OnInit  {
     editCounterData(counterData: CounterData) {
         
         var dataForModalWindow = {
-            counterData: {
-                dateDay: counterData.ReadingDateDay,
-                dateMonth: counterData.ReadingDateMonth,
-                dateYear: counterData.ReadingDateYear,
-                reading: counterData.Reading ? counterData.Reading : counterData.LastReading,
-                enableODN: counterData.EnableODN,
-                readingODN: counterData.ReadingODN
-            }
+            counterData: {}
         };
+
+        Object.assign(dataForModalWindow.counterData, counterData);
+
         this.dialogService.addDialog(EditCounterDataComponent,  dataForModalWindow)
             .subscribe((editedCounterData) => {
-                counterData.Reading = parseFloat(editedCounterData.reading);
-                counterData.ReadingDateDay = editedCounterData.dateDay;
-                counterData.ReadingDateMonth = editedCounterData.dateMonth;
-                counterData.ReadingDateYear = editedCounterData.dateYear;
-                counterData.ReadingODN = editedCounterData.readingODN;
+                counterData.Reading = parseFloat(editedCounterData.Reading);
+                counterData.ReadingDateDay = editedCounterData.ReadingDateDay;
+                counterData.ReadingDateMonth = editedCounterData.ReadingDateMonth;
+                counterData.ReadingDateYear = editedCounterData.ReadingDateYear;
+                counterData.ReadingODN = editedCounterData.ReadingODN;
 
                 this.summForBill();
             });
@@ -164,38 +160,16 @@ export class BillDetailComponent implements OnInit  {
         
     }
 
-    getSumForCounter(countData: CounterData, readingOrODN: number) {
-        var summ = 0;
-        var currentPlusReading = readingOrODN == 1 ? countData.Reading - countData.LastReading : countData.ReadingODN;
-
-        if (!countData.Limit1 || countData.Limit1 == 0 || currentPlusReading <= countData.Limit1) {
-            return currentPlusReading * countData.Tarif1;
-        }
-
-        if (currentPlusReading > countData.Limit1) {
-            summ += countData.Limit1 * countData.Tarif1;
-        }
-
-        if (!countData.Limit2 || countData.Limit2 == 0 || currentPlusReading <= countData.Limit2) {
-            summ += (currentPlusReading - countData.Limit1) * countData.Tarif2;
-        } else {
-            summ += (countData.Limit2 - countData.Limit1) * countData.Tarif2;
-            summ += (currentPlusReading - countData.Limit2) * countData.Tarif3;
-        }
-
-        return summ;
-    }
-
     summForBill() {
         this.currentBill.Summ = 0;
         _.forEach(this.counterDatas, (countData: any) => {
-            this.currentBill.Summ += this.getSumForCounter(countData, 1);
-            this.currentBill.Summ += this.getSumForCounter(countData, 2);
+            this.currentBill.Summ += this.counterDataService.getSumForCounter(countData, 1);
+            this.currentBill.Summ += this.counterDataService.getSumForCounter(countData, 2);
         });
     }
 
     getForPayment() {
-        return parseFloat(this.currentBill.Summ) + parseFloat(this.currentBill.Recalculation) + parseFloat(this.currentBill.Fine);
+        return this.currentBill.Summ + this.currentBill.Recalculation + this.currentBill.Fine;
     }
     
 }
