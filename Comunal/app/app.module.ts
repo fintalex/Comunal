@@ -23,6 +23,9 @@ import { BillComponent } from './components/bill/bill.component';
 import { NewCounterComponent } from './components/counter/new-counter/new-counter.component';
 import { NewMaintenanceComponent } from './components/maintenance/new-maintenance/new-maintenance.component';
 import { BillDetailComponent } from './components/bill/bill-detail/bill-detail.component';
+
+// =============== App Pipes ====================
+import { DateRu } from './pipes/dateru.pipe';
                                            
 // =============== Help Components ==========================
 import { ConfirmComponent } from './helpers/confirm/confirm.component';
@@ -66,7 +69,10 @@ import { DataService } from './services/data.service';
         NewMaintenanceComponent,
         BillDetailComponent,
         ConfirmComponent,
-        EditCounterDataComponent
+        EditCounterDataComponent,
+
+        // === pipes ====
+        DateRu
     ],
     entryComponents: [ // Need to be investigated
         ConfirmComponent,

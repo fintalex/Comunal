@@ -321,6 +321,7 @@
     <TypeScriptCompile Include="app\models\counter.ts" />
     <TypeScriptCompile Include="app\models\user.ts" />
     <TypeScriptCompile Include="app\models\flats.ts" />
+    <TypeScriptCompile Include="app\pipes\dateru.pipe.ts" />
     <TypeScriptCompile Include="app\services\auth.service.ts" />
     <TypeScriptCompile Include="app\services\data.service.ts" />
     <TypeScriptCompile Include="app\services\bill.service.ts" />
