@@ -6,45 +6,21 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class CounterDataDTO
+    public class CounterDataShortDTO
     {
 		public int Id { get; set; }
         
         public double Reading { get; set; }
 
-        public double LastReading { get; set; }
-
         public bool EnableODN { get; set; }
 
         public double? ReadingODN { get; set; }
-        
-        public int ReadingDateDay { get; set; }
-
-        public int ReadingDateMonth { get; set; }
-
-        public int ReadingDateYear { get; set; }
 
         public DateTime? LastReadingDate { get; set; }
 
-        public int? LastCounterDataId { get; set; }
-
-        public CounterDataShortDTO LastCounterDataDTO { get; set; }
+        public double LastReading { get; set; }
 
         public bool IsFirst { get; set; }
-        
-
-        public int CounterId { get; set; }
-
-        public string CounterName { get; set; }
-
-        public string CounterTypeId { get; set; }
-
-        public string IconPath { get; set; }
-
-        //public virtual CounterTarif CounterTarif { get; set; }
-
-
-        public int BillId { get; set; }
         
 
         public int CounterTarifId { get; set; }

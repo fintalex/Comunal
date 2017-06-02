@@ -43,5 +43,21 @@ a:hover {
     padding-left: 40px;
 }
 
-/*====================================================================*/
+/*====================== SIZES ==============================*/
 
+.size-28-pct {
+    width: 28%;
+}
+
+.size-40-pct {
+    width: 40%;
+}
+
+.size-30-pct {
+    width: 30%;
+}
+
+.scroll-panel{
+    height: 250px;
+    overflow: overlay;
+}

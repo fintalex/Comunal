@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <div class="row">
                     <!--CounterData - Reading-->
-                    <div class="col-lg-3">
+                    <div class="col-lg-3  col-lg-offset-1">
                         <div class="form-group">
                             <label class="control-label" for="readingData">Показания</label>
                             <input class="form-control" name="readingData" type="text"
@@ -29,7 +29,36 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2">
+                   
+                    <!--CounterData - Invoice Day-->
+                    <div class="col-lg-7">
+                        <label class="control-label" for="invoiceDataDay">Дата внесения</label>
+                        <ul class="nav nav-pills">
+                            <li class="size-28-pct">
+                                <select class="form-control" name="invoiceDataDay" [(ngModel)]="counterData.ReadingDateDay" type="text" required>
+                                    <option *ngFor="let day of allDays" [value]="day">{{day}}</option>
+                                </select>
+                            </li>
+                            <li  class="size-40-pct">
+                                <select class="form-control" name="invoiceDataMonth" [(ngModel)]="counterData.ReadingDateMonth" type="text" required>
+                                    <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
+                                </select>
+                            </li>
+                            <li  class="size-30-pct">
+                                <select class="form-control" name="invoiceDataYear" [(ngModel)]="counterData.ReadingDateYear" type="text" required>
+                                    <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+                    <!--CounterData - Reading ODN -->
+                    <div class="col-lg-3 col-lg-offset-1">
                         <div class="form-group" *ngIf="counterData.EnableODN">
                             <label class="control-label" for="readingODN">ОДН</label>
                             <input class="form-control" name="readingODN" type="text"
@@ -45,62 +74,71 @@
                             </div>
                         </div>
                     </div>
-                    <!--CounterData - Invoice Day-->
+                    <!--CounterData - Tariff -->
                     <div class="col-lg-7">
-                        <label class="control-label" for="invoiceDataDay">Дата внесения</label>
-                        <ul class="nav nav-pills">
-                            <li>
-                                <select class="form-control" name="invoiceDataDay" [(ngModel)]="counterData.ReadingDateDay" type="text" required>
-                                    <option *ngFor="let day of allDays" [value]="day">{{day}}</option>
-                                </select>
-                            </li>
-                            <li>
-                                <select class="form-control" name="invoiceDataMonth" [(ngModel)]="counterData.ReadingDateMonth" type="text" required>
-                                    <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
-                                </select>
-                            </li>
-                            <li>
-                                <select class="form-control" name="invoiceDataYear" [(ngModel)]="counterData.ReadingDateYear" type="text" required>
-                                    <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
-                                </select>
-                            </li>
-                        </ul>
+                        <div class="form-group">
+                            <label class="control-label" for="currentTarif">Тариф</label>
+
+                            <div class="input-group">
+                                <input class="form-control" name="currentTarif" type="text"
+                                       disabled="disabled"
+                                       value="{{counterDataBefore.Tarif1}}{{counterDataBefore.Tarif2 || counterDataBefore.Tarif2 != 0 ? ' / ' + counterDataBefore.Tarif2 : ''}}{{counterDataBefore.Tarif3 || counterDataBefore.Tarif3 != 0 ? ' / ' + counterDataBefore.Tarif3 : ''}} руб">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning" type="button"
+                                            (click)="goToEditTarifCounter()" >Редактировать</button>
+                                </span>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
-
-                <!--Предыдущие показания-->
+                <!--================== Редактирование тарифа (счетчика) ========================-->
                 <div class="row">
-                    <div class="col-lg-5 col-lg-offset-3 padding-left-40">
-                        <label class="control-label" for="invoiceDataDay">Предыдущие показания</label>
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <new-counter *ngIf="showCounterPanel"
+                                     (update)="updateCounter($event)"
+                                     (close)="showCounterPanel = false"
+                                     [counter]="currentCounter"></new-counter>
+                    </div>                    
+                </div>
+
+
+
+                <!--==================Предыдущие показания========================-->
+                <div *ngIf="counterDataBefore.LastCounterDataDTO">
+                    <div class="row">
+                        <div class="col-lg-5 col-lg-offset-3 padding-left-40">
+                            <label class="control-label" for="invoiceDataDay">Предыдущие показания</label>
+                        </div>
                     </div>
-                </div>
-                <!--Дата-->
-                <div class="row">
-                    <div class="col-lg-2 col-lg-offset-3"><span>Дата:</span></div>
-                    <div class="col-lg-3 "><span class="pull-right">{{counterDataBefore.LastReadingDate | dateru }}</span></div>   <!--| date:'d MMM y'-->
-                    <div class="col-lg-3"></div>
-                </div>
+                    <!--Дата-->
+                    <div class="row">
+                        <div class="col-lg-2 col-lg-offset-3"><span>Дата:</span></div>
+                        <div class="col-lg-3 "><span class="pull-right">{{counterDataBefore.LastReadingDate | dateru }}</span></div>   <!--| date:'d MMM y'-->
+                        <div class="col-lg-3"></div>
+                    </div>
 
-                <!--Показания-->
-                <div class="row">
-                    <div class="col-lg-2 col-lg-offset-3"><span>Показания:</span></div>
-                    <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.LastReading}}</span></div>
-                    <div class="col-lg-3"></div>
-                </div>
+                    <!--Показания-->
+                    <div class="row">
+                        <div class="col-lg-2 col-lg-offset-3"><span>Показания:</span></div>
+                        <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.LastReading}}</span></div>
+                        <div class="col-lg-3"></div>
+                    </div>
 
-                <!--Тариф-->
-                <div class="row">
-                    <div class="col-lg-2 col-lg-offset-3"><span>Тариф:</span></div>
-                    <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.Tarif1}}{{counterDataBefore.Tarif2 || counterDataBefore.Tarif2 != 0 ? ' / ' + counterDataBefore.Tarif2 : ''}}{{counterDataBefore.Tarif3 || counterDataBefore.Tarif3 != 0 ? ' / ' + counterDataBefore.Tarif3 : ''}} </span></div>
-                    <div class="col-lg-3"></div>
-                </div>
+                    <!--Тариф-->
+                    <div class="row">
+                        <div class="col-lg-2 col-lg-offset-3"><span>Тариф:</span></div>
+                        <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.LastCounterDataDTO.Tarif1}}{{counterDataBefore.LastCounterDataDTO.Tarif2 || counterDataBefore.LastCounterDataDTO.Tarif2 != 0 ? ' / ' + counterDataBefore.LastCounterDataDTO.Tarif2 : ''}}{{counterDataBefore.LastCounterDataDTO.Tarif3 || counterDataBefore.LastCounterDataDTO.Tarif3 != 0 ? ' / ' + counterDataBefore.LastCounterDataDTO.Tarif3 : ''}} руб</span></div>
+                        <div class="col-lg-3"></div>
+                    </div>
 
-                <!--Сумма-->
-                <div class="row">
-                    <div class="col-lg-2 col-lg-offset-3"><span>Сумма:</span></div>
-                    <div class="col-lg-3"><span class="pull-right">{{counterDataService.getSumForCounter(counterDataBefore, 1)}} руб</span></div>
-                    <div class="col-lg-3"></div>
+                    <!--Сумма-->
+                    <div class="row">
+                        <div class="col-lg-2 col-lg-offset-3"><span>Сумма:</span></div>
+                        <div class="col-lg-3"><span class="pull-right">{{counterDataService.getSumForCounter(counterDataBefore.LastCounterDataDTO, 1)}} руб</span></div>
+                        <div class="col-lg-3"></div>
+                    </div>
                 </div>
 
             </div>

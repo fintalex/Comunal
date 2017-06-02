@@ -39,6 +39,7 @@ namespace Comunal
 
                 cfg.CreateMap<CounterData, CounterDataDTO>()
                     .ForMember(x => x.CounterTarifId, c => c.MapFrom(o => o.CounterTarif.Id))
+                    .ForMember(x => x.CounterTypeId, c => c.MapFrom(o => o.Counter.CounterTypeId))
                     .ForMember(x => x.TarifCount, c => c.MapFrom(o => o.CounterTarif.TarifCount))
                     .ForMember(x => x.Tarif1, c => c.MapFrom(o => o.CounterTarif.Tarif1))
                     .ForMember(x => x.Limit1, c => c.MapFrom(o => o.CounterTarif.Limit1))
@@ -52,9 +53,22 @@ namespace Comunal
                     .ForMember(x => x.ReadingDateYear, c => c.MapFrom(o => o.ReadingDate.Year))
                     .ForMember(x => x.IconPath, c => c.MapFrom(o => o.Counter.CounterType.IconPath))
                     .ForMember(x => x.EnableODN, c => c.MapFrom(o => o.Counter.EnableODN))
-                    .ForMember(x => x.ReadingODN, c => c.MapFrom(o => o.ReadingODN == null ? 0 : o.ReadingODN));
+                    .ForMember(x => x.ReadingODN, c => c.MapFrom(o => o.ReadingODN == null ? 0 : o.ReadingODN))
+                    .ForMember(x => x.LastCounterDataDTO, c => c.MapFrom(o => o.LastCounterData));
                 cfg.CreateMap<CounterDataDTO, CounterData>()
-                    .ForMember(x => x.ReadingDate, c => c.MapFrom(o => new DateTime(o.ReadingDateYear, o.ReadingDateMonth, o.ReadingDateDay)));
+                    .ForMember(x => x.ReadingDate, c => c.MapFrom(o => new DateTime(o.ReadingDateYear, o.ReadingDateMonth, o.ReadingDateDay))); // 
+
+                cfg.CreateMap<CounterData, CounterDataShortDTO>()
+                    .ForMember(x => x.CounterTarifId, c => c.MapFrom(o => o.CounterTarif.Id))
+                    .ForMember(x => x.TarifCount, c => c.MapFrom(o => o.CounterTarif.TarifCount))
+                    .ForMember(x => x.Tarif1, c => c.MapFrom(o => o.CounterTarif.Tarif1))
+                    .ForMember(x => x.Limit1, c => c.MapFrom(o => o.CounterTarif.Limit1))
+                    .ForMember(x => x.Tarif2, c => c.MapFrom(o => o.CounterTarif.Tarif2))
+                    .ForMember(x => x.Limit2, c => c.MapFrom(o => o.CounterTarif.Limit2))
+                    .ForMember(x => x.Tarif3, c => c.MapFrom(o => o.CounterTarif.Tarif3))
+                    .ForMember(x => x.EnableODN, c => c.MapFrom(o => o.Counter.EnableODN))
+                    .ForMember(x => x.ReadingODN, c => c.MapFrom(o => o.ReadingODN == null ? 0 : o.ReadingODN));
+                cfg.CreateMap<CounterDataShortDTO, CounterData>();
 
                 cfg.CreateMap<User, CurrentUserDTO>()
                     .ForMember(x => x.Flat, c => c.MapFrom(o => o.Flats.FirstOrDefault(f => f.Selected)));

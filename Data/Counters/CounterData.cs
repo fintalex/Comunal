@@ -38,6 +38,16 @@ namespace Data
 		public DateTime? LastReadingDate { get; set; }
 
         /// <summary>
+		/// Предыдущие Counter Data ID
+		/// </summary>
+		public int? LastCounterDataId { get; set; }
+
+        /// <summary>
+		/// Предыдущие Counter Data
+		/// </summary>
+		public CounterData LastCounterData { get; set; }
+
+        /// <summary>
         /// Первые показания
         /// </summary>
         public bool IsFirst { get; set; }

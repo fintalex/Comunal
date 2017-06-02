@@ -5,6 +5,7 @@ import { DataService } from '../../services/data.service';
 import { CounterDataService } from '../../services/counterData.service';
 
 import { CounterData } from '../../models/counterData';
+import { Counter } from '../../models/counter';
 
 //export interface EditCounterDataModel {
 //    counterData: {
@@ -26,7 +27,8 @@ export interface EditCounterDataModel {
 })
 export class EditCounterDataComponent extends DialogComponent<EditCounterDataModel, any> implements  OnInit { 
     counterData: CounterData;
-
+    currentCounter: Counter;
+    showCounterPanel: boolean = false;
     counterDataBefore: {} = {};
 
     allMonthes: any[] = [];
@@ -59,6 +61,27 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
             this.result = this.counterData;
             this.close();
         }
+    }
+
+    goToEditTarifCounter() {
+        this.currentCounter = new Counter(this.counterData.CounterName, 0, this.counterData.CounterTypeId, this.counterData.EnableODN, null, 0, this.counterData.CounterTarifId);
+        this.currentCounter.Tarif1 = this.counterData.Tarif1;
+        this.currentCounter.Tarif2 = this.counterData.Tarif2;
+        this.currentCounter.Tarif3 = this.counterData.Tarif3;
+        this.currentCounter.Limit1 = this.counterData.Limit1;
+        this.currentCounter.Limit2 = this.counterData.Limit2;
+        this.currentCounter.TarifCount = this.counterData.TarifCount;
+        this.currentCounter.Id = this.counterData.CounterId;
+        this.showCounterPanel = true;
+    }
+
+    updateCounter(currentCounter: Counter) {
+        console.log(currentCounter);
+        this.showCounterPanel = false;
+        //this.counterService.updateCounter(currentCounter)
+        //    .subscribe(res => {
+        //        this.initCounterList();
+        //    });
     }
 }
 

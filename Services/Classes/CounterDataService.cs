@@ -81,6 +81,8 @@ namespace Services.Classes
                     ReadingDate = DateTime.Now,
                     LastReading = lastCounterData == null ? 0 : lastCounterData.Reading,
                     LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
+                    LastCounterDataId = lastCounterData == null ? (int?)null : lastCounterData.Id,
+                    LastCounterData = lastCounterData,
                     IsFirst = lastCounterData == null ? true : false,
                     BillId = 0
                 };

@@ -35,6 +35,9 @@ export class CounterDataService {
     }
 
     getSumForCounter(countData: CounterData, readingOrODN: number) {
+
+        if (!countData) return 0;
+
         var summ = 0;
         var currentPlusReading = readingOrODN == 1 ? countData.Reading - countData.LastReading : countData.ReadingODN;
 
