@@ -106,5 +106,25 @@ namespace Services.Classes
 
             this.context.Commit();
         }
+
+        ///// <summary>
+        ///// Set new Tariff for Counter Data
+        ///// </summary>
+        ///// <param name="counter"></param>
+        ///// <returns></returns>
+        //public Counter SetNewTariff(Counter counter)
+        //{
+        //    var newTariff = new CounterTarif()
+        //    {
+        //        Limit1 = counter.CounterTarif.Limit1,
+        //        Limit2 = counter.CounterTarif.Limit2,
+        //        Tarif1 = counter.CounterTarif.Tarif1,
+        //        Tarif2 = counter.CounterTarif.Tarif2,
+        //        Tarif3 = counter.CounterTarif.Tarif3,
+        //        TarifCount = counter.CounterTarif.TarifCount
+        //    };
+
+        //    return counter;
+        //}
     }
 }

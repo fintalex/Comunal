@@ -82,7 +82,7 @@
                             <div class="input-group">
                                 <input class="form-control" name="currentTarif" type="text"
                                        disabled="disabled"
-                                       value="{{counterDataBefore.Tarif1}}{{counterDataBefore.Tarif2 || counterDataBefore.Tarif2 != 0 ? ' / ' + counterDataBefore.Tarif2 : ''}}{{counterDataBefore.Tarif3 || counterDataBefore.Tarif3 != 0 ? ' / ' + counterDataBefore.Tarif3 : ''}} руб">
+                                       value="{{counterData.Tarif1}}{{counterData.Tarif2 || counterData.Tarif2 != 0 ? ' / ' + counterData.Tarif2 : ''}}{{counterData.Tarif3 || counterData.Tarif3 != 0 ? ' / ' + counterData.Tarif3 : ''}} руб">
                                 <span class="input-group-btn">
                                     <button class="btn btn-warning" type="button"
                                             (click)="goToEditTarifCounter()" >Редактировать</button>

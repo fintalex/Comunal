@@ -59,5 +59,11 @@ namespace Services.Interfaces
         /// <param name="dateForBill">Date for bill</param>
         /// <returns>List of empty counter Data</returns>
 		IQueryable<CounterData> GetCounterDatasForNewBill(int flatId, DateTime dateForBill);
+
+        /// <summary>
+        /// Set new Tariff for Counter Data
+        /// </summary>
+        /// <param name="counterData"></param>
+        void ChangeTarif(CounterData counterData);
     }
 }

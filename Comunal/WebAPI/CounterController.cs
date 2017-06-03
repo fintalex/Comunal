@@ -60,5 +60,16 @@ namespace Comunal.WebAPI
         {
             this.counterService.DeleteCounter(counterId);
         }
+
+        // ================= Tarifs methods
+        //[HttpPut]
+        //[Route("settarif")]
+        //public CounterDTO CreateTariff(CounterDTO counterDto)
+        //{
+        //    var editedCounter = Mapper.Map<Counter>(counterDto);
+        //    var updatedCounter = this.counterService.SetNewTariff(editedCounter);
+
+        //    return Mapper.Map<CounterDTO>(updatedCounter);
+        //}
     }
 }

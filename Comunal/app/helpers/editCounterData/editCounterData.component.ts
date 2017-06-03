@@ -3,6 +3,7 @@ import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 
 import { DataService } from '../../services/data.service';
 import { CounterDataService } from '../../services/counterData.service';
+import { CounterService } from '../../services/counter.service';
 
 import { CounterData } from '../../models/counterData';
 import { Counter } from '../../models/counter';
@@ -38,7 +39,8 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
     ///  https://www.npmjs.com/package/ng2-bootstrap-modal
     constructor(dialogService: DialogService,
         private dataService: DataService,
-        private counterDataService: CounterDataService) {
+        private counterDataService: CounterDataService,
+        private counterService: CounterService) {
         super(dialogService);
     }
 
@@ -76,12 +78,27 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
     }
 
     updateCounter(currentCounter: Counter) {
-        console.log(currentCounter);
+        
         this.showCounterPanel = false;
-        //this.counterService.updateCounter(currentCounter)
-        //    .subscribe(res => {
-        //        this.initCounterList();
-        //    });
+
+        this.counterData.Tarif1 = currentCounter.Tarif1;
+        this.counterData.Tarif2 = currentCounter.Tarif2;
+        this.counterData.Tarif3 = currentCounter.Tarif3;
+        this.counterData.Limit1 = currentCounter.Limit1;
+        this.counterData.Limit2 = currentCounter.Limit2;
+        this.counterData.TarifCount = currentCounter.TarifCount;
+
+        if (this.counterData.BillId) {
+            this.counterDataService.changeTarif(this.counterData)
+                .subscribe(res => {
+                    console.log(res);
+                });
+        } else {
+            this.counterService.updateCounter(currentCounter)
+                .subscribe(res => {
+                    console.log(res);
+                });
+        }
     }
 }
 

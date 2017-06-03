@@ -139,5 +139,34 @@ namespace Services.Classes
 
 			this.context.Commit();
 		}
-	}
+
+        /// <summary>
+        /// Set new Tariff for Counter Data
+        /// </summary>
+        /// <param name="counterData"></param>
+        public void ChangeTarif (CounterData counterData)
+        {
+            var curCounterData = this.context.CounterDatas.FirstOrDefault(c => c.Id == counterData.Id);
+
+            if(curCounterData != null)
+            {
+                var newTariff = new CounterTarif()
+                {
+                    Limit1 = counterData.CounterTarif.Limit1,
+                    Limit2 = counterData.CounterTarif.Limit2,
+                    Tarif1 = counterData.CounterTarif.Tarif1,
+                    Tarif2 = counterData.CounterTarif.Tarif2,
+                    Tarif3 = counterData.CounterTarif.Tarif3,
+                    TarifCount = counterData.CounterTarif.TarifCount
+                };
+
+                this.context.CounterTarifs.Add(newTariff);
+
+                curCounterData.CounterTarif = newTariff;
+
+                this.context.Commit();
+            }
+        }
+
+    }
 }

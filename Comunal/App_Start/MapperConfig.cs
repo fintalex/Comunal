@@ -56,7 +56,15 @@ namespace Comunal
                     .ForMember(x => x.ReadingODN, c => c.MapFrom(o => o.ReadingODN == null ? 0 : o.ReadingODN))
                     .ForMember(x => x.LastCounterDataDTO, c => c.MapFrom(o => o.LastCounterData));
                 cfg.CreateMap<CounterDataDTO, CounterData>()
-                    .ForMember(x => x.ReadingDate, c => c.MapFrom(o => new DateTime(o.ReadingDateYear, o.ReadingDateMonth, o.ReadingDateDay))); // 
+                    .ForMember(x => x.ReadingDate, c => c.MapFrom(o => new DateTime(o.ReadingDateYear, o.ReadingDateMonth, o.ReadingDateDay)))
+                    .ForMember(x => x.CounterTarif, c => c.MapFrom(o => new CounterTarif() {
+                        Tarif1 = o.Tarif1,
+                        Tarif2 = o.Tarif2,
+                        Tarif3 = o.Tarif3,
+                        Limit1 = o.Limit1,
+                        Limit2 = o.Limit2,
+                        TarifCount = o.TarifCount
+                    }));
 
                 cfg.CreateMap<CounterData, CounterDataShortDTO>()
                     .ForMember(x => x.CounterTarifId, c => c.MapFrom(o => o.CounterTarif.Id))

@@ -51,11 +51,14 @@ namespace Comunal.WebAPI
             return counterDatasList;
         }
 
-        //[HttpPost]
-        //public CounterData AddCounterData([FromBody]CounterData newCounterData)
-        //{
-        //    return this.counterDataService.AddCounterData(newCounterData);
-        //}
+        [HttpPost]
+        [Route("changeTarif")]
+        public void SenNewTarifForCounterDataOnly([FromBody]CounterDataDTO counterData)
+        {
+            var curCounterData = Mapper.Map<CounterData>(counterData);
+
+            this.counterDataService.ChangeTarif(curCounterData);
+        }
 
         //[HttpPut]
         //public void UpdateCounterData(CounterData counterData)

@@ -52,6 +52,13 @@ export class CounterService {
             .catch(this.handleError);
     }
 
+    // ========= Tariff methods =========
+
+    createNewTariff(counter: Counter) {
+        return this.http.put(`${this.apiUrl}/settarif`, counter)
+            .catch(this.handleError);
+    }
+
     private handleError(error: any) {
         console.error('Произошла ошибка', error);
         return Observable.throw(error.message || error);

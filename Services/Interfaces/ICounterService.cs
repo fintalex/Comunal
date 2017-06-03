@@ -41,5 +41,12 @@ namespace Services.Interfaces
         /// </summary>
         /// <returns>Water counters</returns>
         IQueryable<Counter> GetWaterCounters(int flatId);
+
+        ///// <summary>
+        ///// Set new Tariff for Counter Data
+        ///// </summary>
+        ///// <param name="counter"></param>
+        ///// <returns></returns>
+        //Counter SetNewTariff(Counter counter);
     }
 }

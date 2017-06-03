@@ -58,7 +58,13 @@ export class CounterDataService {
 
         return summ;
     }
-    
+
+    changeTarif(countData: CounterData) {
+        return this.http.post(`${this.apiUrl}/changeTarif`, countData)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
 
     private handleError(error: any) {
         console.error('Произошла ошибка', error);
