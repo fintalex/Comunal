@@ -132,11 +132,18 @@ export class BillDetailComponent implements OnInit  {
 
         this.dialogService.addDialog(EditCounterDataComponent,  dataForModalWindow)
             .subscribe((editedCounterData) => {
+                //Object.assign(counterData, editedCounterData);
                 counterData.Reading = parseFloat(editedCounterData.Reading);
                 counterData.ReadingDateDay = editedCounterData.ReadingDateDay;
                 counterData.ReadingDateMonth = editedCounterData.ReadingDateMonth;
                 counterData.ReadingDateYear = editedCounterData.ReadingDateYear;
                 counterData.ReadingODN = editedCounterData.ReadingODN;
+
+                counterData.Tarif1 = parseFloat(editedCounterData.Tarif1);
+                counterData.Tarif2 = parseFloat(editedCounterData.Tarif2);
+                counterData.Tarif3 = parseFloat(editedCounterData.Tarif3);
+                counterData.Limit1 = parseFloat(editedCounterData.Limit1);
+                counterData.Limit2 = parseFloat(editedCounterData.Limit2);
 
                 this.summForBill();
             });

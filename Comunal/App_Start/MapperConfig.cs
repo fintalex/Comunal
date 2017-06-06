@@ -49,14 +49,14 @@ namespace Comunal
                     .ForMember(x => x.CounterName, c => c.MapFrom(o => o.Counter.Name))
                     .ForMember(x => x.CounterId, c => c.MapFrom(o => o.Counter.Id))
                     .ForMember(x => x.ReadingDateDay, c => c.MapFrom(o => o.ReadingDate.Day))
-                    .ForMember(x => x.ReadingDateMonth, c => c.MapFrom(o => o.ReadingDate.Month))
+                    .ForMember(x => x.ReadingDateMonth, c => c.MapFrom(o => o.ReadingDate.Month - 1))
                     .ForMember(x => x.ReadingDateYear, c => c.MapFrom(o => o.ReadingDate.Year))
                     .ForMember(x => x.IconPath, c => c.MapFrom(o => o.Counter.CounterType.IconPath))
                     .ForMember(x => x.EnableODN, c => c.MapFrom(o => o.Counter.EnableODN))
                     .ForMember(x => x.ReadingODN, c => c.MapFrom(o => o.ReadingODN == null ? 0 : o.ReadingODN))
                     .ForMember(x => x.LastCounterDataDTO, c => c.MapFrom(o => o.LastCounterData));
                 cfg.CreateMap<CounterDataDTO, CounterData>()
-                    .ForMember(x => x.ReadingDate, c => c.MapFrom(o => new DateTime(o.ReadingDateYear, o.ReadingDateMonth, o.ReadingDateDay)))
+                    .ForMember(x => x.ReadingDate, c => c.MapFrom(o => new DateTime(o.ReadingDateYear, o.ReadingDateMonth + 1, o.ReadingDateDay)))
                     .ForMember(x => x.CounterTarif, c => c.MapFrom(o => new CounterTarif() {
                         Tarif1 = o.Tarif1,
                         Tarif2 = o.Tarif2,

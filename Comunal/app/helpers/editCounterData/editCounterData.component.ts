@@ -36,6 +36,9 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
     allYears: any[] = [];
     allDays: any[] = [];
 
+    tarifUpdated: boolean = false;
+    counterForUpdate: Counter;
+
     ///  https://www.npmjs.com/package/ng2-bootstrap-modal
     constructor(dialogService: DialogService,
         private dataService: DataService,
@@ -58,10 +61,29 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
 
     apply() {
         if (this.counterDataBefore > this.counterData) {
-
+            return;
         } else {
-            this.result = this.counterData;
-            this.close();
+
+            if (this.tarifUpdated) {
+                if (this.counterData.BillId) {
+                    this.counterDataService.changeTarif(this.counterData)
+                        .subscribe(res => {
+                            console.log(res);
+                            this.result = this.counterData;
+                            this.close();
+                        });
+                } else {
+                    this.counterService.updateCounter(this.counterForUpdate)
+                        .subscribe(res => {
+                            console.log(res);
+                            this.result = this.counterData;
+                            this.close();
+                        });
+                }
+            } else {
+                this.result = this.counterData;
+                this.close();
+            }
         }
     }
 
@@ -88,17 +110,9 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
         this.counterData.Limit2 = currentCounter.Limit2;
         this.counterData.TarifCount = currentCounter.TarifCount;
 
-        if (this.counterData.BillId) {
-            this.counterDataService.changeTarif(this.counterData)
-                .subscribe(res => {
-                    console.log(res);
-                });
-        } else {
-            this.counterService.updateCounter(currentCounter)
-                .subscribe(res => {
-                    console.log(res);
-                });
-        }
+        this.tarifUpdated = true;
+        this.counterForUpdate = new Counter();
+        Object.assign(this.counterForUpdate, currentCounter);
     }
 }
 

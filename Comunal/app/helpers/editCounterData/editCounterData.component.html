@@ -16,20 +16,9 @@
                             <input class="form-control" name="readingData" type="text"
                                    required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$"
                                    [(ngModel)]="counterData.Reading" #readingData="ngModel">
-                            <div *ngIf="readingData.errors && (readingData.dirty || readingData.touched)" class="text-danger">
-                                <div [hidden]="!readingData.errors.required">
-                                    Введите показания счетчика
-                                </div>
-                                <div [hidden]="!readingData.errors.pattern">
-                                    Не верный формат
-                                </div>
-                                <div [hidden]="readingDataBefore <= readingData">
-                                    Показания не могут быть меньше предыдущих
-                                </div>
-                            </div>
                         </div>
                     </div>
-                   
+
                     <!--CounterData - Invoice Day-->
                     <div class="col-lg-7">
                         <label class="control-label" for="invoiceDataDay">Дата внесения</label>
@@ -39,20 +28,35 @@
                                     <option *ngFor="let day of allDays" [value]="day">{{day}}</option>
                                 </select>
                             </li>
-                            <li  class="size-40-pct">
+                            <li class="size-40-pct">
                                 <select class="form-control" name="invoiceDataMonth" [(ngModel)]="counterData.ReadingDateMonth" type="text" required>
                                     <option *ngFor="let month of allMonthes" [value]="month.Id">{{month.Name}}</option>
                                 </select>
                             </li>
-                            <li  class="size-30-pct">
+                            <li class="size-30-pct">
                                 <select class="form-control" name="invoiceDataYear" [(ngModel)]="counterData.ReadingDateYear" type="text" required>
                                     <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
                                 </select>
                             </li>
                         </ul>
                     </div>
-
-
+                </div>
+                <div class="row">
+                    <!--validation for Dirty / Touched / Pattern-->
+                    <div *ngIf="(readingData.errors && (readingData.dirty || readingData.touched))" class="text-danger col-lg-10  col-lg-offset-1">
+                        <div [hidden]="!readingData.errors.required">
+                            Введите показания счетчика
+                        </div>
+                        <div [hidden]="!readingData.errors.pattern">
+                            Не верный формат
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--validation for NOT less then Reading Before-->
+                    <div *ngIf="counterDataBefore.Reading > counterData.Reading" class="text-danger col-lg-10  col-lg-offset-1">
+                        Показания не могут быть меньше предыдущих
+                    </div>
                 </div>
 
 
@@ -144,7 +148,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" (click)="apply()"
-                        [disabled]="editCounterDataForm.form.invalid || readingDataBefore <= readingData">
+                        [disabled]="editCounterDataForm.form.invalid || counterDataBefore.Reading > counterData.Reading">
                     OK
                 </button>
                 <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
