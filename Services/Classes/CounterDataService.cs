@@ -79,7 +79,7 @@ namespace Services.Classes
                     CounterTarif = curCounter.CounterTarif,
                     Reading = lastCounterData == null ? 0 : lastCounterData.Reading,
                     ReadingDate = DateTime.Now,
-                    LastReading = lastCounterData == null ? 0 : lastCounterData.Reading,
+                    //LastReading = lastCounterData == null ? 0 : lastCounterData.Reading,
                     LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
                     LastCounterDataId = lastCounterData == null ? (int?)null : lastCounterData.Id,
                     LastCounterData = lastCounterData,

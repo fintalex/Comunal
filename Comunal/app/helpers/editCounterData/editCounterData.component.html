@@ -126,7 +126,7 @@
                     <!--Показания-->
                     <div class="row">
                         <div class="col-lg-2 col-lg-offset-3"><span>Показания:</span></div>
-                        <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.LastReading}}</span></div>
+                        <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.LastCounterDataDTO ? counterDataBefore.LastCounterDataDTO.Reading : 0}}</span></div>
                         <div class="col-lg-3"></div>
                     </div>
 

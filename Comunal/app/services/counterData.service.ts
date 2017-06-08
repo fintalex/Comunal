@@ -39,7 +39,8 @@ export class CounterDataService {
         if (!countData) return 0;
 
         var summ = 0;
-        var currentPlusReading = readingOrODN == 1 ? countData.Reading - countData.LastReading : countData.ReadingODN;
+        var lastReading = countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0;
+        var currentPlusReading = readingOrODN == 1 ? countData.Reading - lastReading : countData.ReadingODN;
 
         if (!countData.Limit1 || countData.Limit1 == 0 || currentPlusReading <= countData.Limit1) {
             return currentPlusReading * countData.Tarif1;

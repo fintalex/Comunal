@@ -167,6 +167,13 @@ export class BillDetailComponent implements OnInit  {
         
     }
 
+    getStringCurrentData(countData: CounterData) {
+        var result = countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2) +
+            "(+" + countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0)).toFixed(2) : 0;
+
+        return result;
+    }
+
     summForBill() {
         this.currentBill.Summ = 0;
 

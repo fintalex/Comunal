@@ -23,7 +23,7 @@
                                     <div class="col-lg-7 bill-detail-box">
                                         <span class="counter-detail-name">{{countData.CounterName}}</span>
                                         <br /> 
-                                        <span class="counter-detail-summ">{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastReading).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - countData.LastReading).toFixed(2) : 0}})</span>
+                                        <span class="counter-detail-summ">{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0)).toFixed(2) : 0}})</span>
                                         <br /> 
                                         <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1)}} руб</span>
                                     </div>
@@ -33,7 +33,6 @@
                                         <span class="counter-detail-summ pull-right">{{countData.ReadingODN}} руб</span>
                                         <br /> 
                                         <span class="counter-detail-summ pull-right">{{counterDataService.getSumForCounter(countData, 2)}} руб</span>
-                                        <!--<h4 class="pull-right">{{countData.Reading}}</h4>-->
                                     </div>
                                 </div> 
                             </a>

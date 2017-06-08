@@ -12,8 +12,6 @@ namespace DTO
         
         public double Reading { get; set; }
 
-        public double LastReading { get; set; }
-
         public bool EnableODN { get; set; }
 
         public double? ReadingODN { get; set; }

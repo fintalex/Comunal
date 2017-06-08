@@ -18,11 +18,6 @@ namespace Data
 		public double Reading { get; set; }
 
         /// <summary>
-		/// Последние Показания счетчика
-		/// </summary>
-		public double LastReading { get; set; }
-
-        /// <summary>
         /// Общедомовые показания
         /// </summary>
         public double? ReadingODN { get; set; }
