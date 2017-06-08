@@ -26,6 +26,7 @@ import { BillDetailComponent } from './components/bill/bill-detail/bill-detail.c
 
 // =============== App Pipes ====================
 import { DateRu } from './pipes/dateru.pipe';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
                                            
 // =============== Help Components ==========================
 import { ConfirmComponent } from './helpers/confirm/confirm.component';
@@ -72,7 +73,8 @@ import { DataService } from './services/data.service';
         EditCounterDataComponent,
 
         // === pipes ====
-        DateRu
+        DateRu,
+        CapitalizePipe
     ],
     entryComponents: [ // Need to be investigated
         ConfirmComponent,

@@ -4,6 +4,8 @@ import { BillService } from '../../services/bill.service';
 import { AuthService } from '../../services/auth.service';
 
 import { Bill } from '../../models/bill';
+import { CounterData } from '../../models/counterData';
+import { MaintenanceData } from '../../models/maintenanceData';
 
 @Component({
     moduleId: module.id,
@@ -66,5 +68,9 @@ export class BillComponent implements OnInit  {
     selectBill(selectedBill: Bill) {
         this.myBills.forEach(couner => couner.Selected = false);
         selectedBill.Selected = true;
+    }
+
+    getSummForBill(counterDatas: CounterData[], maintenanceDatas: MaintenanceData[]) {
+        return this.billService.getSummForBill(counterDatas);
     }
 }

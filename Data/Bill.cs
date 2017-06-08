@@ -25,10 +25,10 @@ namespace Data
 		/// </summary>
 		public double Fine { get; set; }
 
-		/// <summary>
-		/// Комментарий
-		/// </summary>
-		public string Comment { get; set; }
+        /// <summary>
+        /// Комментарий
+        /// </summary>
+        public string Comment { get; set; }
 
 		#region Navigation properties
 

@@ -11,16 +11,12 @@
                 <tbody>
                     <tr *ngFor="let bill of myBills" [ngClass]="{'info': bill.Selected}">
                         <td>
-                            {{bill.InvoiceDate | date:"MMMM yyyy" : 'ru'}}
+                            {{bill.InvoiceDate | dateru:'MMMM YYYY' | capitalize }}
                         </td>
                         <td>
-                            {{bill.Fine}}
+                            {{getSummForBill(bill.CounterDatas)}} руб
                         </td>
                         <td>
-                            {{bill.Recalculation}}
-                        </td>
-                        <td>
-                            <!--<a [routerLink]="[ '/bill/' + bill.Id ]" >Редактировать</a>-->
                             <a routerLink='/bill/{{bill.Id}}'>Редактировать</a>
                         </td>
                     </tr>
@@ -29,17 +25,9 @@
         </div>
     </div>
 
-    <!--<a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Tooltip on top" >
-        Ссылка с tooltip
-    </a>-->
 
 
     <a class="btn btn-primary" [routerLink]="['/bill/0']">Новый счет</a>
 
-    <!--<new-bill *ngIf="showBillPanel"
-              (create)="createNewBill($event)"
-              (update)="updateBill($event)"
-              (close)="showBillPanel = false"
-              [bill]="currentBill"></сnew-bill>-->
 
 </div>

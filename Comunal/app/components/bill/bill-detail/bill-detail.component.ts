@@ -169,10 +169,8 @@ export class BillDetailComponent implements OnInit  {
 
     summForBill() {
         this.currentBill.Summ = 0;
-        _.forEach(this.counterDatas, (countData: any) => {
-            this.currentBill.Summ += this.counterDataService.getSumForCounter(countData, 1);
-            this.currentBill.Summ += this.counterDataService.getSumForCounter(countData, 2);
-        });
+
+        this.currentBill.Summ = this.billService.getSummForBill(this.counterDatas);
     }
 
     getForPayment() {

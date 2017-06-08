@@ -11,9 +11,5 @@ namespace DTO
         public int Id { get; set; }
 
         public DateTime InvoiceDate { get; set; }
-
-        public double Recalculation { get; set; }
-
-        public double Fine { get; set; }
     }
 }

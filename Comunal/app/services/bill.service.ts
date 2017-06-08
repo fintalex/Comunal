@@ -2,10 +2,14 @@
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { AuthService } from '../services/auth.service';
+import { CounterDataService } from '../services/counterData.service';
 
 import { Observable } from 'rxjs/Observable';
 
 import { Bill } from '../models/bill';
+import { CounterData } from '../models/counterData';
+
+import * as _ from 'underscore';
 
 @Injectable()
 export class BillService {
@@ -14,15 +18,10 @@ export class BillService {
 
     constructor(
         private http: Http,
-        private authService: AuthService) {
+        private authService: AuthService,
+        private counterDataService: CounterDataService) {
 
     }
-
-    //getAllSmallBills(flatId: number): Observable<any[]> {
-    //    return this.http.get(`${this.apiUrl}/allSmallBills/${flatId}`)
-    //        .map(response => response.json())
-    //        .catch(this.handleError);
-    //}
 
     getBill(billId: number): Observable<Bill> {
         return this.http.get(`${this.apiUrl}/${billId}`)
@@ -56,6 +55,18 @@ export class BillService {
     updateBill(bill: Bill) {
         return this.http.put(`${this.apiUrl}`, bill)
             .catch(this.handleError);
+    }
+
+    // then here will be maintainces also
+    getSummForBill(counterDatas: CounterData[]) {
+
+        var summ = 0;
+        _.forEach(counterDatas, (countData: any) => {
+            summ += this.counterDataService.getSumForCounter(countData, 1);
+            summ += this.counterDataService.getSumForCounter(countData, 2);
+        });
+
+        return summ;
     }
 
     private handleError(error: any) {

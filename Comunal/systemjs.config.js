@@ -32,7 +32,8 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 
-      'underscore': 'npm:underscore'
+      'underscore': 'npm:underscore',
+      'moment': 'npm:moment'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -53,6 +54,10 @@
       },
       'underscore': {
           main: './underscore.js',
+          defaultExtension: 'js'
+      },
+      'moment': {
+          main: './moment.js',
           defaultExtension: 'js'
       }
     }

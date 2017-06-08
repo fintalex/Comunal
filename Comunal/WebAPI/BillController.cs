@@ -26,9 +26,9 @@ namespace Comunal.WebAPI
 
         [HttpGet]
         [Route("byFlat/{flatId}")]
-        public IQueryable<BillGridDTO> GetBillsByFlatId(int flatId)
+        public IQueryable<BillDetailDTO> GetBillsByFlatId(int flatId)
         {
-            return this.billService.GetBills(flatId).ProjectTo<BillGridDTO>();
+            return this.billService.GetBills(flatId).ProjectTo<BillDetailDTO>();
         }
 
         ////[HttpGet]

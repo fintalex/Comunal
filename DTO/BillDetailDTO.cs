@@ -18,6 +18,8 @@ namespace DTO
 
         public int InvoiceDateDay { get; set; }
 
+        public DateTime InvoiceDate { get; set; }
+
         public double Fine { get; set; }
 
         public double Recalculation { get; set; }
