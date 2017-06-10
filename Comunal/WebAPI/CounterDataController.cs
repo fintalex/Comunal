@@ -42,6 +42,15 @@ namespace Comunal.WebAPI
             return counterDatasList;
         }
 
+        [HttpGet]
+        [Route("byCounterId/{counterId:int}")]
+        public IQueryable<CounterDataDTO> GetCounterDatasByCounterId(int counterId)
+        {
+            var counterDatas = this.counterDataService.GetCounterDatasByCounter(counterId);
+            var counterDatasList = counterDatas.ProjectTo<CounterDataDTO>();
+            return counterDatasList;
+        }
+
         [HttpPost]
         [Route("forNewBill")]
         public IQueryable<CounterDataDTO> GetCounterDatasForNewBill(BillDetailDTO billDTO)

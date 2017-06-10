@@ -2,10 +2,12 @@
 import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
 import { CounterService } from '../../services/counter.service';
+import { CounterDataService } from '../../services/counterData.service';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { AuthService } from '../../services/auth.service';
 
 import { Counter } from '../../models/counter';
+import { CounterData } from '../../models/counterData';
 
 @Component({
     moduleId: module.id,
@@ -16,9 +18,12 @@ export class CounterComponent implements OnInit  {
     myCounters: Counter[] = [];
     showCounterPanel: boolean = false;
     currentCounter: Counter;
+    counterDatas: CounterData[];
+
 
     constructor(
         private counterService: CounterService,
+        private counterDataService: CounterDataService,
         private dialogService: DialogService,
         private authService: AuthService
     ) { }
@@ -89,5 +94,12 @@ export class CounterComponent implements OnInit  {
     selectCounter(selectedCounter: Counter) {
         this.myCounters.forEach(couner => couner.Selected = false);
         selectedCounter.Selected = true;
+        this.currentCounter = selectedCounter;
+
+        // get history
+        this.counterDataService.getCounterDatasByCounterId(selectedCounter.Id)
+            .subscribe(counterDatas => {
+                this.counterDatas = counterDatas;
+            });
     }
 }

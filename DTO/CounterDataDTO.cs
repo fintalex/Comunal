@@ -8,7 +8,7 @@ namespace DTO
 {
     public class CounterDataDTO
     {
-		public int Id { get; set; }
+        public int Id { get; set; }
         
         public double Reading { get; set; }
 
@@ -21,6 +21,8 @@ namespace DTO
         public int ReadingDateMonth { get; set; }
 
         public int ReadingDateYear { get; set; }
+
+        public DateTime ReadingDate { get; set; }
 
         public DateTime? LastReadingDate { get; set; }
 

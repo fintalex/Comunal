@@ -34,6 +34,12 @@ export class CounterDataService {
             .catch(this.handleError);
     }
 
+    getCounterDatasByCounterId(counterId: number): Observable<CounterData[]> {
+        return this.http.get(`${this.apiUrl}/byCounterId/${counterId}`)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
     getSumForCounter(countData: CounterData, readingOrODN: number) {
 
         if (!countData) return 0;

@@ -65,5 +65,12 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="counterData"></param>
         void ChangeTarif(CounterData counterData);
+
+        /// <summary>
+		/// Get CounterDatas by Counter Id
+		/// </summary>
+		/// <param name="counterId">Counter Id</param>
+		/// <returns>Counter Datas</returns>
+		IQueryable<CounterData> GetCounterDatasByCounter(int counterId);
     }
 }

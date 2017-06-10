@@ -52,6 +52,18 @@ namespace Services.Classes
         }
 
         /// <summary>
+		/// Get CounterDatas by Counter Id
+		/// </summary>
+		/// <param name="counterId">Counter Id</param>
+		/// <returns>Counter Datas</returns>
+		public IQueryable<CounterData> GetCounterDatasByCounter(int counterId)
+        {
+            return this.context.CounterDatas
+                .Where(cd => cd.CounterId == counterId)
+                .OrderBy(c => c.ReadingDate);
+        }
+
+        /// <summary>
         /// Get CounterDatas for new Bill
         /// </summary>
         /// <param name="flatId">Flat id</param>
