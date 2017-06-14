@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Bill } from '../models/bill';
 import { CounterData } from '../models/counterData';
+import { MaintenanceData } from '../models/maintenanceData';
 
 import * as _ from 'underscore';
 
@@ -58,12 +59,16 @@ export class BillService {
     }
 
     // then here will be maintainces also
-    getSummForBill(counterDatas: CounterData[]) {
+    getSummForBill(counterDatas: CounterData[], maintenanceData: MaintenanceData[]) {
 
         var summ = 0;
         _.forEach(counterDatas, (countData: any) => {
             summ += this.counterDataService.getSumForCounter(countData, 1);
             summ += this.counterDataService.getSumForCounter(countData, 2);
+        });
+
+        _.forEach(maintenanceData, (maintData: any) => {
+            summ += maintData.Cost * maintData.Coefficient;
         });
 
         return summ;

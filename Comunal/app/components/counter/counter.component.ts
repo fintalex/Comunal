@@ -20,7 +20,6 @@ export class CounterComponent implements OnInit  {
     currentCounter: Counter;
     counterDatas: CounterData[];
 
-
     constructor(
         private counterService: CounterService,
         private counterDataService: CounterDataService,

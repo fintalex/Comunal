@@ -8,15 +8,6 @@ import { CounterService } from '../../services/counter.service';
 import { CounterData } from '../../models/counterData';
 import { Counter } from '../../models/counter';
 
-//export interface EditCounterDataModel {
-//    counterData: {
-//        dateDay: number,
-//        dateMonth: number,
-//        dateYear: number,
-//        reading: number,
-//    }
-//}
-
 export interface EditCounterDataModel {
     counterData: CounterData
 }

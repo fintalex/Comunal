@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditCounterDataComponent } from '../../../helpers/editCounterData/editCounterData.component';
+import { EditMaintenanceDataComponent } from '../../../helpers/editMaintenanceData/editMaintenanceData.component';
 
 import { BillService } from '../../../services/bill.service';
 import { CounterDataService } from '../../../services/counterData.service';
@@ -92,6 +93,7 @@ export class BillDetailComponent implements OnInit  {
             this.maintenanceDataService.getMaintenanceDatasByBillId(this.billId)
                 .subscribe(maintenanceDatas => {
                     this.maintenanceDatas = maintenanceDatas;
+                    this.summForBill();
                 });
         } else {
 
@@ -104,6 +106,7 @@ export class BillDetailComponent implements OnInit  {
             this.maintenanceDataService.getMaintenanceDatasForNewBill(this.authService.CurrentUser.Flat.Id)
                 .subscribe(newMaintenanceDatas => {
                     this.maintenanceDatas = newMaintenanceDatas;
+                    this.summForBill();
                 });
         }
     }
@@ -149,6 +152,21 @@ export class BillDetailComponent implements OnInit  {
             });
     }
 
+    editMaintenanceData(maintData: MaintenanceData) {
+        var dataForModalWindow = {
+            maintenanceData: {}
+        };
+
+        Object.assign(dataForModalWindow.maintenanceData, maintData);
+
+        this.dialogService.addDialog(EditMaintenanceDataComponent, dataForModalWindow)
+            .subscribe((editedMaintenanceData) => {
+                console.log(editedMaintenanceData);
+
+                this.summForBill();
+            });
+    }
+
     saveBill() {
         this.currentBill.CounterDatas = this.counterDatas;
         this.currentBill.MaintenanceDatas = this.maintenanceDatas;
@@ -177,7 +195,7 @@ export class BillDetailComponent implements OnInit  {
     summForBill() {
         this.currentBill.Summ = 0;
 
-        this.currentBill.Summ = this.billService.getSummForBill(this.counterDatas);
+        this.currentBill.Summ = this.billService.getSummForBill(this.counterDatas, this.maintenanceDatas);
     }
 
     getForPayment() {

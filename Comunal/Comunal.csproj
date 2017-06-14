@@ -229,6 +229,7 @@
     <Content Include="app\components\register\register.component.html" />
     <Content Include="app\components\login\login.component.html" />
     <Content Include="app\components\navbar\navbar.component.html" />
+    <Content Include="app\helpers\editMaintenanceData\editMaintenanceData.component.html" />
     <Content Include="app\helpers\editCounterData\editCounterData.component.html" />
     <Content Include="app\helpers\confirm\confirm.component.html" />
     <Content Include="Content\bootstrap.css" />
@@ -312,6 +313,7 @@
     <TypeScriptCompile Include="app\components\login\login.component.ts" />
     <TypeScriptCompile Include="app\components\navbar\navbar.component.ts" />
     <TypeScriptCompile Include="app\config.ts" />
+    <TypeScriptCompile Include="app\helpers\editMaintenanceData\editMaintenanceData.component.ts" />
     <TypeScriptCompile Include="app\helpers\editCounterData\editCounterData.component.ts" />
     <TypeScriptCompile Include="app\helpers\confirm\confirm.component.ts" />
     <TypeScriptCompile Include="app\models\bill.ts" />

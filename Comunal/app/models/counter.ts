@@ -2,6 +2,7 @@
     Id: number;
     Selected: boolean;
     TarifCount: number;
+    IconPath: string;
 
     Tarif1: number;
     Limit1: number;

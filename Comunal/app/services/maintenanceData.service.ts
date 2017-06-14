@@ -28,6 +28,12 @@ export class MaintenanceDataService {
             .catch(this.handleError);
     }
 
+    getMaintenanceDatasByMaintenanceId(maintenanceId: number): Observable<MaintenanceData[]> {
+        return this.http.get(`${this.apiUrl}/byMaintenanceId/${maintenanceId}`)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
     private handleError(error: any) {
         console.error('Произошла ошибка', error);
         return Observable.throw(error.message || error);

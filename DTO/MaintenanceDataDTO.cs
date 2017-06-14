@@ -18,6 +18,8 @@ namespace DTO
 
 		public string IconPath { get; set; }
 
+        public double Coefficient { get; set; }
+
 
         public int BillId { get; set; }
         
@@ -25,5 +27,7 @@ namespace DTO
         public int MaintenanceTarifId { get; set; }
 
         public double Tarif { get; set; }
+
+        public DateTime? InvoiceDate { get; set; }
     }
 }

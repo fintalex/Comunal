@@ -19,13 +19,6 @@ namespace Comunal.WebAPI
 		}
 
         [HttpGet]
-        [Route("byMaintenanceId/{maintenanceId:int}")]
-        public IQueryable<MaintenanceDataDTO> GetMaintenanceDatas(int maintenanceId)
-        {
-            return this.maintenanceDataService.GetMaintenanceDatas(maintenanceId).ProjectTo<MaintenanceDataDTO>(); ;
-        }
-
-        [HttpGet]
         [Route("byBillId/{billId:int}")]
         public IQueryable<MaintenanceDataDTO> GetMaintenanceDatasByBillId(int billId)
         {
@@ -39,6 +32,14 @@ namespace Comunal.WebAPI
         public IQueryable<MaintenanceDataDTO> GetMaintenanceDatasForNewBill(int flatId)
         {
             var maintenanceDatasDto = this.maintenanceDataService.GetMaintenanceDatasForNewBill(flatId).ProjectTo<MaintenanceDataDTO>();
+            return maintenanceDatasDto;
+        }
+
+        [HttpGet]
+        [Route("byMaintenanceId/{maintenanceId:int}")]
+        public IQueryable<MaintenanceDataDTO> GetMaintinanceDatasByMaintenanceId(int maintenanceId)
+        {
+            var maintenanceDatasDto = this.maintenanceDataService.GetMaintenanceDatasByMaintenance(maintenanceId).ProjectTo<MaintenanceDataDTO>();
             return maintenanceDatasDto;
         }
     }

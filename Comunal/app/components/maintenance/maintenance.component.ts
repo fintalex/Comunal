@@ -2,10 +2,12 @@
 import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
 import { MaintenanceService } from '../../services/maintenance.service';
+import { MaintenanceDataService } from '../../services/maintenanceData.service';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { AuthService } from '../../services/auth.service';
 
 import { Maintenance } from '../../models/maintenance';
+import { MaintenanceData } from '../../models/maintenanceData';
 
 @Component({
     moduleId: module.id,
@@ -16,9 +18,11 @@ export class MaintenanceComponent implements OnInit  {
     myMaintenances: Maintenance[] = [];
     showMaintenancePanel: boolean = false;
     currentMaintenance: Maintenance;
+    maintenanceDatas: MaintenanceData[];
 
     constructor(
         private maintenanceService: MaintenanceService,
+        private maintenanceDataService: MaintenanceDataService,
         private dialogService: DialogService,
         private authService: AuthService
     ) { }
@@ -89,5 +93,12 @@ export class MaintenanceComponent implements OnInit  {
     selectMaintenance(selectedMaintenance: Maintenance) {
         this.myMaintenances.forEach(maintenance => maintenance.Selected = false);
         selectedMaintenance.Selected = true;
+        this.currentMaintenance = selectedMaintenance;
+
+        // get history
+        this.maintenanceDataService.getMaintenanceDatasByMaintenanceId(selectedMaintenance.Id)
+            .subscribe(maintenanceDatas => {
+                this.maintenanceDatas = maintenanceDatas;
+            });
     }
 }

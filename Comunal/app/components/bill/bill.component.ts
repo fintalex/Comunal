@@ -71,6 +71,6 @@ export class BillComponent implements OnInit  {
     }
 
     getSummForBill(counterDatas: CounterData[], maintenanceDatas: MaintenanceData[]) {
-        return this.billService.getSummForBill(counterDatas);
+        return this.billService.getSummForBill(counterDatas, maintenanceDatas);
     }
 }

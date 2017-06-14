@@ -60,7 +60,7 @@ namespace Services.Classes
         {
             return this.context.CounterDatas
                 .Where(cd => cd.CounterId == counterId)
-                .OrderBy(c => c.ReadingDate);
+                .OrderByDescending(c => c.ReadingDate);
         }
 
         /// <summary>

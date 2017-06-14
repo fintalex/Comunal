@@ -30,16 +30,6 @@ namespace Services.Classes
         }
 
         /// <summary>
-        /// Get all Maintenances Datas by MaintenanceId
-        /// </summary>
-        /// <returns></returns>
-        public IQueryable<MaintenanceData> GetMaintenanceDatas(int maintenanceId)
-        {
-            return this.context.MaintenanceDatas
-                .Where(m => m.MaintenanceId == maintenanceId);
-        }
-
-        /// <summary>
         /// Delete maintenanceData by id
         /// </summary>
         /// <param name="id">Maintenance Data id</param>
@@ -84,6 +74,18 @@ namespace Services.Classes
             }
 
             return maintenanceDatas.AsQueryable();
+        }
+
+        /// <summary>
+        /// Get Maintenance Data By MaintenanceId
+        /// </summary>
+        /// <param name="maintenanceId">Maintenance Id</param>
+        /// <returns>Maintenance Datas</returns>
+        public IQueryable<MaintenanceData> GetMaintenanceDatasByMaintenance(int maintenanceId)
+        {
+            return this.context.MaintenanceDatas
+                .Where(m => m.MaintenanceId == maintenanceId)
+                .OrderByDescending(m => m.Bill.InvoiceDate);
         }
 
     }

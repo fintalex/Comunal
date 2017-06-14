@@ -31,6 +31,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
 // =============== Help Components ==========================
 import { ConfirmComponent } from './helpers/confirm/confirm.component';
 import { EditCounterDataComponent } from './helpers/editCounterData/editCounterData.component';
+import { EditMaintenanceDataComponent } from './helpers/editMaintenanceData/editMaintenanceData.component';
 
 // =============== Services ==========================
 import { FlatService } from './services/flat.service';
@@ -69,8 +70,10 @@ import { DataService } from './services/data.service';
         NewCounterComponent,
         NewMaintenanceComponent,
         BillDetailComponent,
+        // === helpers ====
         ConfirmComponent,
         EditCounterDataComponent,
+        EditMaintenanceDataComponent,
 
         // === pipes ====
         DateRu,
@@ -78,7 +81,8 @@ import { DataService } from './services/data.service';
     ],
     entryComponents: [ // Need to be investigated
         ConfirmComponent,
-        EditCounterDataComponent
+        EditCounterDataComponent,
+        EditMaintenanceDataComponent
     ],
     providers: [
         GuardService,

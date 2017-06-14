@@ -4,6 +4,8 @@
     Tarif: number;
     IconPath: number;
     Cost: number;
+    Coefficient: number;
+    InvoiceDate: Date;
 
     constructor(
         public MaintenanceName: string = null,

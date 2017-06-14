@@ -22,19 +22,19 @@
                                     </div>
                                     <div class="col-lg-7 bill-detail-box">
                                         <span class="counter-detail-name">{{countData.CounterName}}</span>
-                                        <br /> 
+                                        <br />
                                         <span class="counter-detail-summ">{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0)).toFixed(2) : 0}})</span>
-                                        <br /> 
+                                        <br />
                                         <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1)}} руб</span>
                                     </div>
                                     <div class="col-lg-3 bill-detail-box" *ngIf="countData.EnableODN">
                                         <span class="counter-detail-name pull-right">ОДН</span>
-                                        <br /> 
+                                        <br />
                                         <span class="counter-detail-summ pull-right">{{countData.ReadingODN}}</span>
-                                        <br /> 
+                                        <br />
                                         <span class="counter-detail-summ pull-right">{{counterDataService.getSumForCounter(countData, 2)}} руб</span>
                                     </div>
-                                </div> 
+                                </div>
                             </a>
                         </template>
 
@@ -47,10 +47,18 @@
                     <div class="list-group">
 
                         <template ngFor let-maintData [ngForOf]="maintenanceDatas">
-                            <a class="list-group-item">
-                                <img width="50" height="50" [src]="maintData.IconPath" />
-                                {{maintData.MaintenanceName}}
-                                <h4 class="pull-right">{{maintData.Cost}}</h4>
+                            <a class="list-group-item" (click)="editMaintenanceData(maintData)">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img width="50" height="50" [src]="maintData.IconPath" />
+                                    </div>
+                                    <div class="col-lg-7 bill-detail-box">
+                                        <span class="counter-detail-name">{{maintData.MaintenanceName}}</span>
+                                    </div>
+                                    <div class="col-lg-3 bill-detail-box">
+                                        <span class="counter-detail-name pull-right">{{maintData.Cost * maintData.Coefficient}} руб</span>
+                                    </div>
+                                </div>
                             </a>
                         </template>
 
@@ -67,16 +75,16 @@
                 <label class="control-label" for="date">Дата</label>
                 <ul class="nav nav-pills" *ngIf="allBills || currentBill.Id">
                     <li>
-                        <select class="form-control" name="month" 
+                        <select class="form-control" name="month"
                                 [(ngModel)]="currentBill.InvoiceDateMonth"
                                 [disabled]="currentBill.Id"
                                 (ngModelChange)="getBillDetails($event)" type="text" required>
-                            <option *ngFor="let month of getExistingMonths()" [value]="month.Id"  >{{month.Name}}</option>
+                            <option *ngFor="let month of getExistingMonths()" [value]="month.Id">{{month.Name}}</option>
                         </select>
                     </li>
                     <li>
-                        <select class="form-control" name="yearForBill" 
-                                [(ngModel)]="currentBill.InvoiceDateYear" 
+                        <select class="form-control" name="yearForBill"
+                                [(ngModel)]="currentBill.InvoiceDateYear"
                                 [disabled]="currentBill.Id"
                                 (ngModelChange)="getBillDetails($event)" type="text" required>
                             <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
@@ -101,7 +109,7 @@
 
             <div class="form-group">
                 <label class="control-label" for="forPay">К оплате</label>
-                <input class="form-control" name="forPay" type="text" readonly="readonly" 
+                <input class="form-control" name="forPay" type="text" readonly="readonly"
                        [value]="getForPayment()" />
             </div>
 

@@ -1,0 +1,25 @@
+﻿
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form (ngSubmit)="apply();" #editMaintenanceDataForm="ngForm">
+
+            <div class="modal-header">
+                <button type="button" class="close" (click)="close()">&times;</button>
+                <h4 class="modal-title">Изменить тариф услуги</h4>
+            </div>
+
+            <div class="modal-body">
+                <new-maintenance (update)="updateMaintenance($event)"
+                                 [maintenance]="maintenanceDataBefore"></new-maintenance>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="apply()">OK</button>
+
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+</div>

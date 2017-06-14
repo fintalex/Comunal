@@ -28,6 +28,8 @@ namespace DTO
 
         public string CounterTypeName { get; set; }
 
+        public string IconPath { get; set; }
+
 
         public int? CounterTarifId { get; set; }
 
