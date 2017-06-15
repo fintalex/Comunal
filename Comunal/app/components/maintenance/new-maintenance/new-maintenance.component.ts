@@ -23,10 +23,7 @@ export class NewMaintenanceComponent implements OnInit  {
     @Input() maintenance: Maintenance;
 
     maintenanceType: any;
-    userName: any;
-    //myWaterCounters: Counter[] = [];
 
-    optionsModel: number[];
     myWaterCounters: IMultiSelectOption[] = [];
 
     constructor(
@@ -52,7 +49,7 @@ export class NewMaintenanceComponent implements OnInit  {
     }
 
     onChange() {
-        console.log(this.optionsModel);
+        console.log('Hello');
     }
 
     onTypeChange() {

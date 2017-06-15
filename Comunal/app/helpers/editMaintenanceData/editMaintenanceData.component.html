@@ -1,23 +1,103 @@
 ﻿
-
 <div class="modal-dialog">
     <div class="modal-content">
         <form (ngSubmit)="apply();" #editMaintenanceDataForm="ngForm">
 
             <div class="modal-header">
                 <button type="button" class="close" (click)="close()">&times;</button>
-                <h4 class="modal-title">Изменить тариф услуги</h4>
+                <h4 class="modal-title">{{maintenance.Id ? 'Редактирование' : 'Создание'}} услуги</h4>
             </div>
 
             <div class="modal-body">
-                <new-maintenance (update)="updateMaintenance($event)"
-                                 [maintenance]="maintenanceDataBefore"></new-maintenance>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label" for="newMaintenanceName">Название услуги</label>
+                        <input class="form-control" name="newMaintenanceName" type="text" [(ngModel)]="maintenance.Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="maintenanceTypeId">Способ расчета</label>
+                        <select class="form-control" name="maintenanceTypeId" placeholder="Укажите тип услуги"
+                                [(ngModel)]="maintenance.MaintenanceTypeId" required
+                                (ngModelChange)="onTypeChange($event)">
+                            <option [value]="1">Фиксированная стоимость</option>
+                            <option [value]="2">По количеству жильцов/площади</option>
+                            <option [value]="3" *ngIf="myWaterCounters.length > 0">Водоотведение</option>
+                            <option [value]="4" *ngIf="myWaterCounters.length > 0">Подогрев воды</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" *ngIf="maintenance.MaintenanceTypeId && myWaterCounters.length > 0 && (maintenance.MaintenanceTypeId == 3 || maintenance.MaintenanceTypeId == 4)">
+                        <label class="control-label" for="multyForType4">Список счетчиков</label>
+                        <ss-multiselect-dropdown name="multyForType4" required *ngIf="maintenance.MaintenanceTypeId == 4"
+                                                 [options]="myWaterCounters"
+                                                 [(ngModel)]="maintenance.Counters"
+                                                 [texts]="myTexts"
+                                                 [settings]="{selectionLimit: 1,
+                                                          autoUnselect: true,
+                                                          buttonClasses: 'form-control' }"
+                                                 (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                        <ss-multiselect-dropdown name="multyForType3" required *ngIf="maintenance.MaintenanceTypeId == 3"
+                                                 [options]="myWaterCounters"
+                                                 [(ngModel)]="maintenance.Counters"
+                                                 [texts]="myTexts"
+                                                 [settings]="{selectionLimit: 0,
+                                                          buttonClasses: 'form-control'}"
+                                                 (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label" for="tarif">Тариф</label>
+                        <input class="form-control" name="tarif" type="text"
+                               [(ngModel)]="maintenance.Tarif" #tarif="ngModel"
+                               required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                        <div *ngIf="tarif.errors && (tarif.dirty || tarif.touched)" class="text-danger">
+                            <div [hidden]="!tarif.errors.required">
+                                Укажите тариф
+                            </div>
+                            <div [hidden]="!tarif.errors.pattern">
+                                Тариф не валидный
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" *ngIf="maintenance.MaintenanceTypeId == 2 || maintenance.MaintenanceTypeId == 4">
+                        <label class="control-label" for="coefficient">Коэффициент</label>
+                        <input class="form-control" name="coefficient" type="text"
+                               [(ngModel)]="maintenance.Coefficient" #coefficient="ngModel"
+                               required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                        <div *ngIf="coefficient.errors && (coefficient.dirty || coefficient.touched)" class="text-danger">
+                            <div [hidden]="!coefficient.errors.required">
+                                Укажите коэффициент
+                            </div>
+                            <div [hidden]="!coefficient.errors.pattern">
+                                Коэффициент не валидный
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="apply()">OK</button>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right" *ngIf="!maintenance.Id"
+                                [disabled]="editMaintenanceDataForm.form.invalid">
+                            Добавить услугу
+                        </button>
+                        <button type="submit" class="btn btn-primary pull-right" *ngIf="maintenance.Id"
+                                [disabled]="editMaintenanceDataForm.form.invalid">
+                            Сохранить услугу
+                        </button>
+                    </div>
+                </div>
+                <!--<button type="button" class="btn btn-primary" (click)="apply()">OK</button>
 
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>-->
             </div>
 
         </form>

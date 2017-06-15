@@ -154,17 +154,20 @@ export class BillDetailComponent implements OnInit  {
 
     editMaintenanceData(maintData: MaintenanceData) {
         var dataForModalWindow = {
-            maintenanceData: {}
+            maintenance: {}
         };
 
-        Object.assign(dataForModalWindow.maintenanceData, maintData);
+        // here we need to pass Maintenance instead MaintenanceData
+        //Object.assign(dataForModalWindow.maintenance, maintData);
 
-        this.dialogService.addDialog(EditMaintenanceDataComponent, dataForModalWindow)
-            .subscribe((editedMaintenanceData) => {
-                console.log(editedMaintenanceData);
+        //this.dialogService.addDialog(EditMaintenanceDataComponent, dataForModalWindow)
+        //    .subscribe((editedMaintenanceData) => {
+        //        console.log(editedMaintenanceData);
 
-                this.summForBill();
-            });
+        //        this.summForBill();
+        //    });
+
+
     }
 
     saveBill() {

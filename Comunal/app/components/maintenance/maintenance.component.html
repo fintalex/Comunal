@@ -41,14 +41,7 @@
 
 
     <a class="btn btn-primary"
-       *ngIf="!showMaintenancePanel"
        (click)="goToNewMaintenance()">Новая услуга</a>
-
-    <new-maintenance *ngIf="showMaintenancePanel"
-              (create)="createNewMaintenance($event)"
-              (update)="updateMaintenance($event)"
-              (close)="showMaintenancePanel = false"
-              [maintenance]="currentMaintenance"></new-maintenance>
 
 </div>
 

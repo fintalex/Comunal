@@ -1,10 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
-import 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import { EditMaintenanceDataComponent } from '../helpers/editMaintenanceData/editMaintenanceData.component';
+
+import { DialogService } from 'ng2-bootstrap-modal';
+
 import { Observable } from 'rxjs/Observable';
 
 import { Maintenance } from '../models/maintenance';
@@ -14,7 +14,9 @@ export class MaintenanceService {
     maintenances: Maintenance[];
     private apiUrl = 'api/Maintenances'
 
-    constructor(private http: Http) {
+    constructor(private http: Http,
+        private dialogService: DialogService
+    ) {
 
     }
     
@@ -45,6 +47,18 @@ export class MaintenanceService {
         return this.http.put(`${this.apiUrl}`, maintenance)
             .catch(this.handleError);
     }
+
+
+    openMaintenanceWindow(maintenance: Maintenance): Observable<Maintenance> {
+        var dataForModalWindow = {
+            maintenance: {}
+        };
+
+        Object.assign(dataForModalWindow.maintenance, maintenance);
+
+        return this.dialogService.addDialog(EditMaintenanceDataComponent, dataForModalWindow);
+    }
+
 
     private handleError(error: any) {
         console.error('Произошла ошибка', error);

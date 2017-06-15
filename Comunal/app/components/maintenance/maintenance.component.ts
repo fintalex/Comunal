@@ -16,7 +16,6 @@ import { MaintenanceData } from '../../models/maintenanceData';
 })
 export class MaintenanceComponent implements OnInit  {
     myMaintenances: Maintenance[] = [];
-    showMaintenancePanel: boolean = false;
     currentMaintenance: Maintenance;
     maintenanceDatas: MaintenanceData[];
 
@@ -38,9 +37,30 @@ export class MaintenanceComponent implements OnInit  {
             });
     }
 
+    // Press EDIT in UI
+    editMaintenance(currentMaintenance: Maintenance, event: any) {
+        event.stopPropagation();
+        console.log(currentMaintenance);
+        this.currentMaintenance = Object.assign({}, currentMaintenance);
+        this.maintenanceService.openMaintenanceWindow(this.currentMaintenance)
+            .subscribe((editedMaintenance) => {
+                console.log(editedMaintenance);
+                if (editedMaintenance) {
+                    this.updateMaintenance(editedMaintenance);
+                }
+            });
+    }
+    // Press NEW in UI
     goToNewMaintenance() {
+        event.stopPropagation();
         this.currentMaintenance = null;
-        this.showMaintenancePanel = true;
+        var maint = new Maintenance();
+        this.maintenanceService.openMaintenanceWindow(maint)
+            .subscribe((newMaintenance) => {
+                if (newMaintenance) {
+                    this.createNewMaintenance(newMaintenance);
+                }
+            });
     }
 
     createNewMaintenance(newMaintenance: Maintenance) {
@@ -49,20 +69,11 @@ export class MaintenanceComponent implements OnInit  {
             .subscribe(maintenance => {
                 console.log(maintenance);
                 this.myMaintenances.push(maintenance);
-                this.showMaintenancePanel = false;
             });
-    }
-
-    editMaintenance(currentMaintenance: Maintenance, event: any) {
-        event.stopPropagation();
-        console.log(currentMaintenance);
-        this.currentMaintenance = Object.assign({}, currentMaintenance);
-        this.showMaintenancePanel = true;
     }
 
     updateMaintenance(currentMaintenance: Maintenance) {
         console.log(currentMaintenance);
-        this.showMaintenancePanel = false;
         this.maintenanceService.updateMaintenance(currentMaintenance)
             .subscribe(res => {
                 this.initMaintenanceList();
@@ -83,7 +94,7 @@ export class MaintenanceComponent implements OnInit  {
                             }
 
                             if (currentMaintenance.Id == this.currentMaintenance.Id) {
-                                this.showMaintenancePanel = false;
+
                             }
                         });
                 }
