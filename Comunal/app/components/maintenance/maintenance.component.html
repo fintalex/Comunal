@@ -63,7 +63,7 @@
                             <span class="counter-detail-summ">{{maintData.InvoiceDate | dateru:'MMMM YYYY' | capitalize }}</span>
                         </td>
                         <td>
-                            <span class="counter-detail-summ">{{(maintData.Cost * maintData.Coefficient).toFixed(2)}} руб</span>
+                            <span class="counter-detail-summ">{{(maintData.Tarif * maintData.Coefficient).toFixed(2)}} руб</span>
                         </td>
                     </tr>
                 </tbody>

@@ -6,6 +6,7 @@ import { EditMaintenanceDataComponent } from '../../../helpers/editMaintenanceDa
 import { BillService } from '../../../services/bill.service';
 import { CounterDataService } from '../../../services/counterData.service';
 import { MaintenanceDataService } from '../../../services/maintenanceData.service';
+import { MaintenanceService } from '../../../services/maintenance.service';
 import { AuthService } from '../../../services/auth.service';
 import { DataService } from '../../../services/data.service';
 import { DialogService } from 'ng2-bootstrap-modal';
@@ -13,6 +14,7 @@ import { DialogService } from 'ng2-bootstrap-modal';
 import { Bill } from '../../../models/bill';
 import { CounterData } from '../../../models/counterData';
 import { MaintenanceData } from '../../../models/maintenanceData';
+import { Maintenance } from '../../../models/maintenance';
 
 import * as _ from 'underscore';
 
@@ -42,6 +44,7 @@ export class BillDetailComponent implements OnInit  {
         private dataService: DataService,
         private counterDataService: CounterDataService,
         private maintenanceDataService: MaintenanceDataService,
+        private maintenanceService: MaintenanceService,
         private dialogService: DialogService,
     ) {    }
 
@@ -153,21 +156,27 @@ export class BillDetailComponent implements OnInit  {
     }
 
     editMaintenanceData(maintData: MaintenanceData) {
-        var dataForModalWindow = {
-            maintenance: {}
-        };
+        var curMaintenance = maintData.Maintenance;
+        curMaintenance.Tarif = maintData.Tarif;
+        curMaintenance.Id = maintData.MaintenanceId;
+        
+        this.maintenanceService.openMaintenanceWindow(curMaintenance)
+            .subscribe((resMaintenance: any) => {
 
-        // here we need to pass Maintenance instead MaintenanceData
-        //Object.assign(dataForModalWindow.maintenance, maintData);
-
-        //this.dialogService.addDialog(EditMaintenanceDataComponent, dataForModalWindow)
-        //    .subscribe((editedMaintenanceData) => {
-        //        console.log(editedMaintenanceData);
-
-        //        this.summForBill();
-        //    });
+                maintData.Tarif = parseFloat(resMaintenance.Tarif);
 
 
+
+
+
+
+
+
+
+
+
+                this.summForBill();
+            });
     }
 
     saveBill() {

@@ -93,9 +93,10 @@ namespace Comunal
                     .ForMember(x => x.Counters, c => c.MapFrom(o => o.Counters.Select(co => new Counter() { Id = co })));
 
                 cfg.CreateMap<MaintenanceData, MaintenanceDataDTO>()
-                    .ForMember(x => x.Cost, c => c.MapFrom(o => o.MaintenanceTarif.Tarif))
-                    .ForMember(x => x.Tarif, c => c.MapFrom(o => o.Maintenance.MaintenanceTarif.Tarif))
+                    //.ForMember(x => x.Cost, c => c.MapFrom(o => o.MaintenanceTarif.Tarif * o.Maintenance.Coefficient))
+                    .ForMember(x => x.Tarif, c => c.MapFrom(o => o.MaintenanceTarif.Tarif))
                     .ForMember(x => x.MaintenanceTarifId, c => c.MapFrom(o => o.MaintenanceTarif.Id))
+                    //.ForMember(x => x.MaintenanceTypeId, c => c.MapFrom(o => o.Maintenance.MaintenanceTypeId))
                     .ForMember(x => x.MaintenanceName, c => c.MapFrom(o => o.Maintenance.Name))
                     .ForMember(x => x.MaintenanceId, c => c.MapFrom(o => o.Maintenance.Id))
                     .ForMember(x => x.Coefficient, c => c.MapFrom(o => o.Maintenance.Coefficient))

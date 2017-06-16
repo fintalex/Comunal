@@ -6,6 +6,10 @@
     Cost: number;
     Coefficient: number;
     InvoiceDate: Date;
+    //FlatId: number;
+    //MaintenanceTypeId: number;
+    //Counters: any;
+    Maintenance: any;
 
     constructor(
         public MaintenanceName: string = null,

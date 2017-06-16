@@ -68,7 +68,7 @@ export class BillService {
         });
 
         _.forEach(maintenanceData, (maintData: any) => {
-            summ += maintData.Cost * maintData.Coefficient;
+            summ += maintData.Tarif * maintData.Coefficient;
         });
 
         return summ;
