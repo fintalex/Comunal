@@ -104,8 +104,16 @@ namespace Services.Classes
                     countData.ReadingODN = item.ReadingODN;
                 }
             }
-            //currentBill.CounterDatas = bill.CounterDatas;
-            //currentBill.MaintenanceDatas = bill.MaintenanceDatas;
+
+            foreach (var maint in bill.MaintenanceDatas)
+            {
+                var maintData = currentBill.MaintenanceDatas.FirstOrDefault(cd => cd.Id == maint.Id);
+                if (maintData != null && maintData.MaintenanceTarif.Tarif != maint.MaintenanceTarif.Tarif)
+                {
+                    var newTarif = new MaintenanceTarif { Tarif = maint.MaintenanceTarif.Tarif };
+                    maintData.MaintenanceTarif = newTarif;
+                }
+            }
 
             this.context.Commit();
         }

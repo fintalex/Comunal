@@ -102,7 +102,9 @@ namespace Comunal
                     .ForMember(x => x.Coefficient, c => c.MapFrom(o => o.Maintenance.Coefficient))
                     .ForMember(x => x.IconPath, c => c.MapFrom(o => o.Maintenance.MaintenanceType.IconPath))
                     .ForMember(x => x.InvoiceDate, c => c.MapFrom(o => o.Bill != null ? o.Bill.InvoiceDate : (DateTime?)null));
-                cfg.CreateMap<MaintenanceDataDTO, MaintenanceData>();
+                cfg.CreateMap<MaintenanceDataDTO, MaintenanceData>()
+                    .ForMember(x => x.Maintenance, c => c.MapFrom(o => new Maintenance { Id = o.Id, Coefficient = o.Coefficient, MaintenanceTarif = new MaintenanceTarif { Id = o.MaintenanceTarifId, Tarif = o.Tarif } }))
+                    .ForMember(x => x.MaintenanceTarif, c => c.MapFrom(o => new MaintenanceTarif { Id = o.MaintenanceTarifId, Tarif = o.Tarif }));
 
                 cfg.CreateMap<Bill, BillGridDTO>();
 
