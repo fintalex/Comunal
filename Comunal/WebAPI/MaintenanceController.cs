@@ -40,11 +40,20 @@ namespace Comunal.WebAPI
             return Mapper.Map<MaintenanceDTO>(addedMaintaince);
 		}
 
-		[HttpPut]
-		public void UpdateMaintenance(MaintenanceDTO maintenanceDTO)
+        [HttpPost]
+        [Route("updateTarif")]
+        public void UpdateMaintenanceDataTarif([FromBody]MaintenanceTarifDTO maintenanceTarifDTO)
+        {
+            var maintenanceTarif = Mapper.Map<MaintenanceTarif>(maintenanceTarifDTO);
+            this.maintenanceService.UpdateTarif(maintenanceTarif);
+        }
+
+        [HttpPut]
+		public MaintenanceDTO UpdateMaintenance(MaintenanceDTO maintenanceDTO)
 		{
             var maintenance = Mapper.Map<Maintenance>(maintenanceDTO);
-            this.maintenanceService.UpdateMaintenance(maintenance, maintenanceDTO.Counters.ToList());
+            var updatedMaintenance = this.maintenanceService.UpdateMaintenance(maintenance, maintenanceDTO.Counters.ToList());
+            return Mapper.Map<MaintenanceDTO>(updatedMaintenance);
 		}
 
 		[HttpDelete]

@@ -317,6 +317,7 @@
     <TypeScriptCompile Include="app\helpers\editCounterData\editCounterData.component.ts" />
     <TypeScriptCompile Include="app\helpers\confirm\confirm.component.ts" />
     <TypeScriptCompile Include="app\models\bill.ts" />
+    <TypeScriptCompile Include="app\models\maintenanceTarif.ts" />
     <TypeScriptCompile Include="app\models\maintenanceData.ts" />
     <TypeScriptCompile Include="app\models\counterData.ts" />
     <TypeScriptCompile Include="app\models\maintenance.ts" />

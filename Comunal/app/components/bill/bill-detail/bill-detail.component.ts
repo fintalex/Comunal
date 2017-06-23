@@ -165,15 +165,16 @@ export class BillDetailComponent implements OnInit  {
 
                 maintData.Tarif = parseFloat(resMaintenance.Tarif);
 
-
-
-
-
-
-
-
-
-
+                if (!maintData.BillId) {
+                    this.maintenanceService.updateMaintenance(resMaintenance)
+                        .subscribe((updatedMaintenance) => {
+                            maintData.MaintenanceTarifId = updatedMaintenance.MaintenanceTarifId;
+                        });
+                }
+                else {
+                    this.maintenanceService.updateMaintenanceDataTarif({ Id: maintData.MaintenanceTarifId, Tarif: maintData.Tarif })
+                        .subscribe();;
+                }
 
                 this.summForBill();
             });

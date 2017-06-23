@@ -8,6 +8,7 @@ import { DialogService } from 'ng2-bootstrap-modal';
 import { Observable } from 'rxjs/Observable';
 
 import { Maintenance } from '../models/maintenance';
+import { MaintenanceTarif } from '../models/maintenanceTarif';
 
 @Injectable()
 export class MaintenanceService {
@@ -43,11 +44,16 @@ export class MaintenanceService {
             .catch(this.handleError);
     }
 
-    updateMaintenance(maintenance: Maintenance) {
+    updateMaintenance(maintenance: Maintenance): Observable<Maintenance> {
         return this.http.put(`${this.apiUrl}`, maintenance)
+            .map(res => res.json())
             .catch(this.handleError);
     }
 
+    updateMaintenanceDataTarif(maintenanceTarif: MaintenanceTarif) {
+        return this.http.post(`${this.apiUrl}/updateTarif`, maintenanceTarif)
+            .catch(this.handleError);
+    }
 
     openMaintenanceWindow(maintenance: Maintenance): Observable<Maintenance> {
         var dataForModalWindow = {

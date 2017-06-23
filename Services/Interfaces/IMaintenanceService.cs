@@ -37,7 +37,12 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="maintenance">Maintenance</param>
         /// <param name="countersId">Counters Ids</param>
-        void UpdateMaintenance(Maintenance maintenance, List<int> countersId);
+        Maintenance UpdateMaintenance(Maintenance maintenance, List<int> countersId);
 
+        /// <summary>
+        /// Update maintenance tarif
+        /// </summary>
+        /// <param name="maintenanceTarif">maintenanceTarif</param>
+        void UpdateTarif(MaintenanceTarif maintenanceTarif);
     }
 }

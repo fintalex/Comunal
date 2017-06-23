@@ -90,7 +90,7 @@ namespace Services.Classes
         /// </summary>
         /// <param name="maintenance">Maintenance</param>
         /// <param name="countersId">Counters Ids</param>
-        public void UpdateMaintenance(Maintenance maintenance, List<int> countersId)
+        public Maintenance UpdateMaintenance(Maintenance maintenance, List<int> countersId)
         {
             var currentMaintenance = this.context.Maintenances.FirstOrDefault(m => m.Id == maintenance.Id);
             currentMaintenance.Name = maintenance.Name;
@@ -124,6 +124,21 @@ namespace Services.Classes
                     currentMaintenance.Counters.Add(counter);
                 }
             }
+
+            this.context.Commit();
+
+            return currentMaintenance;
+        }
+
+        /// <summary>
+        /// Update maintenance tarif
+        /// </summary>
+        /// <param name="maintenanceTarif">maintenanceTarif</param>
+        public void UpdateTarif(MaintenanceTarif maintenanceTarif)
+        {
+            var curTarif = this.context.MaintenanceTarifs.FirstOrDefault(t => t.Id == maintenanceTarif.Id);
+
+            curTarif.Tarif = maintenanceTarif.Tarif;
 
             this.context.Commit();
         }

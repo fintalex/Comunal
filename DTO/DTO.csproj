@@ -46,6 +46,7 @@
     <Compile Include="MaintenanceDataDTO.cs" />
     <Compile Include="CounterDataDTO.cs" />
     <Compile Include="CounterSmallDTO.cs" />
+    <Compile Include="MaintenanceTarifDTO.cs" />
     <Compile Include="MaintenanceDTO.cs" />
     <Compile Include="FlatDTO.cs" />
     <Compile Include="LoginDTO.cs" />
