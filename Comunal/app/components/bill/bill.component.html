@@ -14,7 +14,7 @@
                             {{bill.InvoiceDate | dateru:'MMMM YYYY' | capitalize }}
                         </td>
                         <td>
-                            {{getSummForBill(bill.CounterDatas, bill.MaintenanceDatas)}} руб
+                            {{getSummForBill(bill.CounterDatas, bill.MaintenanceDatas) + bill.Fine + bill.Recalculation}} руб
                         </td>
                         <td>
                             <a routerLink='/bill/{{bill.Id}}'>Редактировать</a>

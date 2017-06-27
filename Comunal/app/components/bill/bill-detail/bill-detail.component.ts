@@ -36,6 +36,8 @@ export class BillDetailComponent implements OnInit  {
     counterDatas: CounterData[] = [];
     maintenanceDatas: MaintenanceData[] = [];
 
+    forPay: number;
+
     constructor(
         private billService: BillService,
         private route: ActivatedRoute,
@@ -138,6 +140,7 @@ export class BillDetailComponent implements OnInit  {
 
         this.dialogService.addDialog(EditCounterDataComponent,  dataForModalWindow)
             .subscribe((editedCounterData) => {
+                if (!editedCounterData) return;
                 //Object.assign(counterData, editedCounterData);
                 counterData.Reading = parseFloat(editedCounterData.Reading);
                 counterData.ReadingDateDay = editedCounterData.ReadingDateDay;
@@ -162,6 +165,8 @@ export class BillDetailComponent implements OnInit  {
         
         this.maintenanceService.openMaintenanceWindow(curMaintenance)
             .subscribe((resMaintenance: any) => {
+
+                if (!resMaintenance) return; 
 
                 maintData.Tarif = parseFloat(resMaintenance.Tarif);
 
@@ -209,10 +214,12 @@ export class BillDetailComponent implements OnInit  {
         this.currentBill.Summ = 0;
 
         this.currentBill.Summ = this.billService.getSummForBill(this.counterDatas, this.maintenanceDatas);
+
+        //this.getForPayment();
     }
 
     getForPayment() {
-        return this.currentBill.Summ + this.currentBill.Recalculation + this.currentBill.Fine;
+        return this.currentBill.Summ + Number(this.currentBill.Recalculation) + Number(this.currentBill.Fine);
     }
     
 }
