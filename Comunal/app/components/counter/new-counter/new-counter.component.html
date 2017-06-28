@@ -12,24 +12,31 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label class="control-label" for="newCounterName">Название счетчика</label>
-                    <input class="form-control" name="newCounterName" type="text" [(ngModel)]="counter.Name" required>
+                    <input class="form-control" name="newCounterName" type="text" 
+                           [(ngModel)]="counter.Name" required
+                           [disabled]="counter.EditTarifOnly">
                </div>
 
                 <div class="form-group" *ngIf="counterTypes.length > 0">
                     <label class="control-label" for="counterTypeId">Тип счетчика</label>
-                    <select  class="form-control" name="counterTypeId" required [(ngModel)]="counter.CounterTypeId">
+                    <select class="form-control" name="counterTypeId" required 
+                            [(ngModel)]="counter.CounterTypeId"
+                            [disabled]="counter.EditTarifOnly">
                         <option *ngFor="let counterType of counterTypes" [value]="counterType.Id">{{counterType.Name}}</option>
                     </select>
                 </div>
 
                 <div class="form-group" *ngIf="counter.CounterTypeId == 5">
                     <label class="control-label" for="coeficient">Коэффициент перевода единицы измерения</label>
-                    <input class="form-control" name="coeficient" type="text" [(ngModel)]="counter.UnitConvertCoefficient" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
+                    <input class="form-control" name="coeficient" type="text" 
+                           [(ngModel)]="counter.UnitConvertCoefficient" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required
+                           [disabled]="counter.EditTarifOnly">
                 </div>
 
                 <div class="form-group">
                     <md-slide-toggle class="example-margin" name="odn"
                                      [color]="primary"
+                                     [disabled]="counter.EditTarifOnly"
                                      [(ngModel)]="counter.EnableODN">
                         Общедомовые нужды (ОДН)
                     </md-slide-toggle>
@@ -40,7 +47,9 @@
                 <div class="form-group" *ngIf="tarifTypes.length > 0">
                     <label class="control-label" for="tyriffType">Тип тарифа</label>
 
-                    <select  class="form-control" name="tyriffType" required  [(ngModel)]="counter.TarifCount">
+                    <select class="form-control" name="tyriffType" required  
+                            [(ngModel)]="counter.TarifCount"
+                            [disabled]="counter.EditTarifOnly">
                         <option *ngFor="let tarType of tarifTypes" [value]="tarType.Id">{{tarType.Name}}</option>
                     </select>
                 </div>

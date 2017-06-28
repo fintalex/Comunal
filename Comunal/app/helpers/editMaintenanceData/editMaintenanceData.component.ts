@@ -1,8 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 
-//import { MaintenanceDataService } from '../../services/maintenanceData.service';
-//import { MaintenanceService } from '../../services/maintenance.service';
 import { CounterService } from '../../services/counter.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -35,8 +33,6 @@ export class EditMaintenanceDataComponent extends DialogComponent<EditMaintenanc
 
     ///  https://www.npmjs.com/package/ng2-bootstrap-modal
     constructor(dialogService: DialogService,
-        //private maintenanceDataService: MaintenanceDataService,
-        //private maintenanceService: MaintenanceService,
         private counterService: CounterService,
         private authService: AuthService
     ) {
@@ -44,8 +40,6 @@ export class EditMaintenanceDataComponent extends DialogComponent<EditMaintenanc
     }
 
     ngOnInit() {
-        //Object.assign(this.maintenanceDataBefore, this.maintenanceData);
-
         if (!this.maintenance) {
             this.maintenance = new Maintenance();
         }
@@ -62,7 +56,6 @@ export class EditMaintenanceDataComponent extends DialogComponent<EditMaintenanc
     }
     
     cancel() {
-        //this.result = this.maintenance;
         this.close();
     }
 
@@ -91,19 +84,6 @@ export class EditMaintenanceDataComponent extends DialogComponent<EditMaintenanc
 
 
     }
-
-    //saveMaintenance() {
-    //    //GetWaterCountersByFlatId
-    //    if (this.maintenance.Id) {
-    //        this.update.emit(this.maintenance);
-    //    } else {
-    //        this.create.emit(this.maintenance);
-    //    }
-    //}
-
-    //closeWindow() {
-    //    this.close.emit();
-    //}
 
     mySettings: IMultiSelectSettings = {
         pullRight: false,

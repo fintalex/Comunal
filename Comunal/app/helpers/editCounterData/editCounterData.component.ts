@@ -87,6 +87,7 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
         this.currentCounter.Limit2 = this.counterData.Limit2;
         this.currentCounter.TarifCount = this.counterData.TarifCount;
         this.currentCounter.Id = this.counterData.CounterId;
+        this.currentCounter.EditTarifOnly = true;
         this.showCounterPanel = true;
     }
 

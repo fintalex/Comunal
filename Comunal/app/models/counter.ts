@@ -9,6 +9,7 @@
     Tarif2: number;
     Limit2: number;
     Tarif3: number;
+    EditTarifOnly: boolean;
 
     constructor(
         public Name: string = null,

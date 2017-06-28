@@ -162,6 +162,7 @@ export class BillDetailComponent implements OnInit  {
         var curMaintenance = maintData.Maintenance;
         curMaintenance.Tarif = maintData.Tarif;
         curMaintenance.Id = maintData.MaintenanceId;
+        curMaintenance.EditTarifOnly = true;
         
         this.maintenanceService.openMaintenanceWindow(curMaintenance)
             .subscribe((resMaintenance: any) => {
