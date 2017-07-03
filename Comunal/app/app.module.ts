@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { MaterialModule } from '@angular/material';
+import { ChartModule } from 'angular2-highcharts';
 
 // =============== App Component ====================
 import { AppComponent } from './app.component';
@@ -54,7 +55,8 @@ import { DataService } from './services/data.service';
         HttpModule,
         BootstrapModalModule.forRoot({ container: document.body }),
         MultiselectDropdownModule,
-        MaterialModule
+        MaterialModule,
+        ChartModule.forRoot(require('highcharts'))
     ],
     declarations: [
         AppComponent,

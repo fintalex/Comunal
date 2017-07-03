@@ -42,7 +42,9 @@
     "systemjs": "0.19.40",
     "underscore": "^1.8.3",
     "zone.js": "^0.7.4",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "highcharts": "^5.0.12",
+    "angular2-highcharts": "^0.5.5"
   },
   "devDependencies": {
     "concurrently": "^3.2.0",

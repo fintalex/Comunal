@@ -101,4 +101,6 @@ export class CounterComponent implements OnInit  {
                 this.counterDatas = counterDatas;
             });
     }
+
+    
 }

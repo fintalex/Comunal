@@ -33,7 +33,9 @@
       '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 
       'underscore': 'npm:underscore',
-      'moment': 'npm:moment'
+      'moment': 'npm:moment',
+      'angular2-highcharts': 'npm:angular2-highcharts',
+      'highcharts': 'npm:highcharts'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -58,6 +60,14 @@
       },
       'moment': {
           main: './moment.js',
+          defaultExtension: 'js'
+      },
+      'angular2-highcharts': {
+          main: '/index.js',
+          defaultExtension: 'js'
+      },
+      'highcharts': {
+          main: '/highcharts.js',
           defaultExtension: 'js'
       }
     }
