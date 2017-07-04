@@ -11,7 +11,7 @@
             <div class="row">
                 <!--For counters Datas-->
                 <div class="col-lg-6">
-                    <label class="control-label" for="maintenanceData">Показания по счетчикам</label>
+                    <label class="control-label" for="counterData">Показания по счетчикам</label>
                     <div class="list-group">
 
                         <template ngFor let-countData [ngForOf]="counterDatas">
@@ -42,7 +42,7 @@
                 </div>
 
                 <!--For maintenance Datas-->
-                <div class="col-lg-6">
+                <div class="col-lg-6" *ngIf="counterDatas">
                     <label class="control-label" for="maintenanceData">Показания по услугам</label>
                     <div class="list-group">
 
@@ -56,7 +56,7 @@
                                         <span class="counter-detail-name">{{maintData.MaintenanceName}}</span>
                                     </div>
                                     <div class="col-lg-3 bill-detail-box">
-                                        <span class="counter-detail-name pull-right">{{maintData.Tarif * maintData.Coefficient}} руб</span>
+                                        <span class="counter-detail-name pull-right">{{maintData.Tarif * maintData.Coefficient * getSummForWaterMaintenance(maintData.Maintenance.CounterTypes)}} руб</span>
                                     </div>
                                 </div>
                             </a>

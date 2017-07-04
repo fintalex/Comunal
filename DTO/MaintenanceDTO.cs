@@ -32,5 +32,7 @@ namespace DTO
         public double Tarif { get; set; }
 
         public IEnumerable<int> Counters { get; set; }
+
+        public IEnumerable<int> CounterTypes { get; set; }
     }
 }

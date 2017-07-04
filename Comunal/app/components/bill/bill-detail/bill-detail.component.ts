@@ -222,5 +222,23 @@ export class BillDetailComponent implements OnInit  {
     getForPayment() {
         return this.currentBill.Summ + Number(this.currentBill.Recalculation) + Number(this.currentBill.Fine);
     }
+
+    getSummForWaterMaintenance(counterTypes: number[]) {
+        var summ = 0;
+
+        if (!counterTypes || counterTypes.length == 0) {
+            return 1;
+        } 
+        if (!this.counterDatas || this.counterDatas.length == 0) {
+            return 0;
+        }
+
+        _.forEach(this.counterDatas, (countData: any) => {
+            if (counterTypes.indexOf(+countData.CounterTypeId) > -1) {
+                summ += this.counterDataService.getSumForCounter(countData, 1);
+            }
+        });
+        return summ;
+    }
     
 }
