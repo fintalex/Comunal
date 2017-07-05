@@ -56,12 +56,12 @@
                                         <span class="counter-detail-name">{{maintData.MaintenanceName}}</span>
                                     </div>
                                     <div class="col-lg-3 bill-detail-box">
-                                        <span class="counter-detail-name pull-right">{{maintData.Tarif * maintData.Coefficient * getSummForWaterMaintenance(maintData.Maintenance.CounterTypes)}} руб</span>
+                                        <span class="counter-detail-name pull-right">{{maintData.Tarif * maintData.Coefficient * counterDataService.getReadingForWaterCounter(maintData.Maintenance.CounterTypes, counterDatas)}} руб</span>
                                     </div>
                                 </div>
                             </a>
                         </template>
-
+                        
                     </div>
                 </div>
             </div>

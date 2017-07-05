@@ -68,11 +68,13 @@ export class BillService {
         });
 
         _.forEach(maintenanceData, (maintData: any) => {
-            summ += maintData.Tarif * maintData.Coefficient;
+            summ += maintData.Tarif * maintData.Coefficient * this.counterDataService.getReadingForWaterCounter(maintData.Maintenance.CounterTypes, counterDatas);
         });
 
         return summ;
     }
+
+    
 
     private handleError(error: any) {
         console.error('Произошла ошибка', error);

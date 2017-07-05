@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { CounterData } from '../models/counterData';
 
+import * as _ from 'underscore';
+
 @Injectable()
 export class CounterDataService {
     counterDatas: CounterData[];
@@ -63,6 +65,24 @@ export class CounterDataService {
             summ += (currentPlusReading - countData.Limit2) * countData.Tarif3;
         }
 
+        return summ;
+    }
+
+    getReadingForWaterCounter(counterTypes: number[], currentCounterData: CounterData[]) {
+        var summ = 0;
+
+        if (!counterTypes || counterTypes.length == 0) {
+            return 1;
+        }
+        if (!currentCounterData || currentCounterData.length == 0) {
+            return 0;
+        }
+
+        _.forEach(currentCounterData, (countData: CounterData) => {
+            if (counterTypes.indexOf(+countData.CounterTypeId) > -1) {
+                summ += countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0)) : 0;
+            }
+        });
         return summ;
     }
 
