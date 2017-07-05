@@ -10,13 +10,14 @@
         <form (ngSubmit)="saveCounter(); ngNewCounterForm.reset()" #ngNewCounterForm="ngForm">
 
             <div class="col-lg-6">
+                <!--Название счетчика-->
                 <div class="form-group">
                     <label class="control-label" for="newCounterName">Название счетчика</label>
                     <input class="form-control" name="newCounterName" type="text" 
                            [(ngModel)]="counter.Name" required
                            [disabled]="counter.EditTarifOnly">
                </div>
-
+                <!--Тип счетчика-->
                 <div class="form-group" *ngIf="counterTypes.length > 0">
                     <label class="control-label" for="counterTypeId">Тип счетчика</label>
                     <select class="form-control" name="counterTypeId" required 
@@ -25,14 +26,14 @@
                         <option *ngFor="let counterType of counterTypes" [value]="counterType.Id">{{counterType.Name}}</option>
                     </select>
                 </div>
-
+                <!--Коэффициент перевода единицы измерения-->
                 <div class="form-group" *ngIf="counter.CounterTypeId == 5">
                     <label class="control-label" for="coeficient">Коэффициент перевода единицы измерения</label>
                     <input class="form-control" name="coeficient" type="text" 
                            [(ngModel)]="counter.UnitConvertCoefficient" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required
                            [disabled]="counter.EditTarifOnly">
                 </div>
-
+                <!--Общедомовые нужды (ОДН)-->
                 <div class="form-group">
                     <md-slide-toggle class="example-margin" name="odn"
                                      [color]="primary"
