@@ -12,6 +12,7 @@
     LastReadingDate: any;
     EnableODN: boolean;
     LastCounterDataDTO: CounterData;
+    StartReading: number;
 
     constructor(
         public Reading: number = 0,

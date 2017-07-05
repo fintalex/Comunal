@@ -14,6 +14,8 @@ namespace DTO
 
         public bool EnableODN { get; set; }
 
+        public double StartReading { get; set; }
+
         public int SortOrder { get; set; }
 
         public int UnitConvertCoefficient { get; set; }

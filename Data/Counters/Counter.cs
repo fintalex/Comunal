@@ -23,6 +23,11 @@ namespace Data
         public bool EnableODN { get; set; }
 
         /// <summary>
+		/// First Reading of Counter
+		/// </summary>
+		public double StartReading { get; set; }
+
+        /// <summary>
         /// Порядок сортировки
         /// </summary>
         public int SortOrder { get; set; } = -1;

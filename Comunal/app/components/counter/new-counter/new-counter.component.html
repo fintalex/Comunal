@@ -26,6 +26,13 @@
                         <option *ngFor="let counterType of counterTypes" [value]="counterType.Id">{{counterType.Name}}</option>
                     </select>
                 </div>
+                <!--Начальные показания-->
+                <div class="form-group">
+                    <label class="control-label" for="coeficient">Начальные показания</label>
+                    <input class="form-control" name="coeficient" type="text"
+                           [(ngModel)]="counter.StartReading" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required
+                           [disabled]="counter.EditTarifOnly">
+                </div>
                 <!--Коэффициент перевода единицы измерения-->
                 <div class="form-group" *ngIf="counter.CounterTypeId == 5">
                     <label class="control-label" for="coeficient">Коэффициент перевода единицы измерения</label>

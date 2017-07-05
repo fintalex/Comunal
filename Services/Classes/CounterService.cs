@@ -89,6 +89,7 @@ namespace Services.Classes
         {
             var currentCounter = this.context.Counters.FirstOrDefault(f => f.Id == counter.Id);
             currentCounter.Name = counter.Name;
+            currentCounter.StartReading = counter.StartReading;
             currentCounter.EnableODN = counter.EnableODN;
             currentCounter.SortOrder = counter.SortOrder;
             currentCounter.UnitConvertCoefficient = counter.UnitConvertCoefficient;

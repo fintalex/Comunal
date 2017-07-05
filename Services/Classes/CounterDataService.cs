@@ -89,7 +89,7 @@ namespace Services.Classes
                 var newCounterData = new CounterData() {
                     Counter = curCounter,
                     CounterTarif = curCounter.CounterTarif,
-                    Reading = lastCounterData == null ? 0 : lastCounterData.Reading,
+                    Reading = lastCounterData == null ? curCounter.StartReading : lastCounterData.Reading,
                     ReadingDate = DateTime.Now,
                     //LastReading = lastCounterData == null ? 0 : lastCounterData.Reading,
                     LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
@@ -98,6 +98,7 @@ namespace Services.Classes
                     IsFirst = lastCounterData == null ? true : false,
                     BillId = 0
                 };
+
                 counterDatas.Add(newCounterData);
             }
 

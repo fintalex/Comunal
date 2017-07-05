@@ -47,7 +47,7 @@ export class CounterDataService {
         if (!countData) return 0;
 
         var summ = 0;
-        var lastReading = countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0;
+        var lastReading = countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading;
         var currentPlusReading = readingOrODN == 1 ? countData.Reading - lastReading : countData.ReadingODN;
 
         if (!countData.Limit1 || countData.Limit1 == 0 || currentPlusReading <= countData.Limit1) {

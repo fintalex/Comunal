@@ -10,6 +10,7 @@
     Limit2: number;
     Tarif3: number;
     EditTarifOnly: boolean;
+    StartReading: number;
 
     constructor(
         public Name: string = null,

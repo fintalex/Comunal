@@ -40,6 +40,7 @@ namespace Comunal
 
                 cfg.CreateMap<CounterData, CounterDataDTO>()
                     .ForMember(x => x.CounterTarifId, c => c.MapFrom(o => o.CounterTarif.Id))
+                    .ForMember(x => x.StartReading, c => c.MapFrom(o => o.Counter.StartReading))
                     .ForMember(x => x.CounterTypeId, c => c.MapFrom(o => o.Counter.CounterTypeId))
                     .ForMember(x => x.TarifCount, c => c.MapFrom(o => o.CounterTarif.TarifCount))
                     .ForMember(x => x.Tarif1, c => c.MapFrom(o => o.CounterTarif.Tarif1))
