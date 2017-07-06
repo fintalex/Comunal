@@ -80,7 +80,7 @@ export class CounterDataService {
 
         _.forEach(currentCounterData, (countData: CounterData) => {
             if (counterTypes.indexOf(+countData.CounterTypeId) > -1) {
-                summ += countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0)) : 0;
+                summ += countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading)) : 0;
             }
         });
         return summ;
