@@ -10,6 +10,7 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/styles.css">
 
+    
     <script src="~/node_modules/core-js/client/shim.min.js"></script>
     <script src="~/node_modules/zone.js/dist/zone.js"></script>
     <script src="~/node_modules/systemjs/dist/system.src.js"></script>
@@ -19,14 +20,23 @@
         System.import('main.js').catch(function (err) { console.error(err); });
     </script>
 
-    @*@Styles.Render("~/Content/css")*@
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <my-app>Loading AppComponent content here ...</my-app>
 
     @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/bootstrap")
     @*@RenderSection("scripts", required: false)*@
+
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+            console.log('HELLO');
+        });
+    </script>
 </body>
 </html>

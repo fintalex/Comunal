@@ -79,6 +79,7 @@ export class BillDetailComponent implements OnInit  {
         }
     }
 
+    // ============================== GET METHODS ======================================
     getBillDetails() {
         
 
@@ -130,6 +131,26 @@ export class BillDetailComponent implements OnInit  {
         });
     }
 
+    getStringCurrentData(countData: CounterData) {
+        var result = countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2) +
+            "(+" + countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0)).toFixed(2) : 0;
+
+        return result;
+    }
+
+    summForBill() {
+        this.currentBill.Summ = 0;
+
+        this.currentBill.Summ = this.billService.getSummForBill(this.counterDatas, this.maintenanceDatas);
+
+        //this.getForPayment();
+    }
+
+    getForPayment() {
+        return this.currentBill.Summ + Number(this.currentBill.Recalculation) + Number(this.currentBill.Fine);
+    }
+
+    // ============================== EDIT METHODS ======================================
     editCounterData(counterData: CounterData) {
         
         var dataForModalWindow = {
@@ -186,6 +207,16 @@ export class BillDetailComponent implements OnInit  {
             });
     }
 
+    // ============================== REMOVE METHODS ======================================
+    removeMaintenanceData(maintData: MaintenanceData) {
+        event.stopPropagation();
+
+        //var curMaintData = _.find(this.maintenanceDatas, (md: MaintenanceData) => { return md.MaintenanceId == maintData.MaintenanceId });
+        var startIndex = this.maintenanceDatas.indexOf(maintData);
+        this.maintenanceDatas.splice(startIndex, 1);
+    }
+
+    // ============================== SAVE METHODS ======================================
     saveBill() {
         this.currentBill.CounterDatas = this.counterDatas;
         this.currentBill.MaintenanceDatas = this.maintenanceDatas;
@@ -202,25 +233,6 @@ export class BillDetailComponent implements OnInit  {
                 });
         }
         
-    }
-
-    getStringCurrentData(countData: CounterData) {
-        var result = countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2) +
-            "(+" + countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0)).toFixed(2) : 0;
-
-        return result;
-    }
-
-    summForBill() {
-        this.currentBill.Summ = 0;
-
-        this.currentBill.Summ = this.billService.getSummForBill(this.counterDatas, this.maintenanceDatas);
-
-        //this.getForPayment();
-    }
-
-    getForPayment() {
-        return this.currentBill.Summ + Number(this.currentBill.Recalculation) + Number(this.currentBill.Fine);
     }
     
 }

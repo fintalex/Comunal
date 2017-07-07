@@ -61,3 +61,10 @@ a:hover {
     height: 250px;
     overflow: overlay;
 }
+
+/*======================= Buttons =================================*/
+.button-bottom-right {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+}
