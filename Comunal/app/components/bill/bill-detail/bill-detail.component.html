@@ -65,11 +65,36 @@
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         </button>
                                     </div>
-                                </div>
-                                
+                                </div> 
                             </a>
                         </template>
-                        
+                    </div>
+
+                    <label class="control-label" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0">Добавление услуг в счет</label>
+                    <div class="list-group" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0">
+                        <a class="list-group-item">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <img width="50" height="50" [src]="maintDataAdded.IconPath"  />
+                                </div>
+                                <div class="col-lg-9 bill-detail-box">
+                                    <select class="form-control" 
+                                            [(ngModel)]="maintDataAdded">
+                                        <option *ngFor="let maintDataNIB of maintenanceDatasNotInBill" [ngValue]="maintDataNIB" >
+                                            {{maintDataNIB.MaintenanceName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-1 bill-detail-box">
+                                    <button type="button" class="btn btn-info btn-sm button-bottom-right"
+                                            (click)="addMaintenanceData(maintData)"
+                                            data-toggle="tooltip" title="Добавить в счет">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </a>
                     </div>
                 </div>
             </div>

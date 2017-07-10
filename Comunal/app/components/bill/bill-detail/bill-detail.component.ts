@@ -35,6 +35,9 @@ export class BillDetailComponent implements OnInit  {
     currentBill: Bill;
     counterDatas: CounterData[] = [];
     maintenanceDatas: MaintenanceData[] = [];
+    maintenanceDatasNotInBill: MaintenanceData[] = [];
+    
+    maintDataAdded: MaintenanceData;
 
     forPay: number;
 
@@ -214,6 +217,30 @@ export class BillDetailComponent implements OnInit  {
         //var curMaintData = _.find(this.maintenanceDatas, (md: MaintenanceData) => { return md.MaintenanceId == maintData.MaintenanceId });
         var startIndex = this.maintenanceDatas.indexOf(maintData);
         this.maintenanceDatas.splice(startIndex, 1);
+
+        this.maintenanceDatasNotInBill.push(maintData);
+
+        if (!this.maintDataAdded) {
+            this.maintDataAdded = this.maintenanceDatasNotInBill[0];
+        }
+
+        this.summForBill();
+    }
+
+    // ============================== ADD METHODS ======================================
+    addMaintenanceData() {
+        var startIndex = this.maintenanceDatasNotInBill.indexOf(this.maintDataAdded);
+        this.maintenanceDatasNotInBill.splice(startIndex, 1);
+
+        this.maintenanceDatas.push(this.maintDataAdded);
+
+        if (this.maintenanceDatasNotInBill.length > 0) {
+            this.maintDataAdded = this.maintenanceDatasNotInBill[0];
+        } else {
+            this.maintDataAdded = null;
+        }
+
+        this.summForBill();
     }
 
     // ============================== SAVE METHODS ======================================

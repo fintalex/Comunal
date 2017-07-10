@@ -105,6 +105,18 @@ namespace Services.Classes
                 }
             }
 
+            foreach (var maint in currentBill.MaintenanceDatas)
+            {
+
+            }
+
+            var maintDatasIds = bill.MaintenanceDatas.Select(x => x.Id).ToList();
+
+            currentBill.MaintenanceDatas
+                .Where(m => !maintDatasIds.Contains(m.Id))
+                .ToList()
+                .ForEach(item => context.MaintenanceDatas.Remove(item));
+
             //foreach (var maint in bill.MaintenanceDatas)
             //{
             //    var maintData = currentBill.MaintenanceDatas.FirstOrDefault(cd => cd.Id == maint.Id);
