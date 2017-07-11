@@ -104,6 +104,15 @@ export class BillDetailComponent implements OnInit  {
                     this.maintenanceDatas = maintenanceDatas;
                     this.summForBill();
                 });
+
+            this.maintenanceDataService.getMaintenanceDatasNotAddedToBill(this.authService.CurrentUser.Flat.Id, this.billId)
+                .subscribe(maintDataNotInBill => {
+                    this.maintenanceDatasNotInBill = maintDataNotInBill;
+
+                    if (!this.maintDataAdded && this.maintenanceDatasNotInBill && this.maintenanceDatasNotInBill.length > 0) {
+                        this.maintDataAdded = this.maintenanceDatasNotInBill[0];
+                    }
+                });
         } else {
 
             // here we will must implement $q.all

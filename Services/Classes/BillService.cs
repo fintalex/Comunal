@@ -105,9 +105,12 @@ namespace Services.Classes
                 }
             }
 
-            foreach (var maint in currentBill.MaintenanceDatas)
+            foreach (var maintData in bill.MaintenanceDatas)
             {
-
+                if (currentBill.MaintenanceDatas.FirstOrDefault(m => m.MaintenanceId == maintData.MaintenanceId) == null)
+                {
+                    currentBill.MaintenanceDatas.Add(maintData);
+                }
             }
 
             var maintDatasIds = bill.MaintenanceDatas.Select(x => x.Id).ToList();

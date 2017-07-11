@@ -39,5 +39,13 @@ namespace Services.Interfaces
         /// <param name="maintenanceId">Maintenance Id</param>
         /// <returns>Maintenance Datas</returns>
         IQueryable<MaintenanceData> GetMaintenanceDatasByMaintenance(int maintenanceId);
+
+        /// <summary>
+        /// Get MaintenanceData Not added to bill
+        /// </summary>
+        /// <param name="flatId">Flat id</param>
+        /// <param name="billId">Bill id</param>
+        /// <returns>List of empty Maintenance Data</returns>
+		IQueryable<MaintenanceData> GetMaintenanceDatasNotAdded(int flatId, int billId);
     }
 }

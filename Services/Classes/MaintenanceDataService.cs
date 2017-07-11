@@ -77,6 +77,35 @@ namespace Services.Classes
         }
 
         /// <summary>
+        /// Get MaintenanceData Not added to bill
+        /// </summary>
+        /// <param name="flatId">Flat id</param>
+        /// <param name="billId">Bill id</param>
+        /// <returns>List of empty Maintenance Data</returns>
+		public IQueryable<MaintenanceData> GetMaintenanceDatasNotAdded(int flatId, int billId)
+        {
+            var maintenanceDatas = new List<MaintenanceData>();
+            var maintenances = this.context.Maintenances
+                .Where(c => c.FlatId == flatId)
+                .ToList();
+
+            var maintDataInBill = this.context.MaintenanceDatas.Where(cd => cd.BillId == billId).Select(m => m.MaintenanceId).ToList();
+
+            foreach (var curMaintenance in maintenances.Where(m => !maintDataInBill.Contains(m.Id)))
+            {
+                var newMaintenanceData = new MaintenanceData()
+                {
+                    Maintenance = curMaintenance,
+                    MaintenanceTarif = curMaintenance.MaintenanceTarif,
+                    BillId = billId
+                };
+                maintenanceDatas.Add(newMaintenanceData);
+            }
+
+            return maintenanceDatas.AsQueryable();
+        }
+
+        /// <summary>
         /// Get Maintenance Data By MaintenanceId
         /// </summary>
         /// <param name="maintenanceId">Maintenance Id</param>

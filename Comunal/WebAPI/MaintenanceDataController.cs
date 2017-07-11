@@ -42,5 +42,14 @@ namespace Comunal.WebAPI
             var maintenanceDatasDto = this.maintenanceDataService.GetMaintenanceDatasByMaintenance(maintenanceId).ProjectTo<MaintenanceDataDTO>();
             return maintenanceDatasDto;
         }
+
+        [HttpGet]
+        [Route("notAddedToBill/{flatId:int}/{billId:int}")]
+        public IQueryable<MaintenanceDataDTO> GetMaintenanceDatasByBillId(int flatId, int billId)
+        {
+            var maintenanceDatasNotInBill = this.maintenanceDataService.GetMaintenanceDatasNotAdded(flatId, billId);
+            var maintenanceDatasNotInBillDto = maintenanceDatasNotInBill.ProjectTo<MaintenanceDataDTO>();
+            return maintenanceDatasNotInBillDto;
+        }
     }
 }
