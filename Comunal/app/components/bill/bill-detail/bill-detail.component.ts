@@ -31,6 +31,7 @@ export class BillDetailComponent implements OnInit  {
     allBills: any[];
 
     billId: number;
+    isEditMode: boolean;
 
     currentBill: Bill;
     counterDatas: CounterData[] = [];
@@ -62,6 +63,8 @@ export class BillDetailComponent implements OnInit  {
         
 
         this.billId = this.route.snapshot.params['id'];
+
+        this.isEditMode = this.route.snapshot.params['mode'] == 'true';
 
         if (!this.billId || this.billId == 0) {
             this.billService.getFlatBillsByFlatId(this.authService.CurrentUser.Flat.Id)
@@ -164,7 +167,11 @@ export class BillDetailComponent implements OnInit  {
 
     // ============================== EDIT METHODS ======================================
     editCounterData(counterData: CounterData) {
-        
+
+        if (!this.isEditMode) {
+            return;
+        }
+
         var dataForModalWindow = {
             counterData: {}
         };
@@ -192,6 +199,10 @@ export class BillDetailComponent implements OnInit  {
     }
 
     editMaintenanceData(maintData: MaintenanceData) {
+        if (!this.isEditMode) {
+            return;
+        }
+
         var curMaintenance = maintData.Maintenance;
         curMaintenance.Tarif = maintData.Tarif;
         curMaintenance.Id = maintData.MaintenanceId;
@@ -221,6 +232,11 @@ export class BillDetailComponent implements OnInit  {
 
     // ============================== REMOVE METHODS ======================================
     removeMaintenanceData(maintData: MaintenanceData) {
+
+        if (!this.isEditMode) {
+            return;
+        }
+
         event.stopPropagation();
 
         //var curMaintData = _.find(this.maintenanceDatas, (md: MaintenanceData) => { return md.MaintenanceId == maintData.MaintenanceId });
@@ -238,6 +254,11 @@ export class BillDetailComponent implements OnInit  {
 
     // ============================== ADD METHODS ======================================
     addMaintenanceData() {
+
+        if (!this.isEditMode) {
+            return;
+        }
+
         var startIndex = this.maintenanceDatasNotInBill.indexOf(this.maintDataAdded);
         this.maintenanceDatasNotInBill.splice(startIndex, 1);
 
@@ -254,6 +275,11 @@ export class BillDetailComponent implements OnInit  {
 
     // ============================== SAVE METHODS ======================================
     saveBill() {
+
+        if (!this.isEditMode) {
+            return;
+        }
+
         this.currentBill.CounterDatas = this.counterDatas;
         this.currentBill.MaintenanceDatas = this.maintenanceDatas;
 

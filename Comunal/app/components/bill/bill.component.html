@@ -9,7 +9,8 @@
         <div class="panel-body">
             <table class="table table-striped table-hover ">
                 <tbody>
-                    <tr *ngFor="let bill of myBills" [ngClass]="{'info': bill.Selected}">
+                    <tr *ngFor="let bill of myBills" [ngClass]="{'info': bill.Selected}" class="clickable-row" 
+                        (click)="showBill(bill)">
                         <td>
                             {{bill.InvoiceDate | dateru:'MMMM YYYY' | capitalize }}
                         </td>
@@ -17,7 +18,8 @@
                             {{getSummForBill(bill.CounterDatas, bill.MaintenanceDatas) + bill.Fine + bill.Recalculation}} руб
                         </td>
                         <td>
-                            <a routerLink='/bill/{{bill.Id}}'>Редактировать</a>
+                            <!--<a routerLink='/bill/{{bill.Id}}'>Редактировать</a>-->
+                            <a (click)="editBill(bill)">Редактировать</a>
                         </td>
                     </tr>
                 </tbody>

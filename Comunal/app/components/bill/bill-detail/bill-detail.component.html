@@ -15,7 +15,7 @@
                     <div class="list-group">
 
                         <template ngFor let-countData [ngForOf]="counterDatas">
-                            <a class="list-group-item" (click)="editCounterData(countData)">
+                            <a class="list-group-item" (click)="editCounterData(countData)" [ngClass]="{'not-clickable-row': !isEditMode}">
                                 <div class="row">
                                     <div class="col-lg-2">
                                         <img width="50" height="50" [src]="countData.IconPath" />
@@ -47,7 +47,7 @@
                     <div class="list-group">
 
                         <template ngFor let-maintData [ngForOf]="maintenanceDatas">
-                            <a class="list-group-item" (click)="editMaintenanceData(maintData)">
+                            <a class="list-group-item" (click)="editMaintenanceData(maintData)" [ngClass]="{'not-clickable-row': !isEditMode}">
                                 <div class="row">
                                     <div class="col-lg-2">
                                         <img width="50" height="50" [src]="maintData.IconPath" />
@@ -60,6 +60,7 @@
                                         <!--<button md-raised-button class="danger">Исключить</button>-->
                                         
                                         <button type="button" class="btn btn-danger btn-sm button-bottom-right" 
+                                                *ngIf="isEditMode"
                                                 (click)="removeMaintenanceData(maintData)"
                                                 data-toggle="tooltip" title="Исключить из счета">
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -70,8 +71,8 @@
                         </template>
                     </div>
 
-                    <label class="control-label" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0">Добавление услуг в счет</label>
-                    <div class="list-group" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0">
+                    <label class="control-label" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0 && isEditMode">Добавление услуг в счет</label>
+                    <div class="list-group" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0 && isEditMode">
                         <a class="list-group-item">
                             <div class="row">
                                 <div class="col-lg-2">
@@ -132,12 +133,14 @@
 
             <div class="form-group">
                 <label class="control-label" for="recalculation">Перерасчет</label>
-                <input class="form-control" name="recalculation" type="text" [(ngModel)]="currentBill.Recalculation" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                <input class="form-control" name="recalculation" type="text" [disabled]="!isEditMode"
+                       [(ngModel)]="currentBill.Recalculation" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
             </div>
 
             <div class="form-group">
                 <label class="control-label" for="fine">Пени</label>
-                <input class="form-control" name="fine" type="text" [(ngModel)]="currentBill.Fine" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                <input class="form-control" name="fine" type="text" [disabled]="!isEditMode"
+                       [(ngModel)]="currentBill.Fine" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
             </div>
 
             <div class="form-group">
@@ -148,12 +151,13 @@
 
             <div class="form-group">
                 <label class="control-label" for="comment">Комментарий</label>
-                <input class="form-control" name="comment" type="text" [(ngModel)]="currentBill.Comment">
+                <input class="form-control" name="comment" type="text" [disabled]="!isEditMode"
+                       [(ngModel)]="currentBill.Comment">
             </div>
         </div>
 
         <!--Save button-->
-        <div class="row">
+        <div class="row" *ngIf="isEditMode">
             <div class="col-lg-2 col-lg-offset-5">
                 <a class="btn btn-success" (click)="saveBill()">Сохранить</a>
             </div>

@@ -20,7 +20,7 @@ const routes: Routes = [
     { path: 'counters', component: CounterComponent, canActivate: [GuardService] },
     { path: 'maintenance', component: MaintenanceComponent, canActivate: [GuardService] },
     { path: 'bills', component: BillComponent, canActivate: [GuardService] },
-    { path: 'bill/:id', component: BillDetailComponent, canActivate: [GuardService] },
+    { path: 'bill/:id/:mode', component: BillDetailComponent, canActivate: [GuardService] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'myflats' }

@@ -15,6 +15,10 @@ a:hover {
     cursor: pointer;
 }
 
+.not-clickable-row {
+    cursor: default!important;
+}
+
 /*====================classes form validation=========================*/
 .ng-valid[required]:not(ss-multiselect-dropdown), .ng-valid.required:not(ss-multiselect-dropdown) {
     border-left: 5px solid #42A948; /*green*/

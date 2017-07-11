@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { BillService } from '../../services/bill.service';
 import { AuthService } from '../../services/auth.service';
@@ -19,7 +20,8 @@ export class BillComponent implements OnInit  {
 
     constructor(
         private billService: BillService,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -48,11 +50,9 @@ export class BillComponent implements OnInit  {
             });
     }
 
-    editBill(currentBill: Bill, event: any) {
-        //event.stopPropagation();
-        //console.log(currentBill);
-        //this.currentBill = Object.assign({}, currentBill);
-        //this.showBillPanel = true;
+    editBill(currentBill: Bill) {
+        event.stopPropagation();
+        this.router.navigate(['/bill', currentBill.Id, true]);
     }
 
     updateBill(currentBill: Bill) {
@@ -62,6 +62,10 @@ export class BillComponent implements OnInit  {
             .subscribe(res => {
                 this.initBillList();
             });
+    }
+
+    showBill(currentBill: Bill) {
+        this.router.navigate(['/bill', currentBill.Id, false ]);
     }
     
 
