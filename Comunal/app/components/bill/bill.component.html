@@ -17,9 +17,14 @@
                         <td>
                             {{getSummForBill(bill.CounterDatas, bill.MaintenanceDatas) + bill.Fine + bill.Recalculation}} руб
                         </td>
-                        <td>
+                        <td class="size-10-pct">
+                            <button type="button" class="btn btn-success btn-sm"
+                                    data-toggle="tooltip" title="Редактировать"
+                                   (click)="editBill(bill)">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </button>
                             <!--<a routerLink='/bill/{{bill.Id}}'>Редактировать</a>-->
-                            <a (click)="editBill(bill)">Редактировать</a>
+                            <!--<a (click)="editBill(bill)">Редактировать</a>-->
                         </td>
                     </tr>
                 </tbody>

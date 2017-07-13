@@ -10,29 +10,32 @@
             <table class="table table-striped table-hover ">
                 <tbody>
                     <tr *ngFor="let counter of myCounters" class="clickable-row" [ngClass]="{'info': counter.Selected}" (click)="selectCounter(counter)">
-                        <td>
+                        <td class="size-10-pct">
                             <md-radio-button [checked]="counter.Selected" (click)="selectCounter(counter)"></md-radio-button>
                         </td>
-                        <td>
+                        <td class="size-10-pct">
                             <div>
                                 <img width="30" height="30" [src]="counter.IconPath" />
-                                <!--IconPath
-                                <img *ngIf="counter.CounterTypeId == 1" width="30" height="30" src="Content/CounterTypes/coldwater.png" />
-                                <img *ngIf="counter.CounterTypeId == 2" width="30" height="30" src="Content/CounterTypes/hotwater.png" />
-                                <img *ngIf="counter.CounterTypeId == 3" width="30" height="30" src="Content/CounterTypes/energy.png" />
-                                <img *ngIf="counter.CounterTypeId == 4" width="30" height="30" src="Content/CounterTypes/gas.png" />
-                                <img *ngIf="counter.CounterTypeId == 5" width="30" height="30" src="Content/CounterTypes/heat.png" />
-                                <img *ngIf="counter.CounterTypeId == 6" width="30" height="30" src="Content/CounterTypes/moto.png" />-->
                             </div>
                         </td>
                         <td>
                             {{counter.Name}}
                         </td>
-                        <td>
-                            <a (click)="editCounter(counter, $event)">Редактировать</a>
+                        <td class="size-10-pct">
+                            <button type="button" class="btn btn-success btn-sm" 
+                                    data-toggle="tooltip" title="Редактировать"
+                                    (click)="editCounter(counter, $event)">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </button>
+                            <!--<a (click)="editCounter(counter, $event)">Редактировать</a>-->
                         </td>
-                        <td>
-                            <a (click)="deleteCounter(counter, $event)">Удалить</a>
+                        <td class="size-10-pct">
+                            <button type="button" class="btn btn-danger btn-sm" 
+                                    data-toggle="tooltip" title="Удалить"
+                                    (click)="deleteCounter(counter, $event)">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                            <!--<a (click)="deleteCounter(counter, $event)">Удалить</a>-->
                         </td>
                     </tr>
                 </tbody>

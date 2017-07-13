@@ -10,16 +10,26 @@
             <table class="table table-striped table-hover ">
                 <tbody>
                     <tr *ngFor="let flat of myFlats" class="clickable-row" [ngClass]="{'info': flat.Selected}" (click)="selectFlat(flat)">
-                        <td>
+                        <td class="size-10-pct">
                             <md-radio-button [checked]="flat.Selected" (click)="selectFlat(flat)"></md-radio-button>
                         </td>
                         <td>{{flat.Name}}</td>
                         <td>{{flat.Address}}</td>
-                        <td>
-                            <a (click)="editFlat(flat, $event)">Редактировать</a>
+                        <td class="size-10-pct">
+                            <button type="button" class="btn btn-success btn-sm"
+                                    data-toggle="tooltip" title="Редактировать"
+                                    (click)="editFlat(flat, $event)">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </button>
+                            <!--<a (click)="editFlat(flat, $event)">Редактировать</a>-->
                         </td>
-                        <td>
-                            <a (click)="deleteFlat(flat, $event)">Удалить</a>
+                        <td class="size-10-pct">
+                            <button type="button" class="btn btn-danger btn-sm"
+                                    data-toggle="tooltip" title="Удалить"
+                                    (click)="deleteFlat(flat, $event)">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                            <!--<a (click)="deleteFlat(flat, $event)">Удалить</a>-->
                         </td>
                     </tr>
                 </tbody>
