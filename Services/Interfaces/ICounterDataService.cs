@@ -14,12 +14,12 @@ namespace Services.Interfaces
         /// <returns>CounterData</returns>
         CounterData GetById(int id);
 
-        /// <summary>
-        /// Get CounterDatas by CounterId
-        /// </summary>
-        /// <param name="counterId">CounterId</param>
-        /// <returns></returns>
-        IQueryable<CounterData> GetCounterDatas(int counterId);
+        /////// <summary>
+        /////// Get CounterDatas by CounterId
+        /////// </summary>
+        /////// <param name="counterId">CounterId</param>
+        /////// <returns></returns>
+        ////IQueryable<CounterData> GetCounterDatas(int counterId);
 
         /// <summary>
         /// Delete CounterData by id

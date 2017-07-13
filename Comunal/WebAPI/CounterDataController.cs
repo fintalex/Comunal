@@ -26,12 +26,12 @@ namespace Comunal.WebAPI
             return this.counterDataService.GetById(id);
         }
 
-        [HttpGet]
-        [Route("byCounerId/{counterId:int}")]
-        public IQueryable<CounterDataDTO> GetCounterDatas(int counterId)
-        {
-            return this.counterDataService.GetCounterDatas(counterId).ProjectTo<CounterDataDTO>(); ;
-        }
+        ////[HttpGet]
+        ////[Route("byCounerId/{counterId:int}")]
+        ////public IQueryable<CounterDataDTO> GetCounterDatas(int counterId)
+        ////{
+        ////    return this.counterDataService.GetCounterDatas(counterId).ProjectTo<CounterDataDTO>(); ;
+        ////}
 
         [HttpGet]
         [Route("byBillId/{billId:int}")]
@@ -83,7 +83,7 @@ namespace Comunal.WebAPI
         }
 
         [HttpDelete]
-        [Route("byCounerId/{counterId:int}")]
+        [Route("byCounterId/{counterId:int}")]
         public void DeleteAllCounterDatas(int counterId)
         {
             this.counterDataService.DeleteAllCounterDatas(counterId);

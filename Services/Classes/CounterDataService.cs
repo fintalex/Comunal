@@ -1,5 +1,6 @@
 ﻿using Data;
 using Domain;
+using DTO;
 using System.Linq;
 using System.Data.Entity;
 using Services.Interfaces;
@@ -28,18 +29,8 @@ namespace Services.Classes
 		/// <returns>CounterData</returns>
 		public CounterData GetById(int id)
 		{
-			return this.context.CounterDatas.FirstOrDefault(cd => cd.Id == id);
-		}
-
-		/// <summary>
-		/// Get CounterDatas by CounterId
-		/// </summary>
-		/// <param name="counterId">CounterId</param>
-		/// <returns></returns>
-		public IQueryable<CounterData> GetCounterDatas(int counterId)
-		{
-			return this.context.CounterDatas.Where(cd => cd.CounterId == counterId);
-		}
+            return this.context.CounterDatas.FirstOrDefault(cd => cd.Id == id);
+        }
 
         /// <summary>
 		/// Get CounterDatas by BillId
@@ -60,7 +51,7 @@ namespace Services.Classes
         {
             return this.context.CounterDatas
                 .Where(cd => cd.CounterId == counterId)
-                .OrderByDescending(c => c.ReadingDate);
+                .OrderByDescending(c => c.Bill.InvoiceDate);
         }
 
         /// <summary>
@@ -80,7 +71,7 @@ namespace Services.Classes
 
             foreach (var curCounter in counters)
             {
-                //var lastCounterData = curCounter.CounterDatas.OrderByDescending(cd => cd.Id).FirstOrDefault();
+                ///var lastCounterData = curCounter.CounterDatas.OrderByDescending(cd => cd.Id).FirstOrDefault();
                 var lastCounterData = curCounter.CounterDatas
                     .Where(b => b.Bill.InvoiceDate < dateForBill)
                     .OrderByDescending(cd => cd.Bill.InvoiceDate)
@@ -180,6 +171,5 @@ namespace Services.Classes
                 this.context.Commit();
             }
         }
-
     }
 }

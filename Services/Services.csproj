@@ -74,6 +74,10 @@
       <Project>{7a82848e-e9ee-43e2-8eec-1d1202b9face}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{e088f21e-87a3-40fb-bf87-343809a3a118}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

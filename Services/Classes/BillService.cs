@@ -77,6 +77,29 @@ namespace Services.Classes
             this.context.Bills.Add(newBill);
             this.context.Commit();
 
+            var nextBill = this.context
+                .Bills.Where(b => b.InvoiceDate > newBill.InvoiceDate)
+                .OrderBy(b => b.InvoiceDate)
+                .FirstOrDefault();
+
+            if(nextBill != null)
+            {
+                //Check Next CounterData
+                foreach (var countData in newBill.CounterDatas)
+                {
+                    var nextCounterData = nextBill.CounterDatas
+                        .FirstOrDefault(c=>c.CounterId == countData.CounterId);
+
+                    if (nextCounterData != null)
+                    {
+                        nextCounterData.LastCounterDataId = countData.Id;
+                    }
+                }
+
+                this.context.Commit();
+            }
+            
+
             return newBill;
         }
 
