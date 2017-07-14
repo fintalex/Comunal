@@ -72,5 +72,13 @@ namespace Services.Interfaces
 		/// <param name="counterId">Counter Id</param>
 		/// <returns>Counter Datas</returns>
 		IQueryable<CounterData> GetCounterDatasByCounter(int counterId);
+
+        /// <summary>
+        /// Get CounterData Not added to bill
+        /// </summary>
+        /// <param name="flatId">Flat id</param>
+        /// <param name="billId">Bill id</param>
+        /// <returns>List of empty Counter Data</returns>
+		IQueryable<CounterData> GetCounterDatasNotAdded(int flatId, int billId);
     }
 }

@@ -69,11 +69,14 @@ namespace Comunal.WebAPI
             this.counterDataService.ChangeTarif(curCounterData);
         }
 
-        //[HttpPut]
-        //public void UpdateCounterData(CounterData counterData)
-        //{
-        //    this.counterDataService.UpdateCounterData(counterData);
-        //}
+        [HttpGet]
+        [Route("notAddedToBill/{flatId:int}/{billId:int}")]
+        public IQueryable<CounterDataDTO> GetCounterDatasByBillId(int flatId, int billId)
+        {
+            var counterDatasNotInBill = this.counterDataService.GetCounterDatasNotAdded(flatId, billId);
+            var counterDatasNotInBillDto = counterDatasNotInBill.ProjectTo<CounterDataDTO>();
+            return counterDatasNotInBillDto;
+        }
 
         [HttpDelete]
         [Route("")]

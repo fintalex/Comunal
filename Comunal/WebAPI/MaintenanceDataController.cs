@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Data;
+﻿using AutoMapper.QueryableExtensions;
 using DTO;
 using Services.Interfaces;
 using System.Linq;
@@ -8,15 +6,15 @@ using System.Web.Http;
 
 namespace Comunal.WebAPI
 {
-	[RoutePrefix("api/MaintenanceDatas")]
-	public class MaintenanceDatasController : ApiController
-	{
-		private readonly IMaintenanceDataService maintenanceDataService;
+    [RoutePrefix("api/MaintenanceDatas")]
+    public class MaintenanceDatasController : ApiController
+    {
+        private readonly IMaintenanceDataService maintenanceDataService;
 
-		public MaintenanceDatasController(IMaintenanceDataService maintenanceDataService)
-		{
-			this.maintenanceDataService = maintenanceDataService;
-		}
+        public MaintenanceDatasController(IMaintenanceDataService maintenanceDataService)
+        {
+            this.maintenanceDataService = maintenanceDataService;
+        }
 
         [HttpGet]
         [Route("byBillId/{billId:int}")]

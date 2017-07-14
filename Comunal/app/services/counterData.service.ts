@@ -42,6 +42,12 @@ export class CounterDataService {
             .catch(this.handleError);
     }
 
+    getCounterDatasNotAddedToBill(flatId: number, billId: number): Observable<CounterData[]> {
+        return this.http.get(`${this.apiUrl}/notAddedToBill/${flatId}/${billId}`)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
     getSumForCounter(countData: CounterData, readingOrODN: number) {
 
         if (!countData) return 0;

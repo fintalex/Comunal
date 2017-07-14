@@ -35,10 +35,12 @@ export class BillDetailComponent implements OnInit  {
 
     currentBill: Bill;
     counterDatas: CounterData[] = [];
+    counterDatasNotInBill: CounterData[] = [];
     maintenanceDatas: MaintenanceData[] = [];
     maintenanceDatasNotInBill: MaintenanceData[] = [];
     
     maintDataAdded: MaintenanceData;
+    countDataAdded: CounterData;
 
     forPay: number;
 
@@ -114,6 +116,15 @@ export class BillDetailComponent implements OnInit  {
 
                     if (!this.maintDataAdded && this.maintenanceDatasNotInBill && this.maintenanceDatasNotInBill.length > 0) {
                         this.maintDataAdded = this.maintenanceDatasNotInBill[0];
+                    }
+                });
+
+            this.counterDataService.getCounterDatasNotAddedToBill(this.authService.CurrentUser.Flat.Id, this.billId)
+                .subscribe(countDataNotInBill => {
+                    this.counterDatasNotInBill = countDataNotInBill;
+
+                    if (!this.countDataAdded && this.counterDatasNotInBill && this.counterDatasNotInBill.length > 0) {
+                        this.countDataAdded = this.counterDatasNotInBill[0];
                     }
                 });
         } else {
@@ -252,6 +263,26 @@ export class BillDetailComponent implements OnInit  {
         this.summForBill();
     }
 
+    removeCounterData(counData: CounterData) {
+
+        if (!this.isEditMode) {
+            return;
+        }
+
+        event.stopPropagation();
+        
+        var startIndex = this.counterDatas.indexOf(counData);
+        this.counterDatas.splice(startIndex, 1);
+
+        this.counterDatasNotInBill.push(counData);
+
+        if (!this.countDataAdded) {
+            this.countDataAdded = this.counterDatasNotInBill[0];
+        }
+
+        this.summForBill();
+    }
+
     // ============================== ADD METHODS ======================================
     addMaintenanceData() {
 
@@ -268,6 +299,25 @@ export class BillDetailComponent implements OnInit  {
             this.maintDataAdded = this.maintenanceDatasNotInBill[0];
         } else {
             this.maintDataAdded = null;
+        }
+
+        this.summForBill();
+    }
+
+    addCounterData() {
+        if (!this.isEditMode) {
+            return;
+        }
+
+        var startIndex = this.counterDatasNotInBill.indexOf(this.countDataAdded);
+        this.counterDatasNotInBill.splice(startIndex, 1);
+
+        this.counterDatas.push(this.countDataAdded);
+
+        if (this.counterDatasNotInBill.length > 0) {
+            this.countDataAdded = this.counterDatasNotInBill[0];
+        } else {
+            this.countDataAdded = null;
         }
 
         this.summForBill();

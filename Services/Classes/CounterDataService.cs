@@ -97,6 +97,35 @@ namespace Services.Classes
         }
 
         /// <summary>
+        /// Get CounterData Not added to bill
+        /// </summary>
+        /// <param name="flatId">Flat id</param>
+        /// <param name="billId">Bill id</param>
+        /// <returns>List of empty Counter Data</returns>
+		public IQueryable<CounterData> GetCounterDatasNotAdded(int flatId, int billId)
+        {
+            var counterDatas = new List<CounterData>();
+            var counters = this.context.Counters
+                .Where(c => c.FlatId == flatId)
+                .ToList();
+
+            var countDataInBill = this.context.CounterDatas.Where(cd => cd.BillId == billId).Select(m => m.CounterId).ToList();
+
+            foreach (var curCounter in counters.Where(m => !countDataInBill.Contains(m.Id)))
+            {
+                var newCounterData = new CounterData()
+                {
+                    Counter = curCounter,
+                    CounterTarif = curCounter.CounterTarif,
+                    BillId = billId
+                };
+                counterDatas.Add(newCounterData);
+            }
+
+            return counterDatas.AsQueryable();
+        }
+
+        /// <summary>
         /// Delete CounterData by id
         /// </summary>
         /// <param name="id">CounterData id</param>

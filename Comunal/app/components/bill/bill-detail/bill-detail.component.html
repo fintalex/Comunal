@@ -11,6 +11,7 @@
             <div class="row">
                 <!--For counters Datas-->
                 <div class="col-lg-6">
+                    <!--Показания по счетчикам добавленные в счет-->
                     <label class="control-label" for="counterData">Показания по счетчикам</label>
                     <div class="list-group">
 
@@ -27,22 +28,60 @@
                                         <br />
                                         <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1)}} руб</span>
                                     </div>
-                                    <div class="col-lg-3 bill-detail-box" *ngIf="countData.EnableODN">
-                                        <span class="counter-detail-name pull-right">ОДН</span>
-                                        <br />
-                                        <span class="counter-detail-summ pull-right">{{countData.ReadingODN}}</span>
-                                        <br />
-                                        <span class="counter-detail-summ pull-right">{{counterDataService.getSumForCounter(countData, 2)}} руб</span>
+                                    <div class="col-lg-2 bill-detail-box" >
+                                        <div *ngIf="countData.EnableODN">
+                                            <span class="counter-detail-name pull-right">ОДН</span>
+                                            <br />
+                                            <span class="counter-detail-summ pull-right">{{countData.ReadingODN}}</span>
+                                            <br />
+                                            <span class="counter-detail-summ pull-right">{{counterDataService.getSumForCounter(countData, 2)}} руб</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <button type="button" class="btn btn-danger btn-sm button-bottom-right"
+                                                *ngIf="isEditMode"
+                                                (click)="removeCounterData(countData)"
+                                                data-toggle="tooltip" title="Исключить из счета">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        </button>
                                     </div>
                                 </div>
                             </a>
                         </template>
+                    </div>
 
+                    <!--Счетчики не добавленные в счет-->
+                    <label class="control-label" *ngIf="counterDatasNotInBill && counterDatasNotInBill.length > 0 && isEditMode">Добавление счетчика в счет</label>
+                    <div class="list-group" *ngIf="counterDatasNotInBill && counterDatasNotInBill.length > 0 && isEditMode">
+                        <a class="list-group-item">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <img width="50" height="50" [src]="countDataAdded.IconPath" />
+                                </div>
+                                <div class="col-lg-9 bill-detail-box">
+                                    <select class="form-control"
+                                            [(ngModel)]="countDataAdded">
+                                        <option *ngFor="let countDataNIB of counterDatasNotInBill" [ngValue]="countDataNIB">
+                                            {{countDataNIB.CounterName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-1 bill-detail-box">
+                                    <button type="button" class="btn btn-info btn-sm button-bottom-right"
+                                            (click)="addCounterData(countData)"
+                                            data-toggle="tooltip" title="Добавить в счет">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </a>
                     </div>
                 </div>
 
                 <!--For maintenance Datas-->
                 <div class="col-lg-6" *ngIf="counterDatas">
+                    <!--Текущие показания в счете-->
                     <label class="control-label" for="maintenanceData">Показания по услугам</label>
                     <div class="list-group">
 
@@ -71,6 +110,7 @@
                         </template>
                     </div>
 
+                    <!--Не добавленные услуги в счет-->
                     <label class="control-label" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0 && isEditMode">Добавление услуг в счет</label>
                     <div class="list-group" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0 && isEditMode">
                         <a class="list-group-item">
