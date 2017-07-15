@@ -82,7 +82,6 @@ namespace Services.Classes
                     CounterTarif = curCounter.CounterTarif,
                     Reading = lastCounterData == null ? curCounter.StartReading : lastCounterData.Reading,
                     ReadingDate = DateTime.Now,
-                    //LastReading = lastCounterData == null ? 0 : lastCounterData.Reading,
                     LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
                     LastCounterDataId = lastCounterData == null ? (int?)null : lastCounterData.Id,
                     LastCounterData = lastCounterData,
@@ -113,11 +112,19 @@ namespace Services.Classes
 
             foreach (var curCounter in counters.Where(m => !countDataInBill.Contains(m.Id)))
             {
+                var lastCounterData = this.context.CounterDatas.Where(c => c.CounterId == curCounter.Id).OrderByDescending(c => c.Bill.InvoiceDate).FirstOrDefault();
+
                 var newCounterData = new CounterData()
                 {
                     Counter = curCounter,
                     CounterTarif = curCounter.CounterTarif,
-                    BillId = billId
+                    BillId = billId,
+                    LastCounterData = lastCounterData,
+                    LastCounterDataId = lastCounterData == null ? (int?)null : lastCounterData.Id,
+                    LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
+                    Reading = lastCounterData == null ? curCounter.StartReading : lastCounterData.Reading,
+                    ReadingDate = DateTime.Now,
+                    IsFirst = lastCounterData == null ? true : false
                 };
                 counterDatas.Add(newCounterData);
             }
