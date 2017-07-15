@@ -117,17 +117,26 @@ namespace Services.Classes
             currentBill.InvoiceDate = bill.InvoiceDate;
             currentBill.Recalculation = bill.Recalculation;
 
+            //UPDATE or ADD each CounterData from Client side
             foreach (var item in bill.CounterDatas)
             {
-                var countData = currentBill.CounterDatas.FirstOrDefault(cd => cd.Id == item.Id);
-                if (countData != null)
+                if (item.Id == 0)
                 {
-                    countData.Reading = item.Reading;
-                    countData.ReadingDate = item.ReadingDate;
-                    countData.ReadingODN = item.ReadingODN;
+                    currentBill.CounterDatas.Add(item);
+                }
+                else
+                {
+                    var countData = currentBill.CounterDatas.FirstOrDefault(cd => cd.Id == item.Id);
+                    if (countData != null)
+                    {
+                        countData.Reading = item.Reading;
+                        countData.ReadingDate = item.ReadingDate;
+                        countData.ReadingODN = item.ReadingODN;
+                    }
                 }
             }
 
+            //ADD each CounterData from Client side
             foreach (var maintData in bill.MaintenanceDatas)
             {
                 if (currentBill.MaintenanceDatas.FirstOrDefault(m => m.MaintenanceId == maintData.MaintenanceId) == null)
@@ -136,22 +145,21 @@ namespace Services.Classes
                 }
             }
 
+            // REMOVE all deleted MaintenanceDatas from Bill
             var maintDatasIds = bill.MaintenanceDatas.Select(x => x.Id).ToList();
 
             currentBill.MaintenanceDatas
                 .Where(m => !maintDatasIds.Contains(m.Id))
                 .ToList()
-                .ForEach(item => context.MaintenanceDatas.Remove(item));
+                .ForEach(curMD => context.MaintenanceDatas.Remove(curMD));
 
-            //foreach (var maint in bill.MaintenanceDatas)
-            //{
-            //    var maintData = currentBill.MaintenanceDatas.FirstOrDefault(cd => cd.Id == maint.Id);
-            //    if (maintData != null && maintData.MaintenanceTarif.Tarif != maint.MaintenanceTarif.Tarif)
-            //    {
-            //        var newTarif = new MaintenanceTarif { Tarif = maint.MaintenanceTarif.Tarif };
-            //        maintData.MaintenanceTarif = newTarif;
-            //    }
-            //}
+            // REMOVE all deleted CounterDatas from Bill
+            var countDatasIds = bill.CounterDatas.Select(x => x.Id).ToList();
+
+            currentBill.CounterDatas
+                .Where(c => !countDatasIds.Contains(c.Id))
+                .ToList()
+                .ForEach(curCD => context.CounterDatas.Remove(curCD));
 
             this.context.Commit();
         }
