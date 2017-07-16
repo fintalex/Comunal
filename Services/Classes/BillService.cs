@@ -118,20 +118,30 @@ namespace Services.Classes
             currentBill.Recalculation = bill.Recalculation;
 
             //UPDATE or ADD each CounterData from Client side
-            foreach (var item in bill.CounterDatas)
+            foreach (var curCounter in bill.CounterDatas)
             {
-                if (item.Id == 0)
+                if (curCounter.Id == 0)
                 {
-                    currentBill.CounterDatas.Add(item);
+                    currentBill.CounterDatas.Add(curCounter);
+
+                    // NEED to find CounterDatas with the Same LastCounterData and change it to our NEW LAST CounterData
+                    var nextCounterData = this.context.CounterDatas
+                        .Where(c => c.CounterId == curCounter.CounterId && c.Bill.InvoiceDate > currentBill.InvoiceDate)
+                        .OrderBy(c => c.Bill.InvoiceDate).FirstOrDefault();
+
+                    if(nextCounterData != null)
+                    {
+                        nextCounterData.LastCounterData = curCounter;
+                    }
                 }
                 else
                 {
-                    var countData = currentBill.CounterDatas.FirstOrDefault(cd => cd.Id == item.Id);
+                    var countData = currentBill.CounterDatas.FirstOrDefault(cd => cd.Id == curCounter.Id);
                     if (countData != null)
                     {
-                        countData.Reading = item.Reading;
-                        countData.ReadingDate = item.ReadingDate;
-                        countData.ReadingODN = item.ReadingODN;
+                        countData.Reading = curCounter.Reading;
+                        countData.ReadingDate = curCounter.ReadingDate;
+                        countData.ReadingODN = curCounter.ReadingODN;
                     }
                 }
             }
@@ -151,15 +161,22 @@ namespace Services.Classes
             currentBill.MaintenanceDatas
                 .Where(m => !maintDatasIds.Contains(m.Id))
                 .ToList()
-                .ForEach(curMD => context.MaintenanceDatas.Remove(curMD));
+                .ForEach(curMD => this.context.MaintenanceDatas.Remove(curMD));
 
             // REMOVE all deleted CounterDatas from Bill
             var countDatasIds = bill.CounterDatas.Select(x => x.Id).ToList();
 
-            currentBill.CounterDatas
-                .Where(c => !countDatasIds.Contains(c.Id))
-                .ToList()
-                .ForEach(curCD => context.CounterDatas.Remove(curCD));
+            foreach (var curCD in currentBill.CounterDatas.Where(c => !countDatasIds.Contains(c.Id)).ToList())
+            {
+                // BEFORE remove CELL of LINK (SET), we must relate next and previous CELLS
+                var countDataNext = this.context.CounterDatas.FirstOrDefault(c => c.LastCounterDataId == curCD.Id);
+                if (countDataNext != null)
+                {
+                    countDataNext.LastCounterDataId = curCD.LastCounterDataId;
+                }
+
+                this.context.CounterDatas.Remove(curCD);
+            }
 
             this.context.Commit();
         }

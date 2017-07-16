@@ -108,11 +108,15 @@ namespace Services.Classes
                 .Where(c => c.FlatId == flatId)
                 .ToList();
 
+            var currentBill = this.context.Bills.FirstOrDefault(b => b.Id == billId);
+
             var countDataInBill = this.context.CounterDatas.Where(cd => cd.BillId == billId).Select(m => m.CounterId).ToList();
 
             foreach (var curCounter in counters.Where(m => !countDataInBill.Contains(m.Id)))
             {
-                var lastCounterData = this.context.CounterDatas.Where(c => c.CounterId == curCounter.Id).OrderByDescending(c => c.Bill.InvoiceDate).FirstOrDefault();
+                var lastCounterData = this.context.CounterDatas
+                    .Where(c => c.CounterId == curCounter.Id && c.Bill.InvoiceDate < currentBill.InvoiceDate)
+                    .OrderByDescending(c => c.Bill.InvoiceDate).FirstOrDefault();
 
                 var newCounterData = new CounterData()
                 {
