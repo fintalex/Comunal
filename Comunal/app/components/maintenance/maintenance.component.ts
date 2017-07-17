@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+
 import { MaintenanceService } from '../../services/maintenance.service';
 import { MaintenanceDataService } from '../../services/maintenanceData.service';
 import { DialogService } from 'ng2-bootstrap-modal';
@@ -13,6 +15,36 @@ import { MaintenanceData } from '../../models/maintenanceData';
     moduleId: module.id,
     selector: 'maintenance-list',
     templateUrl: `maintenance.component.html`,
+    animations: [
+        //trigger('itemAnim', [
+        //    state('in', style({ transform: 'translateX(0)' })),
+        //    transition('void => *', [
+        //        animate(300, keyframes([
+        //            style({ opacity: 0, transform: 'translateX(-100%)', offset: 0 }),
+        //            style({ opacity: 1, transform: 'translateX(15px)', offset: 0.3 }),
+        //            style({ opacity: 1, transform: 'translateX(0)', offset: 1.0 })
+        //        ]))
+        //    ]),
+        //    transition('* => void', [
+        //        animate(300, keyframes([
+        //            style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
+        //            style({ opacity: 1, transform: 'translateX(-15px)', offset: 0.7 }),
+        //            style({ opacity: 0, transform: 'translateX(100%)', offset: 1.0 })
+        //        ]))
+        //    ])
+        //])
+        trigger('itemAnim', [
+            state('newElement', style({ opacity: 1, transform: 'translateX(-100%)' })),
+            transition(':enter', [
+                style({ opacity: 0, transform: 'translateX(-100%)' }),
+                animate('1s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+            ]),
+            transition(':leave', [
+                animate('1s ease', style({ transform: 'translateX(-100%)' })),
+                animate('0.3s ease', style({ opacity: 0 }))
+            ])
+        ]),
+    ]
 })
 export class MaintenanceComponent implements OnInit  {
     myMaintenances: Maintenance[] = [];
@@ -68,6 +100,7 @@ export class MaintenanceComponent implements OnInit  {
         this.maintenanceService.createMaintenance(newMaintenance)
             .subscribe(maintenance => {
                 console.log(maintenance);
+                maintenance.state = 'newElement';
                 this.myMaintenances.push(maintenance);
             });
     }

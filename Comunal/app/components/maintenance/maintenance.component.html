@@ -9,7 +9,10 @@
         <div class="panel-body">
             <table class="table table-striped table-hover ">
                 <tbody>
-                    <tr *ngFor="let maintenance of myMaintenances" class="clickable-row" [ngClass]="{'info': maintenance.Selected}" (click)="selectMaintenance(maintenance)">
+                    <tr *ngFor="let maintenance of myMaintenances" 
+                        [@itemAnim] class="clickable-row" 
+                        [ngClass]="{'info': maintenance.Selected}" 
+                        (click)="selectMaintenance(maintenance)">
                         <td class="size-10-pct">
                             <md-radio-button [checked]="maintenance.Selected" (click)="selectMaintenance(maintenance)"></md-radio-button>
                         </td>

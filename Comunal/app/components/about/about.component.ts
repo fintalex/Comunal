@@ -7,6 +7,7 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
     selector: 'about',
     templateUrl: `about.component.html`,
     animations: [
+
         trigger('myFirstAnimation', [
             state('small', style({
                 transform: 'scale(1)',
@@ -19,6 +20,21 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
                 style({ opacity: 0.5, transform: 'translateY(35px)', offset: 0.5 }),
                 style({ opacity: 1, transform: 'translateY(0)', offset: 1.0 })
             ]))),
+        ]),
+
+        trigger('itemAnim', [
+            transition(':enter', [
+                style({ transform: 'translateX(-100%)' }),
+                animate(350)
+            ]),
+            transition(':leave', [
+                animate('0.2s ease', style({
+                    transform: 'translate(150px, 25px)'
+                })),
+                animate('0.5s 0.2s ease', style({
+                    opacity: 0
+                }))
+            ])
         ]),
     ]
 })
