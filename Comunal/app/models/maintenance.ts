@@ -3,7 +3,7 @@
     Selected: boolean;
     Tarif: number | null = null;
     Counters: any;
-    state: string;
+    State: string;
 
     constructor(
         public Name: string = null,

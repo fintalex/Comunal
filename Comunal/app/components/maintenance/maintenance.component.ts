@@ -16,33 +16,34 @@ import { MaintenanceData } from '../../models/maintenanceData';
     selector: 'maintenance-list',
     templateUrl: `maintenance.component.html`,
     animations: [
-        //trigger('itemAnim', [
-        //    state('in', style({ transform: 'translateX(0)' })),
-        //    transition('void => *', [
-        //        animate(300, keyframes([
-        //            style({ opacity: 0, transform: 'translateX(-100%)', offset: 0 }),
-        //            style({ opacity: 1, transform: 'translateX(15px)', offset: 0.3 }),
-        //            style({ opacity: 1, transform: 'translateX(0)', offset: 1.0 })
-        //        ]))
-        //    ]),
-        //    transition('* => void', [
-        //        animate(300, keyframes([
-        //            style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
-        //            style({ opacity: 1, transform: 'translateX(-15px)', offset: 0.7 }),
-        //            style({ opacity: 0, transform: 'translateX(100%)', offset: 1.0 })
-        //        ]))
-        //    ])
-        //])
         trigger('itemAnim', [
-            state('newElement', style({ opacity: 1, transform: 'translateX(-100%)' })),
-            transition(':enter', [
-                style({ opacity: 0, transform: 'translateX(-100%)' }),
-                animate('1s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+            //state('newElement', style({ opacity: 1, transform: 'translateX(0)' })),
+            //state('hidElement', style({ opacity: 0, transform: 'translateX(-100%)' })),
+            //transition('void => newElement', [
+            //    style({ opacity: 0, transform: 'translateX(-100%)' }),
+            //    animate('1s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+            //]),
+            //transition('* => void', [
+            //    animate('1s ease', style({ transform: 'translateX(-100%)' })),
+            //    animate('0.3s ease', style({ opacity: 0 }))
+            //])
+
+            state('newElement', style({ opacity: 1, transform: 'translateX(0)' })),
+            transition('void => newElement', [
+                animate('1s ease-in', keyframes([
+                    style({ opacity: 0, transform: 'translateX(-100%)', offset: 0 }),
+                    style({ opacity: .5, transform: 'translateX(35px)', offset: 0.3 }),
+                    style({ opacity: 1, transform: 'translateX(0)', offset: 1 }),
+                ]))
             ]),
-            transition(':leave', [
-                animate('1s ease', style({ transform: 'translateX(-100%)' })),
-                animate('0.3s ease', style({ opacity: 0 }))
+            transition('* => void', [
+                animate('1s ease-in', keyframes([
+                    style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
+                    style({ opacity: .5, transform: 'translateX(35px)', offset: 0.3 }),
+                    style({ opacity: 0, transform: 'translateX(-100%)', offset: 1 }),
+                ]))
             ])
+            
         ]),
     ]
 })
@@ -100,7 +101,7 @@ export class MaintenanceComponent implements OnInit  {
         this.maintenanceService.createMaintenance(newMaintenance)
             .subscribe(maintenance => {
                 console.log(maintenance);
-                maintenance.state = 'newElement';
+                maintenance.State = 'newElement';
                 this.myMaintenances.push(maintenance);
             });
     }

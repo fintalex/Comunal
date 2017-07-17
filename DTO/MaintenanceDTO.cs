@@ -34,5 +34,7 @@ namespace DTO
         public IEnumerable<int> Counters { get; set; }
 
         public IEnumerable<int> CounterTypes { get; set; }
+
+        public string State { get; set; }
     }
 }

@@ -88,6 +88,7 @@ namespace Comunal
                 cfg.CreateMap<Maintenance, MaintenanceDTO>()
                     .ForMember(x => x.Tarif, c => c.MapFrom(o => o.MaintenanceTarifId.HasValue ? o.MaintenanceTarif.Tarif : 0))
                     .ForMember(x => x.Counters, c => c.MapFrom(o => o.Counters.Select(co => co.Id)))
+                    //.ForMember(x => x.State, c => c.MapFrom(o => "oldElement"))
                     .ForMember(x => x.CounterTypes, c => c.MapFrom(o => o.Counters.Select(co => co.CounterTypeId)));
                 cfg.CreateMap<MaintenanceDTO, Maintenance>()
                     .ForMember(x => x.Coefficient, c => c.MapFrom(o => o.MaintenanceTypeId == (int)MaintenanceTypes.Fix || o.MaintenanceTypeId == (int)MaintenanceTypes.Sewerage ? 1 : o.Coefficient))
