@@ -9,6 +9,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { MaterialModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // =============== App Component ====================
 import { AppComponent } from './app.component';
@@ -56,7 +57,8 @@ import { DataService } from './services/data.service';
         BootstrapModalModule.forRoot({ container: document.body }),
         MultiselectDropdownModule,
         MaterialModule,
-        ChartModule.forRoot(require('highcharts'))
+        ChartModule.forRoot(require('highcharts')),
+        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,
