@@ -77,28 +77,19 @@ namespace Services.Classes
             this.context.Bills.Add(newBill);
             this.context.Commit();
 
-            var nextBill = this.context
-                .Bills.Where(b => b.InvoiceDate > newBill.InvoiceDate)
-                .OrderBy(b => b.InvoiceDate)
-                .FirstOrDefault();
-
-            if(nextBill != null)
+            foreach (var countData in newBill.CounterDatas)
             {
-                //Check Next CounterData
-                foreach (var countData in newBill.CounterDatas)
-                {
-                    var nextCounterData = nextBill.CounterDatas
-                        .FirstOrDefault(c=>c.CounterId == countData.CounterId);
+                var nextCounterData = this.context.CounterDatas
+                    .Where(c => c.CounterId == countData.CounterId && c.Bill.InvoiceDate > countData.Bill.InvoiceDate)
+                    .OrderBy(c => c.Bill.InvoiceDate).FirstOrDefault();
 
-                    if (nextCounterData != null)
-                    {
-                        nextCounterData.LastCounterDataId = countData.Id;
-                    }
+                if (nextCounterData != null)
+                {
+                    nextCounterData.LastCounterDataId = countData.Id;
                 }
 
                 this.context.Commit();
             }
-            
 
             return newBill;
         }
