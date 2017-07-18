@@ -1,15 +1,17 @@
 ﻿
-<div class="col-lg-6">
+<div class="col-lg-6"  >
     <h1>Счетчики ({{authService.CurrentUser.Flat.Name}})</h1>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" [@staggerCounter]="myCounters.length">
         <div class="panel-heading">
             <h3 class="panel-title">Название и адрес</h3>
         </div>
         <div class="panel-body">
-            <table class="table table-striped table-hover ">
-                <tbody>
-                    <tr *ngFor="let counter of myCounters" class="clickable-row" [ngClass]="{'info': counter.Selected}" (click)="selectCounter(counter)">
+            <table class="table table-striped table-hover" >
+                <tbody >
+                    <tr *ngFor="let counter of myCounters" class="clickable-row col" 
+                        [ngClass]="{'info': counter.Selected}" 
+                        (click)="selectCounter(counter)">
                         <td class="size-10-pct">
                             <md-radio-button [checked]="counter.Selected" (click)="selectCounter(counter)"></md-radio-button>
                         </td>
@@ -43,6 +45,11 @@
         </div>
     </div>
 
+    <!--<div >
+        <div class="col" *ngFor="let counter of myCounters2">
+            <p>{{counter.Name}}</p>
+        </div>
+    </div>-->
 
     <a class="btn btn-primary"
        *ngIf="!showCounterPanel"
@@ -57,10 +64,10 @@
 </div>
 
 
-<div class="col-lg-6" *ngIf="currentCounter">
+<div class="col-lg-6" *ngIf="currentCounter" >
     <h1>История - ({{currentCounter.Name}})</h1>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" [@staggerCounterHistory]="counterDatas.length">
         <div class="panel-heading">
             <h3 class="panel-title">Показания</h3>
         </div>

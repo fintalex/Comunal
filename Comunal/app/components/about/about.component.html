@@ -11,6 +11,15 @@
         Если у Вас есть идеи по улучшению сайта - пожалуйста, оставляйте их в отзывах вконтакте. Мы обещаем их рассмотреть и реализовать наиболее интересные и полезные!
     </p>
 
+
+    <div [@queryAnimation]="exp" (click)="goAnimate()">
+        <h1>Title</h1>
+        <div class="content">
+            Blah blah blah
+        </div>
+    </div>
+
+    <button (click)="goAnimate()"> Animate </button>
     
     <table class="table">
         <tr>

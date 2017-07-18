@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { trigger, state, style, transition, animate, query, stagger, keyframes } from '@angular/animations';
 
 import { MaintenanceService } from '../../services/maintenance.service';
 import { MaintenanceDataService } from '../../services/maintenanceData.service';
@@ -45,6 +45,16 @@ import { MaintenanceData } from '../../models/maintenanceData';
             ])
             
         ]),
+
+        trigger('explainerAnim', [
+            transition('* => *', [
+                query('.col', style({ opacity: 0, transform: 'translateX(-40px) translateY(-40px)' })),
+
+                query('.col', stagger('500ms', [
+                    animate('800ms 1.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+                ]))
+            ])
+        ])
     ]
 })
 export class MaintenanceComponent implements OnInit  {

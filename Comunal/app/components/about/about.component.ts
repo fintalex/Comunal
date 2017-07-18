@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { trigger, state, style, transition, animate, keyframes, query } from '@angular/animations';
 
 @Component({
     moduleId: module.id,
@@ -36,6 +36,18 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
                 }))
             ])
         ]),
+
+        trigger('queryAnimation', [
+            transition('* => goAnimate', [
+                // hide the inner elements
+                query('h1', style({ opacity: 0 })),
+                query('.content', style({ opacity: 0 })),
+
+                // animate the inner elements in, one by one
+                query('h1', animate(1000, style({ opacity: 1 }))),
+                query('.content', animate(1000, style({ opacity: 1 }))),
+            ])
+        ])
     ]
 })
 export class AboutComponent  { 
@@ -43,6 +55,7 @@ export class AboutComponent  {
 
     state: string = 'small';
 
+    exp = '';
     constructor() {
         this.options = {
             title: { text: 'simple chart' },
@@ -50,6 +63,12 @@ export class AboutComponent  {
                 data: [29.9, 71.5, 106.4, 129],
             }]
         };
+    }
+
+    
+
+    goAnimate() {
+        this.exp = (this.exp === 'goAnimate' ? '' : 'goAnimate');
     }
 
     animateMe() {
