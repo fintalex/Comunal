@@ -82,7 +82,7 @@ namespace Services.Classes
                     CounterTarif = curCounter.CounterTarif,
                     Reading = lastCounterData == null ? curCounter.StartReading : lastCounterData.Reading,
                     ReadingDate = DateTime.Now,
-                    LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
+                    //LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
                     LastCounterDataId = lastCounterData == null ? (int?)null : lastCounterData.Id,
                     LastCounterData = lastCounterData,
                     IsFirst = lastCounterData == null ? true : false,
@@ -125,7 +125,7 @@ namespace Services.Classes
                     BillId = billId,
                     LastCounterData = lastCounterData,
                     LastCounterDataId = lastCounterData == null ? (int?)null : lastCounterData.Id,
-                    LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
+                    //LastReadingDate = lastCounterData == null ? (DateTime?)null : lastCounterData.ReadingDate,
                     Reading = lastCounterData == null ? curCounter.StartReading : lastCounterData.Reading,
                     ReadingDate = DateTime.Now,
                     IsFirst = lastCounterData == null ? true : false

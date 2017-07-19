@@ -8,7 +8,7 @@
     Limit2: number;
     Tarif3: number;
     IconPath: string;
-    //LastReading: number;
+    LastReading: number;
     LastReadingDate: any;
     EnableODN: boolean;
     LastCounterDataDTO: CounterData;

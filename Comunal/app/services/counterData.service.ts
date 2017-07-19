@@ -18,6 +18,12 @@ export class CounterDataService {
 
     }
 
+    getCounterData(id: number): Observable<CounterData> {
+        return this.http.get(`${this.apiUrl}/${id}`)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
     getCounterDatasForNewBill(flatId: number, invoiceDateYear: number, invoiceDateMonth: number): Observable<CounterData[]> {
         var forNewBill = {
             FlatId: flatId,
@@ -53,7 +59,7 @@ export class CounterDataService {
         if (!countData) return 0;
 
         var summ = 0;
-        var lastReading = countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading;
+        var lastReading = countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : (countData.LastReading ? countData.LastReading : countData.StartReading);
         var currentPlusReading = readingOrODN == 1 ? countData.Reading - lastReading : countData.ReadingODN;
 
         if (!countData.Limit1 || countData.Limit1 == 0 || currentPlusReading <= countData.Limit1) {

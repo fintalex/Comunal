@@ -28,10 +28,10 @@ namespace Data
 		/// </summary>
 		public DateTime ReadingDate { get; set; }
 
-        /// <summary>
-		/// Дата снятия последних показаний
-		/// </summary>
-		public DateTime? LastReadingDate { get; set; }
+  //      /// <summary>
+		///// Дата снятия последних показаний
+		///// </summary>
+		//public DateTime? LastReadingDate { get; set; }
 
         /// <summary>
         /// Предыдущие Counter Data ID

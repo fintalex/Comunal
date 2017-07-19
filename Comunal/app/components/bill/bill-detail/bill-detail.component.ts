@@ -187,6 +187,9 @@ export class BillDetailComponent implements OnInit  {
             counterData: {}
         };
 
+        //this.counterDataService.getCounterData(counterData.LastCounterDataDTO.Id)
+        //    .subscribe
+
         Object.assign(dataForModalWindow.counterData, counterData);
 
         this.dialogService.addDialog(EditCounterDataComponent,  dataForModalWindow)

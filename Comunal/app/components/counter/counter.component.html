@@ -67,7 +67,7 @@
 <div class="col-lg-6" *ngIf="currentCounter" >
     <h1>История - ({{currentCounter.Name}})</h1>
 
-    <div class="panel panel-primary" [@staggerCounterHistory]="counterDatas.length">
+    <div class="panel panel-primary" [@staggerCounterHistory]="currentCounter && counterDatas.length">
         <div class="panel-heading">
             <h3 class="panel-title">Показания</h3>
         </div>

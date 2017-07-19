@@ -21,17 +21,14 @@ namespace Comunal.WebAPI
         }
 
         [HttpGet]
-        public CounterData Get(int id)
+        public CounterDataDTO Get(int id)
         {
-            return this.counterDataService.GetById(id);
-        }
+            var countData = this.counterDataService.GetById(id);
 
-        ////[HttpGet]
-        ////[Route("byCounerId/{counterId:int}")]
-        ////public IQueryable<CounterDataDTO> GetCounterDatas(int counterId)
-        ////{
-        ////    return this.counterDataService.GetCounterDatas(counterId).ProjectTo<CounterDataDTO>(); ;
-        ////}
+            var countDataDTO = Mapper.Map<CounterDataDTO>(countData);
+
+            return countDataDTO;
+        }
 
         [HttpGet]
         [Route("byBillId/{billId:int}")]

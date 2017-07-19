@@ -17,7 +17,9 @@ namespace DTO
         public double? ReadingODN { get; set; }
 
         public DateTime? LastReadingDate { get; set; }
-        
+
+        public double? LastReading { get; set; }
+
         public bool IsFirst { get; set; }
         
 
