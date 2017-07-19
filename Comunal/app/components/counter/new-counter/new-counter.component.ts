@@ -30,6 +30,8 @@ export class NewCounterComponent implements OnInit  {
         if (!this.counter) {
             this.counter = new Counter();
         }
+
+        this.counter.StartReading = this.counter.StartReading ? this.counter.StartReading : 0;
         
         this.tarifTypes = [
             { Id: 1, Name: 'Простой' },

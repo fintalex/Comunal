@@ -11,6 +11,17 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-6">
+                        <!--Способ расчета-->
+                        <div class="form-group">
+                            <label class="control-label" for="maintenanceTypeId">Способ расчета</label>
+                            <select class="form-control" name="maintenanceTypeId" required
+                                    placeholder="Укажите тип услуги"
+                                    [(ngModel)]="maintenance.MaintenanceTypeId">
+                                <option *ngFor="let maintenanceType of maintenanceTypes" [value]="maintenanceType.Id">{{maintenanceType.Name}}</option>
+                            </select>
+                        </div>
+
+                        <!--Название услуги-->
                         <div class="form-group">
                             <label class="control-label" for="newMaintenanceName">Название услуги</label>
                             <input class="form-control" name="newMaintenanceName" type="text" 
@@ -18,19 +29,7 @@
                                    [disabled]="maintenance.EditTarifOnly">
                         </div>
 
-                        <div class="form-group">
-                            <label class="control-label" for="maintenanceTypeId">Способ расчета</label>
-                            <select class="form-control" name="maintenanceTypeId" placeholder="Укажите тип услуги"
-                                    [(ngModel)]="maintenance.MaintenanceTypeId" required
-                                    (ngModelChange)="onTypeChange($event)"
-                                    [disabled]="maintenance.EditTarifOnly">
-                                <option [value]="1">Фиксированная стоимость</option>
-                                <option [value]="2">По количеству жильцов/площади</option>
-                                <option [value]="3" *ngIf="myWaterCounters.length > 0">Водоотведение</option>
-                                <option [value]="4" *ngIf="myWaterCounters.length > 0">Подогрев воды</option>
-                            </select>
-                        </div>
-
+                        <!--Список счетчиков-->
                         <div class="form-group" *ngIf="maintenance.MaintenanceTypeId && myWaterCounters.length > 0 && (maintenance.MaintenanceTypeId == 3 || maintenance.MaintenanceTypeId == 4)">
                             <label class="control-label" for="multyForType4">Список счетчиков</label>
                             <ss-multiselect-dropdown name="multyForType4" required *ngIf="maintenance.MaintenanceTypeId == 4"
@@ -54,6 +53,7 @@
                     </div>
 
                     <div class="col-lg-6">
+                        <!--Тариф-->
                         <div class="form-group">
                             <label class="control-label" for="tarif">Тариф</label>
                             <input class="form-control" name="tarif" type="text"
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <!--Коэффициент-->
                         <div class="form-group" *ngIf="maintenance.MaintenanceTypeId == 2 || maintenance.MaintenanceTypeId == 4">
                             <label class="control-label" for="coefficient">Коэффициент</label>
                             <input class="form-control" name="coefficient" type="text"

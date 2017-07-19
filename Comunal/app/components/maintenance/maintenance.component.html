@@ -19,10 +19,7 @@
                         </td>
                         <td class="size-10-pct">
                             <div>
-                                <img *ngIf="maintenance.MaintenanceTypeId == 1" width="30" height="30"  src="Content/ServiceTypes/fix.png" />
-                                <img *ngIf="maintenance.MaintenanceTypeId == 2" width="30" height="30"  src="Content/ServiceTypes/multi.png" />
-                                <img *ngIf="maintenance.MaintenanceTypeId == 3" width="30" height="30"  src="Content/ServiceTypes/waters.png" />
-                                <img *ngIf="maintenance.MaintenanceTypeId == 4" width="30" height="30"  src="Content/ServiceTypes/cooler.png" />
+                                <img width="30" height="30" [src]="maintenance.IconPath" />
                             </div>
                         </td>
                         <td>

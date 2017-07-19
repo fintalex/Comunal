@@ -78,6 +78,8 @@ namespace Services.Classes
             this.context.Counters.Add(counter);
             this.context.Commit();
 
+            counter.CounterType = this.context.CounterTypes.FirstOrDefault(ct => ct.Id == counter.CounterTypeId);
+
             return counter;
         }
 

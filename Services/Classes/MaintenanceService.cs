@@ -82,6 +82,8 @@ namespace Services.Classes
             this.context.Maintenances.Add(maintenance);
             this.context.Commit();
 
+            maintenance.MaintenanceType = this.context.MaintenanceTypes.FirstOrDefault(mt => mt.Id == maintenance.MaintenanceTypeId);
+
             return maintenance;
         }
 

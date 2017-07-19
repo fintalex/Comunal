@@ -16,6 +16,7 @@ namespace DTO
 
         public double Coefficient { get; set; }
 
+        public string IconPath { get; set; }
 
         public int FlatId { get; set; }
 

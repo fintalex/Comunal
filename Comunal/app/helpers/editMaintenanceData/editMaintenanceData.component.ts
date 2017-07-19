@@ -29,6 +29,8 @@ export class EditMaintenanceDataComponent extends DialogComponent<EditMaintenanc
     
     maintenanceType: any;
 
+    maintenanceTypes: any[];
+
     myWaterCounters: IMultiSelectOption[] = [];
 
     ///  https://www.npmjs.com/package/ng2-bootstrap-modal
@@ -44,6 +46,11 @@ export class EditMaintenanceDataComponent extends DialogComponent<EditMaintenanc
             this.maintenance = new Maintenance();
         }
 
+        this.maintenanceTypes = [
+            { Id: 1, Name: 'Фиксированная стоимость' },
+            { Id: 2, Name: 'По количеству жильцов/площади' },
+        ];
+
         this.counterService.getWaterCountersByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(waterCounters => {
                 this.myWaterCounters = _.map(waterCounters, (wCounter) => {
@@ -52,6 +59,11 @@ export class EditMaintenanceDataComponent extends DialogComponent<EditMaintenanc
                         name: wCounter.Name
                     }
                 });
+
+                if (this.myWaterCounters.length > 0) {
+                    this.maintenanceTypes.push({ Id: 3, Name: 'Водоотведение' });
+                    this.maintenanceTypes.push({ Id: 4, Name: 'Подогрев воды' });
+                }
             });
     }
     
