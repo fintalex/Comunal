@@ -20,7 +20,7 @@ import { CounterData } from '../../models/counterData';
             transition('* => *', [
                 query('.clickable-row:enter', style({ opacity: 0 }), { optional: true }),
 
-                query('.clickable-row:enter', stagger('200ms', [
+                query('.clickable-row:enter', stagger('100ms', [
                     animate('300ms ease-in', keyframes([
                         style({ opacity: 0, transform: 'translateX(-75px)', offset: 0 }),
                         style({ opacity: .5, transform: 'translateX(35px)', offset: 0.3 }),
@@ -41,21 +41,12 @@ import { CounterData } from '../../models/counterData';
             transition('* => *', [
                 query('tr:enter', style({ opacity: 0 }), { optional: true }),
 
-                query('tr:enter', stagger('200ms', [
-                    animate('300ms ease-in', keyframes([
-                        style({ opacity: 0, transform: 'translateX(-75px)', offset: 0 }),
-                        style({ opacity: .5, transform: 'translateX(35px)', offset: 0.3 }),
-                        style({ opacity: 1, transform: 'translateX(0)', offset: 1 }),
+                query('tr:enter', stagger('100ms', [
+                    animate('200ms ease-in', keyframes([
+                        style({ opacity: 0, transform: 'translateY(-47px)', offset: 0 }),
+                        style({ opacity: 1, transform: 'translateY(0)', offset: 1 }),
                     ]))
-                ]), { optional: true }),
-
-                query(':leave', stagger('300ms', [
-                    animate('1s ease-in', keyframes([
-                        style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
-                        style({ opacity: .5, transform: 'translateX(35px)', offset: 0.3 }),
-                        style({ opacity: 0, transform: 'translateX(-75px)', offset: 1 }),
-                    ]))
-                ]), { optional: true }),
+                ]), { optional: true })
             ])
         ])
     ]
@@ -66,6 +57,8 @@ export class CounterComponent implements OnInit  {
     showCounterPanel: boolean = false;
     currentCounter: Counter;
     counterDatas: CounterData[];
+
+    staggerCounterHistoryIndex: number = 1;
 
     constructor(
         private counterService: CounterService,
@@ -146,11 +139,13 @@ export class CounterComponent implements OnInit  {
     selectCounter(selectedCounter: Counter) {
         this.myCounters.forEach(couner => couner.Selected = false);
         selectedCounter.Selected = true;
+        
         this.currentCounter = selectedCounter;
 
         // get history
         this.counterDataService.getCounterDatasByCounterId(selectedCounter.Id)
             .subscribe(counterDatas => {
+                this.staggerCounterHistoryIndex++;
                 this.counterDatas = counterDatas;
             });
     }

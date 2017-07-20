@@ -46,13 +46,26 @@ import { MaintenanceData } from '../../models/maintenanceData';
             
         ]),
 
-        trigger('explainerAnim', [
-            transition('* => *', [
-                query('.col', style({ opacity: 0, transform: 'translateX(-40px) translateY(-40px)' })),
+        //trigger('explainerAnim', [
+        //    transition('* => *', [
+        //        query('.col', style({ opacity: 0, transform: 'translateX(-40px) translateY(-40px)' })),
 
-                query('.col', stagger('500ms', [
-                    animate('800ms 1.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
-                ]))
+        //        query('.col', stagger('500ms', [
+        //            animate('800ms 1.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+        //        ]))
+        //    ])
+        //]),
+
+        trigger('staggerMaintHistory', [
+            transition('* => *', [
+                query('tr:enter', style({ opacity: 0 }), { optional: true }),
+
+                query('tr:enter', stagger('100ms', [
+                    animate('200ms ease-in', keyframes([
+                        style({ opacity: 0, transform: 'translateX(50px)', offset: 0 }),
+                        style({ opacity: 1, transform: 'translateX(0)', offset: 1 }),
+                    ]))
+                ]), { optional: true })
             ])
         ])
     ]
@@ -61,6 +74,8 @@ export class MaintenanceComponent implements OnInit  {
     myMaintenances: Maintenance[] = [];
     currentMaintenance: Maintenance;
     maintenanceDatas: MaintenanceData[];
+
+    staggerMaintHistoryIndex: number = 1;
 
     constructor(
         private maintenanceService: MaintenanceService,
@@ -153,6 +168,7 @@ export class MaintenanceComponent implements OnInit  {
         // get history
         this.maintenanceDataService.getMaintenanceDatasByMaintenanceId(selectedMaintenance.Id)
             .subscribe(maintenanceDatas => {
+                this.staggerMaintHistoryIndex++;
                 this.maintenanceDatas = maintenanceDatas;
             });
     }

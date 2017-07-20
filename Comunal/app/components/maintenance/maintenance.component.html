@@ -49,7 +49,7 @@
             </table>
         </div>
     </div>
-    <div @explainerAnim>
+    <!--<div @explainerAnim>
         <div class="col">
             <p>Animation maybe like this. A few p tags apper from opacity = 0 to opacity = 1, and animate by X or Y coordinat.</p>
         </div>
@@ -59,7 +59,7 @@
         <div class="col">
             <p>Animation maybe like this. A few p tags apper from opacity = 0 to opacity = 1, and animate by X or Y coordinat.</p>
         </div>
-    </div>
+    </div>-->
 
     <a class="btn btn-primary"
        (click)="goToNewMaintenance()">Новая услуга</a>
@@ -69,7 +69,7 @@
 <div class="col-lg-6" *ngIf="currentMaintenance">
     <h1>История - ({{currentMaintenance.Name}})</h1>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" [@staggerMaintHistory]="staggerMaintHistoryIndex">
         <div class="panel-heading">
             <h3 class="panel-title">Показания</h3>
         </div>
