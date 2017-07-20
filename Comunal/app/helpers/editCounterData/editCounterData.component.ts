@@ -40,6 +40,7 @@ export class EditCounterDataComponent extends DialogComponent<EditCounterDataMod
 
     ngOnInit() {
         Object.assign(this.counterDataBefore, this.counterData);
+        this.counterData.Reading = null;
         this.allMonthes = this.dataService.getAllMonthes();
         this.allYears = this.dataService.getAllYears(10);
         this.allDays = this.dataService.getAllDays(this.counterData.ReadingDateMonth, this.counterData.ReadingDateYear);

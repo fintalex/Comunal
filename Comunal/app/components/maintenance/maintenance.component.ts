@@ -127,7 +127,7 @@ export class MaintenanceComponent implements OnInit  {
     deleteMaintenance(currentMaintenance: Maintenance, event: any) {
         event.stopPropagation();
 
-        this.dialogService.addDialog(ConfirmComponent, { title: "Подтвердите удаление счетчика", message: "Вы точно хотите удалить счетчик?" })
+        this.dialogService.addDialog(ConfirmComponent, { title: "Подтвердите удаление услуги", message: "Вы точно хотите удалить услугу?" })
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
                     this.maintenanceService.deleteMaintenance(currentMaintenance.Id)

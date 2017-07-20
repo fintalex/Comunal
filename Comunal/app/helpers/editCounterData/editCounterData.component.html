@@ -54,7 +54,7 @@
                 </div>
                 <div class="row">
                     <!--validation for NOT less then Reading Before-->
-                    <div *ngIf="counterDataBefore.Reading > counterData.Reading" class="text-danger col-lg-10  col-lg-offset-1">
+                    <div *ngIf="counterData.Reading && counterDataBefore.Reading > counterData.Reading" class="text-danger col-lg-10  col-lg-offset-1">
                         Показания не могут быть меньше предыдущих
                     </div>
                 </div>
@@ -89,7 +89,9 @@
                                        value="{{counterData.Tarif1}}{{counterData.Tarif2 || counterData.Tarif2 != 0 ? ' / ' + counterData.Tarif2 : ''}}{{counterData.Tarif3 || counterData.Tarif3 != 0 ? ' / ' + counterData.Tarif3 : ''}} руб">
                                 <span class="input-group-btn">
                                     <button class="btn btn-warning" type="button"
-                                            (click)="goToEditTarifCounter()" >Редактировать</button>
+                                            (click)="goToEditTarifCounter()">
+                                        Редактировать
+                                    </button>
                                 </span>
                             </div>
 
@@ -104,13 +106,13 @@
                                      (update)="updateCounter($event)"
                                      (close)="showCounterPanel = false"
                                      [counter]="currentCounter"></new-counter>
-                    </div>                    
+                    </div>
                 </div>
 
 
 
                 <!--==================Предыдущие показания========================-->
-                <div *ngIf="counterDataBefore.LastCounterDataDTO">
+                <div>
                     <div class="row">
                         <div class="col-lg-5 col-lg-offset-3 padding-left-40">
                             <label class="control-label" for="invoiceDataDay">Предыдущие показания</label>
@@ -118,27 +120,37 @@
                     </div>
                     <!--Дата-->
                     <div class="row">
-                        <div class="col-lg-2 col-lg-offset-3"><span>Дата:</span></div>
-                        <div class="col-lg-3 "><span class="pull-right">{{counterDataBefore.LastReadingDate | dateru: "D MMM YYYY" }}</span></div>   <!--| date:'d MMM y'-->
+                        <div class="col-lg-1 col-lg-offset-3"><span>Дата:</span></div>
+                        <div class="col-lg-4">
+                            <span *ngIf="counterDataBefore.LastCounterDataDTO; else firstData" class="pull-right">{{counterDataBefore.LastReadingDate | dateru: "D MMM YYYY" }}</span>
+                            <ng-template #firstData>
+                                <span class="pull-right">Начальные показания</span>
+                            </ng-template>
+                        </div>   <!--| date:'d MMM y'-->
                         <div class="col-lg-3"></div>
                     </div>
 
                     <!--Показания-->
                     <div class="row">
                         <div class="col-lg-2 col-lg-offset-3"><span>Показания:</span></div>
-                        <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.LastCounterDataDTO ? counterDataBefore.LastCounterDataDTO.Reading : 0}}</span></div>
+                        <div class="col-lg-3">
+                            <span *ngIf="counterDataBefore.LastCounterDataDTO; else firstReading" class="pull-right">{{counterDataBefore.LastCounterDataDTO ? counterDataBefore.LastCounterDataDTO.Reading : 0}}</span>
+                            <ng-template #firstReading>
+                                <span class="pull-right">{{counterDataBefore.StartReading}}</span>
+                            </ng-template>
+                        </div>
                         <div class="col-lg-3"></div>
                     </div>
 
                     <!--Тариф-->
-                    <div class="row">
+                    <div class="row" *ngIf="counterDataBefore.LastCounterDataDTO">
                         <div class="col-lg-2 col-lg-offset-3"><span>Тариф:</span></div>
                         <div class="col-lg-3"><span class="pull-right">{{counterDataBefore.LastCounterDataDTO.Tarif1}}{{counterDataBefore.LastCounterDataDTO.Tarif2 || counterDataBefore.LastCounterDataDTO.Tarif2 != 0 ? ' / ' + counterDataBefore.LastCounterDataDTO.Tarif2 : ''}}{{counterDataBefore.LastCounterDataDTO.Tarif3 || counterDataBefore.LastCounterDataDTO.Tarif3 != 0 ? ' / ' + counterDataBefore.LastCounterDataDTO.Tarif3 : ''}} руб</span></div>
                         <div class="col-lg-3"></div>
                     </div>
 
                     <!--Сумма-->
-                    <div class="row">
+                    <div class="row" *ngIf="counterDataBefore.LastCounterDataDTO">
                         <div class="col-lg-2 col-lg-offset-3"><span>Сумма:</span></div>
                         <div class="col-lg-3"><span class="pull-right">{{counterDataService.getSumForCounter(counterDataBefore.LastCounterDataDTO, 1)}} руб</span></div>
                         <div class="col-lg-3"></div>
