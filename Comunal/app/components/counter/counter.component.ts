@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
 import { trigger, state, style, transition, animate, keyframes, query, stagger, } from '@angular/animations';
@@ -64,7 +65,8 @@ export class CounterComponent implements OnInit  {
         private counterService: CounterService,
         private counterDataService: CounterDataService,
         private dialogService: DialogService,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -104,6 +106,10 @@ export class CounterComponent implements OnInit  {
         console.log(currentCounter);
         this.currentCounter = Object.assign({}, currentCounter);
         this.showCounterPanel = true;
+    }
+
+    editBill(counterData: CounterData) {
+        this.router.navigate(['/bill', counterData.BillId, true]);
     }
 
     updateCounter(currentCounter: Counter) {

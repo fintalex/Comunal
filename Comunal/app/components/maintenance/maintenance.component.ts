@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
 import { trigger, state, style, transition, animate, query, stagger, keyframes } from '@angular/animations';
@@ -81,7 +82,8 @@ export class MaintenanceComponent implements OnInit  {
         private maintenanceService: MaintenanceService,
         private maintenanceDataService: MaintenanceDataService,
         private dialogService: DialogService,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -108,6 +110,11 @@ export class MaintenanceComponent implements OnInit  {
                 }
             });
     }
+
+    editBill(maintData: MaintenanceData) {
+        this.router.navigate(['/bill', maintData.BillId, true]);
+    }
+
     // Press NEW in UI
     goToNewMaintenance() {
         event.stopPropagation();
