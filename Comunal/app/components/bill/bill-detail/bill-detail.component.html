@@ -3,202 +3,213 @@
     <div class="panel-heading">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeWindow()">&times;</button>
         <h3 class="panel-title">Создание нового счета</h3>
-
     </div>
     <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row">
+                    <!--For counters Datas-->
+                    <div class="col-lg-6">
+                        <!--Показания по счетчикам добавленные в счет-->
+                        <label class="control-label" for="counterData">Показания по счетчикам</label>
+                        <div class="list-group">
 
-        <div class="col-lg-9">
-            <div class="row">
-                <!--For counters Datas-->
-                <div class="col-lg-6">
-                    <!--Показания по счетчикам добавленные в счет-->
-                    <label class="control-label" for="counterData">Показания по счетчикам</label>
-                    <div class="list-group">
-
-                        <template ngFor let-countData [ngForOf]="counterDatas">
-                            <a class="list-group-item" (click)="editCounterData(countData)" [ngClass]="{'not-clickable-row': !isEditMode}">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <img width="50" height="50" [src]="countData.IconPath" />
-                                    </div>
-                                    <div class="col-lg-7 bill-detail-box">
-                                        <span class="counter-detail-name">{{countData.CounterName}}</span>
-                                        <br />
-                                        <span class="counter-detail-summ">{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading)).toFixed(2) : 0}})</span>
-                                        <br />
-                                        <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1)}} руб</span>
-                                    </div>
-                                    <div class="col-lg-2 bill-detail-box" >
-                                        <div *ngIf="countData.EnableODN">
-                                            <span class="counter-detail-name pull-right">ОДН</span>
+                            <template ngFor let-countData [ngForOf]="counterDatas">
+                                <a class="list-group-item" (click)="editCounterData(countData)" [ngClass]="{'not-clickable-row': !isEditMode}">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <img width="50" height="50" [src]="countData.IconPath" />
+                                        </div>
+                                        <div class="col-lg-7 bill-detail-box">
+                                            <span class="counter-detail-name">{{countData.CounterName}}</span>
                                             <br />
-                                            <span class="counter-detail-summ pull-right">{{countData.ReadingODN}}</span>
+                                            <span class="counter-detail-summ">{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading)).toFixed(2) : 0}})</span>
                                             <br />
-                                            <span class="counter-detail-summ pull-right">{{counterDataService.getSumForCounter(countData, 2)}} руб</span>
+                                            <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1)}} руб</span>
+                                        </div>
+                                        <div class="col-lg-2 bill-detail-box">
+                                            <div *ngIf="countData.EnableODN">
+                                                <span class="counter-detail-name pull-right">ОДН</span>
+                                                <br />
+                                                <span class="counter-detail-summ pull-right">{{countData.ReadingODN}}</span>
+                                                <br />
+                                                <span class="counter-detail-summ pull-right">{{counterDataService.getSumForCounter(countData, 2)}} руб</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="button" class="btn btn-danger btn-sm button-bottom-right"
+                                                    *ngIf="isEditMode"
+                                                    (click)="removeCounterData(countData)"
+                                                    data-toggle="tooltip" title="Исключить из счета">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-1">
-                                        <button type="button" class="btn btn-danger btn-sm button-bottom-right"
-                                                *ngIf="isEditMode"
-                                                (click)="removeCounterData(countData)"
-                                                data-toggle="tooltip" title="Исключить из счета">
-                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </a>
-                        </template>
-                    </div>
+                                </a>
+                            </template>
+                        </div>
 
-                    <!--Счетчики не добавленные в счет-->
-                    <label class="control-label" *ngIf="counterDatasNotInBill && counterDatasNotInBill.length > 0 && isEditMode">Добавление счетчика в счет</label>
-                    <div class="list-group" *ngIf="counterDatasNotInBill && counterDatasNotInBill.length > 0 && isEditMode">
-                        <a class="list-group-item">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <img width="50" height="50" [src]="countDataAdded.IconPath" />
-                                </div>
-                                <div class="col-lg-9 bill-detail-box">
-                                    <select class="form-control"
-                                            [(ngModel)]="countDataAdded">
-                                        <option *ngFor="let countDataNIB of counterDatasNotInBill" [ngValue]="countDataNIB">
-                                            {{countDataNIB.CounterName}}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-1 bill-detail-box">
-                                    <button type="button" class="btn btn-info btn-sm button-bottom-right"
-                                            (click)="addCounterData(countData)"
-                                            data-toggle="tooltip" title="Добавить в счет">
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </a>
-                    </div>
-                </div>
-
-                <!--For maintenance Datas-->
-                <div class="col-lg-6" *ngIf="counterDatas">
-                    <!--Текущие показания в счете-->
-                    <label class="control-label" for="maintenanceData">Показания по услугам</label>
-                    <div class="list-group">
-
-                        <template ngFor let-maintData [ngForOf]="maintenanceDatas">
-                            <a class="list-group-item" (click)="editMaintenanceData(maintData)" [ngClass]="{'not-clickable-row': !isEditMode}">
+                        <!--Счетчики не добавленные в счет-->
+                        <label class="control-label" *ngIf="counterDatasNotInBill && counterDatasNotInBill.length > 0 && isEditMode">Добавление счетчика в счет</label>
+                        <div class="list-group" *ngIf="counterDatasNotInBill && counterDatasNotInBill.length > 0 && isEditMode">
+                            <a class="list-group-item">
                                 <div class="row">
                                     <div class="col-lg-2">
-                                        <img width="50" height="50" [src]="maintData.IconPath" />
+                                        <img width="50" height="50" [src]="countDataAdded.IconPath" />
                                     </div>
-                                    <div class="col-lg-7 bill-detail-box">
-                                        <span class="counter-detail-name">{{maintData.MaintenanceName}}</span>
+                                    <div class="col-lg-9 bill-detail-box">
+                                        <select class="form-control"
+                                                [(ngModel)]="countDataAdded">
+                                            <option *ngFor="let countDataNIB of counterDatasNotInBill" [ngValue]="countDataNIB">
+                                                {{countDataNIB.CounterName}}
+                                            </option>
+                                        </select>
                                     </div>
-                                    <div class="col-lg-3 bill-detail-box">
-                                        <span class="counter-detail-name pull-right">{{maintData.Tarif * maintData.Coefficient * counterDataService.getReadingForWaterCounter(maintData.Maintenance.CounterTypes, counterDatas)}} руб</span>
-                                        <!--<button md-raised-button class="danger">Исключить</button>-->
-                                        
-                                        <button type="button" class="btn btn-danger btn-sm button-bottom-right" 
-                                                *ngIf="isEditMode"
-                                                (click)="removeMaintenanceData(maintData)"
-                                                data-toggle="tooltip" title="Исключить из счета">
-                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    <div class="col-lg-1 bill-detail-box">
+                                        <button type="button" class="btn btn-info btn-sm button-bottom-right"
+                                                (click)="addCounterData(countData)"
+                                                data-toggle="tooltip" title="Добавить в счет">
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                         </button>
                                     </div>
-                                </div> 
+                                </div>
+
                             </a>
-                        </template>
+                        </div>
                     </div>
 
-                    <!--Не добавленные услуги в счет-->
-                    <label class="control-label" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0 && isEditMode">Добавление услуг в счет</label>
-                    <div class="list-group" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0 && isEditMode">
-                        <a class="list-group-item">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <img width="50" height="50" [src]="maintDataAdded.IconPath"  />
-                                </div>
-                                <div class="col-lg-9 bill-detail-box">
-                                    <select class="form-control" 
-                                            [(ngModel)]="maintDataAdded">
-                                        <option *ngFor="let maintDataNIB of maintenanceDatasNotInBill" [ngValue]="maintDataNIB" >
-                                            {{maintDataNIB.MaintenanceName}}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-1 bill-detail-box">
-                                    <button type="button" class="btn btn-info btn-sm button-bottom-right"
-                                            (click)="addMaintenanceData(maintData)"
-                                            data-toggle="tooltip" title="Добавить в счет">
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                            </div>
+                    <!--For maintenance Datas-->
+                    <div class="col-lg-6" *ngIf="counterDatas">
+                        <!--Текущие показания в счете-->
+                        <label class="control-label" for="maintenanceData">Показания по услугам</label>
+                        <div class="list-group">
 
-                        </a>
+                            <template ngFor let-maintData [ngForOf]="maintenanceDatas">
+                                <a class="list-group-item" (click)="editMaintenanceData(maintData)" [ngClass]="{'not-clickable-row': !isEditMode}">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <img width="50" height="50" [src]="maintData.IconPath" />
+                                        </div>
+                                        <div class="col-lg-7 bill-detail-box">
+                                            <span class="counter-detail-name">{{maintData.MaintenanceName}}</span>
+                                        </div>
+                                        <div class="col-lg-3 bill-detail-box">
+                                            <span class="counter-detail-name pull-right">{{maintData.Tarif * maintData.Coefficient * counterDataService.getReadingForWaterCounter(maintData.Maintenance.CounterTypes, counterDatas)}} руб</span>
+                                            <!--<button md-raised-button class="danger">Исключить</button>-->
+
+                                            <button type="button" class="btn btn-danger btn-sm button-bottom-right"
+                                                    *ngIf="isEditMode"
+                                                    (click)="removeMaintenanceData(maintData)"
+                                                    data-toggle="tooltip" title="Исключить из счета">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </template>
+                        </div>
+
+                        <!--Не добавленные услуги в счет-->
+                        <label class="control-label" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0 && isEditMode">Добавление услуг в счет</label>
+                        <div class="list-group" *ngIf="maintenanceDatasNotInBill && maintenanceDatasNotInBill.length > 0 && isEditMode">
+                            <a class="list-group-item">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img width="50" height="50" [src]="maintDataAdded.IconPath" />
+                                    </div>
+                                    <div class="col-lg-9 bill-detail-box">
+                                        <select class="form-control"
+                                                [(ngModel)]="maintDataAdded">
+                                            <option *ngFor="let maintDataNIB of maintenanceDatasNotInBill" [ngValue]="maintDataNIB">
+                                                {{maintDataNIB.MaintenanceName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1 bill-detail-box">
+                                        <button type="button" class="btn btn-info btn-sm button-bottom-right"
+                                                (click)="addMaintenanceData(maintData)"
+                                                data-toggle="tooltip" title="Добавить в счет">
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
+            <!--column for bill values-->
+            <div class="col-lg-3" *ngIf="currentBill">
+
+                <div class="form-group">
+                    <label class="control-label" for="date">Дата</label>
+                    <ul class="nav nav-pills" *ngIf="allBills || currentBill.Id">
+                        <li>
+                            <select class="form-control" name="month"
+                                    [(ngModel)]="currentBill.InvoiceDateMonth"
+                                    [disabled]="currentBill.Id"
+                                    (ngModelChange)="getBillDetails($event)" type="text" required>
+                                <option *ngFor="let month of getExistingMonths()" [value]="month.Id">{{month.Name}}</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control" name="yearForBill"
+                                    [(ngModel)]="currentBill.InvoiceDateYear"
+                                    [disabled]="currentBill.Id"
+                                    (ngModelChange)="getBillDetails($event)" type="text" required>
+                                <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-group" *ngIf="counterDatas.length > 0 && currentBill">
+                    <label class="control-label" for="commonSum">Начислено</label>
+                    <input class="form-control" name="commonSum" type="text" [(ngModel)]="currentBill.Summ" readonly="readonly">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="recalculation">Перерасчет</label>
+                    <input class="form-control" name="recalculation" type="text" [disabled]="!isEditMode"
+                           [(ngModel)]="currentBill.Recalculation" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="fine">Пени</label>
+                    <input class="form-control" name="fine" type="text" [disabled]="!isEditMode"
+                           [(ngModel)]="currentBill.Fine" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="forPay">К оплате</label>
+                    <input class="form-control" name="forPay" type="text" readonly="readonly"
+                           [value]="getForPayment()" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="comment">Комментарий</label>
+                    <input class="form-control" name="comment" type="text" [disabled]="!isEditMode"
+                           [(ngModel)]="currentBill.Comment">
+                </div>
+            </div>
         </div>
-
-        <!--column for bill values-->
-        <div class="col-lg-3" *ngIf="currentBill">
-
-            <div class="form-group">
-                <label class="control-label" for="date">Дата</label>
-                <ul class="nav nav-pills" *ngIf="allBills || currentBill.Id">
-                    <li>
-                        <select class="form-control" name="month"
-                                [(ngModel)]="currentBill.InvoiceDateMonth"
-                                [disabled]="currentBill.Id"
-                                (ngModelChange)="getBillDetails($event)" type="text" required>
-                            <option *ngFor="let month of getExistingMonths()" [value]="month.Id">{{month.Name}}</option>
-                        </select>
-                    </li>
-                    <li>
-                        <select class="form-control" name="yearForBill"
-                                [(ngModel)]="currentBill.InvoiceDateYear"
-                                [disabled]="currentBill.Id"
-                                (ngModelChange)="getBillDetails($event)" type="text" required>
-                            <option *ngFor="let year of allYears" [value]="year">{{year}}</option>
-                        </select>
-                    </li>
-                </ul>
-            </div>
-            <div class="form-group" *ngIf="counterDatas.length > 0 && currentBill">
-                <label class="control-label" for="commonSum">Начислено</label>
-                <input class="form-control" name="commonSum" type="text" [(ngModel)]="currentBill.Summ" readonly="readonly">
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="recalculation">Перерасчет</label>
-                <input class="form-control" name="recalculation" type="text" [disabled]="!isEditMode"
-                       [(ngModel)]="currentBill.Recalculation" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="fine">Пени</label>
-                <input class="form-control" name="fine" type="text" [disabled]="!isEditMode"
-                       [(ngModel)]="currentBill.Fine" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$">
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="forPay">К оплате</label>
-                <input class="form-control" name="forPay" type="text" readonly="readonly"
-                       [value]="getForPayment()" />
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="comment">Комментарий</label>
-                <input class="form-control" name="comment" type="text" [disabled]="!isEditMode"
-                       [(ngModel)]="currentBill.Comment">
-            </div>
-        </div>
-
         <!--Save button-->
-        <div class="row" *ngIf="isEditMode">
-            <div class="col-lg-2 col-lg-offset-5">
+        <div class="row">
+            <div class="col-lg-2">
+                <div *ngIf="currentBill.Id">
+                    Режим редактирования:
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <md-slide-toggle *ngIf="currentBill.Id"
+                                 [color]="Accent"
+                                 class="margin-0"
+                                 [(ngModel)]="isEditMode">
+                </md-slide-toggle>
+            </div>
+            <div class="col-lg-2" *ngIf="isEditMode">
                 <a class="btn btn-success" (click)="saveBill()">Сохранить</a>
             </div>
         </div>

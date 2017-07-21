@@ -349,5 +349,8 @@ export class BillDetailComponent implements OnInit  {
         }
         
     }
-    
+
+    closeWindow() {
+        this.router.navigate(['/bills']);
+    }
 }
