@@ -54,7 +54,7 @@
                 </div>
                 <div class="row">
                     <!--validation for NOT less then Reading Before-->
-                    <div *ngIf="counterData.Reading && counterDataBefore.Reading > counterData.Reading" class="text-danger col-lg-10  col-lg-offset-1">
+                    <div *ngIf="counterData.Reading && (counterDataBefore.LastCounterDataDTO ? counterDataBefore.LastCounterDataDTO.Reading : counterDataBefore.StartReading) > counterData.Reading" class="text-danger col-lg-10  col-lg-offset-1">
                         Показания не могут быть меньше предыдущих
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                     <div class="row">
                         <div class="col-lg-2 col-lg-offset-3"><span>Показания:</span></div>
                         <div class="col-lg-3">
-                            <span *ngIf="counterDataBefore.LastCounterDataDTO; else firstReading" class="pull-right">{{counterDataBefore.LastCounterDataDTO ? counterDataBefore.LastCounterDataDTO.Reading : 0}}</span>
+                            <span *ngIf="counterDataBefore.LastCounterDataDTO; else firstReading" class="pull-right">{{counterDataBefore.LastCounterDataDTO.Reading}}</span>
                             <ng-template #firstReading>
                                 <span class="pull-right">{{counterDataBefore.StartReading}}</span>
                             </ng-template>
