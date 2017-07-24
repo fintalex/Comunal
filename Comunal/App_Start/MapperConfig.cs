@@ -71,6 +71,7 @@ namespace Comunal
 
                 cfg.CreateMap<CounterData, CounterDataShortDTO>()
                     .ForMember(x => x.CounterTarifId, c => c.MapFrom(o => o.CounterTarif.Id))
+                    .ForMember(x => x.CounterTypeId, c => c.MapFrom(o => o.Counter.CounterTypeId))
                     .ForMember(x => x.TarifCount, c => c.MapFrom(o => o.CounterTarif.TarifCount))
                     .ForMember(x => x.LastReading, c => c.MapFrom(o => o.LastCounterData != null ? o.LastCounterData.Reading : (double?)null))
                     .ForMember(x => x.LastReadingDate, c => c.MapFrom(o => o.LastCounterData.ReadingDate))
@@ -99,7 +100,6 @@ namespace Comunal
                     .ForMember(x => x.Counters, c => c.MapFrom(o => o.Counters.Select(co => new Counter() { Id = co })));
 
                 cfg.CreateMap<MaintenanceData, MaintenanceDataDTO>()
-                    //.ForMember(x => x.Cost, c => c.MapFrom(o => o.MaintenanceTarif.Tarif * o.Maintenance.Coefficient))
                     .ForMember(x => x.Tarif, c => c.MapFrom(o => o.MaintenanceTarif.Tarif))
                     .ForMember(x => x.MaintenanceTarifId, c => c.MapFrom(o => o.MaintenanceTarif.Id))
                     //.ForMember(x => x.MaintenanceTypeId, c => c.MapFrom(o => o.Maintenance.MaintenanceTypeId))
@@ -111,8 +111,17 @@ namespace Comunal
                 cfg.CreateMap<MaintenanceDataDTO, MaintenanceData>()
                     .ForMember(x => x.Maintenance, c => c.Ignore())
                     .ForMember(x => x.MaintenanceTarif, c => c.Ignore());
-                    //.ForMember(x => x.Maintenance, c => c.MapFrom(o => new Maintenance { Id = o.Id, Coefficient = o.Coefficient, MaintenanceTarif = new MaintenanceTarif { Id = o.MaintenanceTarifId, Tarif = o.Tarif } }))
-                    //.ForMember(x => x.MaintenanceTarif, c => c.MapFrom(o => new MaintenanceTarif { Id = o.MaintenanceTarifId, Tarif = o.Tarif }));
+
+                cfg.CreateMap<MaintenanceData, MaintenanceDataForHistoryDTO>()
+                    .ForMember(x => x.Tarif, c => c.MapFrom(o => o.MaintenanceTarif.Tarif))
+                    //.ForMember(x => x.MaintenanceTarifId, c => c.MapFrom(o => o.MaintenanceTarif.Id))
+                    //.ForMember(x => x.MaintenanceTypeId, c => c.MapFrom(o => o.Maintenance.MaintenanceTypeId))
+                    .ForMember(x => x.MaintenanceName, c => c.MapFrom(o => o.Maintenance.Name))
+                    .ForMember(x => x.MaintenanceId, c => c.MapFrom(o => o.Maintenance.Id))
+                    .ForMember(x => x.Coefficient, c => c.MapFrom(o => o.Maintenance.Coefficient))
+                    .ForMember(x => x.IconPath, c => c.MapFrom(o => o.Maintenance.MaintenanceType.IconPath))
+                    .ForMember(x => x.InvoiceDate, c => c.MapFrom(o => o.Bill != null ? o.Bill.InvoiceDate : (DateTime?)null))
+                    .ForMember(x => x.CounterDatas, c => c.MapFrom(o => o.Bill.CounterDatas));
 
                 cfg.CreateMap<MaintenanceTarif, MaintenanceTarifDTO>();
                 cfg.CreateMap<MaintenanceTarifDTO, MaintenanceTarif>();

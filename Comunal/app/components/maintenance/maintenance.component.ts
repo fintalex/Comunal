@@ -6,6 +6,7 @@ import { trigger, state, style, transition, animate, query, stagger, keyframes }
 
 import { MaintenanceService } from '../../services/maintenance.service';
 import { MaintenanceDataService } from '../../services/maintenanceData.service';
+import { CounterDataService } from '../../services/counterData.service';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { AuthService } from '../../services/auth.service';
 
@@ -81,6 +82,7 @@ export class MaintenanceComponent implements OnInit  {
     constructor(
         private maintenanceService: MaintenanceService,
         private maintenanceDataService: MaintenanceDataService,
+        private counterDataService: CounterDataService,
         private dialogService: DialogService,
         private authService: AuthService,
         private router: Router

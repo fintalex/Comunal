@@ -21,7 +21,8 @@ namespace DTO
         public double? LastReading { get; set; }
 
         public bool IsFirst { get; set; }
-        
+
+        public int CounterTypeId { get; set; }
 
         public int CounterTarifId { get; set; }
 

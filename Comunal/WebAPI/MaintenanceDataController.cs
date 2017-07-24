@@ -35,9 +35,9 @@ namespace Comunal.WebAPI
 
         [HttpGet]
         [Route("byMaintenanceId/{maintenanceId:int}")]
-        public IQueryable<MaintenanceDataDTO> GetMaintinanceDatasByMaintenanceId(int maintenanceId)
+        public IQueryable<MaintenanceDataForHistoryDTO> GetMaintinanceDatasByMaintenanceId(int maintenanceId)
         {
-            var maintenanceDatasDto = this.maintenanceDataService.GetMaintenanceDatasByMaintenance(maintenanceId).ProjectTo<MaintenanceDataDTO>();
+            var maintenanceDatasDto = this.maintenanceDataService.GetMaintenanceDatasByMaintenance(maintenanceId).ProjectTo<MaintenanceDataForHistoryDTO>();
             return maintenanceDatasDto;
         }
 
