@@ -16,12 +16,14 @@ import { CounterData } from '../../../models/counterData';
 import { MaintenanceData } from '../../../models/maintenanceData';
 import { Maintenance } from '../../../models/maintenance';
 
+import { RoundPipe } from '../../../pipes/round.pipe';
+
 import * as _ from 'underscore';
 
 @Component({
     moduleId: module.id,
     selector: 'bill-detail',
-    templateUrl: `bill-detail.component.html`,
+    templateUrl: `bill-detail.component.html`
 })
 export class BillDetailComponent implements OnInit  {
 
@@ -54,6 +56,7 @@ export class BillDetailComponent implements OnInit  {
         private maintenanceDataService: MaintenanceDataService,
         private maintenanceService: MaintenanceService,
         private dialogService: DialogService,
+        private roundPipe: RoundPipe
     ) {    }
 
     ngOnInit() {
@@ -173,7 +176,9 @@ export class BillDetailComponent implements OnInit  {
     }
 
     getForPayment() {
-        return this.currentBill.Summ + Number(this.currentBill.Recalculation) + Number(this.currentBill.Fine);
+        var pay = this.currentBill.Summ + Number(this.currentBill.Recalculation) + Number(this.currentBill.Fine);
+
+        return this.roundPipe.transform(pay);
     }
 
     // ============================== EDIT METHODS ======================================

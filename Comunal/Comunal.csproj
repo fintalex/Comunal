@@ -327,6 +327,7 @@
     <TypeScriptCompile Include="app\models\flats.ts" />
     <TypeScriptCompile Include="app\pipes\capitalize.pipe.ts" />
     <TypeScriptCompile Include="app\pipes\dateru.pipe.ts" />
+    <TypeScriptCompile Include="app\pipes\round.pipe.ts" />
     <TypeScriptCompile Include="app\services\auth.service.ts" />
     <TypeScriptCompile Include="app\services\data.service.ts" />
     <TypeScriptCompile Include="app\services\bill.service.ts" />
