@@ -152,7 +152,7 @@
                     <!--Сумма-->
                     <div class="row" *ngIf="counterDataBefore.LastCounterDataDTO">
                         <div class="col-lg-2 col-lg-offset-3"><span>Сумма:</span></div>
-                        <div class="col-lg-3"><span class="pull-right">{{counterDataService.getSumForCounter(counterDataBefore.LastCounterDataDTO, 1)}} руб</span></div>
+                        <div class="col-lg-3"><span class="pull-right">{{counterDataService.getSumForCounter(counterDataBefore.LastCounterDataDTO, 1) | round}} руб</span></div>
                         <div class="col-lg-3"></div>
                     </div>
                 </div>

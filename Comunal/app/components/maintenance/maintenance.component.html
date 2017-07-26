@@ -84,7 +84,7 @@
                             <span class="counter-detail-summ">{{maintData.InvoiceDate | dateru:'MMMM YYYY' | capitalize }}</span>
                         </td>
                         <td>
-                            <span class="counter-detail-summ">{{maintData.Tarif * maintData.Coefficient * counterDataService.getReadingForWaterCounter(maintData.Maintenance.CounterTypes, maintData.CounterDatas)}} руб</span>
+                            <span class="counter-detail-summ">{{(maintData.Tarif * maintData.Coefficient * counterDataService.getReadingForWaterCounter(maintData.Maintenance.CounterTypes, maintData.CounterDatas)) | round}} руб</span>
                         </td>
                         <td class="size-10-pct">
                             <button type="button" class="btn btn-info btn-sm"

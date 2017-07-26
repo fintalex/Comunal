@@ -23,7 +23,8 @@ import * as _ from 'underscore';
 @Component({
     moduleId: module.id,
     selector: 'bill-detail',
-    templateUrl: `bill-detail.component.html`
+    templateUrl: `bill-detail.component.html`,
+    providers: [RoundPipe]
 })
 export class BillDetailComponent implements OnInit  {
 

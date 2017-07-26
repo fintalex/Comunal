@@ -25,7 +25,7 @@
                                             <br />
                                             <span class="counter-detail-summ">{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading)).toFixed(2) : 0}})</span>
                                             <br />
-                                            <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1)}} руб</span>
+                                            <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1) | round}} руб</span>
                                         </div>
                                         <div class="col-lg-2 bill-detail-box">
                                             <div *ngIf="countData.EnableODN">
@@ -33,7 +33,7 @@
                                                 <br />
                                                 <span class="counter-detail-summ pull-right">{{countData.ReadingODN}}</span>
                                                 <br />
-                                                <span class="counter-detail-summ pull-right">{{counterDataService.getSumForCounter(countData, 2)}} руб</span>
+                                                <span class="counter-detail-summ pull-right">{{counterDataService.getSumForCounter(countData, 2) | round}} руб</span>
                                             </div>
                                         </div>
                                         <div class="col-lg-1">
@@ -94,7 +94,7 @@
                                             <span class="counter-detail-name">{{maintData.MaintenanceName}}</span>
                                         </div>
                                         <div class="col-lg-3 bill-detail-box">
-                                            <span class="counter-detail-name pull-right">{{maintData.Tarif * maintData.Coefficient * counterDataService.getReadingForWaterCounter(maintData.Maintenance.CounterTypes, counterDatas)}} руб</span>
+                                            <span class="counter-detail-name pull-right">{{(maintData.Tarif * maintData.Coefficient * counterDataService.getReadingForWaterCounter(maintData.Maintenance.CounterTypes, counterDatas)) | round}} руб</span>
                                             <!--<button md-raised-button class="danger">Исключить</button>-->
 
                                             <button type="button" class="btn btn-danger btn-sm button-bottom-right"

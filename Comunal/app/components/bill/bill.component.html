@@ -15,7 +15,7 @@
                             {{bill.InvoiceDate | dateru:'MMMM YYYY' | capitalize }}
                         </td>
                         <td>
-                            {{getSummForBill(bill.CounterDatas, bill.MaintenanceDatas) + bill.Fine + bill.Recalculation}} руб
+                            {{(getSummForBill(bill.CounterDatas, bill.MaintenanceDatas) + bill.Fine + bill.Recalculation) | round }} руб
                         </td>
                         <td class="size-10-pct">
                             <button type="button" class="btn btn-success btn-sm"
