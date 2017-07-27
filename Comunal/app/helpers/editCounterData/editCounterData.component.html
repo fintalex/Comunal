@@ -15,6 +15,7 @@
                             <label class="control-label" for="readingData">Показания</label>
                             <input class="form-control" name="readingData" type="text"
                                    required pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$"
+                                   placeholder="{{counterDataBefore.Reading}}"
                                    [(ngModel)]="counterData.Reading" #readingData="ngModel">
                         </div>
                     </div>
@@ -88,10 +89,15 @@
                                        disabled="disabled"
                                        value="{{counterData.Tarif1}}{{counterData.Tarif2 || counterData.Tarif2 != 0 ? ' / ' + counterData.Tarif2 : ''}}{{counterData.Tarif3 || counterData.Tarif3 != 0 ? ' / ' + counterData.Tarif3 : ''}} руб">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-warning" type="button"
+                                    <button type="button" class="btn btn-success"
+                                            data-toggle="tooltip" title="Редактировать"
+                                            (click)="goToEditTarifCounter()">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    </button>
+                                    <!--<button class="btn btn-warning" type="button"
                                             (click)="goToEditTarifCounter()">
                                         Редактировать
-                                    </button>
+                                    </button>-->
                                 </span>
                             </div>
 
