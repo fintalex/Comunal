@@ -24,7 +24,7 @@ namespace DTO
 
         //public int FlatId { get; set; }
 
-        //public int BillId { get; set; }        
+        public int BillId { get; set; }        
 
         //public int MaintenanceTarifId { get; set; }
 
