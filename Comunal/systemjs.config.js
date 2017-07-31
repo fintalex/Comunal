@@ -30,6 +30,7 @@
 
       // other libraries
       'rxjs': 'npm:rxjs',
+      'ngx-loading': 'npm:ngx-loading',
       'ng2-bootstrap-modal': 'npm:ng2-bootstrap-modal',
       'angular-2-dropdown-multiselect': 'npm:angular-2-dropdown-multiselect',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
@@ -70,6 +71,10 @@
       },
       'highcharts': {
           main: '/highcharts.js',
+          defaultExtension: 'js'
+      },
+      'ngx-loading': {
+          main: '/index.js',
           defaultExtension: 'js'
       }
     }

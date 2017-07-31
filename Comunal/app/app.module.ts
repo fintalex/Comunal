@@ -10,6 +10,7 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { MaterialModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingModule } from 'ngx-loading';
 
 // =============== App Component ====================
 import { AppComponent } from './app.component';
@@ -59,7 +60,8 @@ import { DataService } from './services/data.service';
         MultiselectDropdownModule,
         MaterialModule,
         ChartModule.forRoot(require('highcharts')),
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        LoadingModule
     ],
     declarations: [
         // === pipes ====

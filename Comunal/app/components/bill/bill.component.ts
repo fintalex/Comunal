@@ -18,6 +18,8 @@ export class BillComponent implements OnInit  {
     showBillPanel: boolean = false;
     currentBill: Bill;
 
+    loading: boolean = false;
+
     constructor(
         private billService: BillService,
         private authService: AuthService,
@@ -29,9 +31,11 @@ export class BillComponent implements OnInit  {
     }
 
     initBillList() {
+        this.loading = true;
         this.billService.getFlatBillsByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(bills => {
                 this.myBills = bills;
+                this.loading = false;
             });
     }
 
