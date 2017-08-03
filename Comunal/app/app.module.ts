@@ -48,6 +48,7 @@ import { GuardService } from './services/guard.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
+import { LoaderService } from './services/loader.service';
 
 @NgModule({
     imports: [
@@ -103,7 +104,8 @@ import { DataService } from './services/data.service';
         CounterDataService,
         MaintenanceDataService,
         MaintenanceService,
-        BillService
+        BillService,
+        LoaderService
     ],
     bootstrap: [AppComponent]
 })

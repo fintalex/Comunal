@@ -9,6 +9,7 @@ import { MaintenanceDataService } from '../../services/maintenanceData.service';
 import { CounterDataService } from '../../services/counterData.service';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { AuthService } from '../../services/auth.service';
+import { LoaderService } from '../../services/loader.service';
 
 import { Maintenance } from '../../models/maintenance';
 import { MaintenanceData } from '../../models/maintenanceData';
@@ -85,7 +86,8 @@ export class MaintenanceComponent implements OnInit  {
         private counterDataService: CounterDataService,
         private dialogService: DialogService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private loaderService: LoaderService
     ) { }
 
     ngOnInit() {
@@ -93,9 +95,13 @@ export class MaintenanceComponent implements OnInit  {
     }
 
     initMaintenanceList() {
+        this.loaderService.display(true);
         this.maintenanceService.getFlatMaintenancesByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(maintenances => {
-                this.myMaintenances = maintenances;
+                setTimeout(() => {
+                    this.loaderService.display(false);
+                    this.myMaintenances = maintenances;
+                }, 1000);
             });
     }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { BillService } from '../../services/bill.service';
 import { AuthService } from '../../services/auth.service';
+import { LoaderService } from '../../services/loader.service';
 
 import { Bill } from '../../models/bill';
 import { CounterData } from '../../models/counterData';
@@ -23,7 +24,8 @@ export class BillComponent implements OnInit  {
     constructor(
         private billService: BillService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private loaderService: LoaderService
     ) { }
 
     ngOnInit() {
@@ -32,10 +34,15 @@ export class BillComponent implements OnInit  {
 
     initBillList() {
         this.loading = true;
+        this.loaderService.display(true);
         this.billService.getFlatBillsByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(bills => {
-                this.myBills = bills;
-                this.loading = false;
+                setTimeout(() => {
+                    this.loaderService.display(false);
+                    this.myBills = bills;
+                    this.loading = false;
+                }, 2000);
+                
             });
     }
 

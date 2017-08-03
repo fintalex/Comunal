@@ -8,6 +8,7 @@ import { CounterService } from '../../services/counter.service';
 import { CounterDataService } from '../../services/counterData.service';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { AuthService } from '../../services/auth.service';
+import { LoaderService } from '../../services/loader.service';
 
 import { Counter } from '../../models/counter';
 import { CounterData } from '../../models/counterData';
@@ -54,7 +55,6 @@ import { CounterData } from '../../models/counterData';
 })
 export class CounterComponent implements OnInit  {
     myCounters: Counter[] = [];
-    myCounters2: any[] = [];
     showCounterPanel: boolean = false;
     currentCounter: Counter;
     counterDatas: CounterData[];
@@ -66,7 +66,8 @@ export class CounterComponent implements OnInit  {
         private counterDataService: CounterDataService,
         private dialogService: DialogService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private loaderService: LoaderService
     ) { }
 
     ngOnInit() {
@@ -75,14 +76,13 @@ export class CounterComponent implements OnInit  {
 
     initCounterList() {
         
-
+        this.loaderService.display(true);
         this.counterService.getFlatCountersByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(counters => {
-                this.myCounters = counters;
-
-                this.myCounters2.push({ Name: "Alex" });
-                this.myCounters2.push({ Name: "Bill" });
-                this.myCounters2.push({ Name: "Djon" });
+                setTimeout(() => {
+                    this.loaderService.display(false);
+                    this.myCounters = counters;
+                }, 1000);
             });
     }
 
