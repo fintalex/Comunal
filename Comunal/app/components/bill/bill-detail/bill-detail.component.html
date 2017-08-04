@@ -24,7 +24,9 @@
                                             <div class="col-lg-6 bill-detail-box">
                                                 <span class="counter-detail-name">{{countData.CounterName}}</span>
                                                 <br />
-                                                <span class="counter-detail-summ">{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2)}} (+{{countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading)).toFixed(2) : 0}})</span>
+                                                <span class="counter-detail-summ" [ngClass]="{'reading-error' : counterDataService.getIncReading(countData) < 0}">
+                                                    {{counterDataService.showReadingForCounterData(countData)}}
+                                                </span>
                                                 <br />
                                                 <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1) | round}} руб</span>
                                             </div>
@@ -215,8 +217,8 @@
                 </div>
                 <div class="col-lg-2" *ngIf="isEditMode">
                     <button class="btn btn-success"
-                       (click)="saveBill()"
-                       [disabled]="editBillForm.form.invalid">
+                            (click)="saveBill()"
+                            [disabled]="editBillForm.form.invalid">
                         Сохранить
                     </button>
                 </div>

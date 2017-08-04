@@ -60,6 +60,9 @@ export class CounterDataService {
 
         var summ = 0;
         var lastReading = countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : (countData.LastReading ? countData.LastReading : countData.StartReading);
+        if (!lastReading) {
+            return 0;
+        }
         var currentPlusReading = readingOrODN == 1 ? countData.Reading - lastReading : countData.ReadingODN;
 
         if (!countData.Limit1 || countData.Limit1 == 0 || currentPlusReading <= countData.Limit1) {
@@ -78,6 +81,20 @@ export class CounterDataService {
         }
 
         return summ;
+    }
+
+    getIncReading(countData: CounterData) {
+        return countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading)) : 0;
+    }
+
+    showReadingForCounterData(countData: CounterData) {
+        var curReading = countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2);
+        var incReading = this.getIncReading(countData);
+        var res = curReading + ' (' + ((incReading < 0) ? incReading.toFixed(2) : ('+' + incReading.toFixed(2))) + ')';
+        return res;
+
+        //{{countData.Reading ? (countData.Reading).toFixed(2) : (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : 0).toFixed(2)}} 
+        //(+{{countData.Reading ? (countData.Reading - (countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : countData.StartReading)).toFixed(2) : 0}})
     }
 
     getReadingForWaterCounter(counterTypes: number[], currentCounterData: CounterData[]) {
