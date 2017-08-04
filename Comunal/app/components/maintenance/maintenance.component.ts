@@ -98,10 +98,8 @@ export class MaintenanceComponent implements OnInit  {
         this.loaderService.display(true);
         this.maintenanceService.getFlatMaintenancesByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(maintenances => {
-                setTimeout(() => {
-                    this.loaderService.display(false);
-                    this.myMaintenances = maintenances;
-                }, 1000);
+                this.loaderService.display(false);
+                this.myMaintenances = maintenances;
             });
     }
 

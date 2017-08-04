@@ -37,12 +37,9 @@ export class BillComponent implements OnInit  {
         this.loaderService.display(true);
         this.billService.getFlatBillsByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(bills => {
-                setTimeout(() => {
-                    this.loaderService.display(false);
-                    this.myBills = bills;
-                    this.loading = false;
-                }, 2000);
-                
+                this.loaderService.display(false);
+                this.myBills = bills;
+                this.loading = false;
             });
     }
 

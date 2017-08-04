@@ -79,10 +79,8 @@ export class CounterComponent implements OnInit  {
         this.loaderService.display(true);
         this.counterService.getFlatCountersByFlatId(this.authService.CurrentUser.Flat.Id)
             .subscribe(counters => {
-                setTimeout(() => {
-                    this.loaderService.display(false);
-                    this.myCounters = counters;
-                }, 1000);
+                this.loaderService.display(false);
+                this.myCounters = counters;
             });
     }
 
