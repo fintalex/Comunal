@@ -202,7 +202,12 @@ export class BillDetailComponent implements OnInit  {
             .subscribe((editedCounterData) => {
                 if (!editedCounterData) return;
                 //Object.assign(counterData, editedCounterData);
-                counterData.Reading = parseFloat(editedCounterData.Reading);
+                if (editedCounterData.Reading.startsWith('+')) {
+                    var lastReading = editedCounterData.LastCounterDataDTO ? editedCounterData.LastCounterDataDTO.Reading : editedCounterData.StartReading;
+                    counterData.Reading = lastReading + parseFloat(editedCounterData.Reading);
+                } else {
+                    counterData.Reading = parseFloat(editedCounterData.Reading);
+                }
                 counterData.ReadingDateDay = editedCounterData.ReadingDateDay;
                 counterData.ReadingDateMonth = editedCounterData.ReadingDateMonth;
                 counterData.ReadingDateYear = editedCounterData.ReadingDateYear;
