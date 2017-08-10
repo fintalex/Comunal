@@ -41,12 +41,16 @@ export class FlatService {
     }
 
     selectFlat(flat: Flat) {
-        return this.http.put(`${this.apiUrl}/select`, flat)
-            .map(() => {
-                flat.Selected = true;
-                this.authService.changeFlat(flat);
-            })
-            .catch(this.handleError);
+        if (flat) {
+            return this.http.put(`${this.apiUrl}/select`, flat)
+                .map(() => {
+                    flat.Selected = true;
+                    this.authService.changeFlat(flat);
+                })
+                .catch(this.handleError);
+        } else {
+            this.authService.changeFlat(flat);
+        }
     }
 
     private handleError(error: any) {

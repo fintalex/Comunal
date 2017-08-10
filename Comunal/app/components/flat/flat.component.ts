@@ -80,9 +80,15 @@ export class FlatComponent implements OnInit  {
                                 this.myFlats.splice(indexFlat, 1);
                             }
 
-                            if (currentFlat.Id == this.currentFlat.Id) {
+                            if (this.currentFlat && currentFlat.Id == this.currentFlat.Id) {
                                 this.showFlatPanel = false;
                             }
+
+                            var curSelectedFlat = this.myFlats.length > 0 ? this.myFlats[0] : null;
+                            this.flatService.selectFlat(curSelectedFlat)
+                            .subscribe(() => {
+                                console.log();
+                            });
                         });
                 }
             });
