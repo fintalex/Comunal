@@ -84,11 +84,13 @@ export class FlatComponent implements OnInit  {
                                 this.showFlatPanel = false;
                             }
 
-                            var curSelectedFlat = this.myFlats.length > 0 ? this.myFlats[0] : null;
-                            this.flatService.selectFlat(curSelectedFlat)
-                            .subscribe(() => {
-                                console.log();
-                            });
+                            if (currentFlat.Selected) {
+                                var curSelectedFlat = this.myFlats.length > 0 ? this.myFlats[0] : null;
+                                this.flatService.selectFlat(curSelectedFlat)
+                                    .subscribe(() => {
+                                        console.log();
+                                    });
+                            }
                         });
                 }
             });
