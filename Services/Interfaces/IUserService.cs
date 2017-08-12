@@ -19,6 +19,13 @@ namespace Services.Interfaces
         User GetById(int id);
 
         /// <summary>
+        /// Get User by email
+        /// </summary>
+        /// <param name="email">email of user</param>
+        /// <returns>User</returns>
+        User GetByEmail(string email);
+
+        /// <summary>
         /// Get All Users (then it will be by UserId)
         /// </summary>
         /// <returns></returns>

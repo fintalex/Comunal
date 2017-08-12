@@ -12,6 +12,7 @@ import { User } from '../../models/user';
 export class RegisterComponent {
     model: User = new User();
     loading: boolean = false;
+    emailExist: boolean = false;
 
     constructor(
         private router: Router,
@@ -31,5 +32,13 @@ export class RegisterComponent {
                     // here must be some alert about 'FAILED'
                     this.loading = false;
                 });
+    }
+
+    checkEmail(email: string) {
+        return this.userService.isEmailAlreadyExist(email)
+            .subscribe(res => {
+                console.log(res);
+                this.emailExist = res;
+            });
     }
 }

@@ -17,10 +17,16 @@ export class UserService {
     constructor(private http: Http) {
 
     }
-    
+
+    // don't see any reason why we need this method
     getUsers(): Observable<User[]> {
         return this.http.get(this.apiUrl)
             .map(response => response.json())
+            .catch(this.handleError);
+    }
+
+    isEmailAlreadyExist(email: string) {
+        return this.http.get(`${this.apiUrl}/checkEmail/${email}`)
             .catch(this.handleError);
     }
 

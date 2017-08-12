@@ -31,13 +31,23 @@ namespace Services.Classes
         }
 
         /// <summary>
+        /// Get User by email
+        /// </summary>
+        /// <param name="email">email of user</param>
+        /// <returns>User</returns>
+        public User GetByEmail(string email)
+        {
+            return this.context.Users.FirstOrDefault(f=>f.Email == email);
+        }
+
+        /// <summary>
         /// Get User by id
         /// </summary>
         /// <param name="id">Id of user</param>
         /// <returns>User</returns>
         public User GetById(int id)
         {
-            return this.context.Users.FirstOrDefault(f=>f.Id == id);
+            return this.context.Users.FirstOrDefault(f => f.Id == id);
         }
 
         /// <summary>
@@ -98,7 +108,7 @@ namespace Services.Classes
             var hashedPassword = this.Hash(password);
             return this.context.Users.FirstOrDefault(u => u.Email == email && u.Password == hashedPassword);
         }
-
+        
         private string Hash(string password)
         {
             var bytes = new UTF8Encoding().GetBytes(password);

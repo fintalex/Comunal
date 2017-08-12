@@ -44,5 +44,14 @@ namespace Comunal.WebAPI
         {
             this.userService.DeleteUser(id);
         }
+
+        [HttpGet]
+        [Route("checkEmail/{email}")]
+        public bool IsEmailAlreadyExist(string email)
+        {
+            var user = this.userService.GetByEmail(email);
+
+            return user != null;
+        }
     }
 }

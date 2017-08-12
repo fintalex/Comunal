@@ -1,6 +1,6 @@
 ﻿<div class="col-md-6 col-md-offset-3">
     <h2>Регистрация</h2>
-    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+    <form name="form" (ngSubmit)="f.form.valid && model.PasswordRepeat == model.Password && register()" #f="ngForm" novalidate> 
 
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
             <label for="firstName">Имя пользователя</label>
@@ -32,28 +32,54 @@
             <label for="email">Email</label>
             <input type="text" class="form-control" name="email" 
                    [(ngModel)]="model.Email" #email="ngModel" 
-                   required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                   required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+                   (focusout)="checkEmail(model.Email)"/>
             <!--<div *ngIf="f.submitted && !email.valid" class="help-block">Укажите Email</div>-->
-            <div *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
+            <div *ngIf="(email.errors && (email.dirty || email.touched)) || emailExist" class="text-danger">
                 <div [hidden]="!email.errors.required">
                     Укажите Email
                 </div>
                 <div [hidden]="!email.errors.pattern">
                     Email не валидный
                 </div>
+                <div [hidden]="!emailExist">
+                    Email уже используется
+                </div>
             </div>
         </div>
 
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Пароль</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.Password" #password="ngModel" required />
-            <!--<div *ngIf="f.submitted && !password.valid" class="help-block">Укажите пароль</div>-->
+            <input type="password" class="form-control" name="password" 
+                   [(ngModel)]="model.Password" #password="ngModel" required
+                   minlength="5" maxlength="20" 
+                   pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{5,20}$"/>
             <div *ngIf="password.errors && (password.dirty || password.touched)" class="text-danger">
                 <div [hidden]="!password.errors.required">
                     Ввведите пароль
                 </div>
-                <div [hidden]="!password.errors.minlength && !password.errors.maxlength">
-                    Пароль должен быть не меньше 5 и не больше 20 символов
+                <div [hidden]="!password.errors.pattern">
+                    Пароль должен быть
+                    <ul>
+                        <li>от 5 до 20 символов</li>
+                        <li>минимум одна латинская заглавная буква</li>
+                        <li>минимум одна латинская маленькая буква</li>
+                        <li>минимум одна цифра</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && model.PasswordRepeat != model.Password }">
+            <label for="passwordRepeat">Повторите пароль</label>
+            <input type="password" class="form-control" name="passwordRepeat" [(ngModel)]="model.PasswordRepeat" #passwordRepeat="ngModel" required
+                   [ngClass]="{ 'repeat-password-error' : passwordRepeat.dirty && model.PasswordRepeat != model.Password }" />
+            <div *ngIf="(passwordRepeat.dirty || passwordRepeat.touched) && 
+                        ((passwordRepeat.errors && passwordRepeat.errors.required) || model.PasswordRepeat != model.Password)" class="text-danger">
+                <div [hidden]="model.PasswordRepeat">
+                    Повторите пароль
+                </div>
+                <div [hidden]="model.PasswordRepeat == model.Password">
+                    Пароли не совпадают
                 </div>
             </div>
         </div>
