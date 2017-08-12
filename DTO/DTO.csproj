@@ -43,6 +43,7 @@
     <Compile Include="BillDetailDTO.cs" />
     <Compile Include="BillGridDTO.cs" />
     <Compile Include="CounterDataShortDTO.cs" />
+    <Compile Include="BoolDTO.cs" />
     <Compile Include="MaintenanceDataForHistoryDTO.cs" />
     <Compile Include="MaintenanceDataDTO.cs" />
     <Compile Include="CounterDataDTO.cs" />

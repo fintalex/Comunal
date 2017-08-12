@@ -1,4 +1,5 @@
 ﻿using Data;
+using DTO;
 using Services.Interfaces;
 using System.Linq;
 using System.Web.Http;
@@ -45,13 +46,13 @@ namespace Comunal.WebAPI
             this.userService.DeleteUser(id);
         }
 
-        [HttpGet]
-        [Route("checkEmail/{email}")]
-        public bool IsEmailAlreadyExist(string email)
+        [HttpPost]
+        [Route("checkEmail")]
+        public BoolDTO IsEmailAlreadyExist(User createdUser)
         {
-            var user = this.userService.GetByEmail(email);
+            var user = this.userService.GetByEmail(createdUser.Email);
 
-            return user != null;
+            return new BoolDTO() { Result = user != null };
         }
     }
 }

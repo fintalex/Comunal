@@ -13,6 +13,7 @@ export class RegisterComponent {
     model: User = new User();
     loading: boolean = false;
     emailExist: boolean = false;
+    emailChecking: boolean = false;
 
     constructor(
         private router: Router,
@@ -22,8 +23,9 @@ export class RegisterComponent {
     register() {
         this.loading = true;
 
-        this.userService.createUser(this.model)
-            .subscribe(
+        if (!this.emailChecking) {
+            this.userService.createUser(this.model)
+                .subscribe(
                 user => {
                     // here must be some alert about 'Registration successful'
                     this.router.navigate(['/login']);
@@ -32,13 +34,16 @@ export class RegisterComponent {
                     // here must be some alert about 'FAILED'
                     this.loading = false;
                 });
+        }
     }
 
-    checkEmail(email: string) {
-        return this.userService.isEmailAlreadyExist(email)
+    checkEmail() {
+        this.emailChecking = true;
+        return this.userService.isEmailAlreadyExist(this.model)
             .subscribe(res => {
                 console.log(res);
-                this.emailExist = res;
+                this.emailExist = res.Result;
+                this.emailChecking = false;
             });
     }
 }

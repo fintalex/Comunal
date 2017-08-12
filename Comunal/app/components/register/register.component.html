@@ -1,6 +1,6 @@
 ﻿<div class="col-md-6 col-md-offset-3">
     <h2>Регистрация</h2>
-    <form name="form" (ngSubmit)="f.form.valid && model.PasswordRepeat == model.Password && register()" #f="ngForm" novalidate> 
+    <form name="form" (ngSubmit)="f.form.valid && model.PasswordRepeat == model.Password && !emailExist && register()" #f="ngForm" novalidate> 
 
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
             <label for="firstName">Имя пользователя</label>
@@ -33,15 +33,18 @@
             <input type="text" class="form-control" name="email" 
                    [(ngModel)]="model.Email" #email="ngModel" 
                    required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
-                   (focusout)="checkEmail(model.Email)"/>
+                   (focusout)="checkEmail()"
+                   [ngClass]="{ 'repeat-password-error' : emailExist }"/>
             <!--<div *ngIf="f.submitted && !email.valid" class="help-block">Укажите Email</div>-->
-            <div *ngIf="(email.errors && (email.dirty || email.touched)) || emailExist" class="text-danger">
+            <div *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
                 <div [hidden]="!email.errors.required">
                     Укажите Email
                 </div>
                 <div [hidden]="!email.errors.pattern">
                     Email не валидный
                 </div>
+            </div>
+            <div *ngIf="emailExist" class="text-danger">
                 <div [hidden]="!emailExist">
                     Email уже используется
                 </div>

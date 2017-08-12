@@ -12,7 +12,7 @@ import { User } from '../models/user';
 @Injectable()
 export class UserService {
     users: User[];
-    private apiUrl = 'api/Users/'
+    private apiUrl = 'api/Users'
 
     constructor(private http: Http) {
 
@@ -25,8 +25,9 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    isEmailAlreadyExist(email: string) {
-        return this.http.get(`${this.apiUrl}/checkEmail/${email}`)
+    isEmailAlreadyExist(newUser: User): Observable<any> {
+        return this.http.post(`${this.apiUrl}/checkEmail`, newUser)
+            .map(response => response.json())
             .catch(this.handleError);
     }
 
