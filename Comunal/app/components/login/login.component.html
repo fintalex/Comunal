@@ -22,14 +22,15 @@
             <label for="password">Пароль</label>
             <input type="password" class="form-control" name="password"
                    [(ngModel)]="model.Password" #password="ngModel"
-                   required minlength="5" maxlength="20" />
+                   required />
             <div *ngIf="password.errors && (password.dirty || password.touched)" class="text-danger">
                 <div [hidden]="!password.errors.required">
                     Ввведите пароль
                 </div>
-                <div [hidden]="!password.errors.minlength && !password.errors.maxlength">
-                    Пароль должен быть не меньше 5 и не больше 20 символов
-                </div>
+               
+            </div>
+            <div class="text-danger" [hidden]="correctLoginPass">
+                Некорректный логин или пароль
             </div>
         </div>
 
