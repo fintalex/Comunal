@@ -63,15 +63,15 @@
                 </div>
 
                 <div class="form-group" *ngIf="counter.TarifCount >= 1">
-                    <label class="control-label" for="tarif1">Тариф</label>
+                    <label class="control-label" for="tarif1">{{counter.TarifCount == 3 ? 'Тариф до порога 1' : counter.TarifCount == 2 ? 'Тариф до порога' : 'Тариф'}}</label>
                     <input class="form-control" name="tarif1" type="text" [(ngModel)]="counter.Tarif1" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
                 </div>
                 <div class="form-group" *ngIf="counter.TarifCount >= 2">
-                    <label class="control-label" for="Limit1">Порог 1</label>
+                    <label class="control-label" for="Limit1">{{counter.TarifCount == 3 ? 'Порог 1' : 'Порог'}}</label>
                     <input class="form-control" name="Limit1" type="text" [(ngModel)]="counter.Limit1" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
                 </div>
                 <div class="form-group" *ngIf="counter.TarifCount >= 2">
-                    <label class="control-label" for="tarif2">Тариф от порога 1 до порога 2</label>
+                    <label class="control-label" for="tarif2">{{counter.TarifCount == 3 ? 'Тариф от порога 1 до порога 2' : 'Тариф свыше порога' }}</label>
                     <input class="form-control" name="tarif2" type="text" [(ngModel)]="counter.Tarif2" pattern="^(?:[1-9]\d*|0)?(?:\.\d+)?$" required>
                 </div>
                 <div class="form-group" *ngIf="counter.TarifCount == 3">
