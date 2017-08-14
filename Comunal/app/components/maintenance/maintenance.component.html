@@ -2,7 +2,7 @@
 <div class="col-lg-6">
     <h1>Услуги ({{authService.CurrentUser.Flat.Name}})</h1>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" [@staggerLeftToRight]="myMaintenances.length">
         <div class="panel-heading">
             <h3 class="panel-title">Название и тариф</h3>
         </div>
@@ -10,7 +10,6 @@
             <table class="table table-striped table-hover ">
                 <tbody>
                     <tr *ngFor="let maintenance of myMaintenances" 
-                        [@itemAnim]="maintenance.State" 
                         class="clickable-row" 
                         [ngClass]="{'info': maintenance.Selected}" 
                         (click)="selectMaintenance(maintenance)">
@@ -69,7 +68,7 @@
 <div class="col-lg-6" *ngIf="currentMaintenance">
     <h1>История - ({{currentMaintenance.Name}})</h1>
 
-    <div class="panel panel-primary" [@staggerMaintHistory]="staggerMaintHistoryIndex">
+    <div class="panel panel-primary" [@staggerRightToLeft]="staggerMaintHistoryIndex">
         <div class="panel-heading">
             <h3 class="panel-title">Показания</h3>
         </div>

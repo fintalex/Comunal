@@ -4,13 +4,13 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeWindow()">&times;</button>
         <h3 class="panel-title">Создание нового счета</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" >
         <form #editBillForm="ngForm">
             <div class="row">
                 <div class="col-lg-9">
                     <div class="row">
                         <!--For counters Datas-->
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" [@staggerTopExpandBottom]="counterDatas.length">
                             <!--Показания по счетчикам добавленные в счет-->
                             <label class="control-label" for="counterData">Показания по счетчикам</label>
                             <div class="list-group">
@@ -83,7 +83,7 @@
                         </div>
 
                         <!--For maintenance Datas-->
-                        <div class="col-lg-6" *ngIf="counterDatas">
+                        <div class="col-lg-6" *ngIf="counterDatas" [@staggerTopExpandBottom]="maintenanceDatas.length">
                             <!--Текущие показания в счете-->
                             <label class="control-label" for="maintenanceData">Показания по услугам</label>
                             <div class="list-group">

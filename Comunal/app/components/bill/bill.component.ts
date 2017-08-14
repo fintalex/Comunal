@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { staggerLeftToRight } from '../../animation/animations'
+
 import { BillService } from '../../services/bill.service';
 import { AuthService } from '../../services/auth.service';
 import { LoaderService } from '../../services/loader.service';
@@ -13,6 +15,7 @@ import { MaintenanceData } from '../../models/maintenanceData';
     moduleId: module.id,
     selector: 'bill-list',
     templateUrl: `bill.component.html`,
+    animations: [ staggerLeftToRight ]
 })
 export class BillComponent implements OnInit  {
     myBills: Bill[] = [];

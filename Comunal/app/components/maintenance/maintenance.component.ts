@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
-import { trigger, state, style, transition, animate, query, stagger, keyframes } from '@angular/animations';
+import { staggerRightToLeft, staggerLeftToRight } from '../../animation/animations';
 
 import { MaintenanceService } from '../../services/maintenance.service';
 import { MaintenanceDataService } from '../../services/maintenanceData.service';
@@ -19,58 +19,8 @@ import { MaintenanceData } from '../../models/maintenanceData';
     selector: 'maintenance-list',
     templateUrl: `maintenance.component.html`,
     animations: [
-        trigger('itemAnim', [
-            //state('newElement', style({ opacity: 1, transform: 'translateX(0)' })),
-            //state('hidElement', style({ opacity: 0, transform: 'translateX(-100%)' })),
-            //transition('void => newElement', [
-            //    style({ opacity: 0, transform: 'translateX(-100%)' }),
-            //    animate('1s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
-            //]),
-            //transition('* => void', [
-            //    animate('1s ease', style({ transform: 'translateX(-100%)' })),
-            //    animate('0.3s ease', style({ opacity: 0 }))
-            //])
-
-            state('newElement', style({ opacity: 1, transform: 'translateX(0)' })),
-            transition('void => newElement', [
-                animate('1s ease-in', keyframes([
-                    style({ opacity: 0, transform: 'translateX(-100%)', offset: 0 }),
-                    style({ opacity: .5, transform: 'translateX(35px)', offset: 0.3 }),
-                    style({ opacity: 1, transform: 'translateX(0)', offset: 1 }),
-                ]))
-            ]),
-            transition('* => void', [
-                animate('1s ease-in', keyframes([
-                    style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
-                    style({ opacity: .5, transform: 'translateX(35px)', offset: 0.3 }),
-                    style({ opacity: 0, transform: 'translateX(-100%)', offset: 1 }),
-                ]))
-            ])
-            
-        ]),
-
-        //trigger('explainerAnim', [
-        //    transition('* => *', [
-        //        query('.col', style({ opacity: 0, transform: 'translateX(-40px) translateY(-40px)' })),
-
-        //        query('.col', stagger('500ms', [
-        //            animate('800ms 1.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
-        //        ]))
-        //    ])
-        //]),
-
-        trigger('staggerMaintHistory', [
-            transition('* => *', [
-                query('tr:enter', style({ opacity: 0 }), { optional: true }),
-
-                query('tr:enter', stagger('100ms', [
-                    animate('200ms ease-in', keyframes([
-                        style({ opacity: 0, transform: 'translateX(50px)', offset: 0 }),
-                        style({ opacity: 1, transform: 'translateX(0)', offset: 1 }),
-                    ]))
-                ]), { optional: true })
-            ])
-        ])
+        staggerRightToLeft,
+        staggerLeftToRight
     ]
 })
 export class MaintenanceComponent implements OnInit  {

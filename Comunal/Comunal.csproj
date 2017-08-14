@@ -297,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\animations.ts" />
+    <TypeScriptCompile Include="app\animation\animations.ts" />
     <TypeScriptCompile Include="app\app.component.spec.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />

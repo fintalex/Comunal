@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EditCounterDataComponent } from '../../../helpers/editCounterData/editCounterData.component';
 import { EditMaintenanceDataComponent } from '../../../helpers/editMaintenanceData/editMaintenanceData.component';
 
+import { staggerTopExpandBottom } from '../../../animation/animations';
+
 import { BillService } from '../../../services/bill.service';
 import { CounterDataService } from '../../../services/counterData.service';
 import { MaintenanceDataService } from '../../../services/maintenanceData.service';
@@ -24,7 +26,8 @@ import * as _ from 'underscore';
     moduleId: module.id,
     selector: 'bill-detail',
     templateUrl: `bill-detail.component.html`,
-    providers: [RoundPipe]
+    providers: [ RoundPipe ],
+    animations: [ staggerTopExpandBottom ]
 })
 export class BillDetailComponent implements OnInit  {
 

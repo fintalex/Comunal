@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ConfirmComponent } from '../../helpers/confirm/confirm.component';
 
+import { staggerLeftToRight } from '../../animation/animations';
+
 import { FlatService } from '../../services/flat.service';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { AuthService } from '../../services/auth.service';
@@ -11,6 +13,7 @@ import { Flat } from '../../models/flats';
     moduleId: module.id,
     selector: 'flat-list',
     templateUrl: `flat.component.html`,
+    animations: [ staggerLeftToRight ]
 })
 export class FlatComponent implements OnInit  {
     myFlats: Flat[] = [];
