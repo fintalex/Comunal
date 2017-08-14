@@ -30,7 +30,6 @@ export class FlatComponent implements OnInit  {
 
     ngOnInit() {
         this.initFlatList();
-        console.log(this.authService.CurrentUser)
     }
 
     initFlatList() {
@@ -49,7 +48,6 @@ export class FlatComponent implements OnInit  {
         newFlat.UserId = this.authService.CurrentUser.Id;
         this.flatService.createFlat(newFlat)
             .subscribe(flat => {
-                console.log(flat);
                 this.myFlats.push(flat);
                 this.showFlatPanel = false;
             });
@@ -57,13 +55,11 @@ export class FlatComponent implements OnInit  {
 
     editFlat(currentFlat: Flat, event: any) {
         event.stopPropagation();
-        console.log(currentFlat);
         this.currentFlat = Object.assign({}, currentFlat);
         this.showFlatPanel = true;
     }
 
     updateFlat(currentFlat: Flat) {
-        console.log(currentFlat);
         this.showFlatPanel = false;
         this.flatService.updateFlat(currentFlat)
             .subscribe(res => {

@@ -61,7 +61,7 @@ export class NewMaintenanceComponent implements OnInit  {
     }
 
     onChange() {
-        console.log('Hello');
+        //console.log('');
     }
 
     onTypeChange() {
