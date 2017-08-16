@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Data
 {
@@ -32,9 +33,19 @@ namespace Data
 		/// </summary>
 		public string LastName { get; set; }
 
-		#region Navigation properties
+        /// <summary>
+		/// Дата регистрации
+		/// </summary>
+		public DateTime? DataRegistration { get; set; }
 
-		public virtual ICollection<Flat> Flats { get; set; }
+        /// <summary>
+		/// Дата последнего входа
+		/// </summary>
+		public DateTime? DataLastLogin { get; set; }
+
+        #region Navigation properties
+
+        public virtual ICollection<Flat> Flats { get; set; }
 
 		#endregion Navigation properties
 	}

@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutComponent } from './components/about/about.component';
+import { HelpComponent } from './components/help/help.component';
 import { FlatComponent } from './components/flat/flat.component';
 import { NewFlatComponent } from './components/flat/new-flat.component/new-flat.component';
 import { CounterComponent } from './components/counter/counter.component';
@@ -76,6 +77,7 @@ import { LoaderService } from './services/loader.service';
         RegisterComponent,
         NavbarComponent,
         AboutComponent,
+        HelpComponent,
         FlatComponent,
         NewFlatComponent, 
         CounterComponent,

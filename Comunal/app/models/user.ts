@@ -5,4 +5,6 @@
     FirstName: string;
     LastName: string;
     Flat: any;
+    DataRegistration: any;
+    DataLastLogin: any;
 }

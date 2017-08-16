@@ -32,12 +32,16 @@ export class LoginComponent implements OnInit  {
         this.correctLoginPass = true;
         this.authService.login(this.model.Email, this.model.Password)
             .subscribe(
-                data => {
+            (data: User) => {
+                if (!data.DataLastLogin) {
+                    this.router.navigate(['/help']);
+                } else {
                     this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    console.log("FAILED");
-                    this.correctLoginPass = false;
-                });
+                }
+            },
+            error => {
+                console.log("FAILED");
+                this.correctLoginPass = false;
+            });
     }
 }

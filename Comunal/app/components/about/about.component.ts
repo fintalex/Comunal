@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { trigger, state, style, transition, animate, keyframes, query } from '@angular/animations';
-
 @Component({
     moduleId: module.id,
     selector: 'about',

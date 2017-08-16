@@ -26,7 +26,7 @@ export class AuthService{
         }
     }
 
-    login(email: string, password: string) {
+    login(email: string, password: string): Observable<User> {
         return this.http.post('api/Authentication', { email: email, password: password })
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
@@ -36,6 +36,7 @@ export class AuthService{
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.CurrentUser = user;
                 }
+                return user;
             })
             .catch(this.handleError);
     }
