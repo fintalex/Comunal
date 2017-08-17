@@ -1,4 +1,5 @@
 ﻿using Data;
+using System;
 using System.Linq;
 
 namespace Services.Interfaces
@@ -56,5 +57,12 @@ namespace Services.Interfaces
         /// <param name="password">password of loging user</param>
         /// <returns>Loging user</returns>
         User GetUserByLogin(string email, string password);
+
+        /// <summary>
+        /// Change date of last login
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <param name="dateTimeLogin">Date of last login</param>
+        void SetDateOfLastLogin(int userId, DateTime dateTimeLogin);
     }
 }

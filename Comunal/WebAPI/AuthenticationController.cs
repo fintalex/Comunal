@@ -32,6 +32,10 @@ namespace Comunal.WebAPI
 
             var curUserDTO = Mapper.Map<CurrentUserDTO>(logingUser);
 
+            curUserDTO.FirstLogin = !logingUser.DataLastLogin.HasValue ? true : false;
+
+            this.userService.SetDateOfLastLogin(logingUser.Id, DateTime.Now);
+
             return curUserDTO;
         }
     }

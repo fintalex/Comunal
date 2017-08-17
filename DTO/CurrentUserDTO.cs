@@ -21,5 +21,7 @@ namespace DTO
 		public DateTime? DataRegistration { get; set; }
         
 		public DateTime? DataLastLogin { get; set; }
+
+        public bool FirstLogin { get; set; }
     }
 }

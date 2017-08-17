@@ -77,6 +77,7 @@ namespace Services.Classes
         public User AddUser(User user)
         {
             user.Password = this.Hash(user.Password);
+            user.DataRegistration = DateTime.Now;
             this.context.Users.Add(user);
             this.context.Commit();
 
@@ -108,7 +109,19 @@ namespace Services.Classes
             var hashedPassword = this.Hash(password);
             return this.context.Users.FirstOrDefault(u => u.Email == email && u.Password == hashedPassword);
         }
-        
+
+        /// <summary>
+        /// Change date of last login
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <param name="dateTimeLogin">Date of last login</param>
+        public void SetDateOfLastLogin(int userId, DateTime dateTimeLogin)
+        {
+            var currentUser = this.context.Users.FirstOrDefault(f => f.Id == userId);
+            currentUser.DataLastLogin = dateTimeLogin;
+            this.context.Commit();
+        }
+
         private string Hash(string password)
         {
             var bytes = new UTF8Encoding().GetBytes(password);

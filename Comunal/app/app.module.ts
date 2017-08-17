@@ -19,6 +19,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';
+import { HomeComponent } from './components/home/home.component';
 import { FlatComponent } from './components/flat/flat.component';
 import { NewFlatComponent } from './components/flat/new-flat.component/new-flat.component';
 import { CounterComponent } from './components/counter/counter.component';
@@ -78,6 +79,7 @@ import { LoaderService } from './services/loader.service';
         NavbarComponent,
         AboutComponent,
         HelpComponent,
+        HomeComponent,
         FlatComponent,
         NewFlatComponent, 
         CounterComponent,

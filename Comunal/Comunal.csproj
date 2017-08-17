@@ -217,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.component.html" />
+    <Content Include="app\components\home\home.component.html" />
     <Content Include="app\components\help\help.component.html" />
     <Content Include="app\components\bill\bill.component.html" />
     <Content Include="app\components\bill\bill-detail\bill-detail.component.html" />
@@ -233,6 +234,7 @@
     <Content Include="app\helpers\editMaintenanceData\editMaintenanceData.component.html" />
     <Content Include="app\helpers\editCounterData\editCounterData.component.html" />
     <Content Include="app\helpers\confirm\confirm.component.html" />
+    <Content Include="Content\bg.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CounterTypes\coldwater.png" />
@@ -242,6 +244,7 @@
     <Content Include="Content\CounterTypes\hotwater.png" />
     <Content Include="Content\CounterTypes\moto.png" />
     <Content Include="Content\CounterTypes\water.png" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\ServiceTypes\cooler.png" />
     <Content Include="Content\ServiceTypes\fix.png" />
     <Content Include="Content\ServiceTypes\multi.png" />
@@ -303,6 +306,7 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.routing.ts" />
+    <TypeScriptCompile Include="app\components\home\home.component.ts" />
     <TypeScriptCompile Include="app\components\help\help.component.ts" />
     <TypeScriptCompile Include="app\components\bill\bill.component.ts" />
     <TypeScriptCompile Include="app\components\bill\bill-detail\bill-detail.component.ts" />
