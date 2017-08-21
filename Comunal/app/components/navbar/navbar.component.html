@@ -1,14 +1,6 @@
 ﻿<nav class="navbar navbar-inverse navbar-margin-bottom">
     <div class="container-fluid">
-        <!--<div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Brand</a>
-        </div>-->
+        <!--https://material.io/icons/-->
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
@@ -17,12 +9,46 @@
                         <img src="../../../Content/logo.png" width="50" height="50" />
                     </a>
                 </li>
-                <li><a routerLink="/myflats" *ngIf="authService.CurrentUser">Мои Квартиры</a></li>
+                <li>
+                    <button md-menu-item routerLink="/myflats" *ngIf="authService.CurrentUser">
+                        <span>Мои Квартиры</span>
+                    </button>
+                    <!--<a routerLink="/myflats" *ngIf="authService.CurrentUser">Мои Квартиры</a>-->
+                </li>
                 <li><a routerLink="/counters" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">Счетчики</a></li>
                 <li><a routerLink="/maintenance" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">Услуги</a></li>
                 <li><a routerLink="/bills" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">Счета</a></li>
                 <li><a routerLink="/about">O сайте</a></li>
                 <li><a routerLink="/help">Справка</a></li>
+                <li>
+                    <button md-menu-item [mdMenuTriggerFor]="menu">
+                        <md-icon>Графики</md-icon>
+                    </button>
+                    <!--<a md-button [mdMenuTriggerFor]="menu">Графики</a>-->
+                    <!--<button md-button [mdMenuTriggerFor]="menu"><a>Графики</a></button>-->
+                    <md-menu #menu="mdMenu">
+                        <button md-menu-item>
+                            <md-icon>donut_small</md-icon>
+                            <span>Диаграмма расходов</span>
+                        </button>
+                        <button md-menu-item disabled>
+                            <md-icon> graphic_eq </md-icon>
+                            <span>График расходов</span>
+                        </button>
+                        <button md-menu-item>
+                            <md-icon> account_balance </md-icon>
+                            <span>График потребления</span>
+                        </button>
+                        <button md-menu-item>
+                            <md-icon> filter_list </md-icon>
+                            <span>График тарифов</span>
+                        </button>
+                        <button md-menu-item>
+                            <md-icon> receipt </md-icon>
+                            <span>График счетов</span>
+                        </button>
+                    </md-menu>
+                </li>
             </ul>
             <!--<form class="navbar-form navbar-left" role="search">
                 <div class="form-group">

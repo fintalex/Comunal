@@ -1,5 +1,6 @@
 ﻿import { animate, AnimationEntryMetadata, state, style, transition, trigger } from '@angular/core';
 
+// Example - https://www.youtube.com/watch?v=h-bUT5BMQrI&t=898s
 export const slideDownAnimation: AnimationEntryMetadata =
     trigger('routeAnimation', [
         state('*',

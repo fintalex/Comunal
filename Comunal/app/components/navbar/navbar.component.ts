@@ -12,7 +12,7 @@ import { User } from '../../models/user';
 })
 export class NavbarComponent implements OnInit {
     //currentUser: User;
-
+    //https://material.io/icons/
     constructor(
         private router: Router,
         private route: ActivatedRoute,

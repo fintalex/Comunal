@@ -1,4 +1,5 @@
 /// <reference path="node_modules/underscore/underscore.js" />
+/// <reference path="node_modules/@angular/material/bundles/material.umd.js" />
 /**
  * System configuration for Angular samples
  * Adjust as necessary for your application needs.
