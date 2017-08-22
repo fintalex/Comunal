@@ -61,9 +61,9 @@ import { LoaderService } from './services/loader.service';
         HttpModule,
         BootstrapModalModule.forRoot({ container: document.body }),
         MultiselectDropdownModule,
-        MdIconModule, MdButtonModule, MdRadioButton, MdSliderModule, MdMenuModule,
         ChartModule.forRoot(require('highcharts')),
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MdIconModule, MdButtonModule, MdRadioButton, MdSliderModule, MdMenuModule,
         //LoadingModule
     ],
     declarations: [
