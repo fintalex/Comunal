@@ -7,9 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
-import { MdIconModule, MdButtonModule, MdRadioButton, MdSliderModule, MdMenuModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdIconModule, MdButtonModule, MdRadioModule, MdSlideToggleModule, MdMenuModule } from '@angular/material';
 //import { LoadingModule } from 'ngx-loading';
 
 // =============== App Component ====================
@@ -63,7 +63,7 @@ import { LoaderService } from './services/loader.service';
         MultiselectDropdownModule,
         ChartModule.forRoot(require('highcharts')),
         BrowserAnimationsModule,
-        MdIconModule, MdButtonModule, MdRadioButton, MdSliderModule, MdMenuModule,
+        MdIconModule, MdButtonModule, MdRadioModule, MdSlideToggleModule, MdMenuModule,
         //LoadingModule
     ],
     declarations: [
