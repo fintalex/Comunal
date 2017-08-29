@@ -217,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.component.html" />
+    <Content Include="app\components\charts\diagram-expense\diagram-expense.component.html" />
     <Content Include="app\components\home\home.component.html" />
     <Content Include="app\components\help\help.component.html" />
     <Content Include="app\components\bill\bill.component.html" />
@@ -306,6 +307,7 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.routing.ts" />
+    <TypeScriptCompile Include="app\components\charts\diagram-expense\diagram-expense.component.ts" />
     <TypeScriptCompile Include="app\components\home\home.component.ts" />
     <TypeScriptCompile Include="app\components\help\help.component.ts" />
     <TypeScriptCompile Include="app\components\bill\bill.component.ts" />

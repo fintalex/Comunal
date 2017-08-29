@@ -1,4 +1,4 @@
-﻿<nav class="navbar navbar-inverse navbar-margin-bottom">
+﻿<nav class="navbar navbar-dark navbar-margin-bottom">
     <div class="container-fluid">
         <!--https://material.io/icons/-->
 
@@ -15,23 +15,43 @@
                     </button>
                     <!--<a routerLink="/myflats" *ngIf="authService.CurrentUser">Мои Квартиры</a>-->
                 </li>
-                <li><a routerLink="/counters" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">Счетчики</a></li>
-                <li><a routerLink="/maintenance" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">Услуги</a></li>
-                <li><a routerLink="/bills" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">Счета</a></li>
-                <li><a routerLink="/about">O сайте</a></li>
-                <li><a routerLink="/help">Справка</a></li>
                 <li>
+                    <button md-menu-item routerLink="/counters" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">
+                        <span>Счетчики</span>
+                    </button>
+                </li>
+                <li>
+                    <button md-menu-item routerLink="/maintenance" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">
+                        <span>Услуги</span>
+                    </button>
+                </li>
+                <li>
+                    <button md-menu-item routerLink="/bills" *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">
+                        <span>Счета</span>
+                    </button>
+                </li>
+                <li>
+                    <button md-menu-item routerLink="/about">
+                        <span>O сайте</span>
+                    </button>
+                </li>
+                <li>
+                    <button md-menu-item routerLink="/help">
+                        <span>Справка</span>
+                    </button>
+                </li>
+                <li  *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">
                     <button md-menu-item [mdMenuTriggerFor]="menu">
-                        <md-icon>Графики</md-icon>
+                        <span>Графики</span>
                     </button>
                     <!--<a md-button [mdMenuTriggerFor]="menu">Графики</a>-->
                     <!--<button md-button [mdMenuTriggerFor]="menu"><a>Графики</a></button>-->
                     <md-menu #menu="mdMenu">
-                        <button md-menu-item>
+                        <button md-menu-item routerLink="/diagram-expense">
                             <md-icon>donut_small</md-icon>
                             <span>Диаграмма расходов</span>
                         </button>
-                        <button md-menu-item disabled>
+                        <button md-menu-item>
                             <md-icon> graphic_eq </md-icon>
                             <span>График расходов</span>
                         </button>

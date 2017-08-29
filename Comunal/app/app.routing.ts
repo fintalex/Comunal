@@ -12,6 +12,8 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
 import { BillComponent } from './components/bill/bill.component';
 import { BillDetailComponent } from './components/bill/bill-detail/bill-detail.component';
 
+import { DiagramExpenseComponent } from './components/charts/diagram-expense/diagram-expense.component';
+
 import { GuardService } from './services/guard.service';
 
 const routes: Routes = [
@@ -25,6 +27,8 @@ const routes: Routes = [
     { path: 'maintenance', component: MaintenanceComponent, canActivate: [GuardService] },
     { path: 'bills', component: BillComponent, canActivate: [GuardService] },
     { path: 'bill/:id/:mode', component: BillDetailComponent, canActivate: [GuardService] },
+
+    { path: 'diagram-expense', component: DiagramExpenseComponent, canActivate: [GuardService] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'myflats' }

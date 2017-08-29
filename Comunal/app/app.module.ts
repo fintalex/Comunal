@@ -29,6 +29,8 @@ import { NewCounterComponent } from './components/counter/new-counter/new-counte
 import { NewMaintenanceComponent } from './components/maintenance/new-maintenance/new-maintenance.component';
 import { BillDetailComponent } from './components/bill/bill-detail/bill-detail.component';
 
+import { DiagramExpenseComponent } from './components/charts/diagram-expense/diagram-expense.component';
+
 // =============== App Pipes ====================
 import { DateRu } from './pipes/dateru.pipe';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
@@ -91,7 +93,9 @@ import { LoaderService } from './services/loader.service';
         // === helpers ====
         ConfirmComponent,
         EditCounterDataComponent,
-        EditMaintenanceDataComponent
+        EditMaintenanceDataComponent,
+        // === charts ====
+        DiagramExpenseComponent
     ],
     entryComponents: [ // Need to be investigated
         ConfirmComponent,
