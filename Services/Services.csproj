@@ -49,9 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ChartService.cs" />
     <Compile Include="Classes\BillService.cs" />
     <Compile Include="Classes\CounterDataService.cs" />
     <Compile Include="Classes\CounterService.cs" />
+    <Compile Include="Interfaces\IChartService.cs" />
     <Compile Include="Classes\MaintenanceDataService.cs" />
     <Compile Include="Classes\MaintenanceService.cs" />
     <Compile Include="Classes\UserService.cs" />

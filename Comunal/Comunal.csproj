@@ -206,6 +206,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebAPI\ChartController.cs" />
     <Compile Include="WebAPI\BillController.cs" />
     <Compile Include="WebAPI\CounterController.cs" />
     <Compile Include="WebAPI\CounterDataController.cs" />
@@ -338,6 +339,7 @@
     <TypeScriptCompile Include="app\pipes\dateru.pipe.ts" />
     <TypeScriptCompile Include="app\pipes\round.pipe.ts" />
     <TypeScriptCompile Include="app\services\auth.service.ts" />
+    <TypeScriptCompile Include="app\services\chart.service.ts" />
     <TypeScriptCompile Include="app\services\data.service.ts" />
     <TypeScriptCompile Include="app\services\bill.service.ts" />
     <TypeScriptCompile Include="app\services\loader.service.ts" />

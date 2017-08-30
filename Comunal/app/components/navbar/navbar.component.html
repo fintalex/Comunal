@@ -77,8 +77,16 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a routerLink="/login" *ngIf="!authService.CurrentUser">Вход</a></li>
-                <li><a (click)="logout()" *ngIf="authService.CurrentUser">Выход</a></li>
+                <li>
+                    <button md-menu-item routerLink="/login" *ngIf="!authService.CurrentUser">
+                        <span>Вход</span>
+                    </button>
+                </li>
+                <li>
+                    <button md-menu-item (click)="logout()" *ngIf="authService.CurrentUser">
+                        <span>Выход</span>
+                    </button>
+                </li>
             </ul>
         </div>
     </div>

@@ -53,6 +53,7 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
 import { LoaderService } from './services/loader.service';
+import { ChartService } from './services/chart.service';
 
 @NgModule({
     imports: [
@@ -113,7 +114,8 @@ import { LoaderService } from './services/loader.service';
         MaintenanceDataService,
         MaintenanceService,
         BillService,
-        LoaderService
+        LoaderService,
+        ChartService
     ],
     bootstrap: [AppComponent]
 })

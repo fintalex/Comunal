@@ -38,6 +38,8 @@ namespace Comunal
 
             container.RegisterType<IMaintenanceService, MaintenanceService>();
             container.RegisterType<IMaintenanceDataService, MaintenanceDataService>();
+
+            container.RegisterType<IChartService, ChartService>();
         }
     }
 }

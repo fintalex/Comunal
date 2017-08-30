@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="BillDetailDTO.cs" />
     <Compile Include="BillGridDTO.cs" />
+    <Compile Include="Charts\InputChartDataDTO.cs" />
+    <Compile Include="Charts\DiagramExpenseDTO.cs" />
     <Compile Include="CounterDataShortDTO.cs" />
     <Compile Include="BoolDTO.cs" />
     <Compile Include="MaintenanceDataForHistoryDTO.cs" />
