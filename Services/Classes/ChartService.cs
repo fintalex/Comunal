@@ -38,7 +38,24 @@ namespace Services.Classes
                 {
                     name = d.Key,
                     y = d.Sum(getSum())
-                });
+                })
+                .ToList();
+
+            return res.AsQueryable();
+        }
+
+        /// <summary>
+        /// Get CounterData for Diagram expense
+        /// </summary>
+        /// <param name="inputDTO">Input Data</param>
+        /// <returns>Data for diagram</returns>
+        public IQueryable<CounterData> GetCounterDataForDiagrameExpenses(InputChartDataDTO inputDTO)
+        {
+            var dateFrom = Convert.ToDateTime(inputDTO.DateFrom);
+            var dateTo = Convert.ToDateTime(inputDTO.DateTo);
+
+            var res = this.context.CounterDatas
+                .Where(b => b.Bill.FlatId == inputDTO.FlatId && b.Bill.InvoiceDate >= dateFrom && b.Bill.InvoiceDate <= dateTo);
 
             return res;
         }

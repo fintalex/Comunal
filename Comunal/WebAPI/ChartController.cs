@@ -19,9 +19,9 @@ namespace Comunal.WebAPI
         }
 
         [HttpPost]
-        public IQueryable<DiagramExpenseDTO> GetDataForDiagramExpense(InputChartDataDTO inputDTO)
+        public IQueryable<CounterDataDTO> GetDataForDiagramExpense(InputChartDataDTO inputDTO)
         {
-            return this.chartService.GetDiagrameExpenses(inputDTO);
+            return this.chartService.GetCounterDataForDiagrameExpenses(inputDTO).ProjectTo<CounterDataDTO>();
         }
     }
 }
