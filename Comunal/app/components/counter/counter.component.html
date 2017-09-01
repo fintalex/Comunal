@@ -81,7 +81,7 @@
                             </span>
                         </td>
                         <td>
-                            <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1) | round}} руб</span>
+                            <span class="counter-detail-summ">{{counterDataService.getSumForCounter(countData, 1) + counterDataService.getSumForCounter(countData, 2) | round}} руб</span>
                         </td>
                         <td class="size-10-pct">
                             <button type="button" class="btn btn-info btn-sm"

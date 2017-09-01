@@ -36,6 +36,7 @@
       'ng2-bootstrap-modal': 'npm:ng2-bootstrap-modal',
       'angular-2-dropdown-multiselect': 'npm:angular-2-dropdown-multiselect',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+      'md2': 'npm:md2/bundles/md2.umd.js',
 
       'underscore': 'npm:underscore',
       'moment': 'npm:moment',

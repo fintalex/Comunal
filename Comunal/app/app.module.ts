@@ -10,6 +10,7 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { ChartModule } from 'angular2-highcharts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdIconModule, MdButtonModule, MdRadioModule, MdSlideToggleModule, MdMenuModule } from '@angular/material';
+import { Md2Module } from 'md2';
 //import { LoadingModule } from 'ngx-loading';
 
 // =============== App Component ====================
@@ -67,6 +68,7 @@ import { ChartService } from './services/chart.service';
         ChartModule.forRoot(require('highcharts')),
         BrowserAnimationsModule,
         MdIconModule, MdButtonModule, MdRadioModule, MdSlideToggleModule, MdMenuModule,
+        Md2Module
         //LoadingModule
     ],
     declarations: [

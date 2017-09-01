@@ -13,9 +13,9 @@ import * as _ from 'underscore';
     templateUrl: `diagram-expense.component.html`
 })
 export class DiagramExpenseComponent implements OnInit  {
-
+    //http://code.promactinfo.com/md2/#/dialog
     options: Object;
-
+    date: any;
     dataExpense: any[];
 
     constructor(
@@ -74,7 +74,7 @@ export class DiagramExpenseComponent implements OnInit  {
                             cursor: 'pointer',
                             dataLabels: {
                                 enabled: true,
-                                format: '<b>{point.name}</b>: ({point.y} руб) - {point.percentage:.1f} %',
+                                format: '<b>{point.name}</b>: <br/> ({point.y} руб) - {point.percentage:.1f} %',
                                 style: {
                                     color: 'black'
                                 }
