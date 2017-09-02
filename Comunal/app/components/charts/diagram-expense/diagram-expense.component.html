@@ -1,13 +1,50 @@
 ﻿
-<div class="col-lg-12">
-    <h1>Диаграмма расходов</h1>
-
-    <div >
-        <chart [options]="options" ></chart>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3 text-center">
+        <h1>Диаграмма расходов</h1>
     </div>
-
-    <md2-datepicker [(ngModel)]="date"></md2-datepicker>
 </div>
+
+
+<div class="row">
+    <div class="col-lg-4">
+
+        <div class="row">
+            <div class="col-lg-4">
+                <label class="control-label padding-top-22" for="coeficient">Дата начала:</label>
+            </div>
+            <div class="col-lg-8">
+                <md2-datepicker [(ngModel)]="dateFrom" format="dd.MM.y"></md2-datepicker>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <label class="control-label padding-top-22" for="coeficient">Дата конца:</label>
+            </div>
+            <div class="col-lg-8">
+                <md2-datepicker [(ngModel)]="dateTo" format="dd.MM.y"></md2-datepicker>
+            </div>
+        </div>
+
+        <br />
+
+        <button type="button" class="btn btn-info"
+                (click)="filterDiagram()">
+            Показать
+        </button>
+
+    </div>
+    <div class="col-lg-8">
+
+        <div>
+            <chart [options]="options" ></chart>
+        </div>
+
+    </div>
+</div>
+
+
 
 
 

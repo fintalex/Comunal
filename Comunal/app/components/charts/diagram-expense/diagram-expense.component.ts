@@ -5,6 +5,7 @@ import { CounterDataService } from '../../../services/counterData.service';
 
 import { ChartService } from '../../../services/chart.service';
 
+import * as moment from 'moment';
 import * as _ from 'underscore';
 
 @Component({
@@ -12,22 +13,32 @@ import * as _ from 'underscore';
     selector: 'diagram-expense',
     templateUrl: `diagram-expense.component.html`
 })
-export class DiagramExpenseComponent implements OnInit  {
+export class DiagramExpenseComponent implements OnInit {
     //http://code.promactinfo.com/md2/#/dialog
     options: Object;
-    date: any;
+    dateFrom: any;
+    dateTo: any;
     dataExpense: any[];
 
     constructor(
         private authService: AuthService,
         private chartService: ChartService,
         private counterDataService: CounterDataService
-    ) {}
+    ) { }
 
     ngOnInit() {
+        var curDate = new Date();
+
+        this.dateFrom = new Date(curDate.getFullYear(), curDate.getMonth() - 3, curDate.getDate());
+        this.dateTo = curDate;
+
+        this.filterDiagram();
+    }
+
+    showDiagram(dateFilterFrom: string, dateFilterTo: string) {
         var req = {
-            DateFrom: "2017/01/01",
-            DateTo: "2017/11/01",
+            DateFrom: dateFilterFrom,
+            DateTo: dateFilterTo,
             FlatId: this.authService.CurrentUser.Flat.Id
         };
 
@@ -52,10 +63,6 @@ export class DiagramExpenseComponent implements OnInit  {
                 });
 
                 this.options = {
-                    //title: { text: 'simple chart' },
-                    //series: [{
-                    //    data: [29.9, 71.5, 106.4, 129],
-                    //}]
                     chart: {
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
@@ -89,7 +96,13 @@ export class DiagramExpenseComponent implements OnInit  {
                     }]
                 };
             });
+    }
 
-        
+
+    filterDiagram() {
+        var dateFromFilter = moment(this.dateFrom).format('YYYY/MM/DD');
+        var dateToFilter = moment(this.dateTo).format('YYYY/MM/DD');
+
+        this.showDiagram(dateFromFilter, dateToFilter);
     }
 }
