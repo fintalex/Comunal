@@ -8,25 +8,36 @@
 
 <div class="row">
     <div class="col-lg-4">
-
+        <!--Filter start date-->
         <div class="row">
             <div class="col-lg-4">
-                <label class="control-label padding-top-22" for="coeficient">Дата начала:</label>
+                <label class="control-label padding-top-22" for="startDate">Дата начала:</label>
             </div>
             <div class="col-lg-8">
                 <md2-datepicker [(ngModel)]="dateFrom" format="dd.MM.y"></md2-datepicker>
             </div>
         </div>
-
+        <!--filter end date-->
         <div class="row">
             <div class="col-lg-4">
-                <label class="control-label padding-top-22" for="coeficient">Дата конца:</label>
+                <label class="control-label padding-top-22" for="endDate">Дата конца:</label>
             </div>
             <div class="col-lg-8">
                 <md2-datepicker [(ngModel)]="dateTo" format="dd.MM.y"></md2-datepicker>
             </div>
         </div>
-
+        <!--filter chart type-->
+        <div class="row">
+            <div class="col-lg-4">
+                <label class="control-label padding-top-22" for="chartType">Дип графика:</label>
+            </div>
+            <div class="col-lg-8">
+                <md2-select class="width-230 padding-top-18 padding-left-10"
+                            [(ngModel)]="selectedChartType" (change)="changeChartType($event)">
+                    <md2-option *ngFor="let i of chartTypes" [value]="i.value" >{{i.name}}</md2-option>
+                </md2-select>
+            </div>
+        </div>
         <br />
 
         <button type="button" class="btn btn-info"

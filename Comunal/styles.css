@@ -65,6 +65,14 @@ a:hover {
     padding-top: 22px;
 }
 
+.padding-top-18{
+    padding-top: 18px;
+}
+
+.padding-left-10{
+    padding-left: 10px;
+}
+
 /*==================== MARGINs ==========================*/
 
 .margin-0{
@@ -77,6 +85,10 @@ a:hover {
 }
 
 /*====================== SIZES ==============================*/
+
+.width-230{
+    width: 230px;
+}
 
 .size-10-pct{
     width: 10%;

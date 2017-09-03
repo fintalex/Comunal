@@ -19,6 +19,8 @@ export class DiagramExpenseComponent implements OnInit {
     dateFrom: any;
     dateTo: any;
     dataExpense: any[];
+    chartTypes: any[];
+    selectedChartType: number = 1;
 
     constructor(
         private authService: AuthService,
@@ -27,6 +29,11 @@ export class DiagramExpenseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.chartTypes = [
+            { value: 1, name: 'Диаграмма расходов'},
+            { value: 2, name: 'График расходов'}
+        ];
+
         var curDate = new Date();
 
         this.dateFrom = new Date(curDate.getFullYear(), curDate.getMonth() - 3, curDate.getDate());
@@ -105,6 +112,10 @@ export class DiagramExpenseComponent implements OnInit {
         var dateToFilter = moment(this.dateTo).format('YYYY/MM/DD');
 
         this.showDiagram(dateFromFilter, dateToFilter);
+    }
+
+    changeChartType(e: any) {
+        console.log(e);
     }
 
     // ===== Private methods =====
