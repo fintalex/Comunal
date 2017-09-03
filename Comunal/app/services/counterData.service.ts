@@ -60,7 +60,7 @@ export class CounterDataService {
 
         var summ = 0;
         var lastReading = countData.LastCounterDataDTO ? countData.LastCounterDataDTO.Reading : (countData.LastReading ? countData.LastReading : countData.StartReading);
-        if (!lastReading) {
+        if (lastReading != 0 && !lastReading) {
             return 0;
         }
         var currentPlusReading = readingOrODN == 1 ? countData.Reading - lastReading : countData.ReadingODN;

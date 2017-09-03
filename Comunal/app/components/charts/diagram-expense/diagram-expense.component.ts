@@ -53,12 +53,13 @@ export class DiagramExpenseComponent implements OnInit {
                 var resDataForDiagram = _.map(groups, (g: any) => {
                     return {
                         name: g[0].CounterName,
-                        y: g.length > 1
-                            ? _.reduce(g, (countDataPrev: any, countDataNext: any) => {
-                                return this.counterDataService.getSumForCounter(countDataNext, 1) + this.counterDataService.getSumForCounter(countDataPrev, 1) +
-                                    this.counterDataService.getSumForCounter(countDataNext, 2) + this.counterDataService.getSumForCounter(countDataPrev, 2);
-                            })
-                            : this.counterDataService.getSumForCounter(g[0], 1) + this.counterDataService.getSumForCounter(g[0], 2)
+                        y: this.getSumForCounterDataArray(g)
+                        //g.length > 1
+                        //    ? _.reduce(g, (countDataPrev: any, countDataNext: any) => {
+                        //        return this.counterDataService.getSumForCounter(countDataNext, 1) + this.counterDataService.getSumForCounter(countDataPrev, 1) +
+                        //            this.counterDataService.getSumForCounter(countDataNext, 2) + this.counterDataService.getSumForCounter(countDataPrev, 2);
+                        //    })
+                        //    : this.counterDataService.getSumForCounter(g[0], 1) + this.counterDataService.getSumForCounter(g[0], 2)
                     }
                 });
 
@@ -104,5 +105,14 @@ export class DiagramExpenseComponent implements OnInit {
         var dateToFilter = moment(this.dateTo).format('YYYY/MM/DD');
 
         this.showDiagram(dateFromFilter, dateToFilter);
+    }
+
+    // ===== Private methods =====
+    getSumForCounterDataArray = (arrayCounterDatas: any) => {
+        var sum = 0;
+        _.each(arrayCounterDatas, (countDataNext: any) => {
+            sum += this.counterDataService.getSumForCounter(countDataNext, 1) + this.counterDataService.getSumForCounter(countDataNext, 2);
+        });
+        return sum;
     }
 }
