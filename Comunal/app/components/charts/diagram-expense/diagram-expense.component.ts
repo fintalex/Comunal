@@ -20,7 +20,7 @@ export class DiagramExpenseComponent implements OnInit {
     dateTo: any;
     dataExpense: any[];
     chartTypes: any[];
-    selectedChartType: number = 1;
+    selectedChartType: string = 'pie';
 
     constructor(
         private authService: AuthService,
@@ -30,8 +30,8 @@ export class DiagramExpenseComponent implements OnInit {
 
     ngOnInit() {
         this.chartTypes = [
-            { value: 1, name: 'Диаграмма расходов'},
-            { value: 2, name: 'График расходов'}
+            { value: 'pie', name: 'Диаграмма расходов'},
+            { value: 'line', name: 'График расходов'}
         ];
 
         var curDate = new Date();
@@ -42,10 +42,14 @@ export class DiagramExpenseComponent implements OnInit {
         this.filterDiagram();
     }
 
-    showDiagram(dateFilterFrom: string, dateFilterTo: string) {
+    updateChart() {
+
+        var dateFromFilter = moment(this.dateFrom).format('YYYY/MM/DD');
+        var dateToFilter = moment(this.dateTo).format('YYYY/MM/DD');
+
         var req = {
-            DateFrom: dateFilterFrom,
-            DateTo: dateFilterTo,
+            DateFrom: dateFromFilter,
+            DateTo: dateToFilter,
             FlatId: this.authService.CurrentUser.Flat.Id
         };
 
@@ -57,33 +61,65 @@ export class DiagramExpenseComponent implements OnInit {
                     return val.CounterName;
                 });
 
-                var resDataForDiagram = _.map(groups, (g: any) => {
-                    return {
-                        name: g[0].CounterName,
-                        y: this.getSumForCounterDataArray(g)
-                        //g.length > 1
-                        //    ? _.reduce(g, (countDataPrev: any, countDataNext: any) => {
-                        //        return this.counterDataService.getSumForCounter(countDataNext, 1) + this.counterDataService.getSumForCounter(countDataPrev, 1) +
-                        //            this.counterDataService.getSumForCounter(countDataNext, 2) + this.counterDataService.getSumForCounter(countDataPrev, 2);
-                        //    })
-                        //    : this.counterDataService.getSumForCounter(g[0], 1) + this.counterDataService.getSumForCounter(g[0], 2)
-                    }
-                });
+                var seriesForChart = null;
+
+                if (this.selectedChartType == 'pie') {
+                    var resDataForDiagram = _.map(groups, (g: any) => {
+                        return {
+                            name: g[0].CounterName,
+                            y: this.getSumForCounterDataArray(g)
+                        }
+                    });
+                    seriesForChart = [{
+                        colorByPoint: true,
+                        data: resDataForDiagram
+                    }]
+                        
+                } else if (this.selectedChartType == 'line') {
+                    var resDataForChart = _.map(groups, (g: any) => {
+                        return {
+                            name: g[0].CounterName,
+                            data: this.getArrayOfCounterDataSum(g)
+                        }
+                    });
+                    seriesForChart = resDataForChart;
+                }
 
                 this.options = {
                     chart: {
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
                         plotShadow: false,
-                        type: 'pie'
+                        type: this.selectedChartType,
+                        width: 900,
+                        height: 600
                     },
                     title: {
-                        text: '1 июня - 31 августа'
+                        text: 'Здесь может быть Title'
+                    },
+                    subtitle: {
+                        text: 'А здесь может быть сабтайтл'
                     },
                     tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        pointFormat: this.selectedChartType == 'pie' ? '{point.y} руб: <b>{point.percentage:.1f}%</b>' : '{series.name}: {point.y} руб'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Сумма по счетчикам'
+                        }
+                    },
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
                     },
                     plotOptions: {
+                        series: {
+                            //pointStart: 2010
+                        },
                         pie: {
                             allowPointSelect: true,
                             cursor: 'pointer',
@@ -97,25 +133,18 @@ export class DiagramExpenseComponent implements OnInit {
                             showInLegend: true
                         }
                     },
-                    series: [{
-                        name: 'Brands',
-                        colorByPoint: true,
-                        data: resDataForDiagram
-                    }]
+                    series: seriesForChart
                 };
             });
     }
 
 
     filterDiagram() {
-        var dateFromFilter = moment(this.dateFrom).format('YYYY/MM/DD');
-        var dateToFilter = moment(this.dateTo).format('YYYY/MM/DD');
-
-        this.showDiagram(dateFromFilter, dateToFilter);
+        this.updateChart();
     }
 
     changeChartType(e: any) {
-        console.log(e);
+        this.updateChart();
     }
 
     // ===== Private methods =====
@@ -125,5 +154,12 @@ export class DiagramExpenseComponent implements OnInit {
             sum += this.counterDataService.getSumForCounter(countDataNext, 1) + this.counterDataService.getSumForCounter(countDataNext, 2);
         });
         return sum;
+    }
+
+    getArrayOfCounterDataSum = (arrayCounterData: any) => {
+        var arrayOfSum = _.map(arrayCounterData, (countData: any) => {
+            return this.counterDataService.getSumForCounter(countData, 1) + this.counterDataService.getSumForCounter(countData, 2);
+        });
+        return arrayOfSum;
     }
 }

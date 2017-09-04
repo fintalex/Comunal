@@ -90,6 +90,10 @@ a:hover {
     width: 230px;
 }
 
+.width-175{
+    width: 175px;
+}
+
 .size-10-pct{
     width: 10%;
 }
@@ -109,6 +113,10 @@ a:hover {
 .scroll-panel{
     height: 250px;
     overflow: overlay;
+}
+
+.md2-datepicker-input{
+    min-width: 100px!important;
 }
 
 /*======================= Buttons =================================*/
