@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit  {
     ngOnInit() {
         this.model = new User();
 
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
     }
 
     login() {
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit  {
                 if (!data.DataLastLogin) {
                     this.router.navigate(['/help']);
                 } else {
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['/myflats']);
                 }
             },
             error => {
