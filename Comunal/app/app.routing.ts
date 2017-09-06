@@ -31,7 +31,7 @@ const routes: Routes = [
     { path: 'diagram-expense', component: DiagramExpenseComponent, canActivate: [GuardService] },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: 'myflats' }
+    { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
