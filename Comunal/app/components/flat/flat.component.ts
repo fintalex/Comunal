@@ -13,9 +13,9 @@ import { Flat } from '../../models/flats';
     moduleId: module.id,
     selector: 'flat-list',
     templateUrl: `flat.component.html`,
-    animations: [ staggerLeftToRight ]
+    animations: [staggerLeftToRight]
 })
-export class FlatComponent implements OnInit  {
+export class FlatComponent implements OnInit {
     myFlats: Flat[] = [];
 
     showFlatPanel: boolean = false;
@@ -26,7 +26,7 @@ export class FlatComponent implements OnInit  {
         private flatService: FlatService,
         private dialogService: DialogService,
         private authService: AuthService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.initFlatList();
@@ -50,6 +50,13 @@ export class FlatComponent implements OnInit  {
             .subscribe(flat => {
                 this.myFlats.push(flat);
                 this.showFlatPanel = false;
+
+                if (!this.currentFlat) {
+                    this.flatService.selectFlat(flat)
+                        .subscribe(() => {
+                            console.log();
+                        });;
+                }
             });
     }
 
@@ -102,5 +109,5 @@ export class FlatComponent implements OnInit  {
                 console.log();
             });
     }
-    
+
 }
