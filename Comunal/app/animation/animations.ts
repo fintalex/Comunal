@@ -12,8 +12,8 @@ export const stagerItem = trigger('staggerItem', [
             ]))
         ]), { optional: true }),
 
-        query(':leave', stagger('300ms', [
-            animate('1s ease-in', keyframes([
+        query(':leave', stagger('100ms', [
+            animate('400ms ease-in', keyframes([
                 style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
                 style({ opacity: .5, transform: 'translateX(35px)', offset: 0.3 }),
                 style({ opacity: 0, transform: 'translateX(-75px)', offset: 1 }),
@@ -59,10 +59,9 @@ export const staggerLeftToRight = trigger('staggerLeftToRight', [
             ]))
         ]), { optional: true }),
 
-        query(':leave', stagger('300ms', [
-            animate('1s ease-in', keyframes([
+        query(':leave', stagger('100ms', [
+            animate('200ms ease-in', keyframes([
                 style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
-                style({ opacity: .7, transform: 'translateX(35px)', offset: 0.3 }),
                 style({ opacity: 0, transform: 'translateX(-75px)', offset: 1 }),
             ]))
         ]), { optional: true }),

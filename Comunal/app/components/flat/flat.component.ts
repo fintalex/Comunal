@@ -51,11 +51,9 @@ export class FlatComponent implements OnInit {
                 this.myFlats.push(flat);
                 this.showFlatPanel = false;
 
-                if (!this.currentFlat) {
+                if (this.myFlats.length == 1) {
                     this.flatService.selectFlat(flat)
-                        .subscribe(() => {
-                            console.log();
-                        });;
+                        .subscribe(() => { });;
                 }
             });
     }
