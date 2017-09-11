@@ -30,7 +30,7 @@
                         <span>Счета</span>
                     </button>
                 </li>
-                <li  *ngIf="authService.CurrentUser && authService.CurrentUser.Flat">
+                <li  *ngIf="authService.CurrentUser && authService.CurrentUser.Flat && false">
                     <button md-menu-item [mdMenuTriggerFor]="menu">
                         <span>Графики</span>
                     </button>
