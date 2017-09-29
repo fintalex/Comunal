@@ -174,9 +174,9 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" (click)="apply()"
                         [disabled]="editCounterDataForm.form.invalid || (counterData.Reading && !counterData.Reading.startsWith('+') &&  (counterDataBefore.LastCounterDataDTO ? counterDataBefore.LastCounterDataDTO.Reading : counterDataBefore.StartReading) > counterData.Reading)">
-                    OK
+                    Сохранить
                 </button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Отменить</button>
             </div>
         </form>
     </div>
