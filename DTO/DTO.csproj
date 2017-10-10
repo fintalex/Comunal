@@ -54,8 +54,9 @@
     <Compile Include="MaintenanceDTO.cs" />
     <Compile Include="FlatDTO.cs" />
     <Compile Include="LoginDTO.cs" />
-    <Compile Include="CurrentUserDTO.cs" />
+    <Compile Include="UserDTO.cs" />
     <Compile Include="CounterDTO.cs" />
+    <Compile Include="NewUserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

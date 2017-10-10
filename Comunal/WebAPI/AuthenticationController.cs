@@ -1,42 +1,33 @@
-﻿using Data;
-using System;
+﻿using System;
 using Services.Interfaces;
-using System.Linq;
 using System.Web.Http;
 using DTO;
-using AutoMapper;
 
 namespace Comunal.WebAPI
 {
-    [RoutePrefix("api/Auth")]
-    public class AuthenticationController : ApiController
-    {
-        private readonly IUserService userService;
-        
-        public AuthenticationController(IUserService userService)
-        {
-            this.userService = userService;
-        }
+	[RoutePrefix("api/Auth")]
+	public class AuthenticationController : ApiController
+	{
+		private readonly IUserService userService;
 
-        [HttpPost]
-        public CurrentUserDTO Login([FromBody]LoginDTO user)
-        {
-            var logingUser = this.userService.GetUserByLogin(user.Email, user.Password);
+		public AuthenticationController(IUserService userService)
+		{
+			this.userService = userService;
+		}
 
-            if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || logingUser == null)
-            {
-                throw new Exception();
-            }
+		[HttpPost]
+		public UserDTO Login([FromBody]LoginDTO user)
+		{
+			var logingUser = this.userService.GetUserByLogin(user.Email, user.Password);
 
-            // here we must create COOKIE
+			if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || logingUser == null)
+			{
+				throw new Exception();
+			}
 
-            var curUserDTO = Mapper.Map<CurrentUserDTO>(logingUser);
-
-            curUserDTO.FirstLogin = !logingUser.DataLastLogin.HasValue ? true : false;
-
-            this.userService.SetDateOfLastLogin(logingUser.Id, DateTime.Now);
-
-            return curUserDTO;
-        }
-    }
+			// here we must create COOKIE         
+			this.userService.SetDateOfLastLogin(logingUser.Id, DateTime.Now);
+			return logingUser;
+		}
+	}
 }

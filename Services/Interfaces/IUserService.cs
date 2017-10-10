@@ -1,68 +1,56 @@
 ﻿using Data;
 using System;
-using System.Linq;
+using DTO;
 
 namespace Services.Interfaces
 {
-    public interface IUserService
-    {
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="user">User for creating</param>
-        void CreateUser(User user);
+	public interface IUserService
+	{
+		/// <summary>
+		/// Get User by id
+		/// </summary>
+		/// <param name="id">Id of user</param>
+		/// <returns>User</returns>
+		UserDTO GetById(int id);
 
-        /// <summary>
-        /// Get User by id
-        /// </summary>
-        /// <param name="id">Id of user</param>
-        /// <returns>User</returns>
-        User GetById(int id);
+		/// <summary>
+		/// Get User by email
+		/// </summary>
+		/// <param name="email">email of user</param>
+		/// <returns>User</returns>
+		UserDTO GetByEmail(string email);
 
-        /// <summary>
-        /// Get User by email
-        /// </summary>
-        /// <param name="email">email of user</param>
-        /// <returns>User</returns>
-        User GetByEmail(string email);
+		/// <summary>
+		/// Delete User by id
+		/// </summary>
+		/// <param name="id">User id</param>
+		void DeleteUser(int id);
 
-        /// <summary>
-        /// Get All Users (then it will be by UserId)
-        /// </summary>
-        /// <returns></returns>
-        IQueryable<User> GetUsers();
+		/// <summary>
+		/// Add User
+		/// </summary>
+		/// <param name="user">newUser</param>
+		UserDTO AddUser(NewUserDTO newUser);
 
-        /// <summary>
-        /// Delete User by id
-        /// </summary>
-        /// <param name="id">User id</param>
-        void DeleteUser(int id);
+		/// <summary>
+		/// Update user
+		/// </summary>
+		/// <param name="user">User</param>
+		void UpdateUser(NewUserDTO user);
 
-        /// <summary>
-        /// Add User
-        /// </summary>
-        /// <param name="user">user</param>
-        User AddUser(User user);
+		/// <summary>
+		/// Get user during login
+		/// </summary>
+		/// <param name="email">email of loging user</param>
+		/// <param name="password">password of loging user</param>
+		/// <returns>Loging user</returns>
+		UserDTO GetUserByLogin(string email, string password);
 
-        /// <summary>
-        /// Update user
-        /// </summary>
-        /// <param name="user">User</param>
-        void UpdateUser(User user);
-
-        /// <summary>
-        /// Get user during login
-        /// </summary>
-        /// <param name="email">email of loging user</param>
-        /// <param name="password">password of loging user</param>
-        /// <returns>Loging user</returns>
-        User GetUserByLogin(string email, string password);
-
-        /// <summary>
-        /// Change date of last login
-        /// </summary>
-        /// <param name="userId">User Id</param>
-        /// <param name="dateTimeLogin">Date of last login</param>
-        void SetDateOfLastLogin(int userId, DateTime dateTimeLogin);
-    }
+		/// <summary>
+		/// Change date of last login
+		/// </summary>
+		/// <param name="userId">User Id</param>
+		/// <param name="dateTimeLogin">Date of last login</param>
+		void SetDateOfLastLogin(int userId, DateTime dateTimeLogin);
+	}
 }

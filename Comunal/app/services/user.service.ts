@@ -18,20 +18,13 @@ export class UserService {
 
     }
 
-    // don't see any reason why we need this method
-    getUsers(): Observable<User[]> {
-        return this.http.get(this.apiUrl)
-            .map(response => response.json())
-            .catch(this.handleError);
-    }
-
     isEmailAlreadyExist(newUser: User): Observable<any> {
         return this.http.post(`${this.apiUrl}/checkEmail`, newUser)
             .map(response => response.json())
             .catch(this.handleError);
     }
 
-    createUser(newUser: User): Observable<User>  {
+    createUser(newUser: User): Observable<User> {
         return this.http.post(this.apiUrl, newUser)
             .map(res => res.json())
             .catch(this.handleError);

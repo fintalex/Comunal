@@ -17,14 +17,8 @@ export class CounterService {
     constructor(private http: Http) {
 
     }
-    
-    getCounters(): Observable<Counter[]> {
-        return this.http.get(this.apiUrl)
-            .map(response => response.json())
-            .catch(this.handleError);
-    }
 
-    getFlatCountersByFlatId(flatId: number): Observable<Counter[]> {
+    getCountersByFlatId(flatId: number): Observable<Counter[]> {
         return this.http.get(`${this.apiUrl}/${flatId}`)
             .map(response => response.json())
             .catch(this.handleError);

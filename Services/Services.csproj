@@ -66,6 +66,8 @@
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IFlatService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Translators\FlatTranslators.cs" />
+    <Compile Include="Translators\UserTranslators.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

@@ -18,30 +18,29 @@ export class RegisterComponent {
     constructor(
         private router: Router,
         private userService: UserService
-    ){}
-    
-    register() {
-        this.loading = true;
+    ) { }
 
-        if (!this.emailChecking) {
-            this.userService.createUser(this.model)
-                .subscribe(
-                user => {
-                    // here must be some alert about 'Registration successful'
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    // here must be some alert about 'FAILED'
-                    this.loading = false;
-                });
-        }
+    register() {
+        if (this.emailChecking)
+            return;
+
+        this.loading = true;
+        this.userService.createUser(this.model)
+            .subscribe(
+            user => {
+                // here must be some alert about 'Registration successful'
+                this.router.navigate(['/login']);
+            },
+            error => {
+                // here must be some alert about 'FAILED'
+                this.loading = false;
+            });
     }
 
     checkEmail() {
         this.emailChecking = true;
         return this.userService.isEmailAlreadyExist(this.model)
             .subscribe(res => {
-                console.log(res);
                 this.emailExist = res.Result;
                 this.emailChecking = false;
             });

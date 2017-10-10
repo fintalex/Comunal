@@ -39,16 +39,7 @@ namespace Services.Classes
         }
 
         /// <summary>
-        /// Get All Flats (then it will be by UserId)
-        /// </summary>
-        /// <returns></returns>
-        public IQueryable<Flat> GetFlats()
-        {
-            return this.context.Flats;
-        }
-
-        /// <summary>
-        /// Get All Flats by user (then it will be by UserId)
+        /// Get All Flats by UserId
         /// </summary>
         /// <returns></returns>
         public IQueryable<Flat> GetUserFlats(int userId)

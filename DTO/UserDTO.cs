@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class CurrentUserDTO
+    public class UserDTO
     {
         public int Id { get; set; }
 
@@ -21,7 +17,5 @@ namespace DTO
 		public DateTime? DataRegistration { get; set; }
         
 		public DateTime? DataLastLogin { get; set; }
-
-        public bool FirstLogin { get; set; }
     }
 }

@@ -19,13 +19,7 @@ namespace Services.Interfaces
         Flat GetById(int id);
 
         /// <summary>
-        /// Get All Flats (then it will be by UserId)
-        /// </summary>
-        /// <returns></returns>
-        IQueryable<Flat> GetFlats();
-
-        /// <summary>
-        /// Get All Flats by user (then it will be by UserId)
+        /// Get All Flats by UserID
         /// </summary>
         /// <returns></returns>
         IQueryable<Flat> GetUserFlats(int userId);
