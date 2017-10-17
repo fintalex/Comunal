@@ -44,7 +44,7 @@ namespace Services.Classes
 			return this.context.Users
 				.FirstOrDefault(f => f.Id == id)
 				.ToUserDTO();
-		}
+        }
 
 		/// <summary>
 		/// Delete User by id

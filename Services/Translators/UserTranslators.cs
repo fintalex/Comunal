@@ -8,6 +8,11 @@ namespace Services.Translators
 	{
 		public static UserDTO ToUserDTO(this User user)
 		{
+            if (user == null)
+            {
+                return null;
+            }
+
 			var selectedFlat = user.Flats.FirstOrDefault(f => f.Selected);
 
 			return new UserDTO

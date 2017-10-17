@@ -20,9 +20,9 @@ namespace Comunal.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult HomePage()
         {
-            ViewBag.Message = "Your contact page.";
+            ////ViewBag.Message = "Your contact page.";
 
             return View();
         }
