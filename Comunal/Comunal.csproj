@@ -246,6 +246,10 @@
     <Content Include="Content\CounterTypes\heat.png" />
     <Content Include="Content\CounterTypes\hotwater.png" />
     <Content Include="Content\CounterTypes\moto.png" />
+    <Content Include="Content\HomePage\AppartDescr.jpg" />
+    <Content Include="Content\HomePage\BillDescr.jpg" />
+    <Content Include="Content\HomePage\CounterDescr.jpg" />
+    <Content Include="Content\HomePage\MaintDescr.jpg" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\ServiceTypes\cooler.png" />
     <Content Include="Content\ServiceTypes\fix.png" />

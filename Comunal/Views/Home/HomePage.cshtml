@@ -1,4 +1,17 @@
 ﻿<style>
+    body{
+        background: #9fcdd4;
+        color: #fff;
+        font-family: "Times New Roman";
+        font-size: 16px;
+        font-weight: normal;
+    }
+    .container{
+        box-sizing: border-box;
+        max-width: 1400px;
+        margin: auto;
+        padding: 0 60px;
+    }
     .home-title {
         font-family: "museo_sans_cyrl900","PT Sans",Helvetica,Arial,sans-serif;
         font-size: 60px;
@@ -7,12 +20,118 @@
         text-transform: uppercase;
     }
     .home-block{
+        text-align: center;        
+        margin-top: 60px;
+    }
+    .top-menu{
+        display: block;
+        height: 100px;
+    }
+    .top-menu .menu{
+        list-style: none;
+        font-family: "museo_sans_cyrl900","PT Sans",Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    .top-menu .menu-item{
+        width: 20%;
         text-align: center;
+        float: left;
+    }
+    .top-menu .menu-item .item-label {
+        display: inline-block;
+        padding: 45px 0 35px;
+    }
+    .top-menu .item{
+        display: inline-block;
+        color: #fff;
+    }
+    /*==============================================*/
+    .home-list-description li{
+        list-style: none;
+        display: flex;
+        margin-top: 70px;
+    }
+    .home-list-description li>div{
+        width: 50%;
     }
 </style>
+<div class="container">
 
-<div class="home-block">
-    <h1 class="home-title">Коммуналка</h1>
-    <h1 class="home-title">Твой дом в твоих руках</h1>
+    <div class="top-menu">
+        <ul class="menu">
+            <li class="menu-item">
+                <a href="" class="item">
+                    <span class="item-label">Hello</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="" class="item">
+                    <span class="item-label">Hi again</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <div class="item">
+                    <img src="~/Content/logo.png" />
+                </div>
+            </li>
+            <li class="menu-item">
+                <a href="" class="item">
+                    <span class="item-label">О сайте</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="" class="item">
+                    <span class="item-label">Войти</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="home-block">
+        <h1 class="home-title">Коммуналка</h1>
+        <h1 class="home-title">Твой дом в твоих руках</h1>
+    </div>
+
+    <div class="home-list-description">
+        <ul>
+            <li>
+                <div>
+                    <img src="~/Content/HomePage/AppartDescr.jpg" height="250" width="450" />
+                </div>
+                <div>
+                    <h2>Квартира</h2>
+                    <span>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</span>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <h2>Счетчики</h2>
+                    <span>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</span>
+                </div>
+                <div>
+                    <img src="~/Content/HomePage/CounterDescr.jpg"  height="250" width="450" />
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img src="~/Content/HomePage/MaintDescr.jpg"  height="250" width="450" />
+                </div>
+                <div>
+                    <h2>Услуги</h2>
+                    <span>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</span>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <h2>Счета</h2>
+                    <span>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</span>
+                </div>
+                <div>
+                    <img src="~/Content/HomePage/BillDescr.jpg"  height="250" width="450" />
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
-
