@@ -1,10 +1,22 @@
 ﻿<style>
     body{
-        background: #9fcdd4;
+        background: #366369;
         color: #fff;
-        font-family: "Times New Roman";
+        font-family: Arial, sans-serif;
         font-size: 16px;
         font-weight: normal;
+    }
+    h1,h2,h3,span,label,text,p{
+        font-family: Arial, sans-serif;
+    }
+    h3{
+        font-size: 36px;
+        line-height: .9;
+        margin-bottom: 15px;
+    }
+    p {
+        line-height: 1.5;
+        font-weight: 800;
     }
     .container{
         box-sizing: border-box;
@@ -13,7 +25,7 @@
         padding: 0 60px;
     }
     .home-title {
-        font-family: "museo_sans_cyrl900","PT Sans",Helvetica,Arial,sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 60px;
         margin: 10px 0;
         line-height: 50px;
@@ -29,7 +41,7 @@
     }
     .top-menu .menu{
         list-style: none;
-        font-family: "museo_sans_cyrl900","PT Sans",Helvetica,Arial,sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 14px;
         font-weight: 700;
         text-transform: uppercase;
@@ -52,16 +64,32 @@
         list-style: none;
         display: flex;
         margin-top: 70px;
+        align-items: center;
     }
     .home-list-description li>div{
         width: 50%;
+    }
+    .home-list-description li>div>img{
+        max-width: 100%;
+        height: auto;
+        border: 3px solid #ffd800; 
+        border-radius: 5px; 
+        box-shadow: rgba(0,242,246,.3) 0 0 10px; 
+    }
+    .home-list-description .right-screen-div{
+        text-align: right;
+        margin-right: 60px;
+    }
+    .home-list-description .left-screen-div{
+        text-align: left;
+        margin-left: 60px;
     }
 </style>
 <div class="container">
 
     <div class="top-menu">
         <ul class="menu">
-            <li class="menu-item">
+            <li class="menu-item ">
                 <a href="" class="item">
                     <span class="item-label">Hello</span>
                 </a>
@@ -92,44 +120,45 @@
     <div class="home-block">
         <h1 class="home-title">Коммуналка</h1>
         <h1 class="home-title">Твой дом в твоих руках</h1>
+        <p>Сайт позволяет вести статистику по коммунальным расходам, <br />отслеживать и анализировать динамику расходов по счётчикам</p>
     </div>
 
     <div class="home-list-description">
         <ul>
-            <li>
+            <li >
                 <div>
-                    <img src="~/Content/HomePage/AppartDescr.jpg" height="250" width="450" />
+                    <img src="~/Content/HomePage/AppartDescr.jpg" height="306" width="623" />
+                </div>
+                <div class="left-screen-div">
+                    <h3>Квартира</h3>
+                    <p>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</p>
+                </div>
+            </li>
+            <li>
+                <div  class="right-screen-div">
+                    <h3>Счетчики</h3>
+                    <p>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</p>
                 </div>
                 <div>
-                    <h2>Квартира</h2>
-                    <span>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</span>
+                    <img src="~/Content/HomePage/CounterDescr.jpg" height="306" width="623" />
                 </div>
             </li>
             <li>
                 <div>
-                    <h2>Счетчики</h2>
-                    <span>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</span>
+                    <img src="~/Content/HomePage/MaintDescr.jpg"  height="306" width="623" />
                 </div>
-                <div>
-                    <img src="~/Content/HomePage/CounterDescr.jpg"  height="250" width="450" />
-                </div>
-            </li>
-            <li>
-                <div>
-                    <img src="~/Content/HomePage/MaintDescr.jpg"  height="250" width="450" />
-                </div>
-                <div>
-                    <h2>Услуги</h2>
-                    <span>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</span>
+                <div  class="left-screen-div">
+                    <h3>Услуги</h3>
+                    <p>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</p>
                 </div>
             </li>
-            <li>
-                <div>
-                    <h2>Счета</h2>
-                    <span>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</span>
+            <li >
+                <div class="right-screen-div">
+                    <h3>Счета</h3>
+                    <p>Для начала работы вам необходимо создать/добавить свою квартиру для которой потом вы сможете вести учет показаний приборов</p>
                 </div>
                 <div>
-                    <img src="~/Content/HomePage/BillDescr.jpg"  height="250" width="450" />
+                    <img src="~/Content/HomePage/BillDescr.jpg" height="306" width="623" />
                 </div>
             </li>
         </ul>
