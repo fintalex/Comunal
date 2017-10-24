@@ -6,14 +6,14 @@
             <label for="email">Email</label>
             <input type="text" class="form-control" name="email"
                    [(ngModel)]="model.Email" #email="ngModel"
-                   required minlength="5" maxlength="30" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                   required minlength="5" maxlength="30" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" />
 
             <div *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
                 <div [hidden]="!email.errors.required">
                     Укажите Email
                 </div>
                 <div [hidden]="!email.errors.pattern">
-                    Email не валидный
+                    Некорректный email
                 </div>
             </div>
         </div>

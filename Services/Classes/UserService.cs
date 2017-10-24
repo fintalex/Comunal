@@ -30,7 +30,7 @@ namespace Services.Classes
 		public UserDTO GetByEmail(string email)
 		{
 			return this.context.Users
-				.FirstOrDefault(f => f.Email == email)
+				.FirstOrDefault(f => f.Email == email.ToLower())
 				.ToUserDTO();
 		}
 
@@ -68,7 +68,7 @@ namespace Services.Classes
 				FirstName = newUser.FirstName,
 				LastName = newUser.LastName,
 				Password = this.Hash(newUser.Password),
-				Email = newUser.Email,
+				Email = newUser.Email.ToLower(),
 				DataRegistration = DateTime.Now
 			};
 
@@ -85,7 +85,7 @@ namespace Services.Classes
 		public void UpdateUser(NewUserDTO user)
 		{
 			var currentUser = this.context.Users.FirstOrDefault(f => f.Id == user.Id);
-			currentUser.Email = user.Email;
+			currentUser.Email = user.Email.ToLower();
 			currentUser.FirstName = user.FirstName;
 			currentUser.LastName = user.LastName;
 
@@ -102,7 +102,7 @@ namespace Services.Classes
 		{
 			var hashedPassword = this.Hash(password);
 			return this.context.Users
-				.FirstOrDefault(u => u.Email == email && u.Password == hashedPassword)
+				.FirstOrDefault(u => u.Email == email.ToLower() && u.Password == hashedPassword)
 				.ToUserDTO();
 		}
 
