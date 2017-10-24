@@ -1,0 +1,523 @@
+﻿ <!-- начало главного блока -->
+<header>
+
+    <div class="header-content">
+
+        <div class="header-content__intro">
+            <div class="table">
+                <div class="table-cell">
+                    <h1>Коммуналка</h1>
+                    <h2>Твой дом в твоих руках</h2>
+                </div>
+                <div class="table-cell logo right-block"></div>
+            </div>
+
+            <span class="header-content-descr">Сайт позволяет вести статистику по коммунальным расходам, отслеживать и анализировать динамику расходов по счётчикам</span>
+
+            <div class="table">
+                @*<div class="table-cell">
+                        <a class="download" href="https://www.microsoft.com/store/apps/9nblggh16nhc?ocid=badge" target="_blank">
+                            <img class="wpstore-image" src="https://assets.windowsphone.com/4beadba3-1b4c-4c38-bdf1-9c660d6d83c7/Russian_get_L_InvariantCulture_Default.png" alt="Получить" />
+                        </a>
+                    </div>
+                    <div class="table-cell right-block">
+                        <div class="social__item"><a href="https://vk.com/housingutilities" target="_blank"><i class="fa fa-vk"></i></a></div>
+                    </div>*@
+
+                <button class="header-button marging-right">
+                    <a href="/help">Справка</a>
+                </button>
+                <button class="header-button marging-right">
+                    <a href="/about">О сайте</a>
+                </button>
+                <button class="header-button float-right">
+                    <a href="/login">Войти</a>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+</header>
+<!-- конец главного блока -->
+<!-- начало секции с преимуществами -->
+<section class="section section--features" id="features">
+    <div class="intro">
+
+        <h2>
+            Ключевые
+            <span>особенности</span>
+        </h2>
+
+        <div class="features-block">
+
+            <div class="features-inline-block">
+
+                <div class="feature">
+                    <div class="feature__icon fa-chrome"></div>
+                    <div>
+                        <span class="feature__title">
+                            Это все, что вам нужно
+                        </span>
+                        <span class="feature__text">
+                            Программа содержит все необходимые инструменты для ведения учета и анализа Ваших расходов на коммунальные услуги.​ <br />
+                            Хранение показаний, построение графиков и даже встроенный фонарик - все эти функции совмещены в одном приложении "Коммуналка"
+                        </span>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature__icon fa-mobile"></div>
+                    <span class="feature__title">
+                        Великолепный дизайн
+                    </span>
+                    <span class="feature__text">
+                        Приятный дизайн и удобный интерфейс приложения поможет Вам максимально быстро начать вести учет и следить за Вашими расходами.
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="features-inline-block">
+                <div class="feature">
+                    <div class="feature__icon fa-check-circle"></div>
+                    <span class="feature__title">
+                        Все в одном
+                    </span>
+                    <span class="feature__text">
+                        <ul>
+                            <li>неограниченное число счетчиков и услуг</li>
+                            <li>тарификация с учетом социальной нормы</li>
+                            <li>учет услуг без счетчика (по нормативу, площади, количеству жильцов)</li>
+                            <li>хранение показаний в базе данных</li>
+                            <li>напоминания об оплате коммунальных услуг и снятии показаний</li>
+                            <li>графики для отслеживания динамики расходов, платежей и тарифов</li>
+                            <li>создание резервной копии и восстановление данных</li>
+                            <li>экспорт данных в облако в формате Excel</li>
+                            <li>отправка показаний по электронной почте</li>
+                            <li>синхронизация данных с устройствами на Windows</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--<div class="intro">
+        <a href="#" id="get_started_2" class="button button--long">Оставить отзыв</a>
+    </div>-->
+
+</section>
+<!-- конец секции с преимуществами -->
+<!-- начало футера -->
+<footer>
+    <div class="copyright">
+        © 2016-2017 Коммуналка
+    </div>
+</footer>
+
+<style>
+    *{
+	    box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'RalewayRegular';
+    }
+    .header-content {
+      min-height: 100vh;
+      /*text-align: right;*/
+      background: #E2E5E8 url(../../../Content/bg2.jpeg) repeat top left;
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+    }
+    .header-content__note {
+      background: url(../images/obj_note.png) no-repeat center;
+      width: 267px;
+      height: 335px;
+      position: absolute;
+      z-index: 0;
+      bottom: 0;
+      left: 0;
+      opacity: .8;
+    }
+    .header-content__intro {
+      width: 33%;
+      min-width: 450px;
+      display: inline-block;
+      text-align: left;
+      margin: 5%;
+      padding: 30px;
+      color: White;
+      font-family: 'RalewayBold';
+      background: rgba(0, 0, 0, .7);
+      border-radius: 15px;
+    }
+    .intro {
+      text-align: center;
+      margin: 0 5%;
+    }
+    .table {
+      display: table;
+      width: 100%;
+    }
+    .table-cell {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .logo {
+      min-width: 100px;
+      height: 100px;
+      background: url(../../../Content/logo.png) no-repeat left center;
+      background-size: contain;
+    }
+    .right-block {
+      width: 1%;
+    }
+    .wpstore-image {
+      max-height: 50px;
+    }
+    h1.header-content-title span {
+      color: #252525;
+    }
+    .header-content-descr {
+      color: #969696;
+      font-size: 18px;
+      display: block;
+      margin: 0 0 50px;
+    }
+
+    /* buttons */
+    .button, form input[type='submit'] {
+      font-size: 18px;
+      font-family: "RalewayExtraBold";
+      color: #ffffff;
+      text-shadow: 0px 1px 0px rgba(0, 1, 1, 0.15);
+      text-decoration: none;
+      background: #007BAD;
+      border-radius: 3px;
+      padding: 10px 30px;
+      display: inline-block;
+      text-transform: uppercase;
+      transition: background .3s ease;
+      -webkit-transition: background .3s ease;
+    }
+    form input[type='submit'] {
+      border:none;
+      outline: none;
+      cursor: pointer;
+    }
+    form input[type='text'], form input[type='email'], form textarea{
+      outline: none;
+      width: 100%;
+      border: 2px solid #D6D6D6;
+      border-radius: 3px;
+      font-family: 'RalewayRegular', sans-serif;
+      font-size: 16px;
+      padding: 10px 15px;
+      transition: all .2s ease;
+      -webkit-transition: all .2s ease;
+    }
+    .button--long {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px 0;
+    }
+    .button:hover {
+      background: #0A8FC5;
+    }
+    .button:active {
+      background: #0A8FC5;
+      box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    }
+    .button.button--green {
+      background: #5bbc2e;
+    }
+    .button.button--green:hover {
+      background: #6ACA3D;
+    }
+    .button.button--purple {
+      background: #c42fc9;
+    }
+    .button.button--purple:hover {
+      background: #CF3CD4;
+    }
+    .button.button--yellow {
+      background: #dac00e;
+    }
+    .button.button--yellow:hover {
+      background: #E4CB21;
+    }
+    .button.button--light {
+      font-size: 12px;
+      text-shadow: none;
+      font-family: 'RalewayMedium';
+    }
+    .button.button--square {
+      border-radius: 0;
+    }
+    .button.button--transparent {
+      background: transparent;
+      border: 2px solid #ffffff;
+      color: #ffffff;
+      padding: 12px 40px;
+      transition: background .3s ease, padding .3s ease;
+      -webkit-transition: background .3s ease, padding .3s ease;
+    }
+    .button.button--transparent:hover {
+      padding: 12px 50px;
+    }
+    /* end of buttons */
+
+    /* features */
+    .section {
+      height: auto;
+      min-height: 500px;
+      background: #f9f9f9;
+    }
+    .section__descr {
+      color: #515151;
+      text-align: center;
+      display: block;
+      margin: 20px 0 30px;
+      line-height: 20px;
+    }
+    .section__title {
+      color: #8d8d8d;
+      text-transform: uppercase;
+      font-family: 'RalewayExtraBold';
+      margin: 0 0 25px;
+      font-size: 30px;
+    }
+    .section__title--centered {
+      text-align: center;
+    }
+    .section__title--white {
+      color: #ffffff;
+    }
+    .section__title--light {
+      font-family: 'RalewayMedium';
+    }
+    .section__title span {
+      color: #007BAD;
+    }
+    .section--features {
+      padding: 80px 0 100px;
+      font-size: 12px;
+      font-family: 'RalewayMedium';
+      letter-spacing: 0.5px;
+      min-height: 850px;
+    }
+    .section--features h2 {
+      font-family: 'RalewayExtraBold';
+      font-size: 48px;
+      text-transform: uppercase;
+      color: #252525;
+      margin: 0;
+      text-align: center;
+      letter-spacing: 0;
+    }
+    .section--features h2 span {
+      color: #007BAD;
+    }
+    .features-inline-block {
+      vertical-align: top;
+      display: inline-block;
+      width: 40%;
+    }
+    .features-inline-block ul {
+      text-align: left;
+    }
+    .features-block {
+      text-align: center;
+      overflow: hidden;
+      margin: 60px 0;
+    }
+    .features-block .feature {
+      float: left;
+      margin: 0 0 20px;
+      transition: background .4s ease;
+      -webkit-transition: background .4s ease;
+      border-radius: 3px;
+      padding: 20px 40px;
+      cursor: default;
+    }
+    .features-block .feature:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    .feature__icon {
+      font: normal normal normal 61px/1 FontAwesome;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: #007BAD;
+    }
+    .feature__title {
+      display: block;
+      font-size: 14px;
+      color: #007BAD;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'RalewaySemiBold';
+      margin: 22px 0 15px;
+    }
+    .feature__text {
+      color: #515151;
+      font-family: 'RalewayMedium';
+      font-size: 12px;
+      line-height: 20px;
+      min-height: 65px;
+      display: block;
+    }
+    /* end of features */
+
+    /* join */
+    .section--join {
+      padding: 0;
+      height: auto;
+      min-height: auto;
+    }
+    .section--join__white-block {
+      text-align: center;
+      padding: 0 0 50px;
+    }
+    .block {
+      text-align: center;
+      padding: 50px 0;
+    }
+    .block.block--dark-grey {
+      background: #262626;
+      color: #ffffff;
+      text-align: center;
+    }
+    .section--join h2 {
+      margin-bottom: 50px;
+    }
+    /* and of join */
+
+    /* footer */
+    footer {
+      background: #141414;
+      color: DarkGray;
+      padding: 20px 0;
+    }
+    .social__item {
+      display: table;
+      text-align: center;
+      float: left;
+      width: 70px;
+      height: 70px;
+      font-size: 35px;
+      border-radius: 50%;
+      transition: all .3s ease;
+      -webkit-transition: all .3s ease;
+    }
+    .social__item a {
+      display: table-cell;
+      vertical-align: middle;
+      color: #007BAD;
+      height: 100%;
+      transition: color .3s ease;
+      -webkit-transition: color .3s ease;
+    }
+    .social__item:hover {
+      background: #007BAD;
+    }
+    .social__item:hover a {
+      color: #ffffff;
+    }
+    .download {
+      width: 100%;
+      max-width: 250px;
+    }
+    .copyright {
+      font-size: 11px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .copyright a {
+      color: DarkGray;
+      border-bottom: 1px dashed #515151;
+      text-decoration: none;
+      -webkit-transition: all .2s ease;
+    }
+    .copyright a:hover {
+      border-bottom: 1px dashed transparent;
+    }
+    /* end of footer */
+
+    /* popup blocks */
+    .popup {
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 5%;
+      display: none;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      position: fixed;
+      overflow-y: scroll;
+      z-index: 9998;
+    }
+    .popup .popup__block {
+      display: inline-block;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 3px;
+      padding: 41px 40px 40px;
+      background: #ffffff;
+    }
+    .popup .popup__body {
+      text-align: center;
+    }
+    .popup .popup__close {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      color: #007BAD;
+      font-size: 25px;
+      transition: color .2s ease;
+    }
+    .popup .popup__close:hover {
+      color: #000000;
+    }
+    /* end of popup blocks */
+    .header-button{
+        background-color: #ffcd05;
+        border: 2px solid #ad322b;
+        border-radius: 10px;
+        /* margin-right: 35px; */
+        padding: 6px 20px;
+        font-size: 18;
+        font-weight: 800;
+        color: #ad322b;
+    }
+
+    .header-button a{
+        text-decoration: none;
+        color: #ad322b;
+    }
+
+    .header-button:hover{
+         background-color: #fffc66;
+    }
+
+    .float-right{
+        float: right
+    }
+
+    .marging-right {
+        margin-right: 50px;
+    }
+
+</style>

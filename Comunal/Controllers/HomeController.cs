@@ -26,5 +26,12 @@ namespace Comunal.Controllers
 
             return View();
         }
+
+        public ActionResult HomePage2()
+        {
+            ////ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
