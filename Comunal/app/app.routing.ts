@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'about', component: AboutComponent },
     { path: 'help', component: HelpComponent },
-    { path: 'home', component: HomeComponent },
+    //{ path: 'home', component: HomeComponent },
     { path: 'myflats', component: FlatComponent, canActivate: [GuardService]  },
     { path: 'counters', component: CounterComponent, canActivate: [GuardService] },
     { path: 'maintenance', component: MaintenanceComponent, canActivate: [GuardService] },
@@ -31,7 +31,7 @@ const routes: Routes = [
     { path: 'diagram-expense', component: DiagramExpenseComponent, canActivate: [GuardService] },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: 'home' }
+    { path: '**', redirectTo: 'myflats' }
 ];
 
 @NgModule({

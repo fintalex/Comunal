@@ -1,4 +1,12 @@
-﻿ <!-- начало главного блока -->
+﻿ 
+<script>
+    var userInStorage = localStorage.getItem('currentUser');
+    if (userInStorage) {
+        window.location = "/myflats";
+    }
+</script>
+
+<!-- начало2 главного блока -->
 <header>
 
     <div class="header-content">
