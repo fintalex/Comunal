@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoaderService } from './services/loader.service';
 
 @Component({
@@ -8,14 +9,20 @@ import { LoaderService } from './services/loader.service';
 })
 export class AppComponent implements OnInit {
     showLoader: boolean;
+    showLoaderFromHome: boolean;
 
     constructor(
-        private loaderService: LoaderService) {
+        private loaderService: LoaderService,
+        private router: Router,) {
     }
 
     ngOnInit() {
         this.loaderService.status.subscribe((val: boolean) => {
-            this.showLoader = val;
+            if (this.router.url == '/home' || this.router.url == '/') {
+                this.showLoaderFromHome = val;
+            } else {
+                this.showLoader = val;
+            }
         });
     }
 }
